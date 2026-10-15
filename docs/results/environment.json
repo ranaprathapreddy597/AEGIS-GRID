@@ -1,0 +1,59 @@
+{
+  "captured_at_utc": "2026-10-14T17:44:30.720276+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.7",
+  "provider_environment_present": {
+    "EVOLUS_API_KEY": false,
+    "EVOLUS_BASE_URL": false,
+    "EVOLUS_MCP_URL": false,
+    "PINECONE_API_KEY": false,
+    "GITHUB_TOKEN": false,
+    "GH_TOKEN": false,
+    "MI300X_HOST": false,
+    "INFERENCE_BASE_URL": false,
+    "INFERENCE_API_KEY": false,
+    "MONGODB_URI": false,
+    "REDIS_URL": false
+  },
+  "tools": {
+    "git": {
+      "available": true,
+      "exit_code": 0,
+      "output": "git version 2.55.0.windows.3"
+    },
+    "node": {
+      "available": true,
+      "exit_code": 0,
+      "output": "v24.19.0"
+    },
+    "pnpm": {
+      "available": true,
+      "exit_code": 0,
+      "output": "11.25.0"
+    },
+    "uv": {
+      "available": false
+    },
+    "cmake": {
+      "available": false
+    },
+    "g++": {
+      "available": false
+    },
+    "docker": {
+      "available": true,
+      "exit_code": 0,
+      "output": "client=29.8.1 server=29.8.1 linux"
+    },
+    "compose": {
+      "available": true,
+      "exit_code": 0,
+      "output": "Docker Compose version v5.5.1"
+    }
+  },
+  "hardware": {
+    "available": true,
+    "exit_code": 0,
+    "output": "{\r\n    \"OS\":  \"Microsoft Windows 11 Home Single Language\",\r\n    \"Build\":  \"26300\",\r\n    \"RAMGiB\":  31.29,\r\n    \"CPU\":  \"AMD Ryzen AI 7 350 w/ Radeon 860M\",\r\n    \"LogicalProcessors\":  16,\r\n    \"GPU\":  \"AMD Radeon(TM)  860M Graphics\",\r\n    \"Driver\":  \"32.0.31041.1004\"\r\n}"
+  }
+}

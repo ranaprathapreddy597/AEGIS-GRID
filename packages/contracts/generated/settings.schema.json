@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "edge_url": {
+      "default": "http://edge:8001",
+      "title": "Edge Url",
+      "type": "string"
+    },
+    "seed": {
+      "default": 42,
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "service_token": {
+      "format": "password",
+      "title": "Service Token",
+      "type": "string",
+      "writeOnly": true
+    },
+    "twin_binary": {
+      "default": "\\usr\\local\\bin\\aegis-twin",
+      "format": "path",
+      "title": "Twin Binary",
+      "type": "string"
+    },
+    "viewer_token": {
+      "format": "password",
+      "title": "Viewer Token",
+      "type": "string",
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "viewer_token",
+    "service_token"
+  ],
+  "title": "Settings",
+  "type": "object"
+}

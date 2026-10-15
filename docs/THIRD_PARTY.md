@@ -1,0 +1,17 @@
+# Third-party dependencies and assets
+
+No downloaded fonts, photographs, generated images, paid assets or copied UI
+templates are used. The interface uses system fonts, CSS and SVG primitives.
+Screenshots are captures of the running application.
+
+Application source has no license assigned yet; the repository owner must choose
+one before public redistribution. Do not infer relicensing of the supplied prompts.
+
+Dependency versions and integrity hashes are recorded in uv.lock/pnpm-lock.yaml.
+Redis/Mongo container images are official vendor distributions; their licenses and
+redistribution/hosting requirements must be reviewed before a public release.
+Local use here does not claim a production licensing review. GNU runtime linking
+uses its upstream runtime exception; OS packages retain their own licenses.
+
+Dependency vulnerability scans are a point-in-time check, separate from license
+compliance. Full SBOM/license automation is part of release hardening.

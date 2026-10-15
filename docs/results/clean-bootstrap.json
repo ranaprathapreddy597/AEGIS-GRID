@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "source_tree": "ff11de3fffa802d97e80b48bc3e879540d195e2c",
+  "method": "git archive of staged tree; separate Compose project and fresh volumes",
+  "source_copy_initially_had_env": false,
+  "source_copy_has_venv": false,
+  "source_copy_has_node_modules": false,
+  "frontend_http": 200,
+  "anonymous_read_http": 401,
+  "sse_frames": 3,
+  "versions_increase": true,
+  "temperature_changes": true,
+  "source": "local_cpp_simulator",
+  "port": 18080,
+  "limitation": "Existing host Docker image/layer and registry caches reused; this is not a new machine or a cold-download timing benchmark"
+}

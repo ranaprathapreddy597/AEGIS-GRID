@@ -1,0 +1,47 @@
+[project]
+name = "aegis-grid"
+version = "0.1.0"
+description = "AEGIS GRID Phase 1 local simulation golden path"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "fastapi==0.143.1",
+  "httpx==0.28.1",
+  "pydantic==2.14.1",
+  "uvicorn==0.54.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==9.1.1",
+  "ruff==0.17.0",
+  "mypy==2.4.0",
+  "pip-audit==2.10.1",
+]
+
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["packages/contracts/python/aegis_contracts", "services/api/aegis_api", "services/edge/aegis_edge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit", "tests/integration", "tests/security"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106"]
+"tools/**" = ["S603", "S607"]
+"services/edge/aegis_edge/app.py" = ["S603"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["services/api/aegis_api", "services/edge/aegis_edge", "packages/contracts/python/aegis_contracts"]

@@ -1,0 +1,119 @@
+name: aegis-grid
+x-python: &python
+  image: aegis-grid-python:phase1
+  build:
+    context: ../..
+    dockerfile: infra/local/python.Dockerfile
+    target: runtime
+  init: true
+  read_only: true
+  tmpfs: [/tmp:size=16m]
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  mem_limit: 384m
+  cpus: 1
+  pids_limit: 64
+  networks: [app]
+
+services:
+  edge:
+    <<: *python
+    command: [uvicorn, "aegis_edge.app:create_app", --factory, --host, 0.0.0.0, --port, "8001", --no-access-log]
+    environment:
+      AEGIS_VIEWER_TOKEN: ${AEGIS_VIEWER_TOKEN:?Run python tools/dev.py start}
+      AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
+      AEGIS_SEED: ${AEGIS_SEED:-42}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/healthz',timeout=2)"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+  api:
+    <<: *python
+    environment:
+      AEGIS_VIEWER_TOKEN: ${AEGIS_VIEWER_TOKEN:?Run python tools/dev.py start}
+      AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
+    depends_on:
+      edge: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz',timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  executor:
+    image: aegis-grid-executor:phase1
+    build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: executor}
+    environment:
+      AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 32
+    networks: [app]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8002/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  web:
+    image: aegis-grid-web:phase1
+    build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: web}
+    ports: ["127.0.0.1:${AEGIS_WEB_PORT:-8080}:8080"]
+    depends_on:
+      api: {condition: service_healthy}
+    read_only: true
+    tmpfs: [/tmp:size=16m]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 64m
+    cpus: 0.5
+    pids_limit: 32
+    networks: [app, ingress]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  redis:
+    image: redis:8-alpine@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+    command: [sh, -c, 'exec redis-server --requirepass "$$REDISCLI_AUTH" --maxmemory 64mb --maxmemory-policy noeviction --appendonly yes']
+    environment:
+      REDISCLI_AUTH: ${AEGIS_REDIS_PASSWORD:?Run python tools/dev.py start}
+    volumes: [redis-data:/data]
+    networks: [storage]
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 32
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  mongo:
+    image: mongo:8@sha256:d0c8f51bb63fb1f992f4ff05293adb3f0967aaaae32c3e5fa567907800819b3b
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: aegis_local_admin
+      MONGO_INITDB_ROOT_PASSWORD: ${AEGIS_MONGO_PASSWORD:?Run python tools/dev.py start}
+    volumes: [mongo-data:/data/db]
+    networks: [storage]
+    mem_limit: 768m
+    cpus: 1
+    pids_limit: 128
+    command: [mongod, --wiredTigerCacheSizeGB, "0.25"]
+    healthcheck:
+      test: [CMD, mongosh, --quiet, --eval, "db.getSiblingDB('admin').auth(process.env.MONGO_INITDB_ROOT_USERNAME,process.env.MONGO_INITDB_ROOT_PASSWORD); quit(db.adminCommand({ping:1}).ok ? 0 : 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+networks:
+  ingress: {}
+  app: {internal: true}
+  storage: {internal: true}
+volumes:
+  mongo-data:
+  redis-data:

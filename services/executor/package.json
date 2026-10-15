@@ -1,0 +1,12 @@
+{
+  "name": "@aegis/executor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "node --test dist/services/executor/src/server.test.js",
+    "start": "node dist/services/executor/src/index.js"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "CellMeasurement": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_id": {
+          "enum": [
+            "CELL-01",
+            "CELL-02",
+            "CELL-03",
+            "CELL-04",
+            "CELL-05",
+            "CELL-06"
+          ],
+          "title": "Cell Id",
+          "type": "string"
+        },
+        "heat_input_w": {
+          "maximum": 10000,
+          "minimum": 0,
+          "title": "Heat Input W",
+          "type": "number"
+        },
+        "load_fraction": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Load Fraction",
+          "type": "number"
+        },
+        "temperature_c": {
+          "maximum": 1000,
+          "minimum": -273.15,
+          "title": "Temperature C",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cell_id",
+        "temperature_c",
+        "load_fraction",
+        "heat_input_w"
+      ],
+      "title": "CellMeasurement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cells": {
+      "items": {
+        "$ref": "#/$defs/CellMeasurement"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Cells",
+      "type": "array"
+    },
+    "coolant_temperature_c": {
+      "maximum": 1000,
+      "minimum": -273.15,
+      "title": "Coolant Temperature C",
+      "type": "number"
+    },
+    "model_version": {
+      "const": "thermal-bootstrap-v1",
+      "default": "thermal-bootstrap-v1",
+      "title": "Model Version",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "simulation_time_s": {
+      "minimum": 0,
+      "title": "Simulation Time S",
+      "type": "number"
+    },
+    "state_version": {
+      "minimum": 1,
+      "title": "State Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "seed",
+    "state_version",
+    "simulation_time_s",
+    "coolant_temperature_c",
+    "cells"
+  ],
+  "title": "TwinMeasurement",
+  "type": "object"
+}

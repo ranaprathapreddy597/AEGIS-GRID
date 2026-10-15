@@ -1,0 +1,86 @@
+# AEGIS//GRID 2.0
+
+An industrial incident-response system, built in the twelve phases supplied in
+[`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
+**Current scope: Phase 1 — an actual local telemetry golden path.**
+
+C++20 thermal simulator → Python edge → authenticated FastAPI SSE → React.
+The six thermal cells use synthetic defaults and a fixed coolant reservoir.
+They are not a validated industrial plant. No physical I/O exists.
+Cloud AI, Evolus, fault injection, autonomous recovery, approval, and enterprise
+writes are **not implemented** in this phase.
+
+## Start locally
+
+Prerequisites: Python 3.11–3.13, Docker Engine with Compose (or Docker Desktop
+running Linux containers), a free loopback port, and internet access
+for the first image build. Git is needed for development checks. On Windows,
+Docker Desktop uses WSL2; no native C++ toolchain is required.
+
+```powershell
+python tools/dev.py start
+```
+
+Open the URL printed by startup (8080 preferred; falls back to 8180, 8787 or
+18080 when occupied, persisted as `AEGIS_WEB_PORT` in `.env`). In your own terminal, run the following and paste
+the displayed token into the local access form:
+
+```powershell
+python tools/dev.py token
+```
+
+Startup generates random local credentials in ignored `.env`, builds the C++
+binary and web app, and waits for six healthy containers. Secrets never enter
+the web bundle. The browser keeps its read-only token in memory until reload or
+disconnect. `python tools/dev.py stop` stops the stack and preserves DB volumes.
+`python tools/dev.py status` shows service health. Do not share `.env` or token output.
+
+## Development and checks
+
+Use Node 24, pnpm 11.25.0, Python 3.12, and uv 0.13.1. The `uv.lock` and
+`pnpm-lock.yaml` files pin dependency resolution. Container images are pinned by
+digest; C++ compiler/CMake/Make versions are pinned directly in the Dockerfile.
+
+```powershell
+python -m pip install uv==0.13.1
+uv sync --locked
+npm install --global pnpm@11.25.0
+pnpm install --frozen-lockfile
+pnpm exec playwright install chromium
+python tools/dev.py start
+uv run --locked python tools/dev.py check
+```
+
+Linux uses the same commands (`python3` where `python` is unavailable). CI also
+installs Chromium system dependencies with `playwright install --with-deps chromium`.
+The check command requires the local stack to be running; the C++ integration
+tests run in the QA image and **fail**, rather than skip, if the real binary is absent.
+
+Regenerate contracts after changing Pydantic models or routes:
+
+```powershell
+uv run --locked python tools/export_contracts.py
+pnpm contracts
+```
+
+For host-side UI editing, `pnpm --filter @aegis/web dev` runs Vite. Its `/api`
+proxy expects a native API at 127.0.0.1:8000; the default supported full-stack
+workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
+
+## What is real, simulated, or unavailable
+
+| Component | Scope |
+|---|---|
+| C++ thermal kernel | Real compiled C++20 code; synthetic independent-cell physics |
+| Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
+| Node executor | Running health service; every mutation is denied |
+| Redis / Mongo | Local authenticated infrastructure; isolated from application credentials, not yet used for telemetry persistence |
+| MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
+| Evolus / Pinecone / GitHub | No live connector implemented or called |
+| Passkeys / graph / safety control | Later phases; no protected write path exposed |
+
+See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
+[integration evidence](docs/INTEGRATION_EVIDENCE.md),
+[open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
+
+The complete hackathon product is not delivered by this first phase.
