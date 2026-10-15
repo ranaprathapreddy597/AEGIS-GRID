@@ -63,3 +63,34 @@ def test_real_edge_accepts_accounted_packet_loss(settings):
             time.sleep(0.1)
         assert saw_loss
         assert client.get("/healthz").status_code == 200
+
+
+def test_real_cloud_refusal_does_not_disable_simulator_safety(settings):
+    from pydantic import SecretStr
+
+    config = settings.model_copy(
+        update={
+            "scenario_id": "scenario-090",
+            "time_scale": 20.0,
+            "cloud_events_url": "https://127.0.0.1:9/api/v1/edge/events",
+            "cloud_token": SecretStr("real-loopback-refusal-fixture-" * 3),
+        }
+    )
+    app = create_app(config)
+    headers = {"Authorization": f"Bearer {settings.service_token.get_secret_value()}"}
+    with TestClient(app) as client:
+        deadline = time.monotonic() + 30
+        stopped = False
+        while time.monotonic() < deadline:
+            response = client.get("/v1/telemetry/latest", headers=headers)
+            if response.status_code == 200:
+                frame = PlantTelemetry.model_validate(response.json())
+                if frame.sentinel.latched and max(c.load_fraction for c in frame.cells) < 0.001:
+                    stopped = True
+                    break
+            time.sleep(0.1)
+        assert stopped
+        assert client.get("/healthz").status_code == 200
+        status = client.get("/v1/edge/status", headers=headers).json()
+        assert status["cloud"] == "offline"
+        assert status["queued_events"] == 2

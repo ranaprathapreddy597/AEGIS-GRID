@@ -7,7 +7,14 @@ from typing import Any, Literal
 import httpx
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
-from aegis_contracts.models import Capabilities, Capability, ErrorResponse, Health, PlantTelemetry
+from aegis_contracts.models import (
+    Capabilities,
+    Capability,
+    EdgeStatus,
+    ErrorResponse,
+    Health,
+    PlantTelemetry,
+)
 from aegis_contracts.security import RequireToken
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -72,6 +79,20 @@ def create_app(
         except (httpx.HTTPError, ValidationError) as exc:
             raise HTTPException(503, "Edge telemetry unavailable") from exc
 
+    @app.get(
+        "/api/v1/edge/status",
+        response_model=EdgeStatus,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def edge_status() -> EdgeStatus:
+        try:
+            response = await app.state.edge.get("/v1/edge/status")
+            response.raise_for_status()
+            return EdgeStatus.model_validate_json(response.content)
+        except (httpx.HTTPError, ValidationError) as exc:
+            raise HTTPException(503, "Edge status unavailable") from exc
+
     @app.get("/healthz", response_model=Health)
     async def health() -> JSONResponse:
         status: Literal["ok", "degraded"]
@@ -100,7 +121,7 @@ def create_app(
                 Capability(
                     name="Telemetry transport",
                     status="verified_local",
-                    detail="C++ stdout → edge → API SSE → React",
+                    detail="C++ C ABI + isolated sentinel → edge → API SSE → React",
                 ),
                 Capability(
                     name="MI300X inference",
@@ -113,9 +134,14 @@ def create_app(
                     detail="No verified provider integration or credentials",
                 ),
                 Capability(
-                    name="Safety / approval / mutations",
+                    name="Passkeys / operational mutations",
                     status="not_implemented",
                     detail="No mutation routes; implemented in later phases",
+                ),
+                Capability(
+                    name="Local edge safety / FAISS",
+                    status="verified_local",
+                    detail="Sensor-only observer, bounded FAISS memory and synthetic local safety",
                 ),
                 Capability(
                     name="Redis / MongoDB persistence",

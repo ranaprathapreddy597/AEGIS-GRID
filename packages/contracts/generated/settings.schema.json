@@ -1,9 +1,51 @@
 {
   "additionalProperties": false,
   "properties": {
+    "cloud_events_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cloud Events Url"
+    },
+    "cloud_token": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cloud Token"
+    },
     "edge_url": {
       "default": "http://edge:8001",
       "title": "Edge Url",
+      "type": "string"
+    },
+    "memory_capacity": {
+      "default": 256,
+      "maximum": 4096,
+      "minimum": 32,
+      "title": "Memory Capacity",
+      "type": "integer"
+    },
+    "safety_mode": {
+      "default": "enforce",
+      "enum": [
+        "enforce",
+        "observe_only"
+      ],
+      "title": "Safety Mode",
       "type": "string"
     },
     "scenario_dir": {
@@ -42,6 +84,12 @@
       "default": "\\usr\\local\\bin\\aegis-twin",
       "format": "path",
       "title": "Twin Binary",
+      "type": "string"
+    },
+    "twin_library": {
+      "default": "\\usr\\local\\lib\\libaegis_twin.so",
+      "format": "path",
+      "title": "Twin Library",
       "type": "string"
     },
     "viewer_token": {

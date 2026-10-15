@@ -1,6 +1,6 @@
 name: aegis-grid
 x-python: &python
-  image: aegis-grid-python:phase2
+  image: aegis-grid-python:phase3
   build:
     context: ../..
     dockerfile: infra/local/python.Dockerfile
@@ -25,6 +25,10 @@ services:
       AEGIS_SEED: ${AEGIS_SEED:-42}
       AEGIS_SCENARIO: ${AEGIS_SCENARIO:-scenario-000}
       AEGIS_TIME_SCALE: ${AEGIS_TIME_SCALE:-1}
+      AEGIS_SAFETY_MODE: ${AEGIS_SAFETY_MODE:-enforce}
+      AEGIS_EDGE_MEMORY_CAPACITY: ${AEGIS_EDGE_MEMORY_CAPACITY:-256}
+      AEGIS_CLOUD_EVENTS_URL: ${AEGIS_CLOUD_EVENTS_URL:-}
+      AEGIS_CLOUD_EVENTS_TOKEN: ${AEGIS_CLOUD_EVENTS_TOKEN:-}
     healthcheck:
       test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/healthz',timeout=2)"]
       interval: 3s
@@ -44,7 +48,7 @@ services:
       timeout: 3s
       retries: 10
   executor:
-    image: aegis-grid-executor:phase2
+    image: aegis-grid-executor:phase3
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: executor}
     environment:
       AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
@@ -62,7 +66,7 @@ services:
       timeout: 3s
       retries: 10
   web:
-    image: aegis-grid-web:phase2
+    image: aegis-grid-web:phase3
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: web}
     ports: ["127.0.0.1:${AEGIS_WEB_PORT:-8080}:8080"]
     depends_on:

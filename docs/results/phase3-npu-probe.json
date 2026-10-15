@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-15",
+  "enumerated_devices": [
+    {
+      "Name": "NPU Compute Accelerator Device",
+      "Status": "OK"
+    }
+  ],
+  "amd_smi_on_path": true,
+  "inference_workload_verified": false,
+  "execution_backend": "CPU",
+  "note": "Device enumeration is not proof of supported accelerated inference."
+}

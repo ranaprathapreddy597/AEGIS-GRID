@@ -1,6 +1,7 @@
 # Execution status
 
-Current assigned phase: **2 — C++ industrial digital twin and fault universe**.
+Current assigned phase: **3 — independent edge sentinel, FAISS and cloud-outage survival**.
+Remaining phases authorized in order on 2026-10-15. Phase 2 passed at `57010e1`.
 User authorized continuation on 2026-10-15. Phase 1 commit: `f024ab5`.
 Phase 1 acceptance gate: **PASS**, completed 2026-10-15 (Asia/Calcutta).
 
@@ -41,7 +42,28 @@ HTTP/SSE smoke. All 100 complete seeded trajectories replay identically.
 The local Phase 2 commit contains this completion record; use `git log -1`
 for its exact hash. No remote push or hosted CI run was performed.
 
-Phases 3–12: not started. Next assigned phase gate would be Phase 3: detect a
+At Phase 2 completion, the next gate was Phase 3: detect a
 planted deceptive anomaly while cloud is unreachable, retain bounded local
 memory/FAISS lookup, and enforce independent deterministic safety refusals.
 No production integration or physical safety claim.
+
+
+## Phase 3 gate — PASS, 2026-10-15
+
+- [x] Sensor-only input boundary, physics observer and bounded FAISS feature memory.
+- [x] Independent allowlisted local simulator safety; no HTTP operational writes.
+- [x] Authenticated HTTPS AEGIS event client with bounded queue and reconnect tests.
+- [x] Optional NPU enumeration; workload unverified, functional CPU backend selected.
+- [x] Real C++ spoof/outage/safety tests, measured latency/memory and live UI gate.
+- [x] Complete gate, evidence, local commit and phase report before Phase 4.
+
+
+Phase 3 evidence: `docs/results/PHASE3.md`, `phase3-checks.txt`, actual CPU profile,
+NPU enumeration and four browser captures. Passed 149 Python / 3 CTest / 5 browser
+checks, axe, types/lints/contracts/builds, dependency/secret scans and HTTP/SSE smoke.
+Controlled scenario-090 detects at 110 simulated seconds, reaches at most 41.104 °C,
+and retains an event while the actual loopback HTTPS receiver is unreachable.
+Five healthy and ten deceptive development profile cases pass; these are not a
+held-out benchmark. CPU profile p95 0.971 ms, peak process RSS 101.87 MiB.
+Phase 4 is next. User authorized remaining phases in order; external gates remain
+explicitly unverified until supported by actual access and evidence.

@@ -2,12 +2,12 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 2 — coupled physics, deterministic faults and replay.**
+**Current scope: Phase 3 — independent edge sentinel and local safety.**
 
-C++20 thermal simulator → Python edge → authenticated FastAPI SSE → React.
+C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
-Cloud AI, Evolus, autonomous recovery, approval, and enterprise
+Cloud AI, Evolus, planned recovery, approval, and enterprise
 writes are **not implemented** in this phase.
 
 ## Start locally
@@ -71,20 +71,29 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 
 | Component | Scope |
 |---|---|
-| C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots |
+| C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots; independent local emergency policy |
 | Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
 | Node executor | Running health service; every mutation is denied |
 | Redis / Mongo | Local authenticated infrastructure; isolated from application credentials, not yet used for telemetry persistence |
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
 | Evolus / Pinecone / GitHub | No live connector implemented or called |
-| Passkeys / graph / safety control | Later phases; no protected write path exposed |
+| Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
+| Passkeys / graph / approved recovery | Later phases; no protected operational write path exposed |
 
 See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 3–12 remain.
+The full master prompt is not finished. Phases 4–12 remain.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
-[Phase 2 evidence](docs/results/PHASE2.md). Toggle **Simulation ground truth**
+[Phase 3 evidence](docs/results/PHASE3.md). Toggle **Simulation ground truth**
 to inspect hidden temperatures and flow alongside the observed sensor traces.
+
+
+The default edge automatically latches a conservative local stop after a physics
+residual/data-quality/thermal alarm. Its trusted policy has no cloud dependency.
+The dashboard shows detector state, policy, FAISS count and cloud queue status.
+`AEGIS_SAFETY_MODE=observe_only` is an explicit local comparison mode; it is shown
+in telemetry and cannot be enabled by an API or model response. See the runbook
+for controlled versus unmitigated demonstrations and the [design ADR](docs/ADR/0006-independent-edge-sentinel.md).

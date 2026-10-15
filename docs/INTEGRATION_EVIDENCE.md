@@ -123,3 +123,21 @@ operations; no HTTP operational mutation endpoint was added.
 
 Evolus, MI300X, Pinecone and external GitHub integration status is unchanged.
 No provider credential or external write was used, and hosted CI remains unrun.
+
+
+## Phase 3 execution — 2026-10-15
+
+Actual C++/ctypes supervisor, sensor-only observer, bounded FAISS and independent
+local shield pass the full gate (149 Python / 3 CTest / 5 Chromium checks).
+`results/PHASE3.md` records source, commands, actual outputs and limitations.
+The network-none CPU profile exercised a real refused HTTPS loopback receiver:
+all ten deceptive development fixtures stopped, five healthy cases stayed
+unlatched, and scenario-090 detection occurred at 110 simulated seconds with
+maximum truth 41.104 °C. Measured p95 whole supervised step 0.971 ms and peak
+process RSS 101.87 MiB on the documented laptop, with a 512 MiB / 2 CPU container.
+NPU enumeration found an OK device and amd-smi is on PATH, but no accelerated
+workload is verified. CPU fallback is the functional measured backend.
+Successful remote cloud TLS and MI300X remain unverified. Reconnect ack tests
+use explicit local HTTP doubles; unreachability uses actual connection refusal.
+Queues are bounded and volatile; durable persistence is Phase 4. The user supplied
+an Evolus OpenAPI file for Phase 5; no provider call or credential use occurred.

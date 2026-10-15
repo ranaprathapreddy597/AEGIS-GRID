@@ -10,9 +10,9 @@
     "start_s": 30.0,
     "target": 5
   },
-  "fixture_version": "2.0.0",
+  "fixture_version": "3.0.0",
   "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",
   "label": "deceptive_cascade",
   "label_source": "injected synthetic cause, not inferred diagnosis",
-  "model_version": "coupled-factory-v2"
+  "model_version": "coupled-factory-v3"
 }

@@ -1,4 +1,4 @@
-# Coupled factory model v2
+# Coupled factory model v3
 
 This is a synthetic six-cell factory for software experiments. Constants below
 are design assumptions, not OEM limits or a calibrated plant. No physical I/O,
@@ -71,10 +71,15 @@ CTest compares 0.05 s internal steps with 0.025 s, requiring <0.01 °C differenc
 after 100 s. This is a tested numerical envelope, not general solver certification.
 Simulation horizon is limited to 1,000,000 s / 1 billion frames.
 
+Zero load targets disable demand-burst additions; an injected workload request
+cannot reenergize a stopped cell. Phase 3 adds this priority rule and independent
+local emergency control.
+
 Local C ABI controls atomically validate six loads, six valves, pump in [0,1]
 and expected state version before changing targets. Pump/load/valve ramp limits
 are 0.12/0.10/0.20 fraction/s. The feeder clips delivered machine demand to keep
-total power <=14,500 W. These are model constraints, not the Phase 3 safety shield.
+total power <=14,500 W. These are model constraints; the separate Phase 3 shield also restricts
+automatic commands to the exact conservative emergency vector.
 There is no HTTP route to reset, restore, inject faults or change controls.
 
 CLI `--speed` scales wall-clock sleep only, not simulated dt or equations.
@@ -113,7 +118,7 @@ when temperatures are delayed. `measurement` labels temperature age and source
 version. Flow/pressure/coolant are ideal simulator state, labeled accordingly.
 
 `ground_truth` and `injected_fault_mask` are privileged *simulation inspection*
-fields shown only as such in the UI; future detectors must not consume them as
+fields shown only as such in the UI; the Phase 3 detector does not consume them as
 sensor evidence. The separate observation vector can deceive a naive threshold.
 The current authenticated dashboard permits local developer truth inspection;
 this is not a production data-separation or tenant boundary.
@@ -147,3 +152,9 @@ stores whole-trajectory SHA-256, initial snapshots and every tenth-second raw
 observed/truth frame in `phase2-trajectories.ndjson.gz`. This archive includes
 offline frames whose packet_available is false; live CLI correctly omits them.
 The report specifies timing scope, process RSS and host limitations.
+
+
+The Phase 2 report and archive describe model/contract v2 at commit `57010e1`.
+Current contracts are schema 3.0.0 / model coupled-factory-v3, with ideal flow
+readings added to the observed cell channels and pressure added to the input
+allowlist. Historical archives retain their original schema and binary hashes.

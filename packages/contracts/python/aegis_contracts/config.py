@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from typing import Literal, cast
+from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator
 
@@ -16,6 +18,30 @@ class Settings(BaseModel):
     time_scale: float = Field(default=1.0, ge=0.5, le=20, allow_inf_nan=False)
     edge_url: str = "http://edge:8001"
     twin_binary: Path = Path("/usr/local/bin/aegis-twin")
+    twin_library: Path = Path("/usr/local/lib/libaegis_twin.so")
+    safety_mode: Literal["enforce", "observe_only"] = "enforce"
+    memory_capacity: int = Field(default=256, ge=32, le=4096)
+    cloud_events_url: str | None = None
+    cloud_token: SecretStr | None = None
+
+    @field_validator("cloud_events_url")
+    @classmethod
+    def cloud_tls_only(cls, value: str | None) -> str | None:
+        if value is not None:
+            parts = urlsplit(value)
+            if (
+                parts.scheme != "https"
+                or not parts.hostname
+                or parts.username
+                or parts.password
+                or parts.query
+                or parts.fragment
+                or parts.path != "/api/v1/edge/events"
+            ):
+                raise ValueError(
+                    "Cloud requires explicit HTTPS AEGIS events URL without credentials"
+                )
+        return value
 
     @field_validator("viewer_token", "service_token")
     @classmethod
@@ -40,4 +66,15 @@ class Settings(BaseModel):
             time_scale=float(os.environ.get("AEGIS_TIME_SCALE", "1")),
             edge_url=os.environ.get("AEGIS_EDGE_URL", "http://edge:8001"),
             twin_binary=Path(os.environ.get("AEGIS_TWIN_BINARY", "/usr/local/bin/aegis-twin")),
+            twin_library=Path(
+                os.environ.get("AEGIS_TWIN_LIBRARY", "/usr/local/lib/libaegis_twin.so")
+            ),
+            safety_mode=cast(
+                Literal["enforce", "observe_only"], os.environ.get("AEGIS_SAFETY_MODE", "enforce")
+            ),
+            memory_capacity=int(os.environ.get("AEGIS_EDGE_MEMORY_CAPACITY", "256")),
+            cloud_events_url=os.environ.get("AEGIS_CLOUD_EVENTS_URL") or None,
+            cloud_token=SecretStr(os.environ["AEGIS_CLOUD_EVENTS_TOKEN"])
+            if os.environ.get("AEGIS_CLOUD_EVENTS_TOKEN")
+            else None,
         )

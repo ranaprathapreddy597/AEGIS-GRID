@@ -108,6 +108,12 @@ int main() {
     require(fault.cells()[1].temperature_c >
                 healthy.cells()[1].temperature_c + 5,
             "shared resource cascade");
+    // A demand fault represents an external workload request, not an interlock bypass.
+    fault.controls(fault.version(), control);
+    for (int k = 0; k < 180; ++k)
+      fault.step(0.5);
+    for (const auto &cell : fault.cells())
+      require(cell.load_fraction < 1e-12, "burst reenergized a stopped machine");
     std::cout
         << "100 seeded invariant/replay trials; conservation, ramps, atomic "
            "rejection, refinement, hidden overheat and cascade passed\n";

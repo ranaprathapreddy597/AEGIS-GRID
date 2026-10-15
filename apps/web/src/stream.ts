@@ -1,5 +1,6 @@
 import type { components } from "../../../packages/contracts/generated/api";
 export type Telemetry = components["schemas"]["PlantTelemetry"];
+export type EdgeStatus = components["schemas"]["EdgeStatus"];
 export type Capabilities = components["schemas"]["Capabilities"];
 
 export async function streamTelemetry(token: string, signal: AbortSignal, onData: (value: Telemetry) => void, onStatus: (value: string) => void) {

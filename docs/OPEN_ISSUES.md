@@ -3,14 +3,14 @@
 | ID | State / phase | Issue and next action |
 |---|---|---|
 | EXT-01 | Blocked / Phase 6 | No MI300X endpoint, access credentials or device logs. User provisioning needed before live hardware proof. |
-| EXT-02 | Blocked / Phase 5 | No verified Evolus provider specification/sandbox supplied. Discover actual provider and schemas before adapter work; invent no routes. |
+| EXT-02 | Blocked / Phase 5 | User supplied api-1.json (Evolus Integration API v1, OpenAPI 3.0.4); schema inspection/adapter remains Phase 5. No provider call verified. |
 | EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no external calls or writes attempted. |
-| HW-01 | Unverified | NPU not probed for a supported workload; do not equate CPU branding or AMD-SMI availability with acceleration. |
+| HW-01 | Unverified | NPU device enumerated OK and amd-smi on PATH; no compatible accelerated inference workload verified. CPU backend tested. |
 | TOOL-01 | Resolved for Docker path | Native Windows CMake/compiler absent. Container CMake/CTest is the chosen Phase 1 path; native MSVC remains unverified. |
 | MODEL-01 | Resolved / Phase 2 | Coupled coolant/pressure/feeder, bounded actuators, instrument noise, seeded faults and snapshots are implemented; see PHYSICS.md and phase evidence. |
 | MODEL-02 | Synthetic model limitation | No plant/OEM calibration, cavitation, boiling, leakage or physical I/O. Sensor intervals cover assumed instrument noise only, not spoof/delay uncertainty. |
-| SEC-02 | Simulator inspection only | Authenticated local telemetry includes ground truth/fault labels for developer inspection. Future anomaly detection must exclude these fields; no production tenant or sensor-only separation is claimed. |
-| SAFE-01 | Deferred / Phases 3/9 | No deterministic controller, signed capabilities, passkeys or operational writes yet. HTTP operational mutations are unavailable; local C ABI controls only isolated offline simulator instances. |
+| SEC-02 | Simulator inspection only | Authenticated local telemetry includes ground truth/fault labels for developer inspection. Phase 3 SensorFrame excludes truth, scenario and fault labels; injection-invariance tests pass. No production tenant boundary is claimed. |
+| SAFE-01 | Deferred / Phases 3/9 | Phase 3 deterministic local emergency shield is tested. Signed capabilities/passkeys/planned recovery are later gates; HTTP operational mutations remain unavailable. |
 | DATA-01 | Deferred / Phase 4 | Mongo/Redis are infrastructure only, not used for incident/event persistence; no restart replay guarantee. |
 | SEC-01 | Local-only baseline | Shared read tokens and loopback HTTP are not production identity/TLS. Cloud configuration intentionally unavailable. |
 | BUILD-01 | Hardening backlog | Direct tool pins and image digests do not freeze all Debian apt transitive packages. Snapshot repository/SBOM validation deferred. |

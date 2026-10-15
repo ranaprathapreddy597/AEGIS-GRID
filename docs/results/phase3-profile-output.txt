@@ -1,0 +1,162 @@
+{
+  "execution": "Linux CPU C++/ctypes + observer + FAISS + shield; network-none container",
+  "scope": "15 development fixtures, 1200 simulated seconds each; dt=1 s; no held-out set",
+  "cloud_test": "Refused HTTPS loopback port 9; no provider or successful TLS claim",
+  "steps": 18000,
+  "wall_s": 11.489847204999933,
+  "full_step_median_ms": 0.47519999999999996,
+  "full_step_p95_ms": 0.971395,
+  "process_peak_rss_mib": 101.87109375,
+  "results": [
+    {
+      "scenario_id": "scenario-000",
+      "first_detection_s": null,
+      "maximum_truth_c": 45.36587964017604,
+      "trajectory_sha256": "73ba551e0e8ecbe5975b00f543f54e1fdda165e3d1690ea787c0949bd205e8ef",
+      "final_max_load": 0.8500000000000001,
+      "cloud": "offline",
+      "queued_events": 0,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-001",
+      "first_detection_s": null,
+      "maximum_truth_c": 45.365747982173744,
+      "trajectory_sha256": "e39de9b44ca7483fb8fac474979f895779a3fb1e208ad63f429191b541a8a521",
+      "final_max_load": 0.8500000000000001,
+      "cloud": "offline",
+      "queued_events": 0,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-002",
+      "first_detection_s": null,
+      "maximum_truth_c": 45.36599248335282,
+      "trajectory_sha256": "a4c7f897fc31b91cdb6208a0a5840ed0c6606dfbcf1244f107a97223610fb650",
+      "final_max_load": 0.8500000000000001,
+      "cloud": "offline",
+      "queued_events": 0,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-003",
+      "first_detection_s": null,
+      "maximum_truth_c": 45.36593186959117,
+      "trajectory_sha256": "fe495665818aed53e38ed274489d7abc06f8c927f83dbc9c750ec6779a1b4e3b",
+      "final_max_load": 0.8500000000000001,
+      "cloud": "offline",
+      "queued_events": 0,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-004",
+      "first_detection_s": null,
+      "maximum_truth_c": 45.365467011333244,
+      "trajectory_sha256": "53fdb85ad08ad25204d4b133a0f4810b1e45c1df998c7712f07fdfaf819af174",
+      "final_max_load": 0.8500000000000001,
+      "cloud": "offline",
+      "queued_events": 0,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-090",
+      "first_detection_s": 109.9999999999959,
+      "maximum_truth_c": 41.10404080287748,
+      "trajectory_sha256": "f185c7ef7ef0dd06f809819ac32205bd0bcc81e51c2fba3847ca023032e8c681",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-091",
+      "first_detection_s": 104.99999999999618,
+      "maximum_truth_c": 41.1407757889809,
+      "trajectory_sha256": "9a682d6d3b2ce8309644c0c66cf225a0a1b7dc4cb781c5c1063d655a04def4b7",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-092",
+      "first_detection_s": 102.99999999999629,
+      "maximum_truth_c": 41.189273562219256,
+      "trajectory_sha256": "30ed3eb28d32caab1ebaeaba7907dc32bde6ef09734660526d08e74fdd4c7635",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-093",
+      "first_detection_s": 99.99999999999646,
+      "maximum_truth_c": 41.31221888029186,
+      "trajectory_sha256": "3768e8ce017302101d9bde0970798704b60e84382bf4c1d9547351413dbe7aa9",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-094",
+      "first_detection_s": 98.99999999999652,
+      "maximum_truth_c": 41.360747054273155,
+      "trajectory_sha256": "f2f3d7e1c270465b649a3b7431b321f330eca6de76bc4f960f38177b9691d7c8",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-095",
+      "first_detection_s": 95.99999999999669,
+      "maximum_truth_c": 41.293645194367585,
+      "trajectory_sha256": "8b64c88f144262fd67065287a41e4773d2277b120307ddbdae8393c90a2b8127",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-096",
+      "first_detection_s": 113.99999999999567,
+      "maximum_truth_c": 41.03753088094662,
+      "trajectory_sha256": "5a07d4edd6c6def4e8ec59f234b43610a8eeac1bf575e9be1d8042fc9b99ae78",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-097",
+      "first_detection_s": 108.99999999999595,
+      "maximum_truth_c": 41.04576714536084,
+      "trajectory_sha256": "880c41622a7032c0c162705f1e8ef3c2d55b12676f9ff3671e65355c138df259",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-098",
+      "first_detection_s": 105.99999999999612,
+      "maximum_truth_c": 41.0019798094966,
+      "trajectory_sha256": "86dce3d6178b6cde2bc7d8566ffb54efd7776e9901e1f0638a36aaaa9c4a5779",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    },
+    {
+      "scenario_id": "scenario-099",
+      "first_detection_s": 101.99999999999635,
+      "maximum_truth_c": 41.11626921035299,
+      "trajectory_sha256": "a41a4693b8aa27fdf100e247cb7b6c1994f8af58ff26802bc3efb4e6db8a9b21",
+      "final_max_load": 0.0,
+      "cloud": "offline",
+      "queued_events": 1,
+      "memory_entries": 113
+    }
+  ]
+}

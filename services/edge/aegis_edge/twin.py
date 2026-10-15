@@ -73,6 +73,9 @@ class NativeTwin:
     def reset(self) -> None:
         self._check(self.lib.aegis_reset(self.handle))
 
+    def current_version(self) -> int:
+        return TwinMeasurement.model_validate_json(self.raw()).state_version
+
     def controls(self, expected_version: int, controls: SimulatorControls) -> None:
         if type(expected_version) is not int or not 0 <= expected_version <= 1000000000:
             raise ValueError("Invalid version")

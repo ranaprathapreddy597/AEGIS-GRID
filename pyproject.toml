@@ -1,13 +1,15 @@
 [project]
 name = "aegis-grid"
 version = "0.1.0"
-description = "AEGIS GRID Phase 2 coupled factory simulation"
+description = "AEGIS GRID industrial simulator and independent edge sentinel"
 requires-python = ">=3.11,<3.14"
 dependencies = [
   "fastapi==0.143.1",
   "httpx==0.28.1",
   "pydantic==2.14.1",
   "uvicorn==0.54.0",
+  "faiss-cpu==1.15.1",
+  "numpy==2.4.6",
 ]
 
 [dependency-groups]
@@ -45,3 +47,7 @@ select = ["E", "F", "I", "UP", "B", "S"]
 python_version = "3.11"
 strict = true
 files = ["services/api/aegis_api", "services/edge/aegis_edge", "packages/contracts/python/aegis_contracts"]
+
+[[tool.mypy.overrides]]
+module = ["faiss", "faiss.*"]
+ignore_missing_imports = true

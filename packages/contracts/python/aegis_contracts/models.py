@@ -16,6 +16,7 @@ class CellMeasurement(Contract):
     load_fraction: Annotated[FiniteFloat, Field(ge=0, le=1)]
     heat_input_w: Annotated[FiniteFloat, Field(ge=0, le=10000)]
     noise_bound_c: Annotated[FiniteFloat, Field(ge=0, le=1)]
+    flow_kg_s: Annotated[FiniteFloat, Field(ge=0, le=0.5)]
 
 
 class TruthCell(Contract):
@@ -67,13 +68,14 @@ class SimulatorControls(Contract):
 
 
 class TwinMeasurement(Contract):
-    schema_version: Literal["2.0.0"] = "2.0.0"
-    model_version: Literal["coupled-factory-v2"] = "coupled-factory-v2"
+    schema_version: Literal["3.0.0"] = "3.0.0"
+    model_version: Literal["coupled-factory-v3"] = "coupled-factory-v3"
     scenario_id: Annotated[str, Field(pattern=r"^scenario-\d{3}$")]
     seed: Annotated[int, Field(ge=0, le=4294967295)]
     state_version: Annotated[int, Field(ge=1)]
     simulation_time_s: Annotated[FiniteFloat, Field(ge=0)]
     coolant_temperature_c: Annotated[FiniteFloat, Field(ge=-273.15, le=1000)]
+    loop_pressure_kpa: Annotated[FiniteFloat, Field(ge=0, le=180)]
     cells: Annotated[list[CellMeasurement], Field(min_length=6, max_length=6)]
     ground_truth: PhysicsState
     measurement: MeasurementQuality
@@ -116,6 +118,7 @@ class PlantTelemetry(TwinMeasurement):
     simulator_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
     scenario_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
     observed_at: Annotated[str, Field(pattern=r"^\d{4}-\d{2}-\d{2}T.+\+00:00$")]
+    sentinel: "SentinelStatus"
 
 
 class Health(Contract):
@@ -138,7 +141,93 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[2] = 2
+    phase: Literal[3] = 3
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     capabilities: list[Capability]
+
+
+class SensorFrame(Contract):
+    """Detector input allowlist. Hidden truth, labels and scenario ID are absent."""
+
+    state_version: Annotated[int, Field(ge=1)]
+    simulation_time_s: Annotated[FiniteFloat, Field(ge=0)]
+    coolant_temperature_c: Annotated[FiniteFloat, Field(ge=-273.15, le=1000)]
+    loop_pressure_kpa: Annotated[FiniteFloat, Field(ge=0, le=180)]
+    cells: Annotated[list[CellMeasurement], Field(min_length=6, max_length=6)]
+    measurement: MeasurementQuality
+
+    @model_validator(mode="after")
+    def ordered_cells(self) -> "SensorFrame":
+        if [cell.cell_id for cell in self.cells] != [f"CELL-0{i}" for i in range(1, 7)]:
+            raise ValueError("Sensor cells must be in canonical order")
+        return self
+
+    @classmethod
+    def from_twin(cls, frame: TwinMeasurement) -> "SensorFrame":
+        return cls.model_validate({name: getattr(frame, name) for name in cls.model_fields})
+
+
+class AnomalyEvidence(Contract):
+    cell_id: CellId
+    residual_c: FiniteFloat
+    estimated_temperature_c: FiniteFloat
+    observed_temperature_c: FiniteFloat
+    reason: Literal["physics_disagreement", "thermal_limit", "stale_measurement", "missing_packets"]
+
+
+class MemoryMatch(Contract):
+    state_version: Annotated[int, Field(ge=1)]
+    distance_squared: Annotated[FiniteFloat, Field(ge=0)]
+    label: Literal["nominal", "sensor_anomaly"]
+
+
+class SentinelStatus(Contract):
+    state: Literal["warming", "nominal", "anomaly", "latched_stop"]
+    evidence: Annotated[list[AnomalyEvidence], Field(max_length=12)]
+    latched: bool
+    first_detection_time_s: FiniteFloat | None
+    applied_policy: Literal["observe_only", "none", "local_emergency_stop"]
+    policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
+    latency_ms: Annotated[FiniteFloat, Field(ge=0)]
+    max_estimated_temperature_c: FiniteFloat
+    memory_entries: Annotated[int, Field(ge=0, le=4096)]
+    memory_matches: Annotated[list[MemoryMatch], Field(max_length=3)]
+    cpu_fallback: Literal[True] = True
+    npu_verified: Literal[False] = False
+
+
+class EdgeIncident(Contract):
+    event_id: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+    run_id: Annotated[str, Field(pattern=r"^[0-9a-f-]{36}$")]
+    state_version: Annotated[int, Field(ge=1)]
+    simulation_time_s: Annotated[FiniteFloat, Field(ge=0)]
+    kind: Literal["anomaly", "local_stop"]
+    evidence: Annotated[list[AnomalyEvidence], Field(max_length=12)]
+    policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
+
+
+class EdgeStatus(Contract):
+    cloud: Literal["disabled", "offline", "online"]
+    queued_events: Annotated[int, Field(ge=0, le=256)]
+    dropped_events: Annotated[int, Field(ge=0)]
+    recent_events: Annotated[list[EdgeIncident], Field(max_length=128)]
+    detector: Literal["sensor-only-thermal-observer-v1"] = "sensor-only-thermal-observer-v1"
+    execution: Literal["isolated_simulator_cpu"] = "isolated_simulator_cpu"
+
+
+class EdgeBatch(Contract):
+    protocol_version: Literal["aegis-edge-v1"] = "aegis-edge-v1"
+    events: Annotated[list[EdgeIncident], Field(min_length=1, max_length=32)]
+
+
+class EdgeBatchAck(Contract):
+    accepted_event_ids: Annotated[list[str], Field(max_length=32)]
+
+
+class SupervisorFrame(Contract):
+    frame: TwinMeasurement
+    sentinel: SentinelStatus
+
+
+PlantTelemetry.model_rebuild()

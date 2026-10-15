@@ -75,7 +75,7 @@ def main() -> None:
                 )
     sorted_latency = sorted(latencies)
     report = {
-        "model_version": "coupled-factory-v2",
+        "model_version": "coupled-factory-v3",
         "platform": platform.platform(),
         "python": platform.python_version(),
         "machine": platform.machine(),

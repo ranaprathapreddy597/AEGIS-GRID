@@ -1,9 +1,9 @@
-name: Phase 2 golden path
+name: Phase 3 golden path
 on: [push, pull_request]
 permissions:
   contents: read
 concurrency:
-  group: phase2-${{ github.ref }}
+  group: phase3-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   local-golden-path:
@@ -26,18 +26,18 @@ jobs:
           pnpm exec playwright install --with-deps chromium
       - name: Start isolated local simulator stack
         run: python tools/dev.py start
-      - name: Run the full Phase 2 gate
+      - name: Run the full Phase 3 gate
         run: uv run --locked python tools/dev.py check
       - name: Collect non-secret test results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: phase2-test-results
+          name: phase3-test-results
           path: |
             test-results/e2e-results.json
-            docs/results/phase2-dashboard.png
-            docs/results/phase2-mobile.png
-            docs/results/phase2-hidden-overheat.png
+            docs/results/phase3-dashboard.png
+            docs/results/phase3-mobile.png
+            docs/results/phase3-local-stop.png
           if-no-files-found: ignore
       - name: Stop containers, preserve no credentials in artifacts
         if: always()

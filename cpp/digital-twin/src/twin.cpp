@@ -126,7 +126,7 @@ void Twin::substep(double dt) {
     auto &c = cells_[i];
     c.load_fraction =
         ramp(c.load_fraction,
-             std::min(1.0, load_targets_[i] + (burst ? 0.25 * severity : 0)),
+             std::min(1.0, load_targets_[i] + (burst && load_targets_[i] > 0 ? 0.25 * severity : 0)),
              0.1, dt);
     c.valve = ramp(c.valve, valve_targets_[i], 0.2, dt);
     const double block =
@@ -229,6 +229,7 @@ std::string Twin::json() const {
     observed.push_back({{"cell_id", id(i)},
                         {"temperature_c", observed_.temperatures[i]},
                         {"noise_bound_c", scenario_.noise_c},
+                        {"flow_kg_s", c.flow_kg_s},
                         {"load_fraction", c.load_fraction},
                         {"heat_input_w", c.heat_input_w}});
     truth.push_back({{"cell_id", id(i)},
@@ -236,13 +237,14 @@ std::string Twin::json() const {
                      {"flow_kg_s", c.flow_kg_s},
                      {"valve_fraction", c.valve}});
   }
-  return Json({{"schema_version", "2.0.0"},
-               {"model_version", "coupled-factory-v2"},
+  return Json({{"schema_version", "3.0.0"},
+               {"model_version", "coupled-factory-v3"},
                {"scenario_id", scenario_.scenario_id},
                {"seed", scenario_.seed},
                {"state_version", version_},
                {"simulation_time_s", time_},
                {"coolant_temperature_c", coolant_},
+               {"loop_pressure_kpa", pressure_},
                {"cells", observed},
                {"ground_truth",
                 {{"cells", truth},
@@ -270,7 +272,7 @@ std::string Twin::snapshot() const {
                      c.heat_input_w});
   for (const auto &o : history_)
     history.push_back(observation_json(o));
-  return Json({{"format", "aegis-snapshot-v2"},
+  return Json({{"format", "aegis-snapshot-v3"},
                {"scenario", scenario_},
                {"version", version_},
                {"rng", rng_},
@@ -298,7 +300,7 @@ void Twin::restore(const std::string &snapshot) {
   require(snapshot.size() <= 32768, "snapshot too large");
   const auto j = Json::parse(snapshot);
   size(j, 22);
-  require(j.at("format") == "aegis-snapshot-v2", "unsupported snapshot");
+  require(j.at("format") == "aegis-snapshot-v3", "unsupported snapshot");
   Twin t(j.at("scenario").get<Scenario>());
   t.version_ = integer(j.at("version"), 1000000000);
   t.rng_ = integer(j.at("rng"), UINT64_MAX);

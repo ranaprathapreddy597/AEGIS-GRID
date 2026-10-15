@@ -1,0 +1,7 @@
+# Explicit operator opt-in after configuring an authenticated HTTPS AEGIS receiver.
+# Default local stack has no edge internet egress and performs no external writes.
+services:
+  edge:
+    networks: [app, cloud-egress]
+networks:
+  cloud-egress: {}

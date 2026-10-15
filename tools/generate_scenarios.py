@@ -42,8 +42,8 @@ def main() -> None:
                 drop_every=3 + trial % 3,
             )
             fixture = {
-                "fixture_version": "2.0.0",
-                "model_version": "coupled-factory-v2",
+                "fixture_version": "3.0.0",
+                "model_version": "coupled-factory-v3",
                 "label": label,
                 "label_source": "injected synthetic cause, not inferred diagnosis",
                 "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",

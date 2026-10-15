@@ -1,0 +1,240 @@
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff check .
+All checks passed!
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff format --check .
+59 files already formatted
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m mypy
+Success: no issues found in 13 source files
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/export_contracts.py --check
+Contract schemas match
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/generate_scenarios.py --check
+100 deterministic scenario fixtures checked
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/check_ts_contracts.py
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/generated/openapi.json → C:\Users\ranap\AppData\Local\Temp\aegis-contract-dk9z64wl\api.d.ts [150.2ms]
+TypeScript contracts match
+CHECK: pnpm lint
+$ eslint apps/web/src services/executor/src tests/e2e
+CHECK: pnpm typecheck
+$ pnpm -r typecheck
+Scope: 2 of 3 workspace projects
+services/executor typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+services/executor typecheck: Done
+apps/web typecheck: Done
+CHECK: pnpm build
+$ pnpm -r build
+Scope: 2 of 3 workspace projects
+services/executor build$ tsc
+apps/web build$ tsc --noEmit && vite build
+services/executor build: Done
+apps/web build: vite v8.3.4 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 17 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.42 kB │ gzip:  0.30 kB
+apps/web build: dist/assets/index-DszxTWsh.css   11.96 kB │ gzip:  3.35 kB
+apps/web build: dist/assets/index-bo_sOAa5.js   235.22 kB │ gzip: 73.76 kB
+apps/web build: ✓ built in 313ms
+apps/web build: Done
+CHECK: pnpm test
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js
+✔ executor fails closed without a token (1.5328ms)
+✔ authenticated and unauthenticated mutations both fail closed (201.2118ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 456.8481
+CHECK: docker build -f infra/local/python.Dockerfile --target qa -t aegis-grid-qa:phase3 .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from python.Dockerfile
+#1 transferring dockerfile: 2.02kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 203B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 139.18kB 0.1s done
+#4 DONE 0.1s
+
+#5 [base  1/10] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#5 DONE 0.1s
+
+#6 [base  6/10] COPY packages/contracts/python packages/contracts/python
+#6 CACHED
+
+#7 [base  9/10] COPY data/scenarios data/scenarios
+#7 CACHED
+
+#8 [base  4/10] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [base  8/10] COPY services/edge services/edge
+#9 CACHED
+
+#10 [base  2/10] WORKDIR /app
+#10 CACHED
+
+#11 [base  7/10] COPY services/api services/api
+#11 CACHED
+
+#12 [base  3/10] RUN pip install --no-cache-dir uv==0.13.1
+#12 CACHED
+
+#13 [base  5/10] COPY pyproject.toml uv.lock ./
+#13 CACHED
+
+#14 [build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#14 CACHED
+
+#15 [build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#15 CACHED
+
+#16 [base 10/10] RUN uv sync --locked --no-dev --no-editable
+#16 CACHED
+
+#17 [build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#17 CACHED
+
+#18 [qa 1/6] COPY --from=base /app /app
+#18 DONE 1.5s
+
+#19 [qa 2/6] COPY --from=base /usr/local/bin/uv /usr/local/bin/uv
+#19 DONE 0.2s
+
+#20 [qa 3/6] RUN uv sync --locked
+#20 0.727 Resolved 56 packages in 2ms
+#20 0.830    Building aegis-grid @ file:///app
+#20 1.139 Downloading pip (1.7MiB)
+#20 1.143 Downloading ast-serialize (1.3MiB)
+#20 1.145 Downloading pygments (1.2MiB)
+#20 1.155 Downloading ruff (9.9MiB)
+#20 1.172 Downloading mypy (14.8MiB)
+#20 3.169  Downloaded pygments
+#20 3.205  Downloaded ast-serialize
+#20 3.426  Downloaded pip
+#20 5.679       Built aegis-grid @ file:///app
+#20 5.714  Downloaded ruff
+#20 6.383  Downloaded mypy
+#20 6.385 Prepared 35 packages in 5.64s
+#20 6.402 Uninstalled 1 package in 16ms
+#20 7.320 Installed 35 packages in 918ms
+#20 7.320  ~ aegis-grid==0.1.0 (from file:///app)
+#20 7.320  + ast-serialize==0.13.0
+#20 7.320  + boolean-py==5.0
+#20 7.320  + cachecontrol==0.14.4
+#20 7.320  + charset-normalizer==3.5.2
+#20 7.320  + cyclonedx-python-lib==11.12.0
+#20 7.320  + defusedxml==0.7.1
+#20 7.320  + filelock==4.1.2
+#20 7.320  + iniconfig==2.3.1
+#20 7.320  + librt==0.16.0
+#20 7.320  + license-expression==30.4.4
+#20 7.320  + markdown-it-py==4.2.0
+#20 7.320  + mdurl==0.1.2
+#20 7.320  + msgpack==1.2.3
+#20 7.320  + mypy==2.4.0
+#20 7.320  + mypy-extensions==1.1.0
+#20 7.320  + packageurl-python==0.17.6
+#20 7.320  + pathspec==1.1.1
+#20 7.320  + pip==26.2.1
+#20 7.320  + pip-api==0.0.35
+#20 7.320  + pip-audit==2.10.1
+#20 7.321  + pip-requirements-parser==32.0.1
+#20 7.321  + platformdirs==4.13.0
+#20 7.321  + pluggy==1.6.0
+#20 7.321  + py-serializable==2.1.0
+#20 7.321  + pygments==2.21.0
+#20 7.321  + pyparsing==3.3.3
+#20 7.321  + pytest==9.1.1
+#20 7.321  + requests==2.34.2
+#20 7.321  + rich==15.0.0
+#20 7.321  + ruff==0.17.0
+#20 7.321  + sortedcontainers==2.4.0
+#20 7.321  + tomli==2.5.0
+#20 7.321  + tomli-w==1.2.0
+#20 7.322  + urllib3==2.8.0
+#20 DONE 7.7s
+
+#21 [qa 4/6] COPY tests tests
+#21 DONE 0.2s
+
+#22 [qa 5/6] COPY tools tools
+#22 DONE 0.1s
+
+#23 [qa 6/6] COPY packages/contracts/generated packages/contracts/generated
+#23 DONE 0.1s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 9.0s done
+#24 exporting manifest sha256:6715694369f9d6d9024aaaddd9593e344212e4ae49effc91da04024d1436038e 0.0s done
+#24 exporting config sha256:e6cf674defe76b80903c3c7ac28dbe4b6725067bd379c135312fa1104674a38f 0.0s done
+#24 exporting attestation manifest sha256:f64fb63e384100f0f2927ebf64b3257add2da6700bcd4319c0c8c70338d271e2 0.0s done
+#24 exporting manifest list sha256:2a429e1ea1d4779192cb4cd88215416e94369baa870c417d956adc63978ba1ed
+#24 exporting manifest list sha256:2a429e1ea1d4779192cb4cd88215416e94369baa870c417d956adc63978ba1ed 0.0s done
+#24 naming to docker.io/library/aegis-grid-qa:phase3 done
+#24 unpacking to docker.io/library/aegis-grid-qa:phase3
+#24 unpacking to docker.io/library/aegis-grid-qa:phase3 6.7s done
+#24 DONE 16.0s
+CHECK: docker run --rm --network none aegis-grid-qa:phase3 ctest --test-dir /build --output-on-failure
+Internal ctest changing into directory: /build
+Test project /build
+    Start 1: thermal_kernel
+1/3 Test #1: thermal_kernel ...................   Passed    9.78 sec
+    Start 2: cli_rejects_bad_seed
+2/3 Test #2: cli_rejects_bad_seed .............   Passed    0.01 sec
+    Start 3: cli_rejects_zero_dt
+3/3 Test #3: cli_rejects_zero_dt ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   9.79 sec
+CHECK: docker run --rm --network none aegis-grid-qa:phase3
+........................................................................ [ 48%]
+........................................................................ [ 96%]
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /app/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+149 passed, 1 warning in 27.08s
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/secret_scan.py
+PASS: scanned 227 repository files; no local tokens/private keys found
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m pip_audit --skip-editable --timeout 60
+No known vulnerabilities found
+Name       Skip Reason
+---------- -------------------------------
+aegis-grid distribution marked as editable
+CHECK: pnpm audit --audit-level high
+No known vulnerabilities found
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/smoke.py
+{"result": "PASS", "source": "local_cpp_simulator", "sse_frames": 3, "temperature_changed": true, "unauthorized_reads": "denied", "mutations": "unavailable"}
+CHECK: pnpm exec playwright test
+
+Running 5 tests using 1 worker
+
+(node:20256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\golden-path.spec.ts:9:5 › actual C++ telemetry reaches React, exports provenance, and remains accessible (5.3s)
+  ok 2 [chromium] › tests\e2e\golden-path.spec.ts:53:5 › wrong viewer token fails visibly without telemetry (705ms)
+  ok 3 [chromium] › tests\e2e\golden-path.spec.ts:61:5 › real edge outage becomes visible and reconnects to a new simulator run (9.7s)
+  ok 4 [chromium] › tests\e2e\golden-path.spec.ts:79:5 › actual injected fault hides overheat from observed sensors (37.0s)
+  ok 5 [chromium] › tests\e2e\golden-path.spec.ts:106:5 › local safety stops deceptive fault while cloud is disabled (17.4s)
+
+  5 passed (1.2m)
+Phase 3 checks passed.

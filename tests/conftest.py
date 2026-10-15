@@ -11,14 +11,15 @@ def settings() -> Settings:
         viewer_token=SecretStr("test-viewer-only-" * 3),
         service_token=SecretStr("test-service-only-" * 3),
         twin_binary=Path("/build/aegis-twin"),
+        twin_library=Path("/build/libaegis_twin.so"),
     )
 
 
 @pytest.fixture
 def telemetry() -> dict:
     return {
-        "schema_version": "2.0.0",
-        "model_version": "coupled-factory-v2",
+        "schema_version": "3.0.0",
+        "model_version": "coupled-factory-v3",
         "seed": 42,
         "scenario_id": "scenario-000",
         "scenario_sha256": "b" * 64,
@@ -51,6 +52,7 @@ def telemetry() -> dict:
         "state_version": 1,
         "simulation_time_s": 0.5,
         "coolant_temperature_c": 22.0,
+        "loop_pressure_kpa": 10.0,
         "cells": [
             {
                 "cell_id": f"CELL-0{i + 1}",
@@ -58,9 +60,24 @@ def telemetry() -> dict:
                 "load_fraction": 0.5,
                 "heat_input_w": 600.0,
                 "noise_bound_c": 0.1,
+                "flow_kg_s": 0.1,
             }
             for i in range(6)
         ],
+        "sentinel": {
+            "state": "nominal",
+            "evidence": [],
+            "latched": False,
+            "first_detection_time_s": None,
+            "applied_policy": "none",
+            "policy_revision": "synthetic-shield-v1",
+            "latency_ms": 0.1,
+            "max_estimated_temperature_c": 25.5,
+            "memory_entries": 1,
+            "memory_matches": [],
+            "cpu_fallback": True,
+            "npu_verified": False,
+        },
         "source": "local_cpp_simulator",
         "run_id": "00000000-0000-0000-0000-000000000001",
         "simulator_sha256": "a" * 64,

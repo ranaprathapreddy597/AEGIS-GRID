@@ -1,6 +1,54 @@
 {
   "components": {
     "schemas": {
+      "AnomalyEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "cell_id": {
+            "enum": [
+              "CELL-01",
+              "CELL-02",
+              "CELL-03",
+              "CELL-04",
+              "CELL-05",
+              "CELL-06"
+            ],
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "estimated_temperature_c": {
+            "title": "Estimated Temperature C",
+            "type": "number"
+          },
+          "observed_temperature_c": {
+            "title": "Observed Temperature C",
+            "type": "number"
+          },
+          "reason": {
+            "enum": [
+              "physics_disagreement",
+              "thermal_limit",
+              "stale_measurement",
+              "missing_packets"
+            ],
+            "title": "Reason",
+            "type": "string"
+          },
+          "residual_c": {
+            "title": "Residual C",
+            "type": "number"
+          }
+        },
+        "required": [
+          "cell_id",
+          "residual_c",
+          "estimated_temperature_c",
+          "observed_temperature_c",
+          "reason"
+        ],
+        "title": "AnomalyEvidence",
+        "type": "object"
+      },
       "Capabilities": {
         "additionalProperties": false,
         "properties": {
@@ -24,8 +72,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 2,
-            "default": 2,
+            "const": 3,
+            "default": 3,
             "title": "Phase",
             "type": "integer"
           }
@@ -81,6 +129,12 @@
             "title": "Cell Id",
             "type": "string"
           },
+          "flow_kg_s": {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "title": "Flow Kg S",
+            "type": "number"
+          },
           "heat_input_w": {
             "maximum": 10000.0,
             "minimum": 0.0,
@@ -111,9 +165,120 @@
           "temperature_c",
           "load_fraction",
           "heat_input_w",
-          "noise_bound_c"
+          "noise_bound_c",
+          "flow_kg_s"
         ],
         "title": "CellMeasurement",
+        "type": "object"
+      },
+      "EdgeIncident": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/AnomalyEvidence"
+            },
+            "maxItems": 12,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "kind": {
+            "enum": [
+              "anomaly",
+              "local_stop"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "policy_revision": {
+            "const": "synthetic-shield-v1",
+            "default": "synthetic-shield-v1",
+            "title": "Policy Revision",
+            "type": "string"
+          },
+          "run_id": {
+            "pattern": "^[0-9a-f-]{36}$",
+            "title": "Run Id",
+            "type": "string"
+          },
+          "simulation_time_s": {
+            "minimum": 0.0,
+            "title": "Simulation Time S",
+            "type": "number"
+          },
+          "state_version": {
+            "minimum": 1.0,
+            "title": "State Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_id",
+          "run_id",
+          "state_version",
+          "simulation_time_s",
+          "kind",
+          "evidence"
+        ],
+        "title": "EdgeIncident",
+        "type": "object"
+      },
+      "EdgeStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "cloud": {
+            "enum": [
+              "disabled",
+              "offline",
+              "online"
+            ],
+            "title": "Cloud",
+            "type": "string"
+          },
+          "detector": {
+            "const": "sensor-only-thermal-observer-v1",
+            "default": "sensor-only-thermal-observer-v1",
+            "title": "Detector",
+            "type": "string"
+          },
+          "dropped_events": {
+            "minimum": 0.0,
+            "title": "Dropped Events",
+            "type": "integer"
+          },
+          "execution": {
+            "const": "isolated_simulator_cpu",
+            "default": "isolated_simulator_cpu",
+            "title": "Execution",
+            "type": "string"
+          },
+          "queued_events": {
+            "maximum": 256.0,
+            "minimum": 0.0,
+            "title": "Queued Events",
+            "type": "integer"
+          },
+          "recent_events": {
+            "items": {
+              "$ref": "#/components/schemas/EdgeIncident"
+            },
+            "maxItems": 128,
+            "title": "Recent Events",
+            "type": "array"
+          }
+        },
+        "required": [
+          "cloud",
+          "queued_events",
+          "dropped_events",
+          "recent_events"
+        ],
+        "title": "EdgeStatus",
         "type": "object"
       },
       "ErrorResponse": {
@@ -226,6 +391,36 @@
         "title": "MeasurementQuality",
         "type": "object"
       },
+      "MemoryMatch": {
+        "additionalProperties": false,
+        "properties": {
+          "distance_squared": {
+            "minimum": 0.0,
+            "title": "Distance Squared",
+            "type": "number"
+          },
+          "label": {
+            "enum": [
+              "nominal",
+              "sensor_anomaly"
+            ],
+            "title": "Label",
+            "type": "string"
+          },
+          "state_version": {
+            "minimum": 1.0,
+            "title": "State Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state_version",
+          "distance_squared",
+          "label"
+        ],
+        "title": "MemoryMatch",
+        "type": "object"
+      },
       "PhysicsState": {
         "additionalProperties": false,
         "properties": {
@@ -317,12 +512,18 @@
             "title": "Injected Fault Mask",
             "type": "integer"
           },
+          "loop_pressure_kpa": {
+            "maximum": 180.0,
+            "minimum": 0.0,
+            "title": "Loop Pressure Kpa",
+            "type": "number"
+          },
           "measurement": {
             "$ref": "#/components/schemas/MeasurementQuality"
           },
           "model_version": {
-            "const": "coupled-factory-v2",
-            "default": "coupled-factory-v2",
+            "const": "coupled-factory-v3",
+            "default": "coupled-factory-v3",
             "title": "Model Version",
             "type": "string"
           },
@@ -347,8 +548,8 @@
             "type": "string"
           },
           "schema_version": {
-            "const": "2.0.0",
-            "default": "2.0.0",
+            "const": "3.0.0",
+            "default": "3.0.0",
             "title": "Schema Version",
             "type": "string"
           },
@@ -357,6 +558,9 @@
             "minimum": 0.0,
             "title": "Seed",
             "type": "integer"
+          },
+          "sentinel": {
+            "$ref": "#/components/schemas/SentinelStatus"
           },
           "simulation_time_s": {
             "minimum": 0.0,
@@ -386,6 +590,7 @@
           "state_version",
           "simulation_time_s",
           "coolant_temperature_c",
+          "loop_pressure_kpa",
           "cells",
           "ground_truth",
           "measurement",
@@ -393,9 +598,111 @@
           "run_id",
           "simulator_sha256",
           "scenario_sha256",
-          "observed_at"
+          "observed_at",
+          "sentinel"
         ],
         "title": "PlantTelemetry",
+        "type": "object"
+      },
+      "SentinelStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "applied_policy": {
+            "enum": [
+              "observe_only",
+              "none",
+              "local_emergency_stop"
+            ],
+            "title": "Applied Policy",
+            "type": "string"
+          },
+          "cpu_fallback": {
+            "const": true,
+            "default": true,
+            "title": "Cpu Fallback",
+            "type": "boolean"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/AnomalyEvidence"
+            },
+            "maxItems": 12,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "first_detection_time_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Detection Time S"
+          },
+          "latched": {
+            "title": "Latched",
+            "type": "boolean"
+          },
+          "latency_ms": {
+            "minimum": 0.0,
+            "title": "Latency Ms",
+            "type": "number"
+          },
+          "max_estimated_temperature_c": {
+            "title": "Max Estimated Temperature C",
+            "type": "number"
+          },
+          "memory_entries": {
+            "maximum": 4096.0,
+            "minimum": 0.0,
+            "title": "Memory Entries",
+            "type": "integer"
+          },
+          "memory_matches": {
+            "items": {
+              "$ref": "#/components/schemas/MemoryMatch"
+            },
+            "maxItems": 3,
+            "title": "Memory Matches",
+            "type": "array"
+          },
+          "npu_verified": {
+            "const": false,
+            "default": false,
+            "title": "Npu Verified",
+            "type": "boolean"
+          },
+          "policy_revision": {
+            "const": "synthetic-shield-v1",
+            "default": "synthetic-shield-v1",
+            "title": "Policy Revision",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "warming",
+              "nominal",
+              "anomaly",
+              "latched_stop"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "evidence",
+          "latched",
+          "first_detection_time_s",
+          "applied_policy",
+          "latency_ms",
+          "max_estimated_temperature_c",
+          "memory_entries",
+          "memory_matches"
+        ],
+        "title": "SentinelStatus",
         "type": "object"
       },
       "TruthCell": {
@@ -563,6 +870,82 @@
           }
         },
         "summary": "Capabilities"
+      }
+    },
+    "/api/v1/edge/status": {
+      "get": {
+        "operationId": "edge_status_api_v1_edge_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgeStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Edge Status"
       }
     },
     "/api/v1/telemetry/latest": {

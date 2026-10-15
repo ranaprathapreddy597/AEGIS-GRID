@@ -21,6 +21,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/edge/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Edge Status */
+        get: operations["edge_status_api_v1_edge_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/telemetry/latest": {
         parameters: {
             query?: never;
@@ -76,6 +93,25 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AnomalyEvidence */
+        AnomalyEvidence: {
+            /**
+             * Cell Id
+             * @enum {string}
+             */
+            cell_id: "CELL-01" | "CELL-02" | "CELL-03" | "CELL-04" | "CELL-05" | "CELL-06";
+            /** Estimated Temperature C */
+            estimated_temperature_c: number;
+            /** Observed Temperature C */
+            observed_temperature_c: number;
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "physics_disagreement" | "thermal_limit" | "stale_measurement" | "missing_packets";
+            /** Residual C */
+            residual_c: number;
+        };
         /** Capabilities */
         Capabilities: {
             /** Capabilities */
@@ -94,10 +130,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 2
+             * @default 3
              * @constant
              */
-            phase: 2;
+            phase: 3;
         };
         /** Capability */
         Capability: {
@@ -118,6 +154,8 @@ export interface components {
              * @enum {string}
              */
             cell_id: "CELL-01" | "CELL-02" | "CELL-03" | "CELL-04" | "CELL-05" | "CELL-06";
+            /** Flow Kg S */
+            flow_kg_s: number;
             /** Heat Input W */
             heat_input_w: number;
             /** Load Fraction */
@@ -126,6 +164,56 @@ export interface components {
             noise_bound_c: number;
             /** Temperature C */
             temperature_c: number;
+        };
+        /** EdgeIncident */
+        EdgeIncident: {
+            /** Event Id */
+            event_id: string;
+            /** Evidence */
+            evidence: components["schemas"]["AnomalyEvidence"][];
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "anomaly" | "local_stop";
+            /**
+             * Policy Revision
+             * @default synthetic-shield-v1
+             * @constant
+             */
+            policy_revision: "synthetic-shield-v1";
+            /** Run Id */
+            run_id: string;
+            /** Simulation Time S */
+            simulation_time_s: number;
+            /** State Version */
+            state_version: number;
+        };
+        /** EdgeStatus */
+        EdgeStatus: {
+            /**
+             * Cloud
+             * @enum {string}
+             */
+            cloud: "disabled" | "offline" | "online";
+            /**
+             * Detector
+             * @default sensor-only-thermal-observer-v1
+             * @constant
+             */
+            detector: "sensor-only-thermal-observer-v1";
+            /** Dropped Events */
+            dropped_events: number;
+            /**
+             * Execution
+             * @default isolated_simulator_cpu
+             * @constant
+             */
+            execution: "isolated_simulator_cpu";
+            /** Queued Events */
+            queued_events: number;
+            /** Recent Events */
+            recent_events: components["schemas"]["EdgeIncident"][];
         };
         /** ErrorResponse */
         ErrorResponse: {
@@ -172,6 +260,18 @@ export interface components {
             /** Sampled Version */
             sampled_version: number;
         };
+        /** MemoryMatch */
+        MemoryMatch: {
+            /** Distance Squared */
+            distance_squared: number;
+            /**
+             * Label
+             * @enum {string}
+             */
+            label: "nominal" | "sensor_anomaly";
+            /** State Version */
+            state_version: number;
+        };
         /** PhysicsState */
         PhysicsState: {
             /** Cells */
@@ -200,13 +300,15 @@ export interface components {
             ground_truth: components["schemas"]["PhysicsState"];
             /** Injected Fault Mask */
             injected_fault_mask: number;
+            /** Loop Pressure Kpa */
+            loop_pressure_kpa: number;
             measurement: components["schemas"]["MeasurementQuality"];
             /**
              * Model Version
-             * @default coupled-factory-v2
+             * @default coupled-factory-v3
              * @constant
              */
-            model_version: "coupled-factory-v2";
+            model_version: "coupled-factory-v3";
             /** Observed At */
             observed_at: string;
             /** Run Id */
@@ -217,12 +319,13 @@ export interface components {
             scenario_sha256: string;
             /**
              * Schema Version
-             * @default 2.0.0
+             * @default 3.0.0
              * @constant
              */
-            schema_version: "2.0.0";
+            schema_version: "3.0.0";
             /** Seed */
             seed: number;
+            sentinel: components["schemas"]["SentinelStatus"];
             /** Simulation Time S */
             simulation_time_s: number;
             /** Simulator Sha256 */
@@ -235,6 +338,51 @@ export interface components {
             source: "local_cpp_simulator";
             /** State Version */
             state_version: number;
+        };
+        /** SentinelStatus */
+        SentinelStatus: {
+            /**
+             * Applied Policy
+             * @enum {string}
+             */
+            applied_policy: "observe_only" | "none" | "local_emergency_stop";
+            /**
+             * Cpu Fallback
+             * @default true
+             * @constant
+             */
+            cpu_fallback: true;
+            /** Evidence */
+            evidence: components["schemas"]["AnomalyEvidence"][];
+            /** First Detection Time S */
+            first_detection_time_s: number | null;
+            /** Latched */
+            latched: boolean;
+            /** Latency Ms */
+            latency_ms: number;
+            /** Max Estimated Temperature C */
+            max_estimated_temperature_c: number;
+            /** Memory Entries */
+            memory_entries: number;
+            /** Memory Matches */
+            memory_matches: components["schemas"]["MemoryMatch"][];
+            /**
+             * Npu Verified
+             * @default false
+             * @constant
+             */
+            npu_verified: false;
+            /**
+             * Policy Revision
+             * @default synthetic-shield-v1
+             * @constant
+             */
+            policy_revision: "synthetic-shield-v1";
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "warming" | "nominal" | "anomaly" | "latched_stop";
         };
         /** TruthCell */
         TruthCell: {
@@ -290,6 +438,64 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Capabilities"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    edge_status_api_v1_edge_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EdgeStatus"];
                 };
             };
             /** @description Unauthorized */

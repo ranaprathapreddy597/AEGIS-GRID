@@ -15,6 +15,12 @@
           "title": "Cell Id",
           "type": "string"
         },
+        "flow_kg_s": {
+          "maximum": 0.5,
+          "minimum": 0,
+          "title": "Flow Kg S",
+          "type": "number"
+        },
         "heat_input_w": {
           "maximum": 10000,
           "minimum": 0,
@@ -45,7 +51,8 @@
         "temperature_c",
         "load_fraction",
         "heat_input_w",
-        "noise_bound_c"
+        "noise_bound_c",
+        "flow_kg_s"
       ],
       "title": "CellMeasurement",
       "type": "object"
@@ -223,12 +230,18 @@
       "title": "Injected Fault Mask",
       "type": "integer"
     },
+    "loop_pressure_kpa": {
+      "maximum": 180,
+      "minimum": 0,
+      "title": "Loop Pressure Kpa",
+      "type": "number"
+    },
     "measurement": {
       "$ref": "#/$defs/MeasurementQuality"
     },
     "model_version": {
-      "const": "coupled-factory-v2",
-      "default": "coupled-factory-v2",
+      "const": "coupled-factory-v3",
+      "default": "coupled-factory-v3",
       "title": "Model Version",
       "type": "string"
     },
@@ -238,8 +251,8 @@
       "type": "string"
     },
     "schema_version": {
-      "const": "2.0.0",
-      "default": "2.0.0",
+      "const": "3.0.0",
+      "default": "3.0.0",
       "title": "Schema Version",
       "type": "string"
     },
@@ -266,6 +279,7 @@
     "state_version",
     "simulation_time_s",
     "coolant_temperature_c",
+    "loop_pressure_kpa",
     "cells",
     "ground_truth",
     "measurement",
