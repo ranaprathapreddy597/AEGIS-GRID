@@ -11,6 +11,9 @@ class Settings(BaseModel):
     viewer_token: SecretStr
     service_token: SecretStr
     seed: int = Field(default=42, ge=0, le=4294967295)
+    scenario_id: str = Field(default="scenario-000", pattern=r"^scenario-0\d{2}$")
+    scenario_dir: Path = Path("data/scenarios")
+    time_scale: float = Field(default=1.0, ge=0.5, le=20, allow_inf_nan=False)
     edge_url: str = "http://edge:8001"
     twin_binary: Path = Path("/usr/local/bin/aegis-twin")
 
@@ -24,7 +27,7 @@ class Settings(BaseModel):
     @classmethod
     def local_edge_only(cls, value: str) -> str:
         if value not in {"http://edge:8001", "http://127.0.0.1:8001", "http://localhost:8001"}:
-            raise ValueError("Phase 1 supports only the local simulator edge")
+            raise ValueError("Only the local simulator edge is supported")
         return value
 
     @classmethod
@@ -33,6 +36,8 @@ class Settings(BaseModel):
             viewer_token=SecretStr(os.environ.get("AEGIS_VIEWER_TOKEN", "")),
             service_token=SecretStr(os.environ.get("AEGIS_SERVICE_TOKEN", "")),
             seed=int(os.environ.get("AEGIS_SEED", "42")),
+            scenario_id=os.environ.get("AEGIS_SCENARIO", "scenario-000"),
+            time_scale=float(os.environ.get("AEGIS_TIME_SCALE", "1")),
             edge_url=os.environ.get("AEGIS_EDGE_URL", "http://edge:8001"),
             twin_binary=Path(os.environ.get("AEGIS_TWIN_BINARY", "/usr/local/bin/aegis-twin")),
         )

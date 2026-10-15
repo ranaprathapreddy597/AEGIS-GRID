@@ -1,0 +1,18 @@
+{
+  "config": {
+    "delay_steps": 10,
+    "drop_every": 3,
+    "fault_mask": 128,
+    "noise_c": 0.1,
+    "scenario_id": "scenario-086",
+    "seed": 47556,
+    "severity": 0.94,
+    "start_s": 30.0,
+    "target": 0
+  },
+  "fixture_version": "2.0.0",
+  "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",
+  "label": "power_spike",
+  "label_source": "injected synthetic cause, not inferred diagnosis",
+  "model_version": "coupled-factory-v2"
+}

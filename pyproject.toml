@@ -1,7 +1,7 @@
 [project]
 name = "aegis-grid"
 version = "0.1.0"
-description = "AEGIS GRID Phase 1 local simulation golden path"
+description = "AEGIS GRID Phase 2 coupled factory simulation"
 requires-python = ">=3.11,<3.14"
 dependencies = [
   "fastapi==0.143.1",

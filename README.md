@@ -2,12 +2,12 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 1 — an actual local telemetry golden path.**
+**Current scope: Phase 2 — coupled physics, deterministic faults and replay.**
 
 C++20 thermal simulator → Python edge → authenticated FastAPI SSE → React.
-The six thermal cells use synthetic defaults and a fixed coolant reservoir.
+Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
-Cloud AI, Evolus, fault injection, autonomous recovery, approval, and enterprise
+Cloud AI, Evolus, autonomous recovery, approval, and enterprise
 writes are **not implemented** in this phase.
 
 ## Start locally
@@ -71,7 +71,7 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 
 | Component | Scope |
 |---|---|
-| C++ thermal kernel | Real compiled C++20 code; synthetic independent-cell physics |
+| C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots |
 | Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
 | Node executor | Running health service; every mutation is denied |
 | Redis / Mongo | Local authenticated infrastructure; isolated from application credentials, not yet used for telemetry persistence |
@@ -83,4 +83,8 @@ See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The complete hackathon product is not delivered by this first phase.
+The full master prompt is not finished. Phases 3–12 remain.
+
+See [physics equations and fault semantics](docs/PHYSICS.md) and the
+[Phase 2 evidence](docs/results/PHASE2.md). Toggle **Simulation ground truth**
+to inspect hidden temperatures and flow alongside the observed sensor traces.

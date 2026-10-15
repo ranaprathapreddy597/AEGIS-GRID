@@ -44,3 +44,22 @@ def test_real_edge_streams_then_marks_dead_process_unavailable(settings):
             time.sleep(0.05)
         assert client.get("/healthz").status_code == 503
         assert client.get("/v1/telemetry/latest", headers=headers).status_code == 503
+
+
+def test_real_edge_accepts_accounted_packet_loss(settings):
+    config = settings.model_copy(update={"scenario_id": "scenario-070", "time_scale": 20.0})
+    app = create_app(config)
+    headers = {"Authorization": f"Bearer {settings.service_token.get_secret_value()}"}
+    with TestClient(app) as client:
+        deadline = time.monotonic() + 8
+        saw_loss = False
+        while time.monotonic() < deadline:
+            response = client.get("/v1/telemetry/latest", headers=headers)
+            if response.status_code == 200:
+                frame = PlantTelemetry.model_validate(response.json())
+                if frame.measurement.dropped_packets >= 3:
+                    saw_loss = True
+                    break
+            time.sleep(0.1)
+        assert saw_loss
+        assert client.get("/healthz").status_code == 200

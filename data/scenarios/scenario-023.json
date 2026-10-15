@@ -1,0 +1,18 @@
+{
+  "config": {
+    "delay_steps": 7,
+    "drop_every": 3,
+    "fault_mask": 2,
+    "noise_c": 0.1,
+    "scenario_id": "scenario-023",
+    "seed": 23799,
+    "severity": 0.97,
+    "start_s": 30.0,
+    "target": 3
+  },
+  "fixture_version": "2.0.0",
+  "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",
+  "label": "freeze",
+  "label_source": "injected synthetic cause, not inferred diagnosis",
+  "model_version": "coupled-factory-v2"
+}

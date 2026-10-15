@@ -6,7 +6,7 @@ from pathlib import Path
 
 from aegis_api.app import create_app
 from aegis_contracts.config import Settings
-from aegis_contracts.models import PlantTelemetry, TwinMeasurement
+from aegis_contracts.models import PlantTelemetry, Scenario, SimulatorControls, TwinMeasurement
 from pydantic import SecretStr
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +26,8 @@ def main() -> None:
         "plant-telemetry.schema.json": PlantTelemetry.model_json_schema(),
         "twin-measurement.schema.json": TwinMeasurement.model_json_schema(),
         "settings.schema.json": Settings.model_json_schema(),
+        "scenario.schema.json": Scenario.model_json_schema(),
+        "simulator-controls.schema.json": SimulatorControls.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

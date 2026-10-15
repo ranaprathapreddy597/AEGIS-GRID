@@ -1,0 +1,71 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "delay_steps": {
+      "maximum": 20,
+      "minimum": 0,
+      "title": "Delay Steps",
+      "type": "integer"
+    },
+    "drop_every": {
+      "maximum": 100,
+      "minimum": 2,
+      "title": "Drop Every",
+      "type": "integer"
+    },
+    "fault_mask": {
+      "maximum": 255,
+      "minimum": 0,
+      "title": "Fault Mask",
+      "type": "integer"
+    },
+    "noise_c": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Noise C",
+      "type": "number"
+    },
+    "scenario_id": {
+      "pattern": "^scenario-\\d{3}$",
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "severity": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Severity",
+      "type": "number"
+    },
+    "start_s": {
+      "maximum": 3600,
+      "minimum": 0,
+      "title": "Start S",
+      "type": "number"
+    },
+    "target": {
+      "maximum": 5,
+      "minimum": 0,
+      "title": "Target",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "scenario_id",
+    "seed",
+    "fault_mask",
+    "severity",
+    "start_s",
+    "noise_c",
+    "target",
+    "delay_steps",
+    "drop_every"
+  ],
+  "title": "Scenario",
+  "type": "object"
+}

@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "loads": {
+      "items": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Loads",
+      "type": "array"
+    },
+    "pump": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Pump",
+      "type": "number"
+    },
+    "valves": {
+      "items": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Valves",
+      "type": "array"
+    }
+  },
+  "required": [
+    "pump",
+    "loads",
+    "valves"
+  ],
+  "title": "SimulatorControls",
+  "type": "object"
+}

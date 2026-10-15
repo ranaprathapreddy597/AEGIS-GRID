@@ -1,6 +1,6 @@
-# Phase 1 golden-path runbook
+# Phase 2 golden-path runbook
 
-This is the Phase 1 telemetry demonstration, **not** the final three-minute
+This is the Phase 2 telemetry demonstration, **not** the final three-minute
 incident/recovery demo. All values come from the local synthetic C++ model.
 
 1. Start Docker Desktop with Linux containers, or a Linux Docker Engine/Compose.
@@ -60,3 +60,38 @@ Follow README development setup, then `uv run --locked python tools/dev.py check
 Tests include real C++ subprocess execution and browser reads from the running
 Docker stack. The API outage/malformed-data unit tests use explicitly named local
 test doubles. No mocked hardware/passkey/provider success is reported.
+
+## Select a deterministic fault scenario
+
+Set the following nonsecret settings in `.env` (retain all existing credentials):
+
+```
+AEGIS_SCENARIO=scenario-090
+AEGIS_SEED=42
+AEGIS_TIME_SCALE=20
+```
+
+Recreate only the edge after a configuration change:
+
+```powershell
+docker compose --env-file .env -f infra/local/compose.yaml up -d --force-recreate edge
+```
+
+Toggle **Simulation ground truth**. Observe cell 01 heating while its sensor
+clamps near 38 °C; dashed curves show truth, solid curves show observed readings.
+The clock is simulated seconds. Fault onset is 30 simulated seconds. This is
+an unmitigated synthetic scenario: there is no safety detector/recovery yet.
+Return to `scenario-000` and `AEGIS_TIME_SCALE=1`, then recreate edge for the
+normal automated browser gate. `scenario-070` demonstrates actual packet loss;
+`scenario-060` demonstrates temperature measurement delay.
+
+Offline profile (Docker Linux, no credentials or network required):
+
+```powershell
+docker build -f infra/local/python.Dockerfile --target qa -t aegis-grid-qa:phase2 .
+docker run --rm --network none --memory 512m --cpus 2 --mount "type=bind,source=$((Get-Location).Path)/docs/results,target=/app/docs/results" aegis-grid-qa:phase2 python tools/profile_twin.py
+```
+
+Linux: replace the mount source with `$(pwd)/docs/results`. Profile artifacts
+include initial snapshots, complete-trajectory hashes, sampled observed/truth
+trajectories and measured CPU timing/RSS. They are not inference benchmarks.

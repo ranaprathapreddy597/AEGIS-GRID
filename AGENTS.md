@@ -6,7 +6,8 @@ authoritative project instructions. Preserve them unchanged.
 
 ## Current execution state
 
-- Assigned work: **Phase 1 only**. Do not proceed to Phase 2 automatically.
+- Assigned work: **Phase 2** (explicit continuation authorized on 2026-10-15).
+  Phase 1 passed at `f024ab5`. Complete/test/commit Phase 2 before proceeding.
 - Read `docs/PROGRESS.md`, `docs/OPEN_ISSUES.md`, and
   `docs/INTEGRATION_EVIDENCE.md` before continuing.
 - Never call incomplete or simulated integration a verified production capability.
@@ -20,6 +21,6 @@ authoritative project instructions. Preserve them unchanged.
 
 - Windows host with Docker Desktop Linux engine; native Python and Node also supported.
 - `python tools/dev.py start` builds and starts the local stack.
-- `python tools/dev.py check` runs the Phase 1 automated gate.
-- The full twin, safety controller, persistent graph, approval, and enterprise writes
-  belong to later phases. Do not expose incomplete mutation routes.
+- `python tools/dev.py check` runs the current automated gate.
+- Phase 2 extends the isolated twin. Safety controller, persistent graph, approval,
+  and enterprise writes belong to later phases. Do not expose incomplete mutation routes.

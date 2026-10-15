@@ -1,0 +1,302 @@
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff check .
+All checks passed!
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff format --check .
+51 files already formatted
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m mypy
+Success: no issues found in 10 source files
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/export_contracts.py --check
+Contract schemas match
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/generate_scenarios.py --check
+100 deterministic scenario fixtures checked
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/check_ts_contracts.py
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/generated/openapi.json → C:\Users\ranap\AppData\Local\Temp\aegis-contract-lhgi9ugh\api.d.ts [93.8ms]
+TypeScript contracts match
+CHECK: pnpm lint
+$ eslint apps/web/src services/executor/src tests/e2e
+CHECK: pnpm typecheck
+$ pnpm -r typecheck
+Scope: 2 of 3 workspace projects
+services/executor typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+services/executor typecheck: Done
+apps/web typecheck: Done
+CHECK: pnpm build
+$ pnpm -r build
+Scope: 2 of 3 workspace projects
+services/executor build$ tsc
+apps/web build$ tsc --noEmit && vite build
+services/executor build: Done
+apps/web build: vite v8.3.4 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 17 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.42 kB │ gzip:  0.30 kB
+apps/web build: dist/assets/index-uobqmx3t.css   11.38 kB │ gzip:  3.21 kB
+apps/web build: dist/assets/index-DWt7NUN-.js   233.53 kB │ gzip: 73.29 kB
+apps/web build: ✓ built in 913ms
+apps/web build: Done
+CHECK: pnpm test
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js
+✔ executor fails closed without a token (3.0315ms)
+✔ authenticated and unauthenticated mutations both fail closed (199.3005ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 450.6965
+CHECK: docker build -f infra/local/python.Dockerfile --target qa -t aegis-grid-qa:phase2 .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from python.Dockerfile
+#1 transferring dockerfile: 1.52kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 203B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 295.92kB 0.2s done
+#4 DONE 0.2s
+
+#5 [base 1/9] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#5 DONE 0.1s
+
+#6 [base 5/9] COPY packages/contracts/python packages/contracts/python
+#6 CACHED
+
+#7 [base 4/9] COPY pyproject.toml uv.lock ./
+#7 CACHED
+
+#8 [base 6/9] COPY services/api services/api
+#8 CACHED
+
+#9 [base 7/9] COPY services/edge services/edge
+#9 CACHED
+
+#10 [build-tools 2/3] COPY cpp/digital-twin cpp/digital-twin
+#10 CACHED
+
+#11 [base 3/9] RUN pip install --no-cache-dir uv==0.13.1
+#11 CACHED
+
+#12 [base 2/9] WORKDIR /app
+#12 CACHED
+
+#13 [base 8/9] COPY data/scenarios data/scenarios
+#13 CACHED
+
+#14 [base 9/9] RUN uv sync --locked --no-dev --no-editable
+#14 CACHED
+
+#15 [build-tools 1/3] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#15 CACHED
+
+#16 [build-tools 3/3] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#16 CACHED
+
+#17 [qa 1/4] RUN uv sync --locked
+#17 0.868 Resolved 54 packages in 3ms
+#17 0.978    Building aegis-grid @ file:///app
+#17 5.974 Downloading pip (1.7MiB)
+#17 5.983 Downloading pygments (1.2MiB)
+#17 5.989 Downloading mypy (14.8MiB)
+#17 6.005 Downloading ast-serialize (1.3MiB)
+#17 6.009 Downloading ruff (9.9MiB)
+#17 16.69  Downloaded pygments
+#17 18.26  Downloaded ast-serialize
+#17 18.69  Downloaded pip
+#17 25.58       Built aegis-grid @ file:///app
+#17 32.83  Downloaded ruff
+#17 40.93  Downloaded mypy
+#17 40.93 Prepared 36 packages in 40.05s
+#17 40.96 Uninstalled 1 package in 20ms
+#17 42.22 Installed 36 packages in 1.26s
+#17 42.22  ~ aegis-grid==0.1.0 (from file:///app)
+#17 42.22  + ast-serialize==0.13.0
+#17 42.22  + boolean-py==5.0
+#17 42.22  + cachecontrol==0.14.4
+#17 42.22  + charset-normalizer==3.5.2
+#17 42.22  + cyclonedx-python-lib==11.12.0
+#17 42.22  + defusedxml==0.7.1
+#17 42.22  + filelock==4.1.2
+#17 42.22  + iniconfig==2.3.1
+#17 42.22  + librt==0.16.0
+#17 42.22  + license-expression==30.4.4
+#17 42.22  + markdown-it-py==4.2.0
+#17 42.22  + mdurl==0.1.2
+#17 42.22  + msgpack==1.2.3
+#17 42.22  + mypy==2.4.0
+#17 42.22  + mypy-extensions==1.1.0
+#17 42.22  + packageurl-python==0.17.6
+#17 42.22  + packaging==26.3
+#17 42.22  + pathspec==1.1.1
+#17 42.22  + pip==26.2.1
+#17 42.22  + pip-api==0.0.35
+#17 42.22  + pip-audit==2.10.1
+#17 42.22  + pip-requirements-parser==32.0.1
+#17 42.22  + platformdirs==4.13.0
+#17 42.22  + pluggy==1.6.0
+#17 42.22  + py-serializable==2.1.0
+#17 42.22  + pygments==2.21.0
+#17 42.22  + pyparsing==3.3.3
+#17 42.22  + pytest==9.1.1
+#17 42.22  + requests==2.34.2
+#17 42.22  + rich==15.0.0
+#17 42.22  + ruff==0.17.0
+#17 42.22  + sortedcontainers==2.4.0
+#17 42.22  + tomli==2.5.0
+#17 42.22  + tomli-w==1.2.0
+#17 42.22  + urllib3==2.8.0
+#17 DONE 42.6s
+
+#18 [qa 2/4] COPY tests tests
+#18 DONE 0.2s
+
+#19 [qa 3/4] COPY tools tools
+#19 DONE 0.1s
+
+#20 [qa 4/4] COPY packages/contracts/generated packages/contracts/generated
+#20 DONE 0.1s
+
+#21 exporting to image
+#21 exporting layers
+#21 exporting layers 26.3s done
+#21 exporting manifest sha256:97deea3561b876aed87d3664d23977146759cea0831b5996b8446cadbb3fb47a 0.0s done
+#21 exporting config sha256:0474569197ba9ae138110d6e28c289d48383a63eec4b8ceec06af27b77a62dd2 0.0s done
+#21 exporting attestation manifest sha256:b72f1a517878e9577e1f79d817410d504520d8cc156a16ecb7b893ae1e0ea4a6 0.0s done
+#21 exporting manifest list sha256:00572e5a0f4819173f693f44bf5642cc59beaff6d3d621cd9a9e55c01ea2ec0d 0.0s done
+#21 naming to docker.io/library/aegis-grid-qa:phase2 done
+#21 unpacking to docker.io/library/aegis-grid-qa:phase2
+#21 unpacking to docker.io/library/aegis-grid-qa:phase2 7.9s done
+#21 DONE 34.4s
+CHECK: docker run --rm --network none aegis-grid-qa:phase2 ctest --test-dir /build --output-on-failure
+Internal ctest changing into directory: /build
+Test project /build
+    Start 1: thermal_kernel
+1/3 Test #1: thermal_kernel ...................   Passed    9.03 sec
+    Start 2: cli_rejects_bad_seed
+2/3 Test #2: cli_rejects_bad_seed .............   Passed    0.01 sec
+    Start 3: cli_rejects_zero_dt
+3/3 Test #3: cli_rejects_zero_dt ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   9.04 sec
+CHECK: docker run --rm --network none aegis-grid-qa:phase2
+........................................................................ [ 55%]
+.........................................................                [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /app/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+129 passed, 1 warning in 8.20s
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/secret_scan.py
+PASS: scanned 211 repository files; no local tokens/private keys found
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m pip_audit --skip-editable
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1251, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1103, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\util\retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\urllib3\connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='pypi.org', port=443): Read timed out. (read timeout=15)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\pip_audit\__main__.py", line 8, in <module>
+    audit()
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\pip_audit\_cli.py", line 554, in audit
+    for spec, vulns in auditor.audit(source):
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\pip_audit\_audit.py", line 68, in audit
+    for dep, vulns in self._service.query_all(specs):
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\pip_audit\_service\interface.py", line 180, in query_all
+    yield self.query(spec)
+          ^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\pip_audit\_service\pypi.py", line 64, in query
+    response: requests.Response = self.session.get(url=url, timeout=self.timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\requests\sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\cachecontrol\adapter.py", line 76, in send
+    resp = super().send(request, stream, timeout, verify, cert, proxies)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AEGIS GRID\.venv\Lib\site-packages\requests\adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='pypi.org', port=443): Read timed out. (read timeout=15)
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\tools\dev.py", line 158, in <module>
+    main()
+  File "D:\AEGIS GRID\tools\dev.py", line 153, in main
+    run(command)
+  File "D:\AEGIS GRID\tools\dev.py", line 83, in run
+    subprocess.run([executable, *command[1:]], cwd=ROOT, check=True)
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['D:\\AEGIS GRID\\.venv\\Scripts\\python.exe', '-m', 'pip_audit', '--skip-editable']' returned non-zero exit status 1.

@@ -15,6 +15,8 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
+from aegis_edge.twin import fingerprint, scenario_from_file
+
 logger = logging.getLogger("aegis.edge")
 
 
@@ -36,10 +38,15 @@ class TwinReader:
         binary = self.settings.twin_binary.resolve(strict=True)
         digest = hashlib.sha256(binary.read_bytes()).hexdigest()
         run_id = str(uuid.uuid4())
+        scenario = scenario_from_file(
+            self.settings.scenario_dir, self.settings.scenario_id, self.settings.seed
+        )
         self.process = await asyncio.create_subprocess_exec(
             str(binary),
-            "--seed",
-            str(self.settings.seed),
+            "--scenario",
+            scenario.model_dump_json(),
+            "--speed",
+            str(self.settings.time_scale),
             "--dt",
             "0.5",
             "--realtime",
@@ -51,19 +58,29 @@ class TwinReader:
         try:
             if self.process.stdout is None:
                 raise RuntimeError("Missing simulator stdout")
-            expected_version = 1
+            previous_version = 0
+            previous_dropped = 0
             while True:
                 line = await asyncio.wait_for(self.process.stdout.readline(), timeout=3)
                 if not line:
                     break
                 raw = TwinMeasurement.model_validate_json(line)
-                if raw.state_version != expected_version or raw.seed != self.settings.seed:
+                gap = raw.state_version - previous_version - 1
+                if (
+                    gap < 0
+                    or gap != raw.measurement.dropped_packets - previous_dropped
+                    or not raw.measurement.packet_available
+                    or raw.seed != self.settings.seed
+                    or raw.scenario_id != scenario.scenario_id
+                ):
                     raise ValueError("Out-of-order or wrong-scenario simulator frame")
-                expected_version += 1
+                previous_version = raw.state_version
+                previous_dropped = raw.measurement.dropped_packets
                 self.latest = PlantTelemetry(
                     **raw.model_dump(),
                     run_id=run_id,
                     simulator_sha256=digest,
+                    scenario_sha256=fingerprint(scenario),
                     observed_at=datetime.now(UTC).isoformat(),
                 )
                 self.last_received = time.monotonic()

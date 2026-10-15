@@ -7,8 +7,10 @@
 | EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no external calls or writes attempted. |
 | HW-01 | Unverified | NPU not probed for a supported workload; do not equate CPU branding or AMD-SMI availability with acceleration. |
 | TOOL-01 | Resolved for Docker path | Native Windows CMake/compiler absent. Container CMake/CTest is the chosen Phase 1 path; native MSVC remains unverified. |
-| MODEL-01 | Deferred / Phase 2 | Independent thermal cells omit shared coolant dynamics, pressure, feeder, uncertainty and faults. |
-| SAFE-01 | Deferred / Phases 3/9 | No deterministic controller, signed capabilities, passkeys or operational writes yet. All mutations are unavailable. |
+| MODEL-01 | Resolved / Phase 2 | Coupled coolant/pressure/feeder, bounded actuators, instrument noise, seeded faults and snapshots are implemented; see PHYSICS.md and phase evidence. |
+| MODEL-02 | Synthetic model limitation | No plant/OEM calibration, cavitation, boiling, leakage or physical I/O. Sensor intervals cover assumed instrument noise only, not spoof/delay uncertainty. |
+| SEC-02 | Simulator inspection only | Authenticated local telemetry includes ground truth/fault labels for developer inspection. Future anomaly detection must exclude these fields; no production tenant or sensor-only separation is claimed. |
+| SAFE-01 | Deferred / Phases 3/9 | No deterministic controller, signed capabilities, passkeys or operational writes yet. HTTP operational mutations are unavailable; local C ABI controls only isolated offline simulator instances. |
 | DATA-01 | Deferred / Phase 4 | Mongo/Redis are infrastructure only, not used for incident/event persistence; no restart replay guarantee. |
 | SEC-01 | Local-only baseline | Shared read tokens and loopback HTTP are not production identity/TLS. Cloud configuration intentionally unavailable. |
 | BUILD-01 | Hardening backlog | Direct tool pins and image digests do not freeze all Debian apt transitive packages. Snapshot repository/SBOM validation deferred. |
@@ -17,5 +19,5 @@
 | GIT-01 | Local repository | No remote configured and no user Git identity set. Phase commit uses explicit AEGIS GRID Automation identity; no global Git configuration change. |
 
 Initial absence of the phase guide was resolved by the user during discovery.
-Any build/test failure discovered during Phase 1 must be repaired or explicitly
-recorded as an unmet gate; missing providers alone do not block the local Phase 1 gate.
+Any build/test failure discovered during a phase must be repaired or explicitly
+recorded as an unmet gate; missing providers alone do not block the local gate.

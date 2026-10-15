@@ -1,0 +1,18 @@
+{
+  "config": {
+    "delay_steps": 5,
+    "drop_every": 4,
+    "fault_mask": 8,
+    "noise_c": 0.1,
+    "scenario_id": "scenario-041",
+    "seed": 7961,
+    "severity": 0.99,
+    "start_s": 30.0,
+    "target": 1
+  },
+  "fixture_version": "2.0.0",
+  "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",
+  "label": "pump_degradation",
+  "label_source": "injected synthetic cause, not inferred diagnosis",
+  "model_version": "coupled-factory-v2"
+}

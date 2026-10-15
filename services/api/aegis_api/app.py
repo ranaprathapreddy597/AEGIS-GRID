@@ -51,7 +51,7 @@ def create_app(
 
     app = FastAPI(
         title="AEGIS GRID API",
-        version="0.1.0",
+        version="0.2.0",
         lifespan=lifespan,
         docs_url=None,
         redoc_url=None,
@@ -93,9 +93,9 @@ def create_app(
         return Capabilities(
             capabilities=[
                 Capability(
-                    name="C++ thermal kernel",
+                    name="C++ coupled factory twin",
                     status="simulated",
-                    detail="Six independent synthetic thermal cells; fixed coolant",
+                    detail="Shared coolant, feeder, seeded faults and replay; synthetic parameters",
                 ),
                 Capability(
                     name="Telemetry transport",

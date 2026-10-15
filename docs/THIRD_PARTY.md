@@ -15,3 +15,8 @@ uses its upstream runtime exception; OS packages retain their own licenses.
 
 Dependency vulnerability scans are a point-in-time check, separate from license
 compliance. Full SBOM/license automation is part of release hardening.
+
+The C++ build uses Debian `nlohmann-json3-dev=3.11.2-2` (upstream
+nlohmann/json 3.11.2, MIT), included as header-only serialization code.
+[Upstream license](https://github.com/nlohmann/json/blob/v3.11.2/LICENSE.MIT)
+and Debian copyright notices remain applicable.

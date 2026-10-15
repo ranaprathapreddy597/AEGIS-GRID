@@ -94,10 +94,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 1
+             * @default 2
              * @constant
              */
-            phase: 1;
+            phase: 2;
         };
         /** Capability */
         Capability: {
@@ -122,6 +122,8 @@ export interface components {
             heat_input_w: number;
             /** Load Fraction */
             load_fraction: number;
+            /** Noise Bound C */
+            noise_bound_c: number;
             /** Temperature C */
             temperature_c: number;
         };
@@ -157,28 +159,68 @@ export interface components {
              */
             status: "ok" | "degraded";
         };
+        /** MeasurementQuality */
+        MeasurementQuality: {
+            /** Age S */
+            age_s: number;
+            /** Dropped Packets */
+            dropped_packets: number;
+            /** Packet Available */
+            packet_available: boolean;
+            /** Sampled Time S */
+            sampled_time_s: number;
+            /** Sampled Version */
+            sampled_version: number;
+        };
+        /** PhysicsState */
+        PhysicsState: {
+            /** Cells */
+            cells: components["schemas"]["TruthCell"][];
+            /** Energy J */
+            energy_j: number;
+            /** Energy Residual J */
+            energy_residual_j: number;
+            /** Feeder Power W */
+            feeder_power_w: number;
+            /** Pressure Kpa */
+            pressure_kpa: number;
+            /** Production Units */
+            production_units: number;
+            /** Pump Fraction */
+            pump_fraction: number;
+            /** Total Flow Kg S */
+            total_flow_kg_s: number;
+        };
         /** PlantTelemetry */
         PlantTelemetry: {
             /** Cells */
             cells: components["schemas"]["CellMeasurement"][];
             /** Coolant Temperature C */
             coolant_temperature_c: number;
+            ground_truth: components["schemas"]["PhysicsState"];
+            /** Injected Fault Mask */
+            injected_fault_mask: number;
+            measurement: components["schemas"]["MeasurementQuality"];
             /**
              * Model Version
-             * @default thermal-bootstrap-v1
+             * @default coupled-factory-v2
              * @constant
              */
-            model_version: "thermal-bootstrap-v1";
+            model_version: "coupled-factory-v2";
             /** Observed At */
             observed_at: string;
             /** Run Id */
             run_id: string;
+            /** Scenario Id */
+            scenario_id: string;
+            /** Scenario Sha256 */
+            scenario_sha256: string;
             /**
              * Schema Version
-             * @default 1.0.0
+             * @default 2.0.0
              * @constant
              */
-            schema_version: "1.0.0";
+            schema_version: "2.0.0";
             /** Seed */
             seed: number;
             /** Simulation Time S */
@@ -193,6 +235,20 @@ export interface components {
             source: "local_cpp_simulator";
             /** State Version */
             state_version: number;
+        };
+        /** TruthCell */
+        TruthCell: {
+            /**
+             * Cell Id
+             * @enum {string}
+             */
+            cell_id: "CELL-01" | "CELL-02" | "CELL-03" | "CELL-04" | "CELL-05" | "CELL-06";
+            /** Flow Kg S */
+            flow_kg_s: number;
+            /** Temperature C */
+            temperature_c: number;
+            /** Valve Fraction */
+            valve_fraction: number;
         };
         /** ValidationError */
         ValidationError: {

@@ -88,3 +88,38 @@ On 2026-10-15, the clean-source export bootstrapped a separate six-service stack
 with fresh credentials and volumes, without a host virtualenv/node_modules. A
 standard-library HTTP client verified its UI, unauthenticated denial, and three
 changing SSE frames. See `results/clean-bootstrap.json`. Docker caches were reused.
+
+## Phase 2 execution — 2026-10-15
+
+The same laptop executed the coupled C++ factory, Python ctypes offline rollouts
+and the live edge/API/React path. The kernel now includes finite shared coolant,
+pressure/flow, ring heat exchange, electrical feeder and actuator ramps. It is
+still synthetic, without plant calibration or physical I/O. Equations, units,
+approximations and fault/uncertainty semantics are recorded in `PHYSICS.md`.
+
+The 100 registered fixtures were each stepped for 1,200 simulated seconds and
+replayed from reset. All 100 complete observed/ground-truth trajectory hashes
+matched. The sampled trajectory archive also matched across two executions.
+`results/phase2-profile.json` contains initial state, scenario/library hashes,
+per-case maxima and measured timing/memory. The final CPU profile used a Docker
+container limited to 2 CPUs / 512 MiB: median step 0.133 ms, p95 0.359 ms, peak
+process RSS 43.38 MiB, 47.14 s for the full two-pass profile and artifact work.
+This excludes Docker/WSL and other services, and includes serialization and
+Pydantic validation in each measured first-pass step. No GPU/NPU was used.
+
+For scenario-090, actual model truth first crossed the experimental 80 °C
+threshold at about 488 simulated seconds while all temperature observations were
+at most 56.66 °C. The live browser test independently exercises this fault through
+the actual process and SSE path. These are synthetic threshold-deception tests;
+an anomaly detector, independent safety shield and recovery system are Phase 3+.
+
+Release CTest, 129 Python tests and browser/axe checks cover actual binaries and
+transport; see `results/PHASE2.md` and `results/phase2-checks.txt` for final gate
+results. A separate ASan/UBSan Debug build passed all three CTest checks in
+273.15 s with no reported finding (`results/phase2-sanitizers.txt`). Ground truth
+and injected labels are exposed only for local simulator inspection and must be
+excluded from later detector evidence. C ABI controls are local offline simulator
+operations; no HTTP operational mutation endpoint was added.
+
+Evolus, MI300X, Pinecone and external GitHub integration status is unchanged.
+No provider credential or external write was used, and hosted CI remains unrun.

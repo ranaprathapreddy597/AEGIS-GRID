@@ -1,0 +1,18 @@
+{
+  "config": {
+    "delay_steps": 6,
+    "drop_every": 5,
+    "fault_mask": 32,
+    "noise_c": 0.1,
+    "scenario_id": "scenario-062",
+    "seed": 15880,
+    "severity": 0.98,
+    "start_s": 30.0,
+    "target": 2
+  },
+  "fixture_version": "2.0.0",
+  "initial_state": "seeded reset; full state recorded by tools/profile_twin.py",
+  "label": "measurement_delay",
+  "label_source": "injected synthetic cause, not inferred diagnosis",
+  "model_version": "coupled-factory-v2"
+}

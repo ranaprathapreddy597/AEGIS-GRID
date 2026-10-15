@@ -27,6 +27,12 @@
           "title": "Load Fraction",
           "type": "number"
         },
+        "noise_bound_c": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Noise Bound C",
+          "type": "number"
+        },
         "temperature_c": {
           "maximum": 1000,
           "minimum": -273.15,
@@ -38,9 +44,156 @@
         "cell_id",
         "temperature_c",
         "load_fraction",
-        "heat_input_w"
+        "heat_input_w",
+        "noise_bound_c"
       ],
       "title": "CellMeasurement",
+      "type": "object"
+    },
+    "MeasurementQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "age_s": {
+          "maximum": 20.000001,
+          "minimum": 0,
+          "title": "Age S",
+          "type": "number"
+        },
+        "dropped_packets": {
+          "minimum": 0,
+          "title": "Dropped Packets",
+          "type": "integer"
+        },
+        "packet_available": {
+          "title": "Packet Available",
+          "type": "boolean"
+        },
+        "sampled_time_s": {
+          "minimum": 0,
+          "title": "Sampled Time S",
+          "type": "number"
+        },
+        "sampled_version": {
+          "minimum": 0,
+          "title": "Sampled Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sampled_version",
+        "sampled_time_s",
+        "age_s",
+        "packet_available",
+        "dropped_packets"
+      ],
+      "title": "MeasurementQuality",
+      "type": "object"
+    },
+    "PhysicsState": {
+      "additionalProperties": false,
+      "properties": {
+        "cells": {
+          "items": {
+            "$ref": "#/$defs/TruthCell"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Cells",
+          "type": "array"
+        },
+        "energy_j": {
+          "minimum": 0,
+          "title": "Energy J",
+          "type": "number"
+        },
+        "energy_residual_j": {
+          "title": "Energy Residual J",
+          "type": "number"
+        },
+        "feeder_power_w": {
+          "maximum": 14500.000001,
+          "minimum": 0,
+          "title": "Feeder Power W",
+          "type": "number"
+        },
+        "pressure_kpa": {
+          "maximum": 180,
+          "minimum": 0,
+          "title": "Pressure Kpa",
+          "type": "number"
+        },
+        "production_units": {
+          "minimum": 0,
+          "title": "Production Units",
+          "type": "number"
+        },
+        "pump_fraction": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Pump Fraction",
+          "type": "number"
+        },
+        "total_flow_kg_s": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Total Flow Kg S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cells",
+        "pressure_kpa",
+        "total_flow_kg_s",
+        "pump_fraction",
+        "feeder_power_w",
+        "energy_j",
+        "production_units",
+        "energy_residual_j"
+      ],
+      "title": "PhysicsState",
+      "type": "object"
+    },
+    "TruthCell": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_id": {
+          "enum": [
+            "CELL-01",
+            "CELL-02",
+            "CELL-03",
+            "CELL-04",
+            "CELL-05",
+            "CELL-06"
+          ],
+          "title": "Cell Id",
+          "type": "string"
+        },
+        "flow_kg_s": {
+          "maximum": 0.5,
+          "minimum": 0,
+          "title": "Flow Kg S",
+          "type": "number"
+        },
+        "temperature_c": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Temperature C",
+          "type": "number"
+        },
+        "valve_fraction": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Valve Fraction",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cell_id",
+        "temperature_c",
+        "flow_kg_s",
+        "valve_fraction"
+      ],
+      "title": "TruthCell",
       "type": "object"
     }
   },
@@ -61,9 +214,21 @@
       "title": "Coolant Temperature C",
       "type": "number"
     },
+    "ground_truth": {
+      "$ref": "#/$defs/PhysicsState"
+    },
+    "injected_fault_mask": {
+      "maximum": 255,
+      "minimum": 0,
+      "title": "Injected Fault Mask",
+      "type": "integer"
+    },
+    "measurement": {
+      "$ref": "#/$defs/MeasurementQuality"
+    },
     "model_version": {
-      "const": "thermal-bootstrap-v1",
-      "default": "thermal-bootstrap-v1",
+      "const": "coupled-factory-v2",
+      "default": "coupled-factory-v2",
       "title": "Model Version",
       "type": "string"
     },
@@ -77,9 +242,19 @@
       "title": "Run Id",
       "type": "string"
     },
+    "scenario_id": {
+      "pattern": "^scenario-\\d{3}$",
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "scenario_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Scenario Sha256",
+      "type": "string"
+    },
     "schema_version": {
-      "const": "1.0.0",
-      "default": "1.0.0",
+      "const": "2.0.0",
+      "default": "2.0.0",
       "title": "Schema Version",
       "type": "string"
     },
@@ -112,13 +287,18 @@
     }
   },
   "required": [
+    "scenario_id",
     "seed",
     "state_version",
     "simulation_time_s",
     "coolant_temperature_c",
     "cells",
+    "ground_truth",
+    "measurement",
+    "injected_fault_mask",
     "run_id",
     "simulator_sha256",
+    "scenario_sha256",
     "observed_at"
   ],
   "title": "PlantTelemetry",

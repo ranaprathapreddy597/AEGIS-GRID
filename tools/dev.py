@@ -113,6 +113,7 @@ def main() -> None:
             [sys.executable, "-m", "ruff", "format", "--check", "."],
             [sys.executable, "-m", "mypy"],
             [sys.executable, "tools/export_contracts.py", "--check"],
+            [sys.executable, "tools/generate_scenarios.py", "--check"],
             [sys.executable, "tools/check_ts_contracts.py"],
             ["pnpm", "lint"],
             ["pnpm", "typecheck"],
@@ -126,7 +127,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase1",
+                "aegis-grid-qa:phase2",
                 ".",
             ],
             [
@@ -135,22 +136,22 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase1",
+                "aegis-grid-qa:phase2",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase1"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase2"],
             [sys.executable, "tools/secret_scan.py"],
-            [sys.executable, "-m", "pip_audit", "--skip-editable"],
+            [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
             [sys.executable, "tools/smoke.py"],
             ["pnpm", "exec", "playwright", "test"],
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 1 checks passed.")
+        print("Phase 2 checks passed.")
 
 
 if __name__ == "__main__":

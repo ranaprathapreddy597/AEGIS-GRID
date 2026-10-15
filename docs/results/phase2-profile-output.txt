@@ -1,0 +1,17 @@
+{
+  "model_version": "coupled-factory-v2",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "python": "3.12.15",
+  "machine": "x86_64",
+  "container_limits": "Profile command uses 2 CPUs and 512 MiB; host has 31.29 GiB",
+  "scope": "Docker Linux CPU on documented Ryzen laptop; 1200 seconds x 100 fixtures x 2 passes; dt=1 s; no GPU/NPU",
+  "timing_scope": "First-pass ctypes step + C++ serialization + Pydantic validation + second raw serialization; excludes hashing/output",
+  "step_count": 120000,
+  "total_wall_s": 47.140019700999915,
+  "step_median_ms": 0.132625,
+  "step_p95_ms": 0.359307,
+  "process_peak_rss_mib": 43.375,
+  "library_sha256": "854d8408695fcc09d2e998e5bc82afdba98a4e1dd6f6e2d2be63c05d3eb0918f",
+  "trajectories_sha256": "810bee161c23e2cf495d1308c64d2ee9bb6a963ba7c48ea96d1387f2c36ddffc"
+}
+Threshold misses: 15/100 synthetic cases; not an anomaly detector evaluation

@@ -1,0 +1,1478 @@
+{
+  "model_version": "coupled-factory-v2",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "python": "3.12.15",
+  "machine": "x86_64",
+  "container_limits": "Profile command uses 2 CPUs and 512 MiB; host has 31.29 GiB",
+  "scope": "Docker Linux CPU on documented Ryzen laptop; 1200 seconds x 100 fixtures x 2 passes; dt=1 s; no GPU/NPU",
+  "timing_scope": "First-pass ctypes step + C++ serialization + Pydantic validation + second raw serialization; excludes hashing/output",
+  "step_count": 120000,
+  "total_wall_s": 47.140019700999915,
+  "step_median_ms": 0.132625,
+  "step_p95_ms": 0.359307,
+  "process_peak_rss_mib": 43.375,
+  "library_sha256": "854d8408695fcc09d2e998e5bc82afdba98a4e1dd6f6e2d2be63c05d3eb0918f",
+  "trajectories_sha256": "810bee161c23e2cf495d1308c64d2ee9bb6a963ba7c48ea96d1387f2c36ddffc",
+  "results": [
+    {
+      "scenario_id": "scenario-000",
+      "scenario_sha256": "90167b2cef8bede0a74f4d08a0a60fa4dd2372b8f96c3fb34da87039b6657822",
+      "initial_snapshot": {
+        "sha256": "600d5ebf8f252a0d964ed633cac5e038eae49bb3e82c48839211ef102ed435ca",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-000\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "70f4c79e6e55b4fdaec199cd7afc2b09880535872e928c290af0682d453f199a",
+      "replay_identical": true,
+      "max_truth_c": 45.36587964017604,
+      "max_observed_c": 45.45190358952587,
+      "max_abs_energy_residual_j": 3.058390651844434e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-001",
+      "scenario_sha256": "f136af285c082096e178b70615dee030d0a3d3101be08f7e6bf64630b4482511",
+      "initial_snapshot": {
+        "sha256": "5948f075bc47dec3c941d60df105d1ab6e919701e4361591262dc66d2098345c",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-001\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "f97f90b51e4a373f1764a14390519bf552a851cba63086e91d1854670776a1fe",
+      "replay_identical": true,
+      "max_truth_c": 45.365747982173744,
+      "max_observed_c": 45.44276921737391,
+      "max_abs_energy_residual_j": 2.066531479272271e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-002",
+      "scenario_sha256": "8c0345208abae730eb08b57ef22819407f2b45f5e061b2d26ac0c4bb1cd94557",
+      "initial_snapshot": {
+        "sha256": "380ba2e9e6d0dbc40032863ad0aad696d13f61b711e41c33db0e50bf7452b723",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-002\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "55e02d1fb4edbe41328003b2aa27672d661d80f27f1db077d536c8bdb75b2aa6",
+      "replay_identical": true,
+      "max_truth_c": 45.36599248335282,
+      "max_observed_c": 45.45665645944962,
+      "max_abs_energy_residual_j": 2.2815413558419095e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-003",
+      "scenario_sha256": "85bb43019b009e9f143fd968aff4bea97633a18f6cc6df6c62ddfa3641b59503",
+      "initial_snapshot": {
+        "sha256": "3cd67c57ea793debe7540e7938ab5d8bcafedcb7aa5220d949ad461791ef7f6e",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-003\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "36f5856342caee38c10605b8f02032b4f46784ed059633d1c0fd385047579a83",
+      "replay_identical": true,
+      "max_truth_c": 45.36593186959117,
+      "max_observed_c": 45.448185514228456,
+      "max_abs_energy_residual_j": 5.4093713064418125e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-004",
+      "scenario_sha256": "9ce0649355998b3437e44e35653fb18fd49551fb1e9afc104f9619ebe5a51f73",
+      "initial_snapshot": {
+        "sha256": "07090c8d3100963f782db90d23061ba8bb64557fa13a62031f4aad6884b50cc7",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-004\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5ccd2c9c95af0b49e0a1525cf1d5710b8f9732f927c1d045a548bc133d5d622a",
+      "replay_identical": true,
+      "max_truth_c": 45.365467011333244,
+      "max_observed_c": 45.45275637545998,
+      "max_abs_energy_residual_j": 3.072333498721491e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-005",
+      "scenario_sha256": "88f28d956340f9a09759e12403012e24d5ef5698fda8af04a5196c8336f6ad6e",
+      "initial_snapshot": {
+        "sha256": "228e7c999fcb5108bb4443d7ba0a383725ae8f99327b9004dc9b895547b09e6a",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-005\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "d3b38635f83994159a2eda7436a856b5d46c7ec0c5fc3fc2f528428fc779c999",
+      "replay_identical": true,
+      "max_truth_c": 45.36572362278671,
+      "max_observed_c": 45.451053658176264,
+      "max_abs_energy_residual_j": 2.843233737337414e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-006",
+      "scenario_sha256": "5efaab3cd14d25fdc876e94750b794290b72ff26595dbb60f978e479f5eb6fd4",
+      "initial_snapshot": {
+        "sha256": "63f03b96b73a7df916e37b6feeb8fcc9d1c7b6ac699a11d7cb187c79919899fe",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-006\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "d8ac472ce775979172bc7195336b5b1191f80cff9e9fe4bdf6496327f5d9b77b",
+      "replay_identical": true,
+      "max_truth_c": 45.36510108305517,
+      "max_observed_c": 45.44419762501292,
+      "max_abs_energy_residual_j": 4.634966721539513e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-007",
+      "scenario_sha256": "e894a9f517cf5221b4ba59bc4e19cc942e570176d018a8f9b06e194cc06d8082",
+      "initial_snapshot": {
+        "sha256": "d81431edb204232de0ae794017b305e346ab18b8c6a78ca63495ebf94e73479f",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-007\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "a67c4b188ed16382cc09b0402a910f7fea474632d65d5c8b811673e52c71452f",
+      "replay_identical": true,
+      "max_truth_c": 45.36616575543953,
+      "max_observed_c": 45.457277894878764,
+      "max_abs_energy_residual_j": 2.7002327485092792e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-008",
+      "scenario_sha256": "363f0a7d4f7d4d63fc734409a524b97ebd4c627e4a377db90bacec5647006f70",
+      "initial_snapshot": {
+        "sha256": "ac734365114dd0a88fc164c42baaa281642b7e3f50a9e2d8c73617f30d6c79a2",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-008\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "566fc57d24c289766090ee1af46e98362ccfdcdfbdb6f8491456f999e7226a68",
+      "replay_identical": true,
+      "max_truth_c": 45.36503064771755,
+      "max_observed_c": 45.459797459942784,
+      "max_abs_energy_residual_j": 2.2463434223851664e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-009",
+      "scenario_sha256": "91cb58e9d76356bd4848679b704455f85773097c26139bb841b0a72f265dbd09",
+      "initial_snapshot": {
+        "sha256": "5916040768005c671555c00fb6daf11189c375706bd1b541531d2161d640fcee",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":0,\"noise_c\":0.1,\"scenario_id\":\"scenario-009\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "4071a34d9ed5bf739270d07f16dc6d7f657bb18b53ec90b2fd1ad28a4ddffc23",
+      "replay_identical": true,
+      "max_truth_c": 45.365375450569616,
+      "max_observed_c": 45.45411974807896,
+      "max_abs_energy_residual_j": 2.592162218206795e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-010",
+      "scenario_sha256": "3d9d4e8e183e6f0ee79e5fe99f9530425e540ec913ddaa20d4997e6a1bec9e33",
+      "initial_snapshot": {
+        "sha256": "643c3bd45ed304de6ed1e8bc5d392fd5f77589e41313e36ddc8f4f3276d26033",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-010\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "22b3a46536cd73ca76f064be47614572b7f80e5dc6e616c4e3c9f8c1e53ea19d",
+      "replay_identical": true,
+      "max_truth_c": 45.36587964017604,
+      "max_observed_c": 45.45190358952587,
+      "max_abs_energy_residual_j": 3.058390651844434e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-011",
+      "scenario_sha256": "d79e74a7062cc86878aa48de81bba5b6234783a5ced9abd51c8205e1bc264797",
+      "initial_snapshot": {
+        "sha256": "3e22dcd8dfb6544ce4dbcd21e0b8dba2927d96289665d33c79cd377c987d02db",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-011\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "8cb587e784fbac559fcf48560abe396af374393105d5d7e9af16dbdf86739e84",
+      "replay_identical": true,
+      "max_truth_c": 45.365747982173744,
+      "max_observed_c": 45.44276921737391,
+      "max_abs_energy_residual_j": 2.066531479272271e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-012",
+      "scenario_sha256": "edf7140667bdf0d0456959a6bfe2def1edeb80ff4610ee18a11c4060a5ac137f",
+      "initial_snapshot": {
+        "sha256": "4a7eca3328c77bdb0cec0a781152bbcd7202e5f407f17849f52ed3dfdcb8dead",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-012\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "af3471064e2537d9aa17e81e88cbaff5a1c2c4fd35a1a662b244b5391d1df597",
+      "replay_identical": true,
+      "max_truth_c": 45.36599248335282,
+      "max_observed_c": 45.45665645944962,
+      "max_abs_energy_residual_j": 2.2815413558419095e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-013",
+      "scenario_sha256": "baacde750f18995066ba7d004af0079c26f5ef0d9faae6c53027c193d4db8839",
+      "initial_snapshot": {
+        "sha256": "2b73223f04983294a672f2ccdca699d64c1c0ab77e6c417acbffb5eeee2518c7",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-013\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1227056655b50c18e433413b656937345286d794821e91b8d70e0c705ba5527b",
+      "replay_identical": true,
+      "max_truth_c": 45.36593186959117,
+      "max_observed_c": 45.448185514228456,
+      "max_abs_energy_residual_j": 5.4093713064418125e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-014",
+      "scenario_sha256": "4241d216a5cd74b1bebf42b8a9e412092f5c2b64687f8ad12a68fc4d0677ccdd",
+      "initial_snapshot": {
+        "sha256": "73436f6bfbf14c021aec0e358b3ad1728363df5986e6d4c9b49e13d44a4d5ee7",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-014\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "832b78a287981a6dfe3becfdb463c5319a3a6dbd9ec8dfda2a05ce765940c811",
+      "replay_identical": true,
+      "max_truth_c": 45.365467011333244,
+      "max_observed_c": 45.45275637545998,
+      "max_abs_energy_residual_j": 3.072333498721491e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-015",
+      "scenario_sha256": "21c08dac6248823d1e8a83895a44e2630d9f89aa6dff6eab088cd60770036619",
+      "initial_snapshot": {
+        "sha256": "96212dfdbef72de13980a577ae97b9f0f86ad7aed9f33af69b19ce1402d7d506",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-015\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "12fdd2c5c7686cdbd91d23a4a8ba356bf42966f48f07c2744146585636727b96",
+      "replay_identical": true,
+      "max_truth_c": 45.36572362278671,
+      "max_observed_c": 45.08812276327466,
+      "max_abs_energy_residual_j": 2.843233737337414e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-016",
+      "scenario_sha256": "4a97368158158f6826db016e8f4e5005b485e80100c32548749544f6f77fa3d1",
+      "initial_snapshot": {
+        "sha256": "0f29d1008616579fcc9a79c99e6653b090efa919bfe6a837ede685661cb48dd6",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-016\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "e2132db84eaa43b20f99e1dae4345bc3c8df79d424fea0daf872bc0f81e710ec",
+      "replay_identical": true,
+      "max_truth_c": 45.36510108305517,
+      "max_observed_c": 45.44419762501292,
+      "max_abs_energy_residual_j": 4.634966721539513e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-017",
+      "scenario_sha256": "9f22ae31d305e39dbb9bbd4de06deed17d534e6d093d2cc12ec95689177ecbea",
+      "initial_snapshot": {
+        "sha256": "4de26868b407ee9fca3f01285415329762b87f78af9cd4e7f512958710195266",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-017\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "752596d177cbbda6530b885e3e1e5faaeabed77571507722d798f8a7770bbd66",
+      "replay_identical": true,
+      "max_truth_c": 45.36616575543953,
+      "max_observed_c": 45.457277894878764,
+      "max_abs_energy_residual_j": 2.7002327485092792e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-018",
+      "scenario_sha256": "dd90ed706df6c33a39dda7d448f4902b6ab873f4d22354ab4f9beb119800acdc",
+      "initial_snapshot": {
+        "sha256": "37ce20e1eeaa38c5d3b3ef1e5c697f1d806f32d50268954f0dd490bf7fc3e06f",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-018\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "dbc0b351758bd1c40b38677df072f3d941dc8255dcae673b2624b5f499b2074e",
+      "replay_identical": true,
+      "max_truth_c": 45.36503064771755,
+      "max_observed_c": 45.459797459942784,
+      "max_abs_energy_residual_j": 2.2463434223851664e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-019",
+      "scenario_sha256": "87db5283d6f5ce8fc84e014e918852dcb0792817bb23fe71d507b796214c45f2",
+      "initial_snapshot": {
+        "sha256": "5af8a822fc6ec713fd15f054212ccc71999f0f989858a44f44888ebc71e19e5e",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":1,\"noise_c\":0.1,\"scenario_id\":\"scenario-019\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5257df9ca5f221e513a46c77bd099ce872f3862e753202c00e2a7968e53b73d8",
+      "replay_identical": true,
+      "max_truth_c": 45.365375450569616,
+      "max_observed_c": 45.45411974807896,
+      "max_abs_energy_residual_j": 2.592162218206795e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-020",
+      "scenario_sha256": "19980d15e22796b3edf80581ec59c764ca69d914c41f0390001d5b6b40fa03a6",
+      "initial_snapshot": {
+        "sha256": "2d43af41c976d1bc5d541b0be7a40538f09adcaef2c832c74595701b95d65aa1",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-020\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "0aa4673ad19fa1ff05d38317d6bc05d7ae92e9846bb90bbd4911bf196a0ce0e8",
+      "replay_identical": true,
+      "max_truth_c": 45.36587964017604,
+      "max_observed_c": 45.45190358952587,
+      "max_abs_energy_residual_j": 3.058390651844434e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-021",
+      "scenario_sha256": "5d348a2f3126c000a0d79cf3d3086a12c3ba3759e96e8df919b74ba5791617c4",
+      "initial_snapshot": {
+        "sha256": "0be1354cde57d74d71380ca9865a643a629b5f84a46e2d07e15a0fa07c9f8012",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-021\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "b7cbdeea6a1f96c046cb3535e47a7d267b104bb458c79c0dc1b24934a994bf11",
+      "replay_identical": true,
+      "max_truth_c": 45.365747982173744,
+      "max_observed_c": 45.44276921737391,
+      "max_abs_energy_residual_j": 2.066531479272271e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-022",
+      "scenario_sha256": "990a7cc06a88335d2719e9d8b9153440e3bc74fad38475681a1df811d37b0bb3",
+      "initial_snapshot": {
+        "sha256": "7f046000f07a3c9aed7296d7a339e78c122e5ef83402aed1b2835cd8eebb9e68",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-022\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "9a39edd2bdd309b8d67c1ea6cc33e8bfd4bf6464997b5837bda8607c7bdfeb19",
+      "replay_identical": true,
+      "max_truth_c": 45.36599248335282,
+      "max_observed_c": 45.45665645944962,
+      "max_abs_energy_residual_j": 2.2815413558419095e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-023",
+      "scenario_sha256": "58675c1be27a74812f0c0b0b0d5dc54ef6e391b2b22354bcb1878af094e1d0ed",
+      "initial_snapshot": {
+        "sha256": "372cde0eaf415f410ec1f731390b6a14f3b8849dcb4288ad5b8168955f0dbcfa",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-023\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1a942dd2921a12249541be8069b2851f11dab1c24cd50b6b8ea4f3b231d85ac7",
+      "replay_identical": true,
+      "max_truth_c": 45.36593186959117,
+      "max_observed_c": 45.448185514228456,
+      "max_abs_energy_residual_j": 5.4093713064418125e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-024",
+      "scenario_sha256": "7653f9a143ff318dc4c26a531923aee85d374a0637db6d59aad03e58689f886e",
+      "initial_snapshot": {
+        "sha256": "d5bc541ecae95a7684f9b4f545c9c33e6ae009e1ce59afc876e06dbc6ea5dc34",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-024\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "0b2d51a731cfd3e8c7bc6c0869c2f073c1eb21a6f4155cc6e33a58ff517705f9",
+      "replay_identical": true,
+      "max_truth_c": 45.365467011333244,
+      "max_observed_c": 45.45275637545998,
+      "max_abs_energy_residual_j": 3.072333498721491e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-025",
+      "scenario_sha256": "f8756550aeedf5bc7aa986d6a6fb5d15b0f7465cb754fea97ac0ac92fc24d757",
+      "initial_snapshot": {
+        "sha256": "ad79b46940c0b56befa196e196c9aecfe814ae3e818cab2f14c1ced97b4a5c03",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-025\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "2968a5215b25c4273a1ff326dfdee0841b11c42f75abd82186afec3e7e7e3e1c",
+      "replay_identical": true,
+      "max_truth_c": 45.36572362278671,
+      "max_observed_c": 45.08812276327466,
+      "max_abs_energy_residual_j": 2.843233737337414e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-026",
+      "scenario_sha256": "d7973b31463abec0e41bb895ba529a9c41287d2c5439c106b0adb6f40944d794",
+      "initial_snapshot": {
+        "sha256": "ee2681134f32d868487100f5a5f53feee80bfec49427b5e83194951fe37dc061",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-026\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "a29bf18e558078f3823204e88e2f02d45acc84830cae7f7c6579487241351375",
+      "replay_identical": true,
+      "max_truth_c": 45.36510108305517,
+      "max_observed_c": 45.44419762501292,
+      "max_abs_energy_residual_j": 4.634966721539513e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-027",
+      "scenario_sha256": "faf437e4c90945f0042edd9d14442bce67d36882036ad1ab2d07476e005c2b3e",
+      "initial_snapshot": {
+        "sha256": "cd23a88e00600dc6b7320aa2148499cd3e1a7105a7f65207379fb71e67ec530e",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-027\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "17cadb223b2f0a76cf5fe5f6486e777940880bdfcf0913172ba758c2fd2de4ec",
+      "replay_identical": true,
+      "max_truth_c": 45.36616575543953,
+      "max_observed_c": 45.457277894878764,
+      "max_abs_energy_residual_j": 2.7002327485092792e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-028",
+      "scenario_sha256": "539788d2f365a64c7214831cee0b61e39579f23e8191343c375a2cea856cbfc2",
+      "initial_snapshot": {
+        "sha256": "20c11cb6fc6e19a59cee964b0fca0947d62b9a31e9bb187db7bb148b85a27dc2",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-028\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "22982f1a56e3537732c6d2e60716550f92362bcdc94c2361599b516c0c95db06",
+      "replay_identical": true,
+      "max_truth_c": 45.36503064771755,
+      "max_observed_c": 45.459797459942784,
+      "max_abs_energy_residual_j": 2.2463434223851664e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-029",
+      "scenario_sha256": "b986da65b382e50d86c650ff8fdc3a182c38587ce46b4f0ff761638f836bfb03",
+      "initial_snapshot": {
+        "sha256": "e8b9dba57a60aea74d83169eecd513fa12fd6f4589e677dc599c685e68f7c465",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":2,\"noise_c\":0.1,\"scenario_id\":\"scenario-029\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "8df69d5af231fe72e3710c9de4899622a14d5a6593800f071c09e88ed30bfa8a",
+      "replay_identical": true,
+      "max_truth_c": 45.365375450569616,
+      "max_observed_c": 45.45411974807896,
+      "max_abs_energy_residual_j": 2.592162218206795e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-030",
+      "scenario_sha256": "1d5922a08e522909b59e5c4d93802ca4053c685096fa5b4c70a9260223e8a309",
+      "initial_snapshot": {
+        "sha256": "c57fa254695c882741f9d57e053619f56a446af3186cc9dfbea2406cdcd4ab69",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-030\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "ffdc957bab7611a98ca0374d6f7d9cfa55f571f80534e91ada1077cfa1492072",
+      "replay_identical": true,
+      "max_truth_c": 81.53188947996007,
+      "max_observed_c": 81.54478801256985,
+      "max_abs_energy_residual_j": 2.8966374188144073e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 1051.999999999591,
+        "max_truth_c": 80.02472750810715,
+        "max_observed_c": 79.98464599103261
+      }
+    },
+    {
+      "scenario_id": "scenario-031",
+      "scenario_sha256": "628ca4ce4202ea78099b228cb3ea43d2c2e2be19e63e148b8fdd8c661519684e",
+      "initial_snapshot": {
+        "sha256": "f1c3730344aa19c87a81352010b3a2a6b441727edf6fe34dd990ae87ef229e5f",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-031\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "3e4d26127556f4ea440377a90bdd0ea3b01e6e957fcfdd72c1271a21374c0c1e",
+      "replay_identical": true,
+      "max_truth_c": 80.42359934423071,
+      "max_observed_c": 80.43963993735292,
+      "max_abs_energy_residual_j": 2.828895517836827e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 1145.9999999995055,
+        "max_truth_c": 80.00803257331233,
+        "max_observed_c": 79.92930656155912
+      }
+    },
+    {
+      "scenario_id": "scenario-032",
+      "scenario_sha256": "bb773e3ee3066ea11000970d1dc0055ff5e4024d266a36c5cc0f4eb5e7690aa6",
+      "initial_snapshot": {
+        "sha256": "79b3d9624fad3cab7f56f2d8f46d24291be382831aa3887480f2b965cee18354",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-032\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "f19b499ef8721fc25472a0d04e04b2ffa352b92748022058ec75e388f680b3ab",
+      "replay_identical": true,
+      "max_truth_c": 80.1934036371424,
+      "max_observed_c": 80.22738728070864,
+      "max_abs_energy_residual_j": 5.674946201850162e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 1171.9999999994818,
+        "max_truth_c": 80.01003862393155,
+        "max_observed_c": 79.98154890303763
+      }
+    },
+    {
+      "scenario_id": "scenario-033",
+      "scenario_sha256": "71d745606e36d4bc48083632dd1604ee3d5ae62f901520e4e054fbf558d5e062",
+      "initial_snapshot": {
+        "sha256": "42a6f32482d7d15b65bd93810a8b89ebee6bc11e2478220e1a45ec48b9b0ab95",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-033\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "9610c56187ece96d1c44494d028d57e9ca6e5407d66d3cd371b5166c7bd28fac",
+      "replay_identical": true,
+      "max_truth_c": 80.11344013805851,
+      "max_observed_c": 80.12297104735396,
+      "max_abs_energy_residual_j": 2.7814801129011357e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 1181.9999999994727,
+        "max_truth_c": 80.01066832225789,
+        "max_observed_c": 79.95739150597205
+      }
+    },
+    {
+      "scenario_id": "scenario-034",
+      "scenario_sha256": "c424f881bfb4ee1dc1d7718fd5530c450e3ee6af54c0b27dc4f7b3ba56e738c7",
+      "initial_snapshot": {
+        "sha256": "e46f7102ea7b8d2cb8095904cd7ecb5b30683ad9817e0e5720cebd7aad66a414",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-034\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "38221756fb754c82a5f3156948fcca8d5f25db620e1ce25652fd2385db5f7831",
+      "replay_identical": true,
+      "max_truth_c": 80.06386559259008,
+      "max_observed_c": 80.12582867446761,
+      "max_abs_energy_residual_j": 1.679059025150309e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 1187.9999999994673,
+        "max_truth_c": 80.00315864272048,
+        "max_observed_c": 79.97451349714937
+      }
+    },
+    {
+      "scenario_id": "scenario-035",
+      "scenario_sha256": "09d1df41c3a765b1b2a4a459e39dc77931ab0b1eb83e924275e0fb5467491610",
+      "initial_snapshot": {
+        "sha256": "aba32f2f9cb9dd5c4be88b302c7bad549e4cd9014987d50782341bcf4e7733aa",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-035\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "684c4771f84ae5d2b897f438d0568e714edcabb6555aa012287ba73173f6656e",
+      "replay_identical": true,
+      "max_truth_c": 79.50878072919296,
+      "max_observed_c": 79.54379216652411,
+      "max_abs_energy_residual_j": 2.939759990994162e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-036",
+      "scenario_sha256": "c8219f1fc742641a5ac471e9159eb6815dfb3246ac39c2f14d6f857d5c1b1a58",
+      "initial_snapshot": {
+        "sha256": "14ca6ad8f9ab1a268320ed24c2b057882515b2d845a59f378bc8ec46576ce7ef",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-036\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "33861c5427be786a9a0645e6f99364c259b96c408d6e9a62dc375731a4b42b04",
+      "replay_identical": true,
+      "max_truth_c": 68.89761500349796,
+      "max_observed_c": 68.9465065273132,
+      "max_abs_energy_residual_j": 4.519617391451902e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-037",
+      "scenario_sha256": "2c6f004f247583bda3301e625aa24d7ab77f89097d19bc3f64a6db0c8230abb9",
+      "initial_snapshot": {
+        "sha256": "606a832e0ab4dff994364926caff8c10464abea267b2b5bf2dcfc65d396a16f2",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-037\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "50b39ecb79fa6fe0b0211b87c7f8be6ed59a241cf2deb435ee3bac24e063bd27",
+      "replay_identical": true,
+      "max_truth_c": 68.89901319506076,
+      "max_observed_c": 68.9705103639231,
+      "max_abs_energy_residual_j": 1.3253412589619984e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-038",
+      "scenario_sha256": "94d484976bebc88768ab848b7aac6352a32413de644022426978d2bf14e8c14c",
+      "initial_snapshot": {
+        "sha256": "980c0a9220eb8d1bd8a68788d90e5def5cd90aeecb2834d5206d83803af33cdc",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-038\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "f19e4d4b23fb9787e3e892bc450cfa4237e33e81a10a74315dbdfb5a282984c3",
+      "replay_identical": true,
+      "max_truth_c": 69.40652133427385,
+      "max_observed_c": 69.46246015992686,
+      "max_abs_energy_residual_j": 1.8153485825678217e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-039",
+      "scenario_sha256": "288da4cfb7a6555ea21c0c753c935465c1dab0c695d0093e11cc9faab137c1bd",
+      "initial_snapshot": {
+        "sha256": "3f0e38a5af55f42114a5ceb9c3f2568bc79dd785739babd33feb6213e89f2ae5",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":4,\"noise_c\":0.1,\"scenario_id\":\"scenario-039\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "90bd52aa51969b23d67479446e0815b2d66cbd7aaea5a864855cbbdf7efce658",
+      "replay_identical": true,
+      "max_truth_c": 69.9309142093869,
+      "max_observed_c": 69.97061068847923,
+      "max_abs_energy_residual_j": 1.5840681655276967e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-040",
+      "scenario_sha256": "77342bbc193fe414747ea46861b028a9eff8bc2733ea04a84f705a7987b2534f",
+      "initial_snapshot": {
+        "sha256": "c023745141f276c6913c0fc5082efe7e7404f39e0e339d4505eb08e3ac9d7817",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-040\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "cd871aba7b2d8e7b18441662339a8222e580333bb87d5598d2270477e72e5867",
+      "replay_identical": true,
+      "max_truth_c": 54.81218671163068,
+      "max_observed_c": 54.89756691045794,
+      "max_abs_energy_residual_j": 2.0964183278238124e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-041",
+      "scenario_sha256": "ab48b602123e402852d2699369e5b13e92425b74d5bd58fef9311f1118d7e167",
+      "initial_snapshot": {
+        "sha256": "7c4084b40e6345b79ca24ecf7b236a224e6dddf4c0fb8a621efa5bba52ee7752",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-041\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "2b4e7447ed2560dde706d647e4372c149a55708214bae96c23b435071855ab98",
+      "replay_identical": true,
+      "max_truth_c": 54.62779047769565,
+      "max_observed_c": 54.68599946411135,
+      "max_abs_energy_residual_j": 1.611203970242059e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-042",
+      "scenario_sha256": "5e8eec88213817d35686ff365986376b7b496ab4c5676b1154d840da19d575a3",
+      "initial_snapshot": {
+        "sha256": "00cb4759de59b28dbbf8d194b63b0e69039830c2e7a132d30fa0d9b1fb84c8fe",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-042\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "7ce4efb72e8ed13cff9c36a5f0fa4fea6a29dc02132feececafe01b7d3594d32",
+      "replay_identical": true,
+      "max_truth_c": 54.44786358277331,
+      "max_observed_c": 54.53390759390067,
+      "max_abs_energy_residual_j": 2.5197223862960527e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-043",
+      "scenario_sha256": "ae64619607a7723ddd9712b536102eeb58650879260be891139fdcad3e588d61",
+      "initial_snapshot": {
+        "sha256": "cc951df5ebee515e1bb487dca674c662204f2fe3d75dd477cf477eab1cad5cc3",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-043\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "3a40aa4735f953e54273b022b7ce1f2dbc48e0165cb3df38d70b3cdbcb424212",
+      "replay_identical": true,
+      "max_truth_c": 54.27065673766705,
+      "max_observed_c": 54.35172761731804,
+      "max_abs_energy_residual_j": 4.375407414158872e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-044",
+      "scenario_sha256": "05fcdfa5bdaba962c8fff0398aecb432272ca399d6d78f23e41596450963d3e1",
+      "initial_snapshot": {
+        "sha256": "47b27cec4a9b73c14674fa7f778597929b1767bdfa0a1ffd12cbf57e5fdd58dc",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-044\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "9762acb032157d2ff8f2a9f6930815087024f9cf5d9c700be84f502dd9e2ed64",
+      "replay_identical": true,
+      "max_truth_c": 54.09594447404648,
+      "max_observed_c": 54.17692760245488,
+      "max_abs_energy_residual_j": 1.9090209413263892e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-045",
+      "scenario_sha256": "49c069a4ab8e891a7cb257398967c95558f372547b05551a2da3a92c48fd9e06",
+      "initial_snapshot": {
+        "sha256": "ac89bd5d239db7480bfa985a6127488964061c52de52454d77ac645b74383334",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-045\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "d037691782996c2a8be8b0a52e6477db4e3ec255e47ca7b2691bbea76525293a",
+      "replay_identical": true,
+      "max_truth_c": 53.92609461015066,
+      "max_observed_c": 54.00135942465839,
+      "max_abs_energy_residual_j": 5.57632287012666e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-046",
+      "scenario_sha256": "528f68c1787bab4100a96879ef481ef847f297b0f84e6d433c84439d92cf8128",
+      "initial_snapshot": {
+        "sha256": "402e934c204b622e1a1a5cc3914b3933be6e04bc874df8ec882f4c0029e5a809",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-046\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "6d4dc0b3bdb5cb42b57027c2f032280709e969d881f92b61becbb423ed89cceb",
+      "replay_identical": true,
+      "max_truth_c": 53.757510516874795,
+      "max_observed_c": 53.82231607969721,
+      "max_abs_energy_residual_j": 2.9913143961834976e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-047",
+      "scenario_sha256": "67befac3f9ab4b0fe111923fd2a7126a6c15037a2247a6c08fadde7c1253e741",
+      "initial_snapshot": {
+        "sha256": "60a6c51f2d5d7f3d632052af354a568eac5dddcdd15d54c56579805ed9205e00",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-047\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1b906c4120fee502543f420f23779c300a633f83b1b90fee6ac19fd1d5e27d20",
+      "replay_identical": true,
+      "max_truth_c": 53.59566193548547,
+      "max_observed_c": 53.68305105927334,
+      "max_abs_energy_residual_j": 2.659955100625666e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-048",
+      "scenario_sha256": "98680e83b33e32a6fa99d176c3c2b63db151bcbbabea594996f21b408eb7917d",
+      "initial_snapshot": {
+        "sha256": "aed55f8711b90a0dca6e54915ba30e4cd005a5ae80cbc76da39c0fa0a1b4afbc",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-048\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "399a32236baac9202cdfdd6dad123c5df721110daf01c9bc7ca098169da1f0a7",
+      "replay_identical": true,
+      "max_truth_c": 53.43208506433001,
+      "max_observed_c": 53.524253107755925,
+      "max_abs_energy_residual_j": 2.2752544737159042e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-049",
+      "scenario_sha256": "d365a2c956cbc9323601a6e94e61753e9e47505b45334a2781ee210e96331a43",
+      "initial_snapshot": {
+        "sha256": "d8a744fdc5f8a9a26d8d677c9d637f6a8b16d4f97635d31a15425866dae9562c",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":8,\"noise_c\":0.1,\"scenario_id\":\"scenario-049\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "d2702e6d0ed27c014e6c0189687b8d50b05327f8ff78415b756e5d50b59173f9",
+      "replay_identical": true,
+      "max_truth_c": 53.27457080492331,
+      "max_observed_c": 53.35455913509821,
+      "max_abs_energy_residual_j": 3.223055067280711e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-050",
+      "scenario_sha256": "406db6179d8749edfaf6f476de9a876dae027ddd27a705b6005cb878e0033e66",
+      "initial_snapshot": {
+        "sha256": "72966959ec4e16480b01274c5f08a3a304f4d687aed3104098887e583411079d",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-050\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "46fa8ff7281ba326047a9dcbf89461bad49ed06a1305a1f6430c4b832a366d82",
+      "replay_identical": true,
+      "max_truth_c": 47.964410488693915,
+      "max_observed_c": 48.03970320247787,
+      "max_abs_energy_residual_j": 3.602881318547774e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-051",
+      "scenario_sha256": "6aeec6b5ca06320abfd70c04085260c4d2bbae732e3e9341d3a323f203401878",
+      "initial_snapshot": {
+        "sha256": "9da83fd8c8998e7350b2487321de775cec2bbf37a1a729a9c7de54222f414a55",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-051\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "74e42f8f169fd673f326d7f1b2be96d74adb9b79b721ac12a439682a81c41c7a",
+      "replay_identical": true,
+      "max_truth_c": 47.95560586705726,
+      "max_observed_c": 47.99290632065036,
+      "max_abs_energy_residual_j": 1.4528705727639285e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-052",
+      "scenario_sha256": "bf3b93644d2be58b8b648b80a9d3e5fd990f9cfe5c5bcddb767a9c8e7bfe7a9b",
+      "initial_snapshot": {
+        "sha256": "58aa27b5c0728a62d656a8718ba61fa392bc9b2204cb15f189f9ae909195bf54",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-052\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "c03f7dd9ed0cd401ce3fb9bebecfb5eafa158cfa04c2fb01e25aab39b8b3882d",
+      "replay_identical": true,
+      "max_truth_c": 47.94717740460195,
+      "max_observed_c": 48.00255402976165,
+      "max_abs_energy_residual_j": 2.4313454298485748e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-053",
+      "scenario_sha256": "f800ebbe68e278837d0c7dbe845f6e70113b236e63e4dcd867694046c0422073",
+      "initial_snapshot": {
+        "sha256": "2801c09ddeea9a457fd54090ab449677ec2861c0aa2cf1beeef1ccf4093e9999",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-053\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "21ba16350de0eb74fcc3e58d9b45787dc4affb571aac8ba9d43cb890f85a3d25",
+      "replay_identical": true,
+      "max_truth_c": 47.938443694142016,
+      "max_observed_c": 47.999145192178574,
+      "max_abs_energy_residual_j": 3.8721051130643364e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-054",
+      "scenario_sha256": "d5acbdbe57ee55b5b91a1e36075c3c663a7ad1c8f13c68de4530c05a85951400",
+      "initial_snapshot": {
+        "sha256": "a59896c2d17c994861e4751ebd68299296872c4aa3abcc0798f67761dc712895",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-054\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "7500b44548e58e23b868ae27b465ab298eac4e51e517e3ace7fa24224277198c",
+      "replay_identical": true,
+      "max_truth_c": 47.929305739185715,
+      "max_observed_c": 48.00771879426223,
+      "max_abs_energy_residual_j": 2.499925144325288e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-055",
+      "scenario_sha256": "f3defe6ada0bb578007cb6d91c18b9989b3895e980026e6c1a292ad6f0853e1c",
+      "initial_snapshot": {
+        "sha256": "290341908b546c18f346a2d38155c6bb0a04b4bf3525a8bcdd8b2720c88f00c8",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-055\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "7fe59d7e0f10192ed9f43ed9ce5a3916741b961fe70e03c7b887bdb4ab0c0de1",
+      "replay_identical": true,
+      "max_truth_c": 47.92088912025245,
+      "max_observed_c": 47.955886418965946,
+      "max_abs_energy_residual_j": 4.4245903637121775e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-056",
+      "scenario_sha256": "daa6b4684bbeee1d6648e16fe7c045c32143d1c0a498bb7048460113f9e9f426",
+      "initial_snapshot": {
+        "sha256": "d0e8a1c8cb56c64572ac4801e94b491f587a9aedb23bb09821da25ae80ee432d",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-056\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "00273a82de54a7511b1f575379fd64006b4ab65790a1d63d8488a88e4f0d54b1",
+      "replay_identical": true,
+      "max_truth_c": 47.911593350134034,
+      "max_observed_c": 47.96113457502593,
+      "max_abs_energy_residual_j": 1.4627617402496879e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-057",
+      "scenario_sha256": "d75a3471a425a5c25c9a8d8cd21d97682d517b3c9fe00b4f197128b1cf66db24",
+      "initial_snapshot": {
+        "sha256": "38ced21bc2ec37bf3c2acb789941fb17cc9eca6635ba42a1c4f640621980818e",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-057\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "df35056bb18126648a86ff787dd22d25b8ec57d8205329e46124e09ce619fc13",
+      "replay_identical": true,
+      "max_truth_c": 47.90398465781749,
+      "max_observed_c": 47.94372343010203,
+      "max_abs_energy_residual_j": 3.4809209993168916e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-058",
+      "scenario_sha256": "19b01dd61b52271d325aa165dd4156cfb8e8c5002587702a659f42dfb8f9b716",
+      "initial_snapshot": {
+        "sha256": "ccdcacc9467bd60f7b11fc16a542ebc5de6dc8da5bc610e0546e0233762a0124",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-058\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "20a1348d34118b798810e118922559351eff34b12e10a74931b95c1621bacb2b",
+      "replay_identical": true,
+      "max_truth_c": 47.894176185394734,
+      "max_observed_c": 47.98161444963199,
+      "max_abs_energy_residual_j": 3.818407462885965e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-059",
+      "scenario_sha256": "587b4b8ff3062cb788ebdf652ee5fd9fbfd015a95bf00e7ad1feeeddf4eb3f69",
+      "initial_snapshot": {
+        "sha256": "8d59ee305ba1f221c2434996427d475d642d9e5c38baf49d52e54d02eff0fa2a",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":16,\"noise_c\":0.1,\"scenario_id\":\"scenario-059\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "585ec20780a88712fc33e95e482ff3ea3c769a716c7e261543fc165d2e43fa54",
+      "replay_identical": true,
+      "max_truth_c": 47.88320289007477,
+      "max_observed_c": 47.944054063383334,
+      "max_abs_energy_residual_j": 3.325899260999635e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-060",
+      "scenario_sha256": "4bdf01614ff1f922a2ae19b74c486580d86a5d159804b4ed76a7907487c5c656",
+      "initial_snapshot": {
+        "sha256": "62385dfed30303937a8c5bd1978145ccb6eccf2ad4cd9604e8031af25348d655",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-060\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5e0a346c27a83cbd1d3e9ee1b66f2a698417702f0cacb0360567753f3e1ba0bd",
+      "replay_identical": true,
+      "max_truth_c": 45.36587964017604,
+      "max_observed_c": 45.451796628275936,
+      "max_abs_energy_residual_j": 3.058390651844434e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-061",
+      "scenario_sha256": "73f597caee79a0bb682624326dfa152cd8e5b0f420230fbb89c0fd5705b80986",
+      "initial_snapshot": {
+        "sha256": "feaddabd02ad7dbd7cb2d9a84d48418d50bef583afe597942c2e8ea70f842857",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-061\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "49bff6944f8d3fd54b7166bb0c4a3a158dc00c701a056ed201bdc6e49570d7d2",
+      "replay_identical": true,
+      "max_truth_c": 45.365747982173744,
+      "max_observed_c": 45.44276921737391,
+      "max_abs_energy_residual_j": 2.066531479272271e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-062",
+      "scenario_sha256": "1524a3024bd209c357e6027bb71b6fbed1b5ea3a3f98396192a037d215c5f5a4",
+      "initial_snapshot": {
+        "sha256": "7410c434e8b17c4effca7e36170f01e9c7daacf10e7fdb9818a2f3b519d3b965",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-062\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "502b06c4675b62f1451588bd0e28d7fa381010a6166575a26043da92acee63cc",
+      "replay_identical": true,
+      "max_truth_c": 45.36599248335282,
+      "max_observed_c": 45.45665645944962,
+      "max_abs_energy_residual_j": 2.2815413558419095e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-063",
+      "scenario_sha256": "e98d10b154afb1221fc082c0caa58e850dbb0d4aa4403838bcad41dda905cc37",
+      "initial_snapshot": {
+        "sha256": "5ca055611e23d8baaa6815df407a885d5811e50daed09d1c0ca48307a9fbd080",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-063\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "61edcb612ddb3ab306f6a4ad4bd5bc1aef09f7a5cd83be730925a220adbab069",
+      "replay_identical": true,
+      "max_truth_c": 45.36593186959117,
+      "max_observed_c": 45.44082493769613,
+      "max_abs_energy_residual_j": 5.4093713064418125e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-064",
+      "scenario_sha256": "8f9316c9a9f64ed951b331f63a604a90374762f2d938410f7a70b7c8aab905f3",
+      "initial_snapshot": {
+        "sha256": "27167c34dc35cbc9fdfcb55732e475f9b51343723ff4c138e895f12ddd28958b",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-064\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "0411edea8ed58c43fca4a4ba7bf4396335f6d6c501f0dbbfa611d092022af96a",
+      "replay_identical": true,
+      "max_truth_c": 45.365467011333244,
+      "max_observed_c": 45.45275637545998,
+      "max_abs_energy_residual_j": 3.072333498721491e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-065",
+      "scenario_sha256": "b4b791a1f9ef8758e9e9074f389e371762540b535b627e8cf95cc15b82e90b1c",
+      "initial_snapshot": {
+        "sha256": "670f218ffdd256101c489d359f54e1e22ae821a94ed799f59bc03c4dc1af35b4",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-065\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "9a7c899b702c3725bc69d818947eb311aa6cfb6f66767ab4ba44cd74f9453f84",
+      "replay_identical": true,
+      "max_truth_c": 45.36572362278671,
+      "max_observed_c": 45.451053658176264,
+      "max_abs_energy_residual_j": 2.843233737337414e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-066",
+      "scenario_sha256": "cc8da2b8670b54f89dca2332fe1b2ea51d5ae2fe9344ae7f09617d0380c16af2",
+      "initial_snapshot": {
+        "sha256": "d364e6c10bfcbac4d986b184a30a23e1f0b83c1da615eb7f4e1d4a44d5576149",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-066\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "4a4c9eba8eb03e8a341afbba6732f1957959f9176ebbea440d70c008e37ef750",
+      "replay_identical": true,
+      "max_truth_c": 45.36510108305517,
+      "max_observed_c": 45.44419762501292,
+      "max_abs_energy_residual_j": 4.634966721539513e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-067",
+      "scenario_sha256": "3d01589d9eb1a280c5c69d63a04123aa9373e6552678b0d7eeadeb39bcdd2033",
+      "initial_snapshot": {
+        "sha256": "d8dd36d34c8abd4ec34a2ce43e70e045bb75b6a5794f4a24181c71dc7945476b",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-067\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "f776840543c6b54d47bc36b2b11d5b9c3c3410367f264341b8620fdbc1f27cbf",
+      "replay_identical": true,
+      "max_truth_c": 45.36616575543953,
+      "max_observed_c": 45.45403794800581,
+      "max_abs_energy_residual_j": 2.7002327485092792e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-068",
+      "scenario_sha256": "bb237b7a23ca1338db8bd0995038341476ac616e8fe3faa2bd0cb385fd6ade00",
+      "initial_snapshot": {
+        "sha256": "7d86214b94efca53a02adbe29c7bc20dd31c0f55eb305a3511be341eae2adc41",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-068\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5da3d3c62b57c1feebebdbbf19d05427323ab7c95ee33fabe80c7665a3a96733",
+      "replay_identical": true,
+      "max_truth_c": 45.36503064771755,
+      "max_observed_c": 45.44981590822939,
+      "max_abs_energy_residual_j": 2.2463434223851664e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-069",
+      "scenario_sha256": "6b618005171b5a9bd243cf059e5a976a1d2187426dc624b49a6e3876433a2618",
+      "initial_snapshot": {
+        "sha256": "0319f7927207a09fb6415ea7c77b159f36805b0d6908989682c4d7a96ee09b32",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":32,\"noise_c\":0.1,\"scenario_id\":\"scenario-069\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "ea87e900196ca7f61ef306c9c98c7ad3609a05eb91928cae2aa56045ab6bb777",
+      "replay_identical": true,
+      "max_truth_c": 45.365375450569616,
+      "max_observed_c": 45.45411974807896,
+      "max_abs_energy_residual_j": 2.592162218206795e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-070",
+      "scenario_sha256": "0ff732802d90001e045881a69a2e01d4986846f56b729327ac7bef2095039e09",
+      "initial_snapshot": {
+        "sha256": "2afd476b57893bafed560673e4e4d5d1e6a938555ff531daa7e12b9813f3ebd3",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-070\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "55634bc29f2a8f1aa7a30dcb2eb0575feb15250bf71b2997af1fb450d7205c0f",
+      "replay_identical": true,
+      "max_truth_c": 45.36587964017604,
+      "max_observed_c": 45.45190358952587,
+      "max_abs_energy_residual_j": 3.058390651844434e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-071",
+      "scenario_sha256": "0893fd6efc2082b7f4714b14129a9e817e5fa306b4977f50afbc62b5fc78ce77",
+      "initial_snapshot": {
+        "sha256": "b30e8a0f98ef106a6007b4bde582813449988b675d45e0c1ec021a8ac8875b81",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-071\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "46f07c54610d90d28b8604e449a0291b5c57edd7653f8f92daef14dded6ba59e",
+      "replay_identical": true,
+      "max_truth_c": 45.365747982173744,
+      "max_observed_c": 45.44276921737391,
+      "max_abs_energy_residual_j": 2.066531479272271e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-072",
+      "scenario_sha256": "268b036941ae28a7944cc4526010e9a587cc6c243748ae9738e4cbcaff9b9c71",
+      "initial_snapshot": {
+        "sha256": "bcf67fc8aa2aebc2b8e45223b861d82b2b76595923e2b377d712f2d3c59fe081",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-072\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "b0d74d8980f7134f02d0fce5671b91a8f9f059a270cc1f78be00a4c5be90be0e",
+      "replay_identical": true,
+      "max_truth_c": 45.36599248335282,
+      "max_observed_c": 45.45665645944962,
+      "max_abs_energy_residual_j": 2.2815413558419095e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-073",
+      "scenario_sha256": "98bf3cc6624807e7a4bc5eba3a5b4041adc0fcea23dbc74019bb5a1fe24c2dc0",
+      "initial_snapshot": {
+        "sha256": "adc58db3785a44a36b871f9dd186ca40ea7fce2db1ac7cc81a1f071567970739",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-073\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "fecb9746065b96984a79cef2d2202b5d0034d761bd9d6ca9da826e8b9499b682",
+      "replay_identical": true,
+      "max_truth_c": 45.36593186959117,
+      "max_observed_c": 45.448185514228456,
+      "max_abs_energy_residual_j": 5.4093713064418125e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-074",
+      "scenario_sha256": "178e502a34b62c0ed3744d90db007e7ad04c265784f464898fcb1fc2fea286f0",
+      "initial_snapshot": {
+        "sha256": "92345e6b60f67e041e1bd214ecdbb4a80715dc44355f92ab27c75bf3f3fc0cbc",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-074\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "4701dac6f90058046d0556cb5e716b87346690a9515a67feb4090b9c6a5dd9f9",
+      "replay_identical": true,
+      "max_truth_c": 45.365467011333244,
+      "max_observed_c": 45.45275637545998,
+      "max_abs_energy_residual_j": 3.072333498721491e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-075",
+      "scenario_sha256": "6d3f9e216c869c38c30c851b002ee7e8c68c0292f58219fb6c0169f0f86e0545",
+      "initial_snapshot": {
+        "sha256": "786dc3063264e29bf79627a06a26d5c3cba503731a58ebd49eea135bef6674a1",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-075\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "a931b2d3f467392057351ffe7b3b030ceaaab3504ecbd21984fbb6672018fa16",
+      "replay_identical": true,
+      "max_truth_c": 45.36572362278671,
+      "max_observed_c": 45.451053658176264,
+      "max_abs_energy_residual_j": 2.843233737337414e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-076",
+      "scenario_sha256": "499b260cfae7559c986565ab9407e60a24736fe685d24bd869cc3af0daa00756",
+      "initial_snapshot": {
+        "sha256": "fe31e0708ad2eadef09d995ab4069964b6bafb1b8f21a5bcb01954bc63b60be0",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-076\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5ded12fe444e34f2f91e7824049be6863af293c90f875da7b3c7ce8ea702c945",
+      "replay_identical": true,
+      "max_truth_c": 45.36510108305517,
+      "max_observed_c": 45.44419762501292,
+      "max_abs_energy_residual_j": 4.634966721539513e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-077",
+      "scenario_sha256": "9d76d8a74db83c8bad845c25f8e1b2bb7a20a168caed78a351a9e731858515f0",
+      "initial_snapshot": {
+        "sha256": "c91f63d3d4634cf6a09992ebd31d8478b9aa2dd42996d17afb5d702ded6a8e08",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-077\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "794bf5b6b7dc6feede50dbdafcfd23f72e61e71b23bf0af3419a5bea87af602f",
+      "replay_identical": true,
+      "max_truth_c": 45.36616575543953,
+      "max_observed_c": 45.457277894878764,
+      "max_abs_energy_residual_j": 2.7002327485092792e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-078",
+      "scenario_sha256": "255813d129f4cdf23c42cd5658d81ec2e1cd63b32061272616c27a38b2eb2320",
+      "initial_snapshot": {
+        "sha256": "4a07782e7a5722fa4a03fece715c04627e409d4eba27f2550081860822c106e4",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-078\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "024bc4b0b92a56294973d9ce6e23e7651e6cc56d851be4e8234277460cfabd7a",
+      "replay_identical": true,
+      "max_truth_c": 45.36503064771755,
+      "max_observed_c": 45.459797459942784,
+      "max_abs_energy_residual_j": 2.2463434223851664e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-079",
+      "scenario_sha256": "5ee8219e5f89b6d18cb437af94a777b1c22795a786aede75ab69dd7bb0e02703",
+      "initial_snapshot": {
+        "sha256": "ff7610ab1f58a4b8512787fbf3dbc7edb4a81c8cf4caa51d83d5a08da2469f8d",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":64,\"noise_c\":0.1,\"scenario_id\":\"scenario-079\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "60f168fb189fe6236a91fa390b876bef205b19f6d99f46f111671597538ed1d2",
+      "replay_identical": true,
+      "max_truth_c": 45.365375450569616,
+      "max_observed_c": 45.45411974807896,
+      "max_abs_energy_residual_j": 2.592162218206795e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-080",
+      "scenario_sha256": "53fc8174eacf87fd0d4eedab8183619b21258db3969b73f1e94a55dc2aa30c81",
+      "initial_snapshot": {
+        "sha256": "9e3bf76220e3e7ed6f481935ece7bf8609ff26954492c4caeba82b7e11accf24",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-080\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "4e2242f8992808d42490ab6902aefb92516977489323a9eee01ba14bcb5e14bb",
+      "replay_identical": true,
+      "max_truth_c": 48.65287144546874,
+      "max_observed_c": 48.70587691699436,
+      "max_abs_energy_residual_j": 3.748487342747353e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-081",
+      "scenario_sha256": "b6f7c44d6909a20ced77ff6161ea7f2953092d612a5d682235da8f276fe848b8",
+      "initial_snapshot": {
+        "sha256": "edcadc257d925f84fbd84ed6b699e53d059e4a8812b760da7e004bbe1fb2aedd",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-081\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "fc60ab89f5a0dfd7e1569fae6a493ab0aa30e1e6c79b6477851195f86600a069",
+      "replay_identical": true,
+      "max_truth_c": 48.65272766004279,
+      "max_observed_c": 48.6662659983697,
+      "max_abs_energy_residual_j": 2.3698472850774976e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-082",
+      "scenario_sha256": "e5c58154275de67292ba59b1fa0f1afd791ad89ca92fa52722b70c7aa291ca0a",
+      "initial_snapshot": {
+        "sha256": "79f09eea5bff1a64081a71339d77d869b11f54256590819d79bc6986f2c858ac",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-082\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "da604dbf1b3495238e33acfe6fe9ea5a6e4b00fd97a2030676df8a08888e4887",
+      "replay_identical": true,
+      "max_truth_c": 48.65299468723104,
+      "max_observed_c": 48.73125266267524,
+      "max_abs_energy_residual_j": 7.440261806657134e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-083",
+      "scenario_sha256": "d79188919361c8d73cf06bb5098bc4dfec80e275bb2d68a7840e81674da0b7c4",
+      "initial_snapshot": {
+        "sha256": "13a88a930547524f585d730575b1b6f802ca73d71452fa7adaf39b885d47166e",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-083\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "8127b3e8178375c5420594f4c0fd8b058bd1050be7bbe8e108e99225abb375c9",
+      "replay_identical": true,
+      "max_truth_c": 48.65292848454466,
+      "max_observed_c": 48.705368094985346,
+      "max_abs_energy_residual_j": 5.6282377203231704e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-084",
+      "scenario_sha256": "e9707c93dfdd5628c79e3703b1ea38db5643e0f7f14f806a6ed106997946d64f",
+      "initial_snapshot": {
+        "sha256": "8b0eeacb5164214f0191e7831b3e7c267f19aa27486f9a7e580ed799b45709ec",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-084\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "349148e2569d3a99d4b844047dde816e174f8e2e69181f0e4b49b8aaef8e117c",
+      "replay_identical": true,
+      "max_truth_c": 48.65242081103538,
+      "max_observed_c": 48.73354937089484,
+      "max_abs_energy_residual_j": 2.1740024225280763e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-085",
+      "scenario_sha256": "d4509f85e58cbb6e6e39ca538355ac6034d70a9d3015ea2728a98a40d5d604b1",
+      "initial_snapshot": {
+        "sha256": "b300eac0fb5c0b0e3fb8309485dbe693bc5f338ffb597f740466022db92b3353",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-085\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "8b0266f0710468bb3d5b25c7fc2df443d711af0b62619cc555d02e0e0fa510ea",
+      "replay_identical": true,
+      "max_truth_c": 48.65270105389988,
+      "max_observed_c": 48.7355501758871,
+      "max_abs_energy_residual_j": 2.6963130728141493e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-086",
+      "scenario_sha256": "46a1e3b2a0f5baf11b769b40b4d6752e8dc4fb0f233c708ced8952afcb6faded",
+      "initial_snapshot": {
+        "sha256": "015355bcbcb1ae3181d69a1b71e9dfb7521a7a37d78304324b66ebd9ed91066c",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-086\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "92dcdb37cbc8689a7dcb8db91f9678892e0606024ab05e5f6f349ab00a1ebf01",
+      "replay_identical": true,
+      "max_truth_c": 48.652021173005856,
+      "max_observed_c": 48.70923959063958,
+      "max_abs_energy_residual_j": 3.919746333069796e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-087",
+      "scenario_sha256": "b86056f94112b11d9cec0de79bba8ff25b9c749b9fa91681e9cf621cc9963b90",
+      "initial_snapshot": {
+        "sha256": "0961dbb64014b9ad551e64c05501825af819958d76c2e50cc00ee2b511395ea2",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-087\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1deb68c527df44bacd25942532f093c330913a69f71b4873177e063157153485",
+      "replay_identical": true,
+      "max_truth_c": 48.65318391658526,
+      "max_observed_c": 48.74860767423523,
+      "max_abs_energy_residual_j": 1.9602982348487785e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-088",
+      "scenario_sha256": "89d51c62b61fcc1e76d9dc41dea6759a88c381df6cd09c366f2f7cbb713aba5f",
+      "initial_snapshot": {
+        "sha256": "08daedea6938182b242309a62ae8b492f5efb3b9d63bd9e3a909031a6f12ffb6",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-088\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "5cf1a17dc0768f5662ce3e5ac44fe1400420df54f89bb59fefcc1fb492451101",
+      "replay_identical": true,
+      "max_truth_c": 48.65194424991673,
+      "max_observed_c": 48.723396863186295,
+      "max_abs_energy_residual_j": 1.3424298395126044e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-089",
+      "scenario_sha256": "ea5ce416f6c8b12de36aea2881f6d120a747f7d2a3d86c67765377150f828488",
+      "initial_snapshot": {
+        "sha256": "77840fb9b65689ba55e7263cec14a201880024ca4f8e20b6c03152b00e9d97d6",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":128,\"noise_c\":0.1,\"scenario_id\":\"scenario-089\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "08bda8b0d30a1339cef2c02b7e295d1085d3051058e9ce4497bc9cf4d3f134cc",
+      "replay_identical": true,
+      "max_truth_c": 48.652320811749426,
+      "max_observed_c": 48.70824393509555,
+      "max_abs_energy_residual_j": 3.8085818498956314e-08,
+      "first_threshold_miss": null
+    },
+    {
+      "scenario_id": "scenario-090",
+      "scenario_sha256": "3529275ba5757d6efc1cd72aa379a91580fe2770227ced693d863b77fbbde8e9",
+      "initial_snapshot": {
+        "sha256": "3c635090b86df0605acf1fb281616514508cfc913e37aadf82ff92e1671fe82e",
+        "payload": "{\"cells\":[[25.00000000252278,0.65,1.0,0.0,0.0],[25.687666653644566,0.6900000000000001,1.0,0.0,0.0],[25.062709671386383,0.73,1.0,0.0,0.0],[25.864982485082244,0.77,1.0,0.0,0.0],[25.78364946392997,0.81,1.0,0.0,0.0],[25.47912035669118,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000000252278,25.687666653644566,25.062709671386383,25.864982485082244,25.78364946392997,25.47912035669118],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":8838210600386625570,\"scenario\":{\"delay_steps\":4,\"drop_every\":3,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-090\",\"seed\":42,\"severity\":1.0,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1dbe7bd6354057a2fb61d6a50aa835ba07c42c9caa0d4d07b318e1fd93ac9fcf",
+      "replay_identical": true,
+      "max_truth_c": 107.16925710467171,
+      "max_observed_c": 63.47341780994509,
+      "max_abs_energy_residual_j": 2.2860217718800868e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 488.0000000000767,
+        "max_truth_c": 80.0786230778123,
+        "max_observed_c": 56.660893308997956
+      }
+    },
+    {
+      "scenario_id": "scenario-091",
+      "scenario_sha256": "968aaa67f9e159a163a9beda94c5f541db9f55e69a8bc1a0e74496beb3958f91",
+      "initial_snapshot": {
+        "sha256": "69d40c5c921e6ff51bf99e7f8d1d29ef1732fad52dcde91e5321e217feec8d60",
+        "payload": "{\"cells\":[[25.000000464075743,0.65,1.0,0.0,0.0],[25.655378707053334,0.6900000000000001,1.0,0.0,0.0],[25.933447760950067,0.73,1.0,0.0,0.0],[25.05792661843582,0.77,1.0,0.0,0.0],[25.02652153593967,0.81,1.0,0.0,0.0],[25.94674270703113,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000464075743,25.655378707053334,25.933447760950067,25.05792661843582,25.02652153593967,25.94674270703113],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17464320420254264865,\"scenario\":{\"delay_steps\":5,\"drop_every\":4,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-091\",\"seed\":7961,\"severity\":0.99,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "d083b0a5187f5bee437f1b55a416154cd9b285c27539cd216910b60302c4b1bd",
+      "replay_identical": true,
+      "max_truth_c": 106.56678718242304,
+      "max_observed_c": 61.7442184740106,
+      "max_abs_energy_residual_j": 1.3572190482591395e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 480.00000000007486,
+        "max_truth_c": 80.04953066337382,
+        "max_observed_c": 54.84432677028837
+      }
+    },
+    {
+      "scenario_id": "scenario-092",
+      "scenario_sha256": "d01ff8b70d96b05fbe9765ec27986ac36d659f23d5bdd7379d020302766a20c1",
+      "initial_snapshot": {
+        "sha256": "4d643c88ab0deef652231076f1cdc00bd1e18fffe39988acb4e0cae47f1793d5",
+        "payload": "{\"cells\":[[25.000000930681967,0.65,1.0,0.0,0.0],[25.623087990461386,0.6900000000000001,1.0,0.0,0.0],[25.141780011810688,0.73,1.0,0.0,0.0],[25.570946005074187,0.77,1.0,0.0,0.0],[25.812639507631655,0.81,1.0,0.0,0.0],[25.950865143973342,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000000930681967,25.623087990461386,25.141780011810688,25.570946005074187,25.812639507631655,25.950865143973342],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17540365959487208306,\"scenario\":{\"delay_steps\":6,\"drop_every\":5,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-092\",\"seed\":15880,\"severity\":0.98,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "1db8fe92f803590a6c479ed14eb42523cf7a6690d9d79ab72ca5c935f080a507",
+      "replay_identical": true,
+      "max_truth_c": 107.0461365849778,
+      "max_observed_c": 62.28269613156901,
+      "max_abs_energy_residual_j": 3.74290389792975e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 466.0000000000717,
+        "max_truth_c": 80.02433889082965,
+        "max_observed_c": 54.93436541701334
+      }
+    },
+    {
+      "scenario_id": "scenario-093",
+      "scenario_sha256": "4a731158da8343ff68bbcc09615fae0c3b464fc793f3dec2cc7c8b5f8c20247d",
+      "initial_snapshot": {
+        "sha256": "b30c89b263efc8746926f60ff50ec8e098e7f20f097906a51017e0e6ae070f36",
+        "payload": "{\"cells\":[[25.00000137482042,0.65,1.0,0.0,0.0],[25.590805673489566,0.6900000000000001,1.0,0.0,0.0],[25.843632357916633,0.73,1.0,0.0,0.0],[25.286696504448816,0.77,1.0,0.0,0.0],[25.684641115415506,0.81,1.0,0.0,0.0],[25.574760088101833,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000137482042,25.590805673489566,25.843632357916633,25.286696504448816,25.684641115415506,25.574760088101833],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":10602452248997253958,\"scenario\":{\"delay_steps\":7,\"drop_every\":3,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-093\",\"seed\":23799,\"severity\":0.97,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "4c05a130b7e50963bec0bca8c629d01d9f76b41dcf2ad54040cb8f9e381ec997",
+      "replay_identical": true,
+      "max_truth_c": 107.16075311352273,
+      "max_observed_c": 62.53721891840129,
+      "max_abs_energy_residual_j": 2.68827626825896e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 456.0000000000694,
+        "max_truth_c": 80.09455427904878,
+        "max_observed_c": 55.04920893327178
+      }
+    },
+    {
+      "scenario_id": "scenario-094",
+      "scenario_sha256": "f818ba7ab7fddbe758b50f482d8eed1cb15c3efe0644c7baf13adfa874b2452e",
+      "initial_snapshot": {
+        "sha256": "71538f0f844e0b6cc75912a943fae1fb2bd7c89830d87043eac5f4e5f7c766c6",
+        "payload": "{\"cells\":[[25.000001833958557,0.65,1.0,0.0,0.0],[25.433476073925473,0.6900000000000001,1.0,0.0,0.0],[25.55942035641054,0.73,1.0,0.0,0.0],[25.02577544005588,0.77,1.0,0.0,0.0],[25.126624987195093,0.81,1.0,0.0,0.0],[25.92385284650493,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000001833958557,25.433476073925473,25.55942035641054,25.02577544005588,25.126624987195093,25.92385284650493],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":17042077021244502237,\"scenario\":{\"delay_steps\":8,\"drop_every\":4,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-094\",\"seed\":31718,\"severity\":0.96,\"start_s\":30.0,\"target\":4},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "121641570914dd6bf6052a37eedbc888974d632f19cbb9809f526e115ba128be",
+      "replay_identical": true,
+      "max_truth_c": 106.38009967789387,
+      "max_observed_c": 62.5411780252297,
+      "max_abs_energy_residual_j": 2.0843338610632145e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 453.0000000000687,
+        "max_truth_c": 80.07150489943831,
+        "max_observed_c": 54.84456236522347
+      }
+    },
+    {
+      "scenario_id": "scenario-095",
+      "scenario_sha256": "4b7617a4a91b766feff1869d5c4e76766f3631b32ec83f440c9dbb386c40a020",
+      "initial_snapshot": {
+        "sha256": "ebe7bd032ad829980028e6820ad3763c9ba855ba34474bf28c06f30933b3f695",
+        "payload": "{\"cells\":[[25.00000232314026,0.65,1.0,0.0,0.0],[25.27624127741153,0.6900000000000001,1.0,0.0,0.0],[25.788065931889584,0.73,1.0,0.0,0.0],[25.531676805175987,0.77,1.0,0.0,0.0],[25.70459687186263,0.81,1.0,0.0,0.0],[25.271702081604648,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.00000232314026,25.27624127741153,25.788065931889584,25.531676805175987,25.70459687186263,25.271702081604648],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":5012018763655082308,\"scenario\":{\"delay_steps\":9,\"drop_every\":5,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-095\",\"seed\":39637,\"severity\":0.95,\"start_s\":30.0,\"target\":5},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "c4f36724eb81dbd60d153e41e89e2878720ae1f2894c01ac1c56f72bfd775a59",
+      "replay_identical": true,
+      "max_truth_c": 104.73782042632243,
+      "max_observed_c": 62.068899016570434,
+      "max_abs_energy_residual_j": 2.1446155074045237e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 455.0000000000692,
+        "max_truth_c": 80.01285453145356,
+        "max_observed_c": 54.65737302501783
+      }
+    },
+    {
+      "scenario_id": "scenario-096",
+      "scenario_sha256": "cfd33992be90db87faa526856aee8bfabcba49dcb0fb9def0297d599862af205",
+      "initial_snapshot": {
+        "sha256": "2afa8e3d08c988e712c32ef86d4a6f860054612c71e630f350ce2d828b1ab63c",
+        "payload": "{\"cells\":[[25.000002752237357,0.65,1.0,0.0,0.0],[25.49395563841937,0.6900000000000001,1.0,0.0,0.0],[25.11976750687867,0.73,1.0,0.0,0.0],[25.322822200433013,0.77,1.0,0.0,0.0],[25.034708060934207,0.81,1.0,0.0,0.0],[25.38052242169764,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000002752237357,25.49395563841937,25.11976750687867,25.322822200433013,25.034708060934207,25.38052242169764],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":7019399727364568599,\"scenario\":{\"delay_steps\":10,\"drop_every\":3,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-096\",\"seed\":47556,\"severity\":0.94,\"start_s\":30.0,\"target\":0},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "aa26a7781ac4c34aae306629540e243ed120f06692d63baddab96cce85be5f01",
+      "replay_identical": true,
+      "max_truth_c": 93.65267748965638,
+      "max_observed_c": 61.395774523302755,
+      "max_abs_energy_residual_j": 2.4616401011340328e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 600.000000000002,
+        "max_truth_c": 80.03567429527008,
+        "max_observed_c": 57.20529740397289
+      }
+    },
+    {
+      "scenario_id": "scenario-097",
+      "scenario_sha256": "c7f942f1afe09eb2fbee0c6a6e134ee84e3b62541dd8da186e8e089c11131ae4",
+      "initial_snapshot": {
+        "sha256": "ba6dc79b8718f82ac255f327b3feaaf74686daf5b0088ef90634c0f07fdda3da",
+        "payload": "{\"cells\":[[25.000003233773135,0.65,1.0,0.0,0.0],[25.461644520740762,0.6900000000000001,1.0,0.0,0.0],[25.97288841659739,0.73,1.0,0.0,0.0],[25.236740076651397,0.77,1.0,0.0,0.0],[25.94673578177103,0.81,1.0,0.0,0.0],[25.82103577189638,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003233773135,25.461644520740762,25.97288841659739,25.236740076651397,25.94673578177103,25.82103577189638],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":15145436759533091475,\"scenario\":{\"delay_steps\":11,\"drop_every\":4,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-097\",\"seed\":55475,\"severity\":0.9299999999999999,\"start_s\":30.0,\"target\":1},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "fe441e3c0a261e86e4e97172b0d887fd6324627ce60fa0e73b5343e4f10cf14a",
+      "replay_identical": true,
+      "max_truth_c": 93.64757988477496,
+      "max_observed_c": 59.70584360574239,
+      "max_abs_energy_residual_j": 1.2282937333907284e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 588.000000000013,
+        "max_truth_c": 80.01479862956185,
+        "max_observed_c": 55.397243018979594
+      }
+    },
+    {
+      "scenario_id": "scenario-098",
+      "scenario_sha256": "a8a95eec06b190ea83075c2d82ab37171984445ec7e0228ad85bce6d329bc7b8",
+      "initial_snapshot": {
+        "sha256": "ff0e499dcd7210bfc44917af47695d4e9d01a279919e8f1dd1c27c5c03855461",
+        "payload": "{\"cells\":[[25.000003670083803,0.65,1.0,0.0,0.0],[25.054370767178153,0.6900000000000001,1.0,0.0,0.0],[25.06101402145073,0.73,1.0,0.0,0.0],[25.527019021575054,0.77,1.0,0.0,0.0],[25.428622540985728,0.81,1.0,0.0,0.0],[25.142657690233197,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000003670083803,25.054370767178153,25.06101402145073,25.527019021575054,25.428622540985728,25.142657690233197],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":2631569901878298062,\"scenario\":{\"delay_steps\":12,\"drop_every\":5,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-098\",\"seed\":63394,\"severity\":0.92,\"start_s\":30.0,\"target\":2},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "7bf0a95f886044d5795446cde770f40f0f8334ddb0744eb667c6a77d225ed962",
+      "replay_identical": true,
+      "max_truth_c": 94.47979682064597,
+      "max_observed_c": 60.42525676777628,
+      "max_abs_energy_residual_j": 2.094653898943033e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 569.0000000000302,
+        "max_truth_c": 80.00185263530501,
+        "max_observed_c": 55.570441726298135
+      }
+    },
+    {
+      "scenario_id": "scenario-099",
+      "scenario_sha256": "c36283ba306fe386907558567e11aab2d87d93ac7ebaf8b9a1b88b8591e522c9",
+      "initial_snapshot": {
+        "sha256": "76fca8ab9102b7bc067dad9206c5d6b6261ec4299fde30fab07a510da2b17f19",
+        "payload": "{\"cells\":[[25.000004123375138,0.65,1.0,0.0,0.0],[25.39698482482473,0.6900000000000001,1.0,0.0,0.0],[25.61000322139931,0.73,1.0,0.0,0.0],[25.23206247493462,0.77,1.0,0.0,0.0],[25.298621658615847,0.81,1.0,0.0,0.0],[25.352010844172586,0.8500000000000001,1.0,0.0,0.0]],\"coolant\":25.0,\"dropped\":0,\"energy\":0.0,\"feeder\":0.0,\"format\":\"aegis-snapshot-v2\",\"frozen\":25.0,\"frozen_set\":false,\"history\":[],\"load_targets\":[0.65,0.6900000000000001,0.73,0.77,0.81,0.8500000000000001],\"observed\":{\"temperatures\":[25.000004123375138,25.39698482482473,25.61000322139931,25.23206247493462,25.298621658615847,25.352010844172586],\"time_s\":0.0,\"version\":0},\"packet_available\":true,\"pressure\":0.0,\"production\":0.0,\"pump\":0.85,\"pump_target\":0.85,\"residual\":0.0,\"rng\":6493453953622160592,\"scenario\":{\"delay_steps\":13,\"drop_every\":3,\"fault_mask\":157,\"noise_c\":0.1,\"scenario_id\":\"scenario-099\",\"seed\":71313,\"severity\":0.91,\"start_s\":30.0,\"target\":3},\"time\":0.0,\"valve_targets\":[1.0,1.0,1.0,1.0,1.0,1.0],\"version\":0}"
+      },
+      "trajectory_sha256": "2680e12581628b49d8f2f47cf42c879527f612cfcf9fa84de6550fdef76c97e3",
+      "replay_identical": true,
+      "max_truth_c": 95.2643916195783,
+      "max_observed_c": 60.69208864178248,
+      "max_abs_energy_residual_j": 4.195481756452679e-08,
+      "first_threshold_miss": {
+        "simulation_time_s": 537.0000000000593,
+        "max_truth_c": 80.01167858575306,
+        "max_observed_c": 55.74015995359226
+      }
+    }
+  ]
+}
