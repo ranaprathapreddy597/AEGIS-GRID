@@ -3,8 +3,10 @@
 import asyncio
 import json
 import os
+from dataclasses import asdict
 
 from aegis_inference.client import InferenceUnavailable, VLLMClient
+from aegis_inference.token_factory import BASE_URL, TokenFactoryClient
 from dev import read_env
 from pydantic import SecretStr
 
@@ -30,6 +32,36 @@ async def main() -> None:
                 }
             )
         )
+        return
+    if endpoint.rstrip("/") == BASE_URL.rstrip("/"):
+        hosted = TokenFactoryClient(SecretStr(key))
+        try:
+            opinion = await hosted.investigate("No incident evidence. Abstain.")
+            value = asdict(opinion)
+            value["opinion"] = opinion.opinion.model_dump()
+            print(
+                json.dumps(
+                    {
+                        "status": "AMD_HOSTED_OPINION_VERIFIED",
+                        "hardware_verified": False,
+                        "mi300x_acceptance": "BLOCKED",
+                        "result": value,
+                    }
+                )
+            )
+        except InferenceUnavailable:
+            print(
+                json.dumps(
+                    {
+                        "status": "BLOCKED",
+                        "reason": "Hosted opinion unavailable or refused",
+                        "hardware_verified": False,
+                        "mi300x_acceptance": "BLOCKED",
+                    }
+                )
+            )
+        finally:
+            await hosted.close()
         return
     client = VLLMClient(endpoint, SecretStr(key))
     try:

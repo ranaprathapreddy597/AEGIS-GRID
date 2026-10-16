@@ -1,0 +1,105 @@
+{
+  "base_url": "https://developer.amd.com.cn/radeon/api/v1",
+  "model_order": [
+    "DeepSeek-V4-Flash",
+    "GLM-5.3-Flash",
+    "Qwen3.8-Flash-Next"
+  ],
+  "reasoning_effort": {
+    "DeepSeek-V4-Flash": null,
+    "GLM-5.3-Flash": "low",
+    "Qwen3.8-Flash-Next": "none"
+  },
+  "scope": "Six small sequential synthetic opinion checks; not a quality/long-context/GPU benchmark or live LangGraph acceptance",
+  "hardware_verified": false,
+  "mi300x_acceptance": "BLOCKED",
+  "rows": [
+    {
+      "model_id": "DeepSeek-V4-Flash",
+      "served_model_id": "self-dploy/DeepSeek-V4-Flash",
+      "opinion": {
+        "assessment": "insufficient_evidence",
+        "hypotheses": [],
+        "evidence_ids": []
+      },
+      "prompt_tokens": 240,
+      "completion_tokens": 22,
+      "latency_ms": 1760.8246,
+      "attempted_models": [
+        "DeepSeek-V4-Flash"
+      ],
+      "backend": "amd_token_factory",
+      "hardware_verified": false,
+      "operational_write_allowed": false,
+      "case": "abstention",
+      "status": "VALIDATED",
+      "expected_smoke_behavior": true
+    },
+    {
+      "model_id": "DeepSeek-V4-Flash",
+      "case": "synthetic_sensor_disagreement",
+      "status": "REFUSED_OR_UNAVAILABLE",
+      "expected_smoke_behavior": false,
+      "diagnostic": {
+        "http_status": 200,
+        "model_identity_matches": true,
+        "finished": true,
+        "content_present": true,
+        "rejection_class": "ValueError"
+      }
+    },
+    {
+      "model_id": "GLM-5.3-Flash",
+      "served_model_id": "self-dploy/GLM-5.3-Flash",
+      "opinion": {
+        "assessment": "insufficient_evidence",
+        "hypotheses": [],
+        "evidence_ids": []
+      },
+      "prompt_tokens": 247,
+      "completion_tokens": 90,
+      "latency_ms": 4916.9607,
+      "attempted_models": [
+        "GLM-5.3-Flash"
+      ],
+      "backend": "amd_token_factory",
+      "hardware_verified": false,
+      "operational_write_allowed": false,
+      "case": "abstention",
+      "status": "VALIDATED",
+      "expected_smoke_behavior": true
+    },
+    {
+      "model_id": "GLM-5.3-Flash",
+      "case": "synthetic_sensor_disagreement",
+      "status": "REFUSED_OR_UNAVAILABLE",
+      "expected_smoke_behavior": false,
+      "diagnostic": {
+        "http_status": 200,
+        "rejection_class": "ReadTimeout"
+      }
+    },
+    {
+      "model_id": "Qwen3.8-Flash-Next",
+      "case": "abstention",
+      "status": "REFUSED_OR_UNAVAILABLE",
+      "expected_smoke_behavior": false,
+      "diagnostic": {
+        "http_status": 429
+      }
+    },
+    {
+      "model_id": "Qwen3.8-Flash-Next",
+      "case": "synthetic_sensor_disagreement",
+      "status": "REFUSED_OR_UNAVAILABLE",
+      "expected_smoke_behavior": false,
+      "diagnostic": {
+        "http_status": 200,
+        "model_identity_matches": true,
+        "finished": true,
+        "content_present": true,
+        "rejection_class": "ValueError"
+      }
+    }
+  ]
+}

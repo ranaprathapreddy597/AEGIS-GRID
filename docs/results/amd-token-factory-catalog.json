@@ -1,0 +1,87 @@
+{
+  "operation": "GET /models",
+  "http_status": 200,
+  "hardware_verified": false,
+  "models": [
+    {
+      "id": "Clef",
+      "context_length": 0,
+      "max_model_len": null
+    },
+    {
+      "id": "d3",
+      "context_length": 0,
+      "max_model_len": null
+    },
+    {
+      "id": "d3-flash",
+      "context_length": 0,
+      "max_model_len": null
+    },
+    {
+      "id": "DeepSeek-V4.1-Flash",
+      "context_length": 1048576,
+      "max_model_len": null
+    },
+    {
+      "id": "DeepSeek-V4-Flash",
+      "context_length": 1048576,
+      "max_model_len": null
+    },
+    {
+      "id": "DeepSeek-V4-Flash-Vision-Exp",
+      "context_length": 1048576,
+      "max_model_len": null
+    },
+    {
+      "id": "Gemma-4-31B-IT",
+      "context_length": 262144,
+      "max_model_len": null
+    },
+    {
+      "id": "GLM-5.3-Flash",
+      "context_length": 262144,
+      "max_model_len": null
+    },
+    {
+      "id": "MiMo-V2.6-Flash",
+      "context_length": 1048576,
+      "max_model_len": null
+    },
+    {
+      "id": "MinerU2.5-Pro",
+      "context_length": 0,
+      "max_model_len": null
+    },
+    {
+      "id": "MiniCPM5-2B",
+      "context_length": 131072,
+      "max_model_len": null
+    },
+    {
+      "id": "MiniCPM-V-4.7-1B",
+      "context_length": 262144,
+      "max_model_len": null
+    },
+    {
+      "id": "MiniCPM-V-4.7-35B-A3B",
+      "context_length": 262144,
+      "max_model_len": null
+    },
+    {
+      "id": "OmniVoice",
+      "context_length": 0,
+      "max_model_len": null
+    },
+    {
+      "id": "Qwen3.8-27B",
+      "context_length": 262144,
+      "max_model_len": null
+    },
+    {
+      "id": "Qwen3.8-Flash-Next",
+      "context_length": 262144,
+      "max_model_len": null
+    }
+  ]
+}

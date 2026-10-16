@@ -1,0 +1,38 @@
+{
+  "scope": "Observed hosted response model identifiers, not hardware attestation",
+  "rows": [
+    {
+      "requested_model": "DeepSeek-V4-Flash",
+      "http_status": 200,
+      "returned_model": "self-dploy/DeepSeek-V4-Flash",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 6,
+        "total_tokens": 28
+      }
+    },
+    {
+      "requested_model": "GLM-5.3-Flash",
+      "http_status": 200,
+      "returned_model": "self-dploy/GLM-5.3-Flash",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 31,
+        "completion_tokens": 125,
+        "total_tokens": 156
+      }
+    },
+    {
+      "requested_model": "Qwen3.8-Flash-Next",
+      "http_status": 200,
+      "returned_model": "self-dploy/Qwen3.8-Flash-Next",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 71,
+        "completion_tokens": 58,
+        "total_tokens": 129
+      }
+    }
+  ]
+}

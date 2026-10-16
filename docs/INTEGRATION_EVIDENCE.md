@@ -281,3 +281,12 @@ Only metadata was read; credentials were not printed or committed. No external
 write, document upload or retrieval comparison was performed. Full Pinecone live
 indexing/retrieval acceptance remains BLOCKED, separately from verified metadata.
 See results/pinecone-live-metadata.json. Earlier absence records are historical.
+
+## AMD Token Factory — catalog verified, opinion acceptance partial
+
+Authenticated catalog and tiny identity calls succeeded for the three requested
+models. Only two of six structured-opinion cases validated; validation failures,
+a timeout and shared quota refusal are retained. Standalone bounded routing and
+probes are implemented; hosted LangGraph reasoning is not enabled. Full hosted
+acceptance and MI300X hardware acceptance remain BLOCKED. See
+results/AMD_TOKEN_FACTORY.md for scope, actual evidence and local checks.
