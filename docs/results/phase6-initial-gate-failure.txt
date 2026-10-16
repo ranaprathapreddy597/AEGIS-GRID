@@ -241,13 +241,13 @@ monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x77acf11fe030>
         module = importlib.util.module_from_spec(spec)
 >       spec.loader.exec_module(module)
 
-tests/unit/test_inference_budget.py:57: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/unit/test_inference_budget.py:57:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 <frozen importlib._bootstrap_external>:995: in exec_module
     ???
 <frozen importlib._bootstrap_external>:1132: in get_code
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 self = <_frozen_importlib_external.SourceFileLoader object at 0x77acf11fe000>
 path = '/app/infra/cloud/serve.py'

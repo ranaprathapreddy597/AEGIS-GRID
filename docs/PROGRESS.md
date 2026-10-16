@@ -125,3 +125,6 @@ Phase 6 local gate: 203 Python / 3 CTest / 8 Chromium, two Node tests, audits,
 contracts, manifest render, actual storage and HTTP/SSE passed. The missing-QA-file
 failure was fixed and its log preserved. Current phase remains 6 because its live
 acceptance evidence is unavailable; no GPU or master-prompt completion is claimed.
+
+Phase 6 local implementation commit: `7dfe7e4`. Preserved failure-log trailing
+whitespace was normalized for the repository diff check; test output is unchanged.
