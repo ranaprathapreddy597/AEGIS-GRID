@@ -6,11 +6,14 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager, suppress
 from pathlib import Path
 from typing import Annotated, Any, Literal
+from uuid import UUID
 
 import httpx
+from aegis_agents.service import InvestigationService
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
 from aegis_contracts.inference import InferenceStatus, MemoryBudget
+from aegis_contracts.investigation import Investigation
 from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
     Capabilities,
@@ -62,6 +65,18 @@ def create_app(
     config = settings or Settings.from_env()
     active_streams = 0
     store = TelemetryStore(config)
+    investigations: InvestigationService | None = None
+    investigation_busy = asyncio.Lock()
+
+    def graph_service() -> InvestigationService:
+        nonlocal investigations
+        if config.graph_password is None or not config.storage_enabled:
+            raise StorageUnavailable("Persistent investigation service is not configured")
+        if investigations is None:
+            investigations = InvestigationService(
+                config.graph_password.get_secret_value(), config.twin_library
+            )
+        return investigations
 
     async def collect(client: httpx.AsyncClient) -> None:
         while True:
@@ -98,6 +113,8 @@ def create_app(
                     with suppress(asyncio.CancelledError):
                         await worker
                 await store.close()
+                if investigations is not None:
+                    await asyncio.to_thread(investigations.close)
 
     app = FastAPI(
         title="AEGIS GRID API",
@@ -114,6 +131,48 @@ def create_app(
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
+
+    @app.post(
+        "/api/v1/incidents/{incident_id}/investigate",
+        response_model=Investigation,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}, 409: {"model": ErrorResponse}},
+    )
+    async def investigate(
+        incident_id: Annotated[str, ApiPath(pattern=r"^[0-9a-f]{64}$")],
+        idempotency_key: Annotated[UUID, Header()],
+    ) -> Investigation:
+        if investigation_busy.locked():
+            raise HTTPException(429, "Local investigation worker busy")
+        async with investigation_busy:
+            try:
+                replay = await store.replay(incident_id)
+                if replay is None:
+                    raise HTTPException(404, "Incident not found")
+                return await asyncio.to_thread(
+                    lambda: graph_service().run(replay.incident, str(idempotency_key))
+                )
+            except ValueError:
+                raise HTTPException(
+                    409, "Investigation evidence, key or computation refused"
+                ) from None
+            except (PyMongoError, StorageUnavailable, OSError):
+                raise HTTPException(503, "Persistent investigation unavailable") from None
+
+    @app.get(
+        "/api/v1/investigations/{identifier}",
+        response_model=Investigation,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}},
+    )
+    async def read_investigation(identifier: UUID) -> Investigation:
+        try:
+            report = await asyncio.to_thread(lambda: graph_service().read(str(identifier)))
+        except (PyMongoError, StorageUnavailable, OSError, ValueError):
+            raise HTTPException(503, "Persistent investigation unavailable") from None
+        if report is None:
+            raise HTTPException(404, "Investigation not found")
+        return report
 
     @app.get(
         "/api/v1/inference/status",

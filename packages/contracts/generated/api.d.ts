@@ -72,6 +72,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/incidents/{incident_id}/investigate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Investigate */
+        post: operations["investigate_api_v1_incidents__incident_id__investigate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/incidents/{incident_id}/replay": {
         parameters: {
             query?: never;
@@ -115,6 +132,23 @@ export interface paths {
         };
         /** Inference Status */
         get: operations["inference_status_api_v1_inference_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/investigations/{identifier}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Investigation */
+        get: operations["read_investigation_api_v1_investigations__identifier__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -258,6 +292,32 @@ export interface components {
             /** Residual C */
             residual_c: number;
         };
+        /** CandidatePlan */
+        CandidatePlan: {
+            /** Candidate Id */
+            candidate_id: string;
+            controls: components["schemas"]["SimulatorControls"];
+            /**
+             * Executable
+             * @default false
+             * @constant
+             */
+            executable: false;
+            /** Maximum Temperature C */
+            maximum_temperature_c?: number | null;
+            /** Rationale */
+            rationale: string;
+            /**
+             * Red Accepted
+             * @default false
+             */
+            red_accepted: boolean;
+            /**
+             * Simulation Checked
+             * @default false
+             */
+            simulation_checked: boolean;
+        };
         /** Capabilities */
         Capabilities: {
             /** Capabilities */
@@ -276,10 +336,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 6
+             * @default 7
              * @constant
              */
-            phase: 6;
+            phase: 7;
         };
         /** Capability */
         Capability: {
@@ -328,6 +388,24 @@ export interface components {
             /** Table Row */
             table_row?: number | null;
         };
+        /** DiagnosticHypothesis */
+        DiagnosticHypothesis: {
+            /**
+             * Cause
+             * @enum {string}
+             */
+            cause: "sensor_bias" | "true_thermal" | "restricted_flow" | "weak_pump" | "overload";
+            /** Explanation */
+            explanation: string;
+            /**
+             * Score Method
+             * @default physics_heuristic_not_probability
+             * @constant
+             */
+            score_method: "physics_heuristic_not_probability";
+            /** Support Score */
+            support_score: number;
+        };
         /** EdgeBatch */
         EdgeBatch: {
             /** Events */
@@ -355,6 +433,12 @@ export interface components {
              * @enum {string}
              */
             kind: "anomaly" | "local_stop";
+            observed?: components["schemas"]["SensorFrame"] | null;
+            /**
+             * Observed History
+             * @default []
+             */
+            observed_history: components["schemas"]["ObservedSample"][];
             /**
              * Origin
              * @default edge_observer
@@ -423,6 +507,17 @@ export interface components {
             score_method: "hashed_lexical_cosine";
             /** Untrusted Text */
             untrusted_text: string;
+        };
+        /** GraphTrace */
+        GraphTrace: {
+            /** Detail */
+            detail: string;
+            /** Elapsed Ms */
+            elapsed_ms: number;
+            /** Iteration */
+            iteration: number;
+            /** Node */
+            node: string;
         };
         /** Health */
         Health: {
@@ -524,6 +619,121 @@ export interface components {
              * @enum {string}
              */
             state: "blocked" | "offline_development";
+        };
+        /** Investigation */
+        Investigation: {
+            /**
+             * Approval Required
+             * @default true
+             * @constant
+             */
+            approval_required: true;
+            /**
+             * Backend
+             * @default offline_template
+             * @enum {string}
+             */
+            backend: "offline_template" | "remote_vllm";
+            /** Baseline Maximum Temperature C */
+            baseline_maximum_temperature_c?: number | null;
+            /**
+             * Candidates
+             * @default []
+             */
+            candidates: components["schemas"]["CandidatePlan"][];
+            /** Cost Usd */
+            cost_usd?: null;
+            /**
+             * Evidence Page Hashes
+             * @default []
+             */
+            evidence_page_hashes: string[];
+            /**
+             * Hypotheses
+             * @default []
+             */
+            hypotheses: components["schemas"]["DiagnosticHypothesis"][];
+            /** Incident Id */
+            incident_id: string;
+            /** Investigation Id */
+            investigation_id: string;
+            /**
+             * Iteration
+             * @default 0
+             */
+            iteration: number;
+            /**
+             * Live Gates
+             * @default MI300X/Evolus/Pinecone BLOCKED
+             * @constant
+             */
+            live_gates: "MI300X/Evolus/Pinecone BLOCKED";
+            /**
+             * Manual Decision
+             * @default no_action
+             * @enum {string}
+             */
+            manual_decision: "no_action" | "simulator_evidence_only";
+            /**
+             * Max Iterations
+             * @default 3
+             */
+            max_iterations: number;
+            /**
+             * Model Token Budget
+             * @default 1024
+             */
+            model_token_budget: number;
+            /**
+             * Model Tokens Used
+             * @default 0
+             */
+            model_tokens_used: number;
+            /** Native Binary Sha256 */
+            native_binary_sha256?: string | null;
+            /**
+             * Observed History Samples
+             * @default 0
+             */
+            observed_history_samples: number;
+            /**
+             * Observed Neighbor Correlations
+             * @default []
+             */
+            observed_neighbor_correlations: (number | null)[];
+            /**
+             * Observed Temperature Slopes C S
+             * @default []
+             */
+            observed_temperature_slopes_c_s: number[];
+            /**
+             * Operational Write Allowed
+             * @default false
+             * @constant
+             */
+            operational_write_allowed: false;
+            /**
+             * Phase
+             * @default 7
+             * @constant
+             */
+            phase: 7;
+            /**
+             * Refusal
+             * @default
+             */
+            refusal: string;
+            /**
+             * Status
+             * @default running
+             * @enum {string}
+             */
+            status: "running" | "paused_no_action" | "failed_closed";
+            /**
+             * Traces
+             * @default []
+             */
+            traces: components["schemas"]["GraphTrace"][];
         };
         /** ManualDecision */
         ManualDecision: {
@@ -639,6 +849,15 @@ export interface components {
             /** State Version */
             state_version: number;
         };
+        /** ObservedSample */
+        ObservedSample: {
+            /** Temperatures */
+            temperatures: number[];
+            /** Time S */
+            time_s: number;
+            /** Version */
+            version: number;
+        };
         /** PhysicsState */
         PhysicsState: {
             /** Cells */
@@ -706,6 +925,23 @@ export interface components {
             /** State Version */
             state_version: number;
         };
+        /**
+         * SensorFrame
+         * @description Detector input allowlist. Hidden truth, labels and scenario ID are absent.
+         */
+        SensorFrame: {
+            /** Cells */
+            cells: components["schemas"]["CellMeasurement"][];
+            /** Coolant Temperature C */
+            coolant_temperature_c: number;
+            /** Loop Pressure Kpa */
+            loop_pressure_kpa: number;
+            measurement: components["schemas"]["MeasurementQuality"];
+            /** Simulation Time S */
+            simulation_time_s: number;
+            /** State Version */
+            state_version: number;
+        };
         /** SentinelStatus */
         SentinelStatus: {
             /**
@@ -750,6 +986,15 @@ export interface components {
              * @enum {string}
              */
             state: "warming" | "nominal" | "anomaly" | "latched_stop";
+        };
+        /** SimulatorControls */
+        SimulatorControls: {
+            /** Loads */
+            loads: number[];
+            /** Pump */
+            pump: number;
+            /** Valves */
+            valves: number[];
         };
         /** StorageStatus */
         StorageStatus: {
@@ -1036,6 +1281,85 @@ export interface operations {
             };
         };
     };
+    investigate_api_v1_incidents__incident_id__investigate_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+                authorization?: string | null;
+            };
+            path: {
+                incident_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Investigation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     replay_api_v1_incidents__incident_id__replay_get: {
         parameters: {
             query?: never;
@@ -1190,6 +1514,75 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_investigation_api_v1_investigations__identifier__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Investigation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -1,0 +1,200 @@
+{
+  "investigation_id": "b90f57fd-e5db-499d-b206-e65f695ad1ac",
+  "incident_id": "d105f6a02ec01530e71a0f2fcfbd5350248a1c748de676437f36ea1d19d2a330",
+  "phase": 7,
+  "status": "paused_no_action",
+  "backend": "offline_template",
+  "hypotheses": [
+    {
+      "cause": "sensor_bias",
+      "support_score": 0.9,
+      "explanation": "Independent physics estimate disagrees with sensor",
+      "score_method": "physics_heuristic_not_probability"
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "blue-1",
+      "controls": {
+        "pump": 1.0,
+        "loads": [
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ],
+        "valves": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "rationale": "Productivity candidate",
+      "red_accepted": false,
+      "simulation_checked": true,
+      "maximum_temperature_c": 55.27134316861881,
+      "executable": false
+    },
+    {
+      "candidate_id": "blue-2",
+      "controls": {
+        "pump": 1.0,
+        "loads": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "valves": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "rationale": "Preserve deterministic local stop",
+      "red_accepted": true,
+      "simulation_checked": true,
+      "maximum_temperature_c": 40.952462509599016,
+      "executable": false
+    }
+  ],
+  "traces": [
+    {
+      "node": "sentinel",
+      "iteration": 0,
+      "elapsed_ms": 0.079158,
+      "detail": "Native incident accepted; local emergency policy remains independent"
+    },
+    {
+      "node": "evidence_collector",
+      "iteration": 1,
+      "elapsed_ms": 0.061052,
+      "detail": "Re-read immutable event/residual evidence after adversarial feedback"
+    },
+    {
+      "node": "causal_detective",
+      "iteration": 1,
+      "elapsed_ms": 3.53541,
+      "detail": "Physics hypotheses retained; model opinion has no policy or execution authority"
+    },
+    {
+      "node": "manual_expert",
+      "iteration": 1,
+      "elapsed_ms": 156.512642,
+      "detail": "FAISS exact-citation evidence; full-corpus contradiction gate checked"
+    },
+    {
+      "node": "cascade_forecaster",
+      "iteration": 1,
+      "elapsed_ms": 22.355213,
+      "detail": "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
+    },
+    {
+      "node": "blue_planner",
+      "iteration": 1,
+      "elapsed_ms": 0.13479,
+      "detail": "Bounded typed controls proposed; no plant/executor write"
+    },
+    {
+      "node": "red_examiner",
+      "iteration": 1,
+      "elapsed_ms": 0.096353,
+      "detail": "Latched-stop recovery rejected"
+    },
+    {
+      "node": "simulation_referee",
+      "iteration": 1,
+      "elapsed_ms": 12.677644,
+      "detail": "Real C++ candidate rollout; synthetic 70 degC hard bound checked"
+    },
+    {
+      "node": "safety_shield",
+      "iteration": 1,
+      "elapsed_ms": 0.14497,
+      "detail": "Adversarial or native rollout refusal"
+    },
+    {
+      "node": "evidence_collector",
+      "iteration": 2,
+      "elapsed_ms": 0.066613,
+      "detail": "Re-read immutable event/residual evidence after adversarial feedback"
+    },
+    {
+      "node": "causal_detective",
+      "iteration": 2,
+      "elapsed_ms": 0.618627,
+      "detail": "Physics hypotheses retained; model opinion has no policy or execution authority"
+    },
+    {
+      "node": "manual_expert",
+      "iteration": 2,
+      "elapsed_ms": 0.589719,
+      "detail": "FAISS exact-citation evidence; full-corpus contradiction gate checked"
+    },
+    {
+      "node": "cascade_forecaster",
+      "iteration": 2,
+      "elapsed_ms": 8.203654,
+      "detail": "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
+    },
+    {
+      "node": "blue_planner",
+      "iteration": 2,
+      "elapsed_ms": 0.117374,
+      "detail": "Bounded typed controls proposed; no plant/executor write"
+    },
+    {
+      "node": "red_examiner",
+      "iteration": 2,
+      "elapsed_ms": 0.081683,
+      "detail": "Stop preserved"
+    },
+    {
+      "node": "simulation_referee",
+      "iteration": 2,
+      "elapsed_ms": 14.276916,
+      "detail": "Real C++ candidate rollout; synthetic 70 degC hard bound checked"
+    },
+    {
+      "node": "safety_shield",
+      "iteration": 2,
+      "elapsed_ms": 0.196523,
+      "detail": "Unresolved manual evidence; no action"
+    },
+    {
+      "node": "reporter",
+      "iteration": 2,
+      "elapsed_ms": 0.150261,
+      "detail": "Investigation complete through candidates; protected gateway untouched"
+    }
+  ],
+  "iteration": 2,
+  "max_iterations": 3,
+  "model_token_budget": 1024,
+  "model_tokens_used": 0,
+  "cost_usd": null,
+  "manual_decision": "no_action",
+  "evidence_page_hashes": [
+    "de60415a0d33945081ed87bb446686f8bf122e99b2db3c907ace1e18ed12fdc3",
+    "3a55c572e181abd97391e4c65ad5d75b9d8cc56df8ce275737ead02c01b9e787",
+    "8b3ea43e0b959831a44a5ae593f70c4a632773e3360ea7c68b43ccd76d55745d",
+    "d50742b0161f6cd8b47c7a0550ebb2fb7b7b01f256a85d3b780d167f4a01aee0",
+    "9d5f860517d17f8c346f95a8d032ac2063ecfbd981226f34538ca0ac3172532d"
+  ],
+  "baseline_maximum_temperature_c": 55.68788933212961,
+  "native_binary_sha256": "098a1cabdd3282daedcdcf32265710396568afab53b81ccce487eccf9c685cf6",
+  "refusal": "Unresolved manual evidence; no action",
+  "approval_required": true,
+  "operational_write_allowed": false,
+  "live_gates": "MI300X/Evolus/Pinecone BLOCKED"
+}

@@ -27,6 +27,7 @@ SECRET_NAMES = (
     "AEGIS_MONGO_READER_PASSWORD",
     "AEGIS_REDIS_WRITER_PASSWORD",
     "AEGIS_INGEST_TOKEN",
+    "AEGIS_GRAPH_PASSWORD",
 )
 
 
@@ -106,6 +107,7 @@ def main() -> None:
             "AEGIS_MONGO_WRITER_PASSWORD",
             "AEGIS_MONGO_READER_PASSWORD",
             "AEGIS_REDIS_WRITER_PASSWORD",
+            "AEGIS_GRAPH_PASSWORD",
         ]
         values = read_env()
         flags = [item for name in bootstrap_names for item in ("--env", name)]
@@ -117,7 +119,7 @@ def main() -> None:
                 "--network",
                 "aegis-grid_storage",
                 *flags,
-                "aegis-grid-python:phase6",
+                "aegis-grid-python:phase7",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -160,7 +162,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase6",
+                "aegis-grid-qa:phase7",
                 ".",
             ],
             [
@@ -169,24 +171,25 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase6",
+                "aegis-grid-qa:phase7",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase6"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase7"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
             [sys.executable, "tools/smoke.py"],
             [sys.executable, "tools/cross_language_check.py"],
             [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_api.storage_checks"],
+            [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_agents.checks"],
             ["pnpm", "exec", "playwright", "test"],
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 6 checks passed.")
+        print("Phase 7 checks passed.")
 
 
 if __name__ == "__main__":

@@ -143,7 +143,7 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[6] = 6
+    phase: Literal[7] = 7
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     capabilities: list[Capability]
@@ -168,6 +168,12 @@ class SensorFrame(Contract):
     @classmethod
     def from_twin(cls, frame: TwinMeasurement) -> "SensorFrame":
         return cls.model_validate({name: getattr(frame, name) for name in cls.model_fields})
+
+
+class ObservedSample(Contract):
+    version: Annotated[int, Field(ge=0)]
+    time_s: Annotated[FiniteFloat, Field(ge=0)]
+    temperatures: Annotated[list[FiniteFloat], Field(min_length=6, max_length=6)]
 
 
 class AnomalyEvidence(Contract):
@@ -200,6 +206,8 @@ class SentinelStatus(Contract):
 
 
 class EdgeIncident(Contract):
+    observed: SensorFrame | None = None
+    observed_history: Annotated[list[ObservedSample], Field(max_length=21)] = []
     event_id: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
     run_id: Annotated[str, Field(pattern=r"^[0-9a-f-]{36}$")]
     state_version: Annotated[int, Field(ge=1)]

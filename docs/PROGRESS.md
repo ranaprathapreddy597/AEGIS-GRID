@@ -1,6 +1,7 @@
 # Execution status
 
-Current assigned phase: **6 — MI300X deployment and long-context proof**.
+Current assigned phase: **7 — persistent forensic LangGraph**.
+User accepted Phase 6 local gate and authorized Phases 7–12 on 2026-10-16.
 Phase 4 passed at `12c2d86` on 2026-10-16.
 Phase 3 passed at `b9985f6`.
 Remaining phases authorized in order on 2026-10-15. Phase 2 passed at `57010e1`.
@@ -128,3 +129,19 @@ acceptance evidence is unavailable; no GPU or master-prompt completion is claime
 
 Phase 6 local implementation commit: `7dfe7e4`. Preserved failure-log trailing
 whitespace was normalized for the repository diff check; test output is unchanged.
+
+## Phase 7 — in progress
+
+- [x] Typed real LangGraph, cyclic Red feedback, numerical diagnosis and native C++ forecasts.
+- [x] Safe checkpoint serialization and separate Mongo identity/migration.
+- [x] Durable interrupt, closed executor, observed-only model inputs and bounded budgets.
+- [x] Actual authenticated persisted investigation and React analysis/replay surface.
+- [x] Full gate, role/restart/browser proof, phase report and local commit.
+
+MI300X/Evolus/Pinecone live gates remain BLOCKED. Continue to Phases 8–12
+after each local phase is validated; user explicitly authorized this progression.
+
+Phase 7 passed 208 Python / 3 CTest / 9 Chromium / 2 Node checks plus all
+existing audits/contracts and actual HTTP/storage checks. Graph identity denied
+all three protected writes. Two-cycle native investigation survives real API
+restart unchanged; see results/PHASE7.md. Phase 8 is next.

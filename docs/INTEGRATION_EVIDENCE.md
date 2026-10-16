@@ -189,3 +189,14 @@ Phase 6 final local gate passed 203 Python / 3 CTest / 8 Chromium checks plus
 all existing audits/contracts, actual local storage and HTTP/SSE checks. The first
 QA-image missing-file failure was repaired and preserved in raw evidence. Manifest
 rendering proves configuration only; device/runtime execution remains blocked.
+
+## Phase 7 local execution — 2026-10-16
+
+Pinned LangGraph executes real cyclic numerical reasoning, C++ counterfactuals,
+Mongo checkpoints and durable interrupt. The observed-input boundary includes
+only actual delivered sensor windows, never undelivered snapshot history.
+208 Python / 3 CTest / 9 Chromium / 2 Node tests passed, including real API
+restart/read/idempotent retry and three actual Mongo denials for graph credentials.
+Offline inference is an abstention template, not an actual generative LLM. No
+model tokens/cost or GPU metrics are invented. MI300X/Evolus/Pinecone live gates
+remain BLOCKED; user explicitly authorized continued local Phases 8–12.

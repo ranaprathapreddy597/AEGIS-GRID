@@ -2,13 +2,14 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 6 — local automated gate passed; MI300X live gate blocked.**
+**Current scope: Phase 7 — persistent forensic graph; local gate passed.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
-Cloud AI, Evolus, planned recovery, approval, and enterprise
-writes are **not implemented** in this phase.
+Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
+reasoners and C++ forecasts work locally; the offline model template abstains.
+Approval and protected enterprise writes remain closed pending later gates.
 
 ## Start locally
 
@@ -78,13 +79,14 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
 | Evolus / Pinecone / GitHub | No live connector implemented or called |
 | Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
-| Passkeys / graph / approved recovery | Later phases; no protected operational write path exposed |
+| LangGraph | Real bounded cycles, Mongo checkpoints, observed-only inputs, C++ forecasts and durable no-action interrupt |
+| Passkeys / approved recovery | Later phases; no protected operational write path exposed |
 
 See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 5–12 remain.
+The full master prompt is not finished. Phases 8–12 and the external live gates remain.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
 [phase reports](docs/results/PHASE3.md). Toggle **Simulation ground truth**
@@ -118,3 +120,9 @@ calculator, render-tested cloud recipe and actual-result collection tools. The
 local UI compares 80/192 GiB projections. No MI300X load, cloud deployment, GPU
 benchmark or 200K success is claimed. See `docs/results/PHASE6.md` and
 `infra/cloud/README.md` for the remaining live gates. Phases 7–12 are not complete.
+
+Phase 7 provides a real cyclic LangGraph investigation with Mongo checkpoints,
+sensor-only heuristic diagnosis, real C++ forecasts and a durable no-action
+interrupt. The offline model backend is an abstention template, not a generative
+LLM. Run the investigator from the local UI after a simulator incident. See
+`docs/results/PHASE7.md`; operational execution remains closed pending Phase 9.

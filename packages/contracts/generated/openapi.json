@@ -78,6 +78,56 @@
         "title": "AnomalyEvidence",
         "type": "object"
       },
+      "CandidatePlan": {
+        "additionalProperties": false,
+        "properties": {
+          "candidate_id": {
+            "title": "Candidate Id",
+            "type": "string"
+          },
+          "controls": {
+            "$ref": "#/components/schemas/SimulatorControls"
+          },
+          "executable": {
+            "const": false,
+            "default": false,
+            "title": "Executable",
+            "type": "boolean"
+          },
+          "maximum_temperature_c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum Temperature C"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "red_accepted": {
+            "default": false,
+            "title": "Red Accepted",
+            "type": "boolean"
+          },
+          "simulation_checked": {
+            "default": false,
+            "title": "Simulation Checked",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "candidate_id",
+          "controls",
+          "rationale"
+        ],
+        "title": "CandidatePlan",
+        "type": "object"
+      },
       "Capabilities": {
         "additionalProperties": false,
         "properties": {
@@ -101,8 +151,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 6,
-            "default": 6,
+            "const": 7,
+            "default": 7,
             "title": "Phase",
             "type": "integer"
           }
@@ -259,6 +309,45 @@
         "title": "Citation",
         "type": "object"
       },
+      "DiagnosticHypothesis": {
+        "additionalProperties": false,
+        "properties": {
+          "cause": {
+            "enum": [
+              "sensor_bias",
+              "true_thermal",
+              "restricted_flow",
+              "weak_pump",
+              "overload"
+            ],
+            "title": "Cause",
+            "type": "string"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "score_method": {
+            "const": "physics_heuristic_not_probability",
+            "default": "physics_heuristic_not_probability",
+            "title": "Score Method",
+            "type": "string"
+          },
+          "support_score": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Support Score",
+            "type": "number"
+          }
+        },
+        "required": [
+          "cause",
+          "support_score",
+          "explanation"
+        ],
+        "title": "DiagnosticHypothesis",
+        "type": "object"
+      },
       "EdgeBatch": {
         "additionalProperties": false,
         "properties": {
@@ -325,6 +414,25 @@
             ],
             "title": "Kind",
             "type": "string"
+          },
+          "observed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SensorFrame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed_history": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ObservedSample"
+            },
+            "maxItems": 21,
+            "title": "Observed History",
+            "type": "array"
           },
           "origin": {
             "default": "edge_observer",
@@ -485,6 +593,36 @@
           "untrusted_text"
         ],
         "title": "EvidenceHit",
+        "type": "object"
+      },
+      "GraphTrace": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "elapsed_ms": {
+            "minimum": 0.0,
+            "title": "Elapsed Ms",
+            "type": "number"
+          },
+          "iteration": {
+            "title": "Iteration",
+            "type": "integer"
+          },
+          "node": {
+            "title": "Node",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node",
+          "iteration",
+          "elapsed_ms",
+          "detail"
+        ],
+        "title": "GraphTrace",
         "type": "object"
       },
       "Health": {
@@ -695,6 +833,205 @@
           "reason"
         ],
         "title": "InferenceStatus",
+        "type": "object"
+      },
+      "Investigation": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_required": {
+            "const": true,
+            "default": true,
+            "title": "Approval Required",
+            "type": "boolean"
+          },
+          "backend": {
+            "default": "offline_template",
+            "enum": [
+              "offline_template",
+              "remote_vllm"
+            ],
+            "title": "Backend",
+            "type": "string"
+          },
+          "baseline_maximum_temperature_c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline Maximum Temperature C"
+          },
+          "candidates": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/CandidatePlan"
+            },
+            "maxItems": 3,
+            "title": "Candidates",
+            "type": "array"
+          },
+          "cost_usd": {
+            "title": "Cost Usd",
+            "type": "null"
+          },
+          "evidence_page_hashes": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Evidence Page Hashes",
+            "type": "array"
+          },
+          "hypotheses": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/DiagnosticHypothesis"
+            },
+            "title": "Hypotheses",
+            "type": "array"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "investigation_id": {
+            "pattern": "^[0-9a-f-]{36}$",
+            "title": "Investigation Id",
+            "type": "string"
+          },
+          "iteration": {
+            "default": 0,
+            "maximum": 3.0,
+            "minimum": 0.0,
+            "title": "Iteration",
+            "type": "integer"
+          },
+          "live_gates": {
+            "const": "MI300X/Evolus/Pinecone BLOCKED",
+            "default": "MI300X/Evolus/Pinecone BLOCKED",
+            "title": "Live Gates",
+            "type": "string"
+          },
+          "manual_decision": {
+            "default": "no_action",
+            "enum": [
+              "no_action",
+              "simulator_evidence_only"
+            ],
+            "title": "Manual Decision",
+            "type": "string"
+          },
+          "max_iterations": {
+            "default": 3,
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Max Iterations",
+            "type": "integer"
+          },
+          "model_token_budget": {
+            "default": 1024,
+            "maximum": 2048.0,
+            "minimum": 128.0,
+            "title": "Model Token Budget",
+            "type": "integer"
+          },
+          "model_tokens_used": {
+            "default": 0,
+            "maximum": 2048.0,
+            "minimum": 0.0,
+            "title": "Model Tokens Used",
+            "type": "integer"
+          },
+          "native_binary_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Native Binary Sha256"
+          },
+          "observed_history_samples": {
+            "default": 0,
+            "maximum": 21.0,
+            "minimum": 0.0,
+            "title": "Observed History Samples",
+            "type": "integer"
+          },
+          "observed_neighbor_correlations": {
+            "default": [],
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 6,
+            "title": "Observed Neighbor Correlations",
+            "type": "array"
+          },
+          "observed_temperature_slopes_c_s": {
+            "default": [],
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 6,
+            "title": "Observed Temperature Slopes C S",
+            "type": "array"
+          },
+          "operational_write_allowed": {
+            "const": false,
+            "default": false,
+            "title": "Operational Write Allowed",
+            "type": "boolean"
+          },
+          "phase": {
+            "const": 7,
+            "default": 7,
+            "title": "Phase",
+            "type": "integer"
+          },
+          "refusal": {
+            "default": "",
+            "title": "Refusal",
+            "type": "string"
+          },
+          "status": {
+            "default": "running",
+            "enum": [
+              "running",
+              "paused_no_action",
+              "failed_closed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "traces": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/GraphTrace"
+            },
+            "maxItems": 80,
+            "title": "Traces",
+            "type": "array"
+          }
+        },
+        "required": [
+          "investigation_id",
+          "incident_id"
+        ],
+        "title": "Investigation",
         "type": "object"
       },
       "ManualDecision": {
@@ -956,6 +1293,37 @@
         "title": "MemoryMatch",
         "type": "object"
       },
+      "ObservedSample": {
+        "additionalProperties": false,
+        "properties": {
+          "temperatures": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Temperatures",
+            "type": "array"
+          },
+          "time_s": {
+            "minimum": 0.0,
+            "title": "Time S",
+            "type": "number"
+          },
+          "version": {
+            "minimum": 0.0,
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "version",
+          "time_s",
+          "temperatures"
+        ],
+        "title": "ObservedSample",
+        "type": "object"
+      },
       "PhysicsState": {
         "additionalProperties": false,
         "properties": {
@@ -1139,6 +1507,56 @@
         "title": "PlantTelemetry",
         "type": "object"
       },
+      "SensorFrame": {
+        "additionalProperties": false,
+        "description": "Detector input allowlist. Hidden truth, labels and scenario ID are absent.",
+        "properties": {
+          "cells": {
+            "items": {
+              "$ref": "#/components/schemas/CellMeasurement"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Cells",
+            "type": "array"
+          },
+          "coolant_temperature_c": {
+            "maximum": 1000.0,
+            "minimum": -273.15,
+            "title": "Coolant Temperature C",
+            "type": "number"
+          },
+          "loop_pressure_kpa": {
+            "maximum": 180.0,
+            "minimum": 0.0,
+            "title": "Loop Pressure Kpa",
+            "type": "number"
+          },
+          "measurement": {
+            "$ref": "#/components/schemas/MeasurementQuality"
+          },
+          "simulation_time_s": {
+            "minimum": 0.0,
+            "title": "Simulation Time S",
+            "type": "number"
+          },
+          "state_version": {
+            "minimum": 1.0,
+            "title": "State Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state_version",
+          "simulation_time_s",
+          "coolant_temperature_c",
+          "loop_pressure_kpa",
+          "cells",
+          "measurement"
+        ],
+        "title": "SensorFrame",
+        "type": "object"
+      },
       "SentinelStatus": {
         "additionalProperties": false,
         "properties": {
@@ -1238,6 +1656,46 @@
           "memory_matches"
         ],
         "title": "SentinelStatus",
+        "type": "object"
+      },
+      "SimulatorControls": {
+        "additionalProperties": false,
+        "properties": {
+          "loads": {
+            "items": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Loads",
+            "type": "array"
+          },
+          "pump": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Pump",
+            "type": "number"
+          },
+          "valves": {
+            "items": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Valves",
+            "type": "array"
+          }
+        },
+        "required": [
+          "pump",
+          "loads",
+          "valves"
+        ],
+        "title": "SimulatorControls",
         "type": "object"
       },
       "StorageStatus": {
@@ -1662,6 +2120,122 @@
         "summary": "Incidents"
       }
     },
+    "/api/v1/incidents/{incident_id}/investigate": {
+      "post": {
+        "operationId": "investigate_api_v1_incidents__incident_id__investigate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "title": "Incident Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Investigation"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Investigate"
+      }
+    },
     "/api/v1/incidents/{incident_id}/replay": {
       "get": {
         "operationId": "replay_api_v1_incidents__incident_id__replay_get",
@@ -1958,6 +2532,102 @@
           }
         },
         "summary": "Inference Status"
+      }
+    },
+    "/api/v1/investigations/{identifier}": {
+      "get": {
+        "operationId": "read_investigation_api_v1_investigations__identifier__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Investigation"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Read Investigation"
       }
     },
     "/api/v1/manuals/evidence": {

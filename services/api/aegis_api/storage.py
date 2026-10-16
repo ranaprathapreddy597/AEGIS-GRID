@@ -25,6 +25,7 @@ DB_NAME = "aegis"
 STREAM = "aegis:telemetry:events"
 MONITORING = ("events", "incidents", "snapshots", "fanout_receipts")
 ALL_COLLECTIONS = (*MONITORING, "plans", "actions", "audit", "migrations")
+GRAPH_COLLECTIONS = ("graph_checkpoints", "graph_writes")
 
 
 class StorageUnavailable(RuntimeError):
@@ -302,9 +303,24 @@ async def migrate() -> None:
     try:
         database = admin[DB_NAME]
         existing = await database.list_collection_names()
-        for name in ALL_COLLECTIONS:
+        for name in (*ALL_COLLECTIONS, *GRAPH_COLLECTIONS):
             if name not in existing:
                 await database.create_collection(name)
+        await database.graph_checkpoints.create_index(
+            [("thread_id", 1), ("checkpoint_ns", 1), ("checkpoint_id", -1)], unique=True
+        )
+        await database.graph_writes.create_index(
+            [
+                ("thread_id", 1),
+                ("checkpoint_ns", 1),
+                ("checkpoint_id", -1),
+                ("task_id", 1),
+                ("idx", 1),
+            ],
+            unique=True,
+        )
+        for name in GRAPH_COLLECTIONS:
+            await database[name].create_index("created_at", expireAfterSeconds=30 * 86400)
         for name in (*MONITORING, "plans", "actions", "audit"):
             await database[name].create_index([("tenant_id", 1), ("event_id", 1)], unique=True)
             await database[name].create_index("expires_at", expireAfterSeconds=0)
@@ -350,6 +366,16 @@ async def migrate() -> None:
         for role, privileges in [
             ("monitoring_append", writer_privileges),
             ("monitoring_read", reader_privileges),
+            (
+                "graph_checkpoint",
+                [
+                    {
+                        "resource": {"db": DB_NAME, "collection": name},
+                        "actions": ["find", "insert", "update", "listIndexes"],
+                    }
+                    for name in GRAPH_COLLECTIONS
+                ],
+            ),
         ]:
             found = await database.command("rolesInfo", role)
             await database.command(
@@ -361,6 +387,7 @@ async def migrate() -> None:
         for user, role, name in [
             ("aegis_ingestor", "monitoring_append", "AEGIS_MONGO_WRITER_PASSWORD"),
             ("aegis_reader", "monitoring_read", "AEGIS_MONGO_READER_PASSWORD"),
+            ("aegis_graph", "graph_checkpoint", "AEGIS_GRAPH_PASSWORD"),
         ]:
             found = await database.command("usersInfo", user)
             await database.command(

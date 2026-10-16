@@ -29,3 +29,8 @@ this is not semantic/OEM accuracy. Cloud indexing/comparison remains blocked.
 Arbitrary hostile PDF parsing requires separate process resource enforcement before
 public ingestion; only fixed read-only fixtures are exposed by the API. Free-form
 OEM constraint extraction and trusted revision lineage require verified source data.
+
+Phase 7 local gate passed. Actual persisted graph and delivered sensor trends are
+verified; full-corpus contradiction still refuses action. The local inference
+backend is a deterministic abstention template, not a generative model. Phase 8
+must replace the limited two-candidate forecasts with actual robust search.

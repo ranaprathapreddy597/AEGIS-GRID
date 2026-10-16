@@ -14,6 +14,8 @@ dependencies = [
   "redis==8.1.0",
   "pypdf==6.20.1",
   "jsonschema==4.26.0",
+  "langgraph==1.2.15",
+  "langgraph-checkpoint-mongodb==0.5.1",
 ]
 
 [dependency-groups]
@@ -30,7 +32,7 @@ requires = ["hatchling==1.32.4"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["packages/contracts/python/aegis_contracts", "services/api/aegis_api", "services/edge/aegis_edge", "services/ingestion/aegis_ingestion", "services/inference/aegis_inference"]
+packages = ["packages/contracts/python/aegis_contracts", "services/api/aegis_api", "services/edge/aegis_edge", "services/ingestion/aegis_ingestion", "services/inference/aegis_inference", "services/agents/aegis_agents"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests/unit", "tests/integration", "tests/security"]
@@ -51,7 +53,7 @@ select = ["E", "F", "I", "UP", "B", "S"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-files = ["services/api/aegis_api", "services/edge/aegis_edge", "services/ingestion/aegis_ingestion", "services/inference/aegis_inference", "packages/contracts/python/aegis_contracts"]
+files = ["services/api/aegis_api", "services/edge/aegis_edge", "services/ingestion/aegis_ingestion", "services/inference/aegis_inference", "services/agents/aegis_agents", "packages/contracts/python/aegis_contracts"]
 
 [[tool.mypy.overrides]]
 module = ["faiss", "faiss.*", "jsonschema", "jsonschema.*"]

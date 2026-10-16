@@ -4,6 +4,7 @@ import logging
 import sys
 import time
 import uuid
+from collections import deque
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager, suppress
 from datetime import UTC, datetime
@@ -15,7 +16,9 @@ from aegis_contracts.models import (
     EdgeStatus,
     ErrorResponse,
     Health,
+    ObservedSample,
     PlantTelemetry,
+    SensorFrame,
     SupervisorFrame,
 )
 from aegis_contracts.security import RequireToken
@@ -82,6 +85,7 @@ class TwinReader:
             previous_version = 0
             previous_dropped = 0
             reported = False
+            delivered: deque[ObservedSample] = deque(maxlen=21)
             while True:
                 line = await asyncio.wait_for(
                     self.process.stdout.readline(), timeout=10 if previous_version == 0 else 3
@@ -101,6 +105,13 @@ class TwinReader:
                     raise ValueError("Out-of-order or wrong-scenario simulator frame")
                 previous_version = raw.state_version
                 previous_dropped = raw.measurement.dropped_packets
+                delivered.append(
+                    ObservedSample(
+                        version=raw.measurement.sampled_version,
+                        time_s=raw.measurement.sampled_time_s,
+                        temperatures=[cell.temperature_c for cell in raw.cells],
+                    )
+                )
                 self.latest = PlantTelemetry(
                     **raw.model_dump(),
                     run_id=run_id,
@@ -127,6 +138,8 @@ class TwinReader:
                                     "kind": kind,
                                     "evidence": envelope.sentinel.evidence,
                                     "snapshot": envelope.snapshot,
+                                    "observed": SensorFrame.from_twin(raw),
+                                    "observed_history": list(delivered),
                                 }
                             )
                         )

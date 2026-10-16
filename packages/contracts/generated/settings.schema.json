@@ -32,6 +32,20 @@
       "title": "Edge Url",
       "type": "string"
     },
+    "graph_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Graph Password"
+    },
     "ingest_token": {
       "anyOf": [
         {

@@ -10,10 +10,12 @@ COPY services/api services/api
 COPY services/edge services/edge
 COPY services/ingestion services/ingestion
 COPY services/inference services/inference
+COPY services/agents services/agents
 COPY data/scenarios data/scenarios
 COPY data/manuals data/manuals
 RUN uv sync --locked --no-dev --no-editable
 ENV PATH="/app/.venv/bin:$PATH"
+ENV LANGSMITH_TRACING=false LANGCHAIN_TRACING_V2=false DO_NOT_TRACK=1
 
 FROM python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 AS build-tools
 WORKDIR /app

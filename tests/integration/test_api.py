@@ -3,6 +3,23 @@ from aegis_api.app import create_app
 from fastapi.testclient import TestClient
 
 
+def test_investigation_boundaries_do_not_fake_unconfigured_persistence(settings):
+    with TestClient(create_app(settings)) as client:
+        path = "/api/v1/incidents/" + "a" * 64 + "/investigate"
+        assert client.post(path).status_code == 401
+        headers = {
+            "Authorization": f"Bearer {settings.viewer_token.get_secret_value()}",
+            "Idempotency-Key": "00000000-0000-0000-0000-000000000007",
+        }
+        assert client.post(path, headers=headers).status_code == 503
+        assert (
+            client.post(path, headers={**headers, "Idempotency-Key": "invalid"}).status_code == 422
+        )
+        assert client.post(
+            "/api/v1/investigations/resume", headers=headers, json={"approved": True}
+        ).status_code in {404, 405}
+
+
 def test_inference_projection_is_authenticated_and_never_claims_device_measurement(settings):
     with TestClient(create_app(settings)) as client:
         headers = {"Authorization": f"Bearer {settings.viewer_token.get_secret_value()}"}

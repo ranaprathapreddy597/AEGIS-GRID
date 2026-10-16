@@ -28,6 +28,7 @@ class Settings(BaseModel):
     mongo_reader_password: SecretStr | None = None
     redis_writer_password: SecretStr | None = None
     ingest_token: SecretStr | None = None
+    graph_password: SecretStr | None = None
 
     @field_validator("cloud_events_url")
     @classmethod
@@ -64,6 +65,9 @@ class Settings(BaseModel):
     @classmethod
     def from_env(cls) -> "Settings":
         return cls(
+            graph_password=SecretStr(os.environ["AEGIS_GRAPH_PASSWORD"])
+            if os.environ.get("AEGIS_GRAPH_PASSWORD")
+            else None,
             viewer_token=SecretStr(os.environ.get("AEGIS_VIEWER_TOKEN", "")),
             service_token=SecretStr(os.environ.get("AEGIS_SERVICE_TOKEN", "")),
             seed=int(os.environ.get("AEGIS_SEED", "42")),
