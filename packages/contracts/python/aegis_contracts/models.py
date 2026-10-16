@@ -143,7 +143,7 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[4] = 4
+    phase: Literal[5] = 5
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     capabilities: list[Capability]

@@ -1,0 +1,113 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "page_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Page Sha256",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "table_row": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Row"
+        }
+      },
+      "required": [
+        "document_id",
+        "revision",
+        "source_sha256",
+        "page_sha256",
+        "page",
+        "quote"
+      ],
+      "title": "Citation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "citation": {
+      "$ref": "#/$defs/Citation"
+    },
+    "equipment_id": {
+      "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+      "title": "Equipment Id",
+      "type": "string"
+    },
+    "maximum": {
+      "title": "Maximum",
+      "type": "number"
+    },
+    "minimum": {
+      "title": "Minimum",
+      "type": "number"
+    },
+    "quantity": {
+      "enum": [
+        "temperature",
+        "pressure",
+        "flow",
+        "load"
+      ],
+      "title": "Quantity",
+      "type": "string"
+    },
+    "unit": {
+      "enum": [
+        "degC",
+        "kPa",
+        "kg/s",
+        "fraction"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "required": [
+    "equipment_id",
+    "quantity",
+    "unit",
+    "minimum",
+    "maximum",
+    "citation"
+  ],
+  "title": "OEMConstraint",
+  "type": "object"
+}

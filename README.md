@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 4 — event journal and restart replay (passed).**
+**Current scope: Phase 5 — cited manual evidence (local gate passed; live providers blocked).**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -105,3 +105,9 @@ The command center reads the persistent incident journal, replays immutable even
 and downloads the captured native snapshot/evidence. Monitoring append permission
 uses a separate ingest token; it cannot write operational plans/actions/audit data.
 See [storage design](docs/ADR/0007-event-journal-and-scoped-storage.md).
+
+Phase 5 adds authenticated manual evidence retrieval and original source download
+to the local UI. The corpus is 999 project-authored synthetic reference pages plus
+a contradictory bulletin; it is not an OEM manual. The bulletin blocks action.
+The actual Evolus read adapter follows the supplied OpenAPI; live extraction and
+Pinecone remain blocked. See `docs/results/PHASE5.md` and ADR 0008.

@@ -3,6 +3,26 @@ from aegis_api.app import create_app
 from fastapi.testclient import TestClient
 
 
+def test_manual_api_citations_refusal_auth_and_exact_source(settings):
+    with TestClient(create_app(settings)) as client:
+        assert client.get("/api/v1/manuals/evidence").status_code == 401
+        headers = {"Authorization": f"Bearer {settings.viewer_token.get_secret_value()}"}
+        response = client.get("/api/v1/manuals/evidence", headers=headers)
+        assert response.status_code == 200
+        evidence = response.json()
+        assert evidence["pages"] == 1000 and evidence["decision"]["status"] == "no_action"
+        assert evidence["hits"] and not evidence["evolus_live"] and not evidence["pinecone_live"]
+        assert client.get("/api/v1/manuals/SIM-MANUAL/source").status_code == 401
+        pdf = client.get("/api/v1/manuals/SIM-BULLETIN/source", headers=headers)
+        assert pdf.status_code == 200 and pdf.content.startswith(b"%PDF-")
+        assert "attachment" in pdf.headers["content-disposition"]
+        assert client.get("/api/v1/manuals/unknown/source", headers=headers).status_code == 404
+        assert (
+            client.get("/api/v1/manuals/evidence?query=" + "x" * 501, headers=headers).status_code
+            == 422
+        )
+
+
 def test_api_passes_validated_edge_frame(settings, telemetry):
     def upstream(request):
         assert (

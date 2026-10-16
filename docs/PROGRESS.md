@@ -1,7 +1,7 @@
 # Execution status
 
-Current assigned phase: **5 — verified document adapter and manual corpus**.
-Phase 4 passed on 2026-10-16; its completion commit precedes Phase 5 work.
+Current assigned phase: **6 — MI300X deployment and long-context proof**.
+Phase 4 passed at `12c2d86` on 2026-10-16.
 Phase 3 passed at `b9985f6`.
 Remaining phases authorized in order on 2026-10-15. Phase 2 passed at `57010e1`.
 User authorized continuation on 2026-10-15. Phase 1 commit: `f024ab5`.
@@ -86,3 +86,24 @@ Final gate: 155 Python / 3 CTest / 6 Chromium; types, lints, contracts, audits,
 actual HTTP/SSE and Node validation passed. Six forbidden storage operations
 were refused. Journaled 128-event append p95 93.970 ms. API restart retained
 identical incident events and snapshot/replay fingerprints. See results/PHASE4.md.
+
+## Phase 5 local gate — PASS, 2026-10-16; external gates BLOCKED
+
+- [x] Supplied Evolus OpenAPI inspected; verified read adapter and isolated contract doubles.
+- [x] 999-page manual + contradictory bulletin PDF, resumable local parsing and page/source hashes.
+- [x] Exact table/unit/revision evidence, untrusted-content isolation and deterministic refusal.
+- [x] Actual bounded FAISS retrieval, prepared scoped Pinecone batches and strict read adapter.
+- [x] Authenticated source/evidence APIs and React citation/download flow.
+- [x] Complete gate, CPU retrieval measurements, browser capture and phase commit.
+- [ ] External Evolus extraction and Pinecone live indexing/read proof: blocked, not passed.
+
+User supplied application scope on 2026-10-16; it is stored only in ignored .env.
+A key was supplied in chat but left unused; rotated EVOLUS_API_KEY is not yet configured.
+Application keys cannot enumerate memories under the supplied specification: that
+route requires personal user authentication. Existing memory/document IDs or
+appropriate personal read access are needed for document extraction.
+
+Phase 5 full gate: 179 Python / 3 CTest / 7 Chromium plus all existing checks.
+Final CSS-only build and manual browser/axe/download/mobile check passed again
+(1/1); the focused evidence panel capture was visually inspected. Local phase
+commit contains this report. External Evolus/Pinecone gates are not waived.

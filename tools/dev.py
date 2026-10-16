@@ -117,7 +117,7 @@ def main() -> None:
                 "--network",
                 "aegis-grid_storage",
                 *flags,
-                "aegis-grid-python:phase4",
+                "aegis-grid-python:phase5",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -145,6 +145,7 @@ def main() -> None:
             [sys.executable, "-m", "mypy"],
             [sys.executable, "tools/export_contracts.py", "--check"],
             [sys.executable, "tools/generate_scenarios.py", "--check"],
+            [sys.executable, "tools/generate_manual_corpus.py", "--check"],
             [sys.executable, "tools/check_ts_contracts.py"],
             ["pnpm", "lint"],
             ["pnpm", "typecheck"],
@@ -158,7 +159,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase4",
+                "aegis-grid-qa:phase5",
                 ".",
             ],
             [
@@ -167,13 +168,13 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase4",
+                "aegis-grid-qa:phase5",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase4"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase5"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
@@ -184,7 +185,7 @@ def main() -> None:
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 4 checks passed.")
+        print("Phase 5 checks passed.")
 
 
 if __name__ == "__main__":

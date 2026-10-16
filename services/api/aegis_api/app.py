@@ -4,11 +4,13 @@ import logging
 import time
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager, suppress
+from pathlib import Path
 from typing import Annotated, Any, Literal
 
 import httpx
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
+from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
     Capabilities,
     Capability,
@@ -23,9 +25,10 @@ from aegis_contracts.models import (
     StorageStatus,
 )
 from aegis_contracts.security import RequireToken
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from aegis_ingestion.library import fixture_library
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi import Path as ApiPath
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import ValidationError
 from pymongo.errors import PyMongoError
 from redis.exceptions import RedisError
@@ -109,6 +112,39 @@ def create_app(
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
+
+    @app.get(
+        "/api/v1/manuals/evidence",
+        response_model=ManualEvidence,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def manual_evidence(
+        query: Annotated[str, Query(min_length=1, max_length=500)] = "CELL-01 temperature",
+    ) -> ManualEvidence:
+        try:
+            return await asyncio.to_thread(lambda: fixture_library().evidence(query))
+        except (ValueError, OSError):
+            raise HTTPException(503, "Manual evidence integrity or availability failed") from None
+
+    @app.get(
+        "/api/v1/manuals/{document_id}/source",
+        response_class=FileResponse,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}},
+    )
+    async def manual_source(document_id: str) -> FileResponse:
+        names = {"SIM-MANUAL": "synthetic-manual.pdf", "SIM-BULLETIN": "contradictory-bulletin.pdf"}
+        name = names.get(document_id)
+        if name is None:
+            raise HTTPException(404, "Manual source not found")
+        try:
+            await asyncio.to_thread(fixture_library)
+        except (ValueError, OSError):
+            raise HTTPException(503, "Manual source integrity failed") from None
+        return FileResponse(
+            Path("data/manuals") / name, media_type="application/pdf", filename=name
+        )
 
     async def ingest_auth(authorization: Annotated[str | None, Header()] = None) -> None:
         if config.ingest_token is None:
@@ -238,7 +274,7 @@ def create_app(
                 Capability(
                     name="Evolus / Pinecone",
                     status="blocked",
-                    detail="No verified provider integration or credentials",
+                    detail="Read adapters and synthetic corpus; live provider reads unverified",
                 ),
                 Capability(
                     name="Passkeys / operational mutations",

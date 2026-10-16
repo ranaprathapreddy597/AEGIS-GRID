@@ -16,12 +16,15 @@ def main() -> None:
         .split("\0")
     )
     actual_secrets = [
-        value for key, value in read_env().items() if key in SECRET_NAMES and len(value) >= 32
+        value
+        for key, value in read_env().items()
+        if (key in SECRET_NAMES or key.endswith(("API_KEY", "TOKEN", "PASSWORD")))
+        and len(value) >= 16
     ]
     leaked = []
     for relative in filter(None, paths):
         path = ROOT / Path(relative)
-        if not path.is_file() or path.suffix in {".png", ".jpg", ".webm"}:
+        if not path.is_file() or path.suffix in {".png", ".jpg", ".webm", ".pdf"}:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
         if any(secret in text for secret in actual_secrets) or re.search(

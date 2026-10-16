@@ -1,0 +1,433 @@
+{
+  "$defs": {
+    "AlarmCode": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "code": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "meaning": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Meaning",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "meaning",
+        "citation"
+      ],
+      "title": "AlarmCode",
+      "type": "object"
+    },
+    "AmbiguityFlag": {
+      "additionalProperties": false,
+      "properties": {
+        "citations": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "maxItems": 10,
+          "title": "Citations",
+          "type": "array"
+        },
+        "reason": {
+          "enum": [
+            "contradiction",
+            "missing_evidence",
+            "untrusted_revision",
+            "ocr_required"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason",
+        "citations"
+      ],
+      "title": "AmbiguityFlag",
+      "type": "object"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "page_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Page Sha256",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "table_row": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Row"
+        }
+      },
+      "required": [
+        "document_id",
+        "revision",
+        "source_sha256",
+        "page_sha256",
+        "page",
+        "quote"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "Equipment": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "maxLength": 500,
+          "title": "Description",
+          "type": "string"
+        },
+        "equipment_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Equipment Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "equipment_id",
+        "description"
+      ],
+      "title": "Equipment",
+      "type": "object"
+    },
+    "ExtractionConfidence": {
+      "additionalProperties": false,
+      "properties": {
+        "derived_method": {
+          "enum": [
+            "exact_table_row",
+            "unmapped",
+            "exact_text_match"
+          ],
+          "title": "Derived Method",
+          "type": "string"
+        },
+        "provider_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Confidence"
+        }
+      },
+      "required": [
+        "derived_method"
+      ],
+      "title": "ExtractionConfidence",
+      "type": "object"
+    },
+    "ManualDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page_count": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Page Count",
+          "type": "integer"
+        },
+        "revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "source_sha256",
+        "title",
+        "revision",
+        "page_count"
+      ],
+      "title": "ManualDocument",
+      "type": "object"
+    },
+    "OEMConstraint": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "equipment_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Equipment Id",
+          "type": "string"
+        },
+        "maximum": {
+          "title": "Maximum",
+          "type": "number"
+        },
+        "minimum": {
+          "title": "Minimum",
+          "type": "number"
+        },
+        "quantity": {
+          "enum": [
+            "temperature",
+            "pressure",
+            "flow",
+            "load"
+          ],
+          "title": "Quantity",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "degC",
+            "kPa",
+            "kg/s",
+            "fraction"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "equipment_id",
+        "quantity",
+        "unit",
+        "minimum",
+        "maximum",
+        "citation"
+      ],
+      "title": "OEMConstraint",
+      "type": "object"
+    },
+    "Procedure": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "executable": {
+          "const": false,
+          "default": false,
+          "title": "Executable",
+          "type": "boolean"
+        },
+        "procedure_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Procedure Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "procedure_id",
+        "description",
+        "citation"
+      ],
+      "title": "Procedure",
+      "type": "object"
+    },
+    "Revision": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "enum": [
+            "synthetic_fixture",
+            "unverified_provider"
+          ],
+          "title": "Authority",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "supersedes": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes"
+        }
+      },
+      "required": [
+        "revision",
+        "authority"
+      ],
+      "title": "Revision",
+      "type": "object"
+    },
+    "SafetyInterlock": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "description": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "interlock_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Interlock Id",
+          "type": "string"
+        },
+        "overridable": {
+          "const": false,
+          "default": false,
+          "title": "Overridable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "interlock_id",
+        "description",
+        "citation"
+      ],
+      "title": "SafetyInterlock",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "alarms": {
+      "items": {
+        "$ref": "#/$defs/AlarmCode"
+      },
+      "maxItems": 10000,
+      "title": "Alarms",
+      "type": "array"
+    },
+    "ambiguities": {
+      "items": {
+        "$ref": "#/$defs/AmbiguityFlag"
+      },
+      "maxItems": 100,
+      "title": "Ambiguities",
+      "type": "array"
+    },
+    "confidence": {
+      "$ref": "#/$defs/ExtractionConfidence"
+    },
+    "constraints": {
+      "items": {
+        "$ref": "#/$defs/OEMConstraint"
+      },
+      "maxItems": 10000,
+      "title": "Constraints",
+      "type": "array"
+    },
+    "document": {
+      "$ref": "#/$defs/ManualDocument"
+    },
+    "equipment": {
+      "items": {
+        "$ref": "#/$defs/Equipment"
+      },
+      "maxItems": 1000,
+      "title": "Equipment",
+      "type": "array"
+    },
+    "interlocks": {
+      "items": {
+        "$ref": "#/$defs/SafetyInterlock"
+      },
+      "maxItems": 10000,
+      "title": "Interlocks",
+      "type": "array"
+    },
+    "procedures": {
+      "items": {
+        "$ref": "#/$defs/Procedure"
+      },
+      "maxItems": 10000,
+      "title": "Procedures",
+      "type": "array"
+    }
+  },
+  "required": [
+    "document",
+    "equipment",
+    "constraints",
+    "alarms",
+    "procedures",
+    "interlocks",
+    "ambiguities",
+    "confidence"
+  ],
+  "title": "ManualRecords",
+  "type": "object"
+}

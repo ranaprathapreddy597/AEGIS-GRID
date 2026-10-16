@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "Revision": {
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "enum": [
+            "synthetic_fixture",
+            "unverified_provider"
+          ],
+          "title": "Authority",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "supersedes": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes"
+        }
+      },
+      "required": [
+        "revision",
+        "authority"
+      ],
+      "title": "Revision",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "document_id": {
+      "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+      "title": "Document Id",
+      "type": "string"
+    },
+    "page_count": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Page Count",
+      "type": "integer"
+    },
+    "revision": {
+      "$ref": "#/$defs/Revision"
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Sha256",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_id",
+    "source_sha256",
+    "title",
+    "revision",
+    "page_count"
+  ],
+  "title": "ManualDocument",
+  "type": "object"
+}

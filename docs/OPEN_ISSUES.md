@@ -3,7 +3,7 @@
 | ID | State / phase | Issue and next action |
 |---|---|---|
 | EXT-01 | Blocked / Phase 6 | No MI300X endpoint, access credentials or device logs. User provisioning needed before live hardware proof. |
-| EXT-02 | Blocked / Phase 5 | User supplied api-1.json (Evolus Integration API v1, OpenAPI 3.0.4); schema inspection/adapter remains Phase 5. No provider call verified. |
+| EXT-02 | Blocked / Phase 5 | Verified supplied OpenAPI read adapter and exact-match pipeline implemented. Application scope supplied; rotated local key, existing document IDs/personal read auth and live extraction proof pending. No provider call verified. |
 | EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no external calls or writes attempted. |
 | HW-01 | Unverified | NPU device enumerated OK and amd-smi on PATH; no compatible accelerated inference workload verified. CPU backend tested. |
 | TOOL-01 | Resolved for Docker path | Native Windows CMake/compiler absent. Container CMake/CTest is the chosen Phase 1 path; native MSVC remains unverified. |
@@ -23,3 +23,9 @@
 Initial absence of the phase guide was resolved by the user during discovery.
 Any build/test failure discovered during a phase must be repaired or explicitly
 recorded as an unmet gate; missing providers alone do not block the local gate.
+
+Phase 5: FAISS lexical top-1 relevance is 20/24 on exact-term development queries;
+this is not semantic/OEM accuracy. Cloud indexing/comparison remains blocked.
+Arbitrary hostile PDF parsing requires separate process resource enforcement before
+public ingestion; only fixed read-only fixtures are exposed by the API. Free-form
+OEM constraint extraction and trusted revision lineage require verified source data.

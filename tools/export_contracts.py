@@ -6,6 +6,7 @@ from pathlib import Path
 
 from aegis_api.app import create_app
 from aegis_contracts.config import Settings
+from aegis_contracts.manuals import ManualDocument, ManualEvidence, ManualRecords, OEMConstraint
 from aegis_contracts.models import PlantTelemetry, Scenario, SimulatorControls, TwinMeasurement
 from pydantic import SecretStr
 
@@ -28,6 +29,10 @@ def main() -> None:
         "settings.schema.json": Settings.model_json_schema(),
         "scenario.schema.json": Scenario.model_json_schema(),
         "simulator-controls.schema.json": SimulatorControls.model_json_schema(),
+        "manual-document.schema.json": ManualDocument.model_json_schema(),
+        "oem-constraint.schema.json": OEMConstraint.model_json_schema(),
+        "manual-evidence.schema.json": ManualEvidence.model_json_schema(),
+        "manual-records.schema.json": ManualRecords.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

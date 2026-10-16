@@ -89,6 +89,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/manuals/evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Manual Evidence */
+        get: operations["manual_evidence_api_v1_manuals_evidence_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/manuals/{document_id}/source": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Manual Source */
+        get: operations["manual_source_api_v1_manuals__document_id__source_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/storage/status": {
         parameters: {
             query?: never;
@@ -161,6 +195,16 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AmbiguityFlag */
+        AmbiguityFlag: {
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "contradiction" | "missing_evidence" | "untrusted_revision" | "ocr_required";
+        };
         /** AnomalyEvidence */
         AnomalyEvidence: {
             /**
@@ -198,10 +242,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 4
+             * @default 5
              * @constant
              */
-            phase: 4;
+            phase: 5;
         };
         /** Capability */
         Capability: {
@@ -232,6 +276,23 @@ export interface components {
             noise_bound_c: number;
             /** Temperature C */
             temperature_c: number;
+        };
+        /** Citation */
+        Citation: {
+            /** Document Id */
+            document_id: string;
+            /** Page */
+            page: number;
+            /** Page Sha256 */
+            page_sha256: string;
+            /** Quote */
+            quote: string;
+            /** Revision */
+            revision: string;
+            /** Source Sha256 */
+            source_sha256: string;
+            /** Table Row */
+            table_row?: number | null;
         };
         /** EdgeBatch */
         EdgeBatch: {
@@ -315,6 +376,20 @@ export interface components {
             /** Message */
             message: string;
         };
+        /** EvidenceHit */
+        EvidenceHit: {
+            citation: components["schemas"]["Citation"];
+            /** Score */
+            score: number;
+            /**
+             * Score Method
+             * @default hashed_lexical_cosine
+             * @constant
+             */
+            score_method: "hashed_lexical_cosine";
+            /** Untrusted Text */
+            untrusted_text: string;
+        };
         /** Health */
         Health: {
             /** Detail */
@@ -395,6 +470,51 @@ export interface components {
             sha256: string;
             /** State Version */
             state_version: number;
+        };
+        /** ManualDecision */
+        ManualDecision: {
+            /** Checked Constraints */
+            checked_constraints: number;
+            /** Flags */
+            flags: components["schemas"]["AmbiguityFlag"][];
+            /**
+             * Operational Write Allowed
+             * @default false
+             * @constant
+             */
+            operational_write_allowed: false;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "simulator_evidence_only" | "no_action";
+        };
+        /** ManualEvidence */
+        ManualEvidence: {
+            /** Corpus Sha256 */
+            corpus_sha256: string;
+            decision: components["schemas"]["ManualDecision"];
+            /**
+             * Evolus Live
+             * @default false
+             * @constant
+             */
+            evolus_live: false;
+            /** Hits */
+            hits: components["schemas"]["EvidenceHit"][];
+            /** Pages */
+            pages: number;
+            /**
+             * Pinecone Live
+             * @default false
+             * @constant
+             */
+            pinecone_live: false;
+            /**
+             * Source
+             * @constant
+             */
+            source: "synthetic_fixture";
         };
         /** MeasurementQuality */
         MeasurementQuality: {
@@ -839,6 +959,133 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["IncidentReplay"];
                 };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    manual_evidence_api_v1_manuals_evidence_get: {
+        parameters: {
+            query?: {
+                query?: string;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManualEvidence"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    manual_source_api_v1_manuals__document_id__source_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                document_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Unauthorized */
             401: {

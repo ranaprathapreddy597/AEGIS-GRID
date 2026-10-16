@@ -30,3 +30,8 @@ installs pinned Debian libgomp1 for CPU OpenMP; no GPU/NPU SDK is used.
 Phase 4 adds PyMongo 4.19.0 (Apache-2.0), redis-py 8.1.0 (MIT), and AJV 8.20.0
 (MIT) for actual storage and generated JSON Schema/Node contract verification.
 Exact package hashes are in the Python and pnpm lockfiles.
+
+Phase 5: pypdf 6.20.1 (BSD-3-Clause), jsonschema 4.26.0 (MIT), reportlab 5.0.1
+(BSD, development PDF generator), Pillow 12.3.0 (HPND, locked generator dependency).
+Manual PDFs are project-authored CC0-1.0 synthetic fixtures. Evolus schema subset
+is derived from the user-supplied specification; it is not a provider recording.

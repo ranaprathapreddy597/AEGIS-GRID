@@ -38,13 +38,13 @@ test("actual C++ telemetry reaches React, exports provenance, and remains access
   expect(data.scenario_sha256).toMatch(/^[0-9a-f]{64}$/);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(accessibility.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target) }))).toEqual([]);
-  await page.screenshot({ path: "docs/results/phase4-dashboard.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase5-dashboard.png", fullPage: true });
   await page.getByRole("tab", { name: /Signal log/ }).click();
   await expect(page.getByRole("table")).toBeVisible();
   await page.getByRole("tab", { name: "Live overview" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.screenshot({ path: "docs/results/phase4-mobile.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase5-mobile.png", fullPage: true });
   await page.getByRole("button", { name: "Disconnect" }).click();
   await expect(page.getByLabel("Local viewer token")).toHaveValue("");
   expect(errors).toEqual([]);
@@ -56,6 +56,34 @@ test("wrong viewer token fails visibly without telemetry", async ({ page }) => {
   await page.getByRole("button", { name: "Connect to live stream" }).click();
   await expect(page.getByRole("alert")).toHaveText("Access token rejected.");
   await expect(page.getByTestId("temperature-0")).toHaveCount(0);
+});
+
+test("actual manual citations and contradictory bulletin block actions", async ({ page, request }) => {
+  await page.goto("/");
+  await page.getByLabel("Local viewer token").fill(token);
+  await page.getByRole("button", { name: "Connect to live stream" }).click();
+  await page.getByRole("button", { name: "Retrieve citations" }).click();
+  const evidence = page.getByTestId("manual-evidence");
+  await expect(evidence).toContainText("NO ACTION");
+  await expect(evidence).toContainText("1000 cited limits");
+  await expect(evidence).toContainText("SIM-BULLETIN / R2 / page 1");
+  await expect(evidence).toContainText("LIMIT CELL-01 temperature degC 0 95");
+  const downloadWait = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Download cited source" }).first().click();
+  const file = await downloadWait;
+  expect(file.suggestedFilename()).toMatch(/^SIM-.*\.pdf$/);
+  const path = await file.path();
+  expect(readFileSync(path!).subarray(0, 5).toString()).toBe("%PDF-");
+  const unauthorized = await request.get("/api/v1/manuals/SIM-MANUAL/source");
+  expect(unauthorized.status()).toBe(401);
+  const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  expect(accessibility.violations).toEqual([]);
+  await page.getByRole("heading", { name: "Factory signal room." }).click();
+  await page.screenshot({ path: "docs/results/phase5-manual-evidence.png", fullPage: true });
+  await page.locator(".manual-evidence").screenshot({ path: "docs/results/phase5-manual-panel.png" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.screenshot({ path: "docs/results/phase5-manual-mobile.png", fullPage: true });
 });
 
 test("real edge outage becomes visible and reconnects to a new simulator run", async ({ page }) => {
@@ -96,7 +124,7 @@ test("actual injected fault hides overheat from observed sensors", async ({ page
     expect(data.ground_truth.cells[0].temperature_c).toBeGreaterThan(80);
     expect(Math.max(...data.cells.map((cell: { temperature_c: number }) => cell.temperature_c))).toBeLessThan(80);
     await expect(page.getByTestId("temperature-0")).toContainText(/3[78]\./);
-    await page.screenshot({ path: "docs/results/phase4-observe-only-overheat.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase5-observe-only-overheat.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
@@ -120,7 +148,7 @@ test("local safety stops deceptive fault while cloud is disabled", async ({ page
       return Math.max(...data.cells.map((cell: { load_fraction: number }) => cell.load_fraction));
     }, { timeout: 10000, intervals: [1000] }).toBeLessThan(0.001);
     await page.getByRole("button", { name: "Simulation ground truth" }).click();
-    await page.screenshot({ path: "docs/results/phase4-local-stop.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase5-local-stop.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
@@ -167,5 +195,5 @@ test("native incident snapshot and journal survive an API restart", async ({ pag
   await page.getByRole("button", { name: "Download replay" }).click();
   expect((await downloadWait).suggestedFilename()).toMatch(/^aegis-incident-/);
   await page.getByRole("heading", { name: "Factory signal room." }).click();
-  await page.screenshot({ path: "docs/results/phase4-restart-replay.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase5-restart-replay.png", fullPage: true });
 });

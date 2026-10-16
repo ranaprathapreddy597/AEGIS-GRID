@@ -75,3 +75,16 @@ payload hashes and a deterministic event-page fingerprint. Reads are bounded;
 native incidents contain the anomaly and local-stop events for one run.
 The actual C++/Python HTTP frame is also validated by Node/AJV against generated
 JSON Schema; the live React path is verified separately by Playwright.
+
+## Phase 5 read-only manual evidence
+
+The API serves a fixed project-authored synthetic corpus through authenticated
+evidence/source GET routes. Pinned pypdf creates source-bound atomic page records;
+FAISS indexes lexical vectors. Exact table parsing creates cited constraints; all
+constraints are checked for contradictions independently of retrieval top-k.
+Document text and procedures never become command payloads or authorization.
+The React evidence room shows actual cited rows and downloads original PDFs.
+Separate read-only Evolus and Pinecone adapters follow inspected contracts, use
+no inferred provider routes, and have no operational write methods. Existing
+provider PDFs are caller-owned offline ingestion jobs with unverified revisions,
+not replacements for the local fixture library. See ADR 0008 for trust boundaries.

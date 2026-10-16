@@ -1,0 +1,29 @@
+{
+  "corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+  "documents": [
+    {
+      "document_id": "SIM-MANUAL",
+      "page_count": 999,
+      "revision": {
+        "authority": "synthetic_fixture",
+        "revision": "R1",
+        "supersedes": null
+      },
+      "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+      "title": "AEGIS synthetic simulator manual - not OEM authority"
+    },
+    {
+      "document_id": "SIM-BULLETIN",
+      "page_count": 1,
+      "revision": {
+        "authority": "synthetic_fixture",
+        "revision": "R2",
+        "supersedes": null
+      },
+      "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+      "title": "AEGIS synthetic simulator manual - not OEM authority"
+    }
+  ],
+  "pages": 1000,
+  "source": "synthetic_fixture"
+}

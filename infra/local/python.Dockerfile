@@ -8,7 +8,9 @@ RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=fals
 COPY packages/contracts/python packages/contracts/python
 COPY services/api services/api
 COPY services/edge services/edge
+COPY services/ingestion services/ingestion
 COPY data/scenarios data/scenarios
+COPY data/manuals data/manuals
 RUN uv sync --locked --no-dev --no-editable
 ENV PATH="/app/.venv/bin:$PATH"
 

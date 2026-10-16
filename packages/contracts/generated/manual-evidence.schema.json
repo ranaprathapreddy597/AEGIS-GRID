@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "AmbiguityFlag": {
+      "additionalProperties": false,
+      "properties": {
+        "citations": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "maxItems": 10,
+          "title": "Citations",
+          "type": "array"
+        },
+        "reason": {
+          "enum": [
+            "contradiction",
+            "missing_evidence",
+            "untrusted_revision",
+            "ocr_required"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason",
+        "citations"
+      ],
+      "title": "AmbiguityFlag",
+      "type": "object"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "page_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Page Sha256",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z0-9_.-]{1,80}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "table_row": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Row"
+        }
+      },
+      "required": [
+        "document_id",
+        "revision",
+        "source_sha256",
+        "page_sha256",
+        "page",
+        "quote"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "EvidenceHit": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "score": {
+          "maximum": 1.00001,
+          "minimum": -1.00001,
+          "title": "Score",
+          "type": "number"
+        },
+        "score_method": {
+          "const": "hashed_lexical_cosine",
+          "default": "hashed_lexical_cosine",
+          "title": "Score Method",
+          "type": "string"
+        },
+        "untrusted_text": {
+          "maxLength": 100000,
+          "title": "Untrusted Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "citation",
+        "score",
+        "untrusted_text"
+      ],
+      "title": "EvidenceHit",
+      "type": "object"
+    },
+    "ManualDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_constraints": {
+          "minimum": 0,
+          "title": "Checked Constraints",
+          "type": "integer"
+        },
+        "flags": {
+          "items": {
+            "$ref": "#/$defs/AmbiguityFlag"
+          },
+          "maxItems": 100,
+          "title": "Flags",
+          "type": "array"
+        },
+        "operational_write_allowed": {
+          "const": false,
+          "default": false,
+          "title": "Operational Write Allowed",
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "simulator_evidence_only",
+            "no_action"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "flags",
+        "checked_constraints"
+      ],
+      "title": "ManualDecision",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "corpus_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Corpus Sha256",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/ManualDecision"
+    },
+    "evolus_live": {
+      "const": false,
+      "default": false,
+      "title": "Evolus Live",
+      "type": "boolean"
+    },
+    "hits": {
+      "items": {
+        "$ref": "#/$defs/EvidenceHit"
+      },
+      "maxItems": 10,
+      "title": "Hits",
+      "type": "array"
+    },
+    "pages": {
+      "minimum": 1,
+      "title": "Pages",
+      "type": "integer"
+    },
+    "pinecone_live": {
+      "const": false,
+      "default": false,
+      "title": "Pinecone Live",
+      "type": "boolean"
+    },
+    "source": {
+      "const": "synthetic_fixture",
+      "title": "Source",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source",
+    "corpus_sha256",
+    "pages",
+    "hits",
+    "decision"
+  ],
+  "title": "ManualEvidence",
+  "type": "object"
+}

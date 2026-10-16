@@ -156,3 +156,17 @@ ACL authentication and subsequent delivery. See results/PHASE4.md and raw logs.
 No external provider call, hardware inference or operational enterprise write
 was performed. Raw Evolus specification was supplied; application scope and live
 extraction verification remain pending. MI300X provisioning will follow later.
+
+## Phase 5 local execution — 2026-10-16
+
+Supplied Evolus OpenAPI was inspected and a read-only adapter implemented against
+actual routes, headers and schemas. Contract doubles are explicitly labeled; no
+live provider success is claimed. User supplied application scope; rotated key is
+not configured at the recorded probe. MI300X remains unprovisioned.
+The local corpus has 999 synthetic reference sheets plus one contradictory
+bulletin. Pinned pypdf, exact source/page hashes, typed evidence and bounded FAISS
+are exercised by actual tests. Full gate passed 179 Python / 3 CTest / 7 Chromium
+checks, audits, contract drift, live storage and HTTP/SSE. Actual network-none CPU
+retrieval profile: 96.70 MiB peak RSS, 0.536 ms p95, 20/24 exact-term top-1 relevant
+queries. Misses are recorded. These are development lexical tests, not semantic
+OEM validation. Contradiction refusal checks the complete corpus. See PHASE5.md.

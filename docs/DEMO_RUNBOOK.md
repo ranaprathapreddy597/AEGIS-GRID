@@ -150,3 +150,13 @@ Monitoring data uses one local tenant; this is not production tenancy. Mongo TTL
 expiration is asynchronous, Redis retains at most 10,000 stream entries, and API
 list/replay responses are bounded. A crash between Redis delivery and receipt can
 duplicate a stream item; use event ID for deduplication. See ADR 0007 for limits.
+
+## Phase 5 manual evidence
+
+After connecting with the local viewer token, use **Retrieve citations** in the
+Manual evidence room. It queries the real bounded FAISS corpus and displays both
+conflicting revisions. **Download cited source** downloads the authenticated
+original PDF. No action is executable. This is synthetic evidence, not a provider
+recording or OEM authority. `python tools/probe_evolus.py` checks only documented
+provider reads when a rotated key/application scope are configured in ignored .env.
+Do not place credentials in documents, screenshots, terminal logs or commits.
