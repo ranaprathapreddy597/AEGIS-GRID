@@ -296,6 +296,82 @@ std::string Twin::snapshot() const {
                {"observed", observation_json(observed_)}})
       .dump();
 }
+std::string Twin::rollout(const Json &request) const {
+  size(request, 3);
+  const auto steps = integer(request.at("steps"), 1200);
+  const auto every = integer(request.at("sample_every"), 1200);
+  require(steps >= 1 && (every == 0 || (every >= 10 && steps / every <= 120)),
+          "invalid rollout bound");
+  Twin t = *this;
+  if (!request.at("controls").is_null())
+    t.controls(t.version_, request.at("controls"));
+  double max_temp = 0, max_pressure = t.pressure_, max_power = t.feeder_,
+         min_flow = 1, downtime = 0, wear = 0, ramp_excess = 0;
+  unsigned violations = 0;
+  Json samples = Json::array();
+  auto sample = [&]() {
+    double peak = 0;
+    for (const auto &c : t.cells_)
+      peak = std::max(peak, c.temperature_c);
+    samples.push_back({{"elapsed_s", t.time_ - time_},
+                       {"maximum_temperature_c", peak},
+                       {"production_units", t.production_ - production_},
+                       {"energy_kwh", (t.energy_j_ - energy_j_) / 3600000}});
+  };
+  // The initial state participates in all safety metrics, including a hot start.
+  auto check = [&](bool flow_required) {
+    max_pressure = std::max(max_pressure, t.pressure_);
+    max_power = std::max(max_power, t.feeder_);
+    for (const auto &c : t.cells_) {
+      max_temp = std::max(max_temp, c.temperature_c);
+      min_flow = std::min(min_flow, c.flow_kg_s);
+      if (c.temperature_c >= 70) violations |= 1;
+      if (flow_required && c.load_fraction > 0.01 && c.flow_kg_s < 0.02)
+        violations |= 2;
+    }
+    if (t.pressure_ > 180.000001) violations |= 4;
+    if (t.feeder_ > 14500.000001) violations |= 8;
+  };
+  check(false);
+  if (every) sample();
+  for (std::uint64_t k = 1; k <= steps; ++k) {
+    const auto before = t.cells_;
+    const double before_pump = t.pump_;
+    require(t.version_ < 1000000000 && t.time_ + 1 <= 1000000,
+            "simulation horizon exceeded");
+    for (unsigned sub = 0; sub < 20; ++sub) {
+      t.substep(0.05);
+      check(t.time_ - time_ >= 10.0 - 1e-8);
+    }
+    ++t.version_;
+    t.observe();
+    // A ten-second ramp-down grace applies only to branch flow. Thermal,
+    // pressure, feeder and ramp constraints apply from the initial state.
+    double load_sum = 0;
+    ramp_excess = std::max(ramp_excess, std::abs(t.pump_ - before_pump) - 0.12);
+    wear += std::abs(t.pump_ - before_pump);
+    for (unsigned i = 0; i < 6; ++i) {
+      const auto &c = t.cells_[i];
+      ramp_excess = std::max(ramp_excess, std::abs(c.load_fraction - before[i].load_fraction) - 0.10);
+      ramp_excess = std::max(ramp_excess, std::abs(c.valve - before[i].valve) - 0.20);
+      wear += std::abs(c.load_fraction - before[i].load_fraction) + std::abs(c.valve - before[i].valve);
+      load_sum += c.load_fraction;
+    }
+    if (load_sum < 0.06) downtime += 1;
+    if (every && (k % every == 0 || k == steps)) sample();
+  }
+  if (ramp_excess > 1e-9) violations |= 16;
+  return Json({{"horizon_s", steps}, {"steps", steps},
+               {"maximum_temperature_c", max_temp},
+               {"maximum_pressure_kpa", max_pressure},
+               {"maximum_feeder_power_w", max_power},
+               {"minimum_flow_kg_s", min_flow},
+               {"energy_kwh", (t.energy_j_ - energy_j_) / 3600000},
+               {"production_units", t.production_ - production_},
+               {"downtime_s", downtime}, {"actuator_travel", wear},
+               {"maximum_ramp_excess", ramp_excess},
+               {"violation_mask", violations}, {"samples", samples}}).dump();
+}
 void Twin::restore(const std::string &snapshot) {
   require(snapshot.size() <= 32768, "snapshot too large");
   const auto j = Json::parse(snapshot);

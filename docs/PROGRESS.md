@@ -145,3 +145,16 @@ Phase 7 passed 208 Python / 3 CTest / 9 Chromium / 2 Node checks plus all
 existing audits/contracts and actual HTTP/storage checks. Graph identity denied
 all three protected writes. Two-cycle native investigation survives real API
 restart unchanged; see results/PHASE7.md. Phase 8 is next.
+
+## Phase 8 — local gate PASS, 2026-10-16
+
+- [x] Actual C++ private-copy rollouts and bounded finite minimax search.
+- [x] Explicit uncertainty/counterexamples, objective and binary/state-bound artifacts.
+- [x] Scoped persistent analysis API, LangGraph feedback and real React timelines.
+- [x] Full gate, measured profile, browser/restart proof and local phase commit.
+
+Phase 8 passed 212 Python / 3 CTest / 10 Chromium / 2 Node checks and all existing
+checks. Actual CPU profile: 409 rollouts / 4,908,000 substeps, 1.4994 s, 86.05 MiB
+peak process RSS. Severe uncertainty requires a stop: 92.8155 to 41.1321 degC
+peak with 591 s downtime. The independent latched shield still rejects any
+different recovery vector; no operational authority is granted. See PHASE8.md.

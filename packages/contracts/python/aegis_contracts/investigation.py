@@ -5,6 +5,7 @@ from typing import Annotated, Literal
 from pydantic import Field
 
 from aegis_contracts.models import Contract, FiniteFloat, SimulatorControls
+from aegis_contracts.optimization import RecoveryAssessment
 
 
 class DiagnosticHypothesis(Contract):
@@ -39,6 +40,7 @@ class Investigation(Contract):
     backend: Literal["offline_template", "remote_vllm"] = "offline_template"
     hypotheses: list[DiagnosticHypothesis] = []
     candidates: Annotated[list[CandidatePlan], Field(max_length=3)] = []
+    recovery_assessment: RecoveryAssessment | None = None
     traces: Annotated[list[GraphTrace], Field(max_length=80)] = []
     iteration: Annotated[int, Field(ge=0, le=3)] = 0
     max_iterations: Annotated[int, Field(ge=1, le=3)] = 3

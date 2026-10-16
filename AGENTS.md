@@ -11,7 +11,8 @@ authoritative project instructions. Preserve them unchanged.
   Phase 4 passed at `12c2d86` on 2026-10-16. Phase 5 local gate passed at `5513a27`; Evolus/Pinecone live gates remain blocked.
   Phase 6 local gate accepted on 2026-10-16 at `7dfe7e4`.
   Phase 7 local gate passed; see docs/results/PHASE7.md.
-  Current phase: **8**. Phases 7–12 are authorized sequentially with the local backend.
+  Phase 8 local gate passed; see docs/results/PHASE8.md.
+  Current phase: **9**. Phases 7–12 are authorized sequentially with the local backend.
   MI300X/Evolus/Pinecone live acceptance gates remain BLOCKED until verified.
   Complete/test/commit/report each phase before proceeding. Record unavailable
   external gates explicitly; never waive them to mark a release complete.

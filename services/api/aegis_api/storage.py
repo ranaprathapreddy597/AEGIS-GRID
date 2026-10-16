@@ -26,6 +26,7 @@ STREAM = "aegis:telemetry:events"
 MONITORING = ("events", "incidents", "snapshots", "fanout_receipts")
 ALL_COLLECTIONS = (*MONITORING, "plans", "actions", "audit", "migrations")
 GRAPH_COLLECTIONS = ("graph_checkpoints", "graph_writes")
+ANALYSIS_COLLECTIONS = ("analysis_artifacts",)
 
 
 class StorageUnavailable(RuntimeError):
@@ -303,7 +304,7 @@ async def migrate() -> None:
     try:
         database = admin[DB_NAME]
         existing = await database.list_collection_names()
-        for name in (*ALL_COLLECTIONS, *GRAPH_COLLECTIONS):
+        for name in (*ALL_COLLECTIONS, *GRAPH_COLLECTIONS, *ANALYSIS_COLLECTIONS):
             if name not in existing:
                 await database.create_collection(name)
         await database.graph_checkpoints.create_index(
@@ -321,6 +322,7 @@ async def migrate() -> None:
         )
         for name in GRAPH_COLLECTIONS:
             await database[name].create_index("created_at", expireAfterSeconds=30 * 86400)
+        await database.analysis_artifacts.create_index("expires_at", expireAfterSeconds=0)
         for name in (*MONITORING, "plans", "actions", "audit"):
             await database[name].create_index([("tenant_id", 1), ("event_id", 1)], unique=True)
             await database[name].create_index("expires_at", expireAfterSeconds=0)
@@ -374,6 +376,12 @@ async def migrate() -> None:
                         "actions": ["find", "insert", "update", "listIndexes"],
                     }
                     for name in GRAPH_COLLECTIONS
+                ]
+                + [
+                    {
+                        "resource": {"db": DB_NAME, "collection": "analysis_artifacts"},
+                        "actions": ["find", "insert"],
+                    }
                 ],
             ),
         ]:

@@ -59,9 +59,10 @@ The Phase 3 contracts are not final command/approval schemas.
 
 Phase 3 safety/FAISS/cloud-outage semantics are documented in ADR 0006.
 Phase 4 adds Redis streams, Mongo events, replay, retention and tenant boundaries.
-Phases 5–10 add evidence, MI300X inference, LangGraph, robust planning, WebAuthn and
-independent capability-checked execution. Phase 11 extends this dashboard; Phase 12
-audits the entire product and measured demo. These are planned, not implemented.
+Phases 5–8 now implement local evidence, an inference interface, persistent
+LangGraph and finite robust planning. MI300X, Evolus and Pinecone live acceptance
+remain BLOCKED. Phases 9–10 add WebAuthn and independent capability-checked
+execution; Phase 11 extends the dashboard and Phase 12 audits the measured demo.
 
 
 ## Phase 4 persistence
@@ -88,3 +89,18 @@ Separate read-only Evolus and Pinecone adapters follow inspected contracts, use
 no inferred provider routes, and have no operational write methods. Existing
 provider PDFs are caller-owned offline ingestion jobs with unverified revisions,
 not replacements for the local fixture library. See ADR 0008 for trust boundaries.
+
+## Phase 7/8 forensic graph and numerical adversary
+
+Actual delivered sensor history and residuals enter the typed cyclic LangGraph.
+MongoDBSaver uses separate checkpoint credentials and a primitive-only codec.
+The offline model abstains; numerical reasoners and the C++ referee perform the
+local work. A source-state/binary-bound minimax analysis enumerates eleven Blue
+controls against 37 complete native priors. All hard constraints precede assumed
+cost, and Red supplies actual counterexamples. Immutable analysis artifacts have
+an independent append-only collection and authenticated read/replay endpoints.
+React displays actual tournament, timelines, costs and failure counts. The native
+rollout operates on a copy and cannot change the live edge. A graph cycle rejects
+even a physically feasible optimum if the independent latched-stop policy differs.
+The contradictory bulletin keeps the approval interrupt closed. ADRs 0010/0011
+document bounds and limitations; no certificate is an execution capability.

@@ -34,6 +34,7 @@ public:
   std::string json() const;
   std::string snapshot() const;
   void restore(const std::string &);
+  std::string rollout(const Json &request) const;
   const std::array<Cell, 6> &cells() const { return cells_; }
   std::uint64_t version() const { return version_; }
   bool packet_available() const { return packet_available_; }

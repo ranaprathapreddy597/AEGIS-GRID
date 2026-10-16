@@ -12,3 +12,9 @@
 .inference-panel{margin:24px 0}.inference-panel h2{font-size:18px;margin-top:0}.inference-panel .actions{gap:18px;flex-wrap:wrap}.inference-panel dl{display:grid;grid-template-columns:1fr auto;gap:12px;font-size:13px}.inference-panel dd{margin:0;color:#77dfc4}.inference-panel dt{color:#bbced6}
 
 .investigation-panel{margin:24px 0}.investigation-panel h2{font-size:18px;margin-top:0}.investigation-panel li{font-size:13px;line-height:1.7;margin:12px 0}.investigation-panel li p{color:#98a6af;font-size:12px}.hypothesis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.hypothesis-grid article{padding:16px;background:#14222a;border:1px solid #27323b}.hypothesis-grid p,.hypothesis-grid small{font-size:12px}.investigation-panel summary{cursor:pointer;color:#77dfc4;font-size:13px}
+.recovery-panel svg { width:100%; max-height:240px; background:#101d29; border-radius:12px; margin-top:18px; }
+.recovery-table { overflow-x:auto; }
+.recovery-table table { width:100%; margin:18px 0; font-size:12px; }
+.recovery-table caption { text-align:left; margin-bottom:10px; font-weight:700; }
+.recovery-table th, .recovery-table td { text-align:left; padding:10px; border-bottom:1px solid #2a3b4a; }
+.fingerprint { overflow-wrap:anywhere; font-family:monospace; font-size:11px; }

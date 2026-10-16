@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 7 — persistent forensic graph; local gate passed.**
+**Current scope: Phase 8 — native adversarial recovery search; local gate passed.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -86,7 +86,7 @@ See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 8–12 and the external live gates remain.
+The full master prompt is not finished. Phases 9–12 and the external live gates remain.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
 [phase reports](docs/results/PHASE3.md). Toggle **Simulation ground truth**
@@ -126,3 +126,8 @@ sensor-only heuristic diagnosis, real C++ forecasts and a durable no-action
 interrupt. The offline model backend is an abstention template, not a generative
 LLM. Run the investigator from the local UI after a simulator incident. See
 `docs/results/PHASE7.md`; operational execution remains closed pending Phase 9.
+
+The Phase 8 analysis endpoint runs eleven controls across 37 native uncertainty
+cases, with a content-hashed artifact and actual baseline/intervention timelines.
+It cannot execute a proposal. Severe uncertain blockage may require losing
+production to preserve hard constraints. See docs/ADR/0011-finite-robust-recovery-search.md.

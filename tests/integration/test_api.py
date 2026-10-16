@@ -154,3 +154,13 @@ def test_monitoring_ingest_has_separate_auth_and_never_fakes_disabled_storage(se
             ).status_code
             == 400
         )
+
+
+def test_optimization_requires_auth_and_real_persistence(settings):
+    headers = {"Authorization": f"Bearer {settings.viewer_token.get_secret_value()}"}
+    with TestClient(create_app(settings)) as client:
+        route = "/api/v1/incidents/" + "a" * 64 + "/optimize"
+        assert client.post(route).status_code == 401
+        assert client.post(route, headers=headers).status_code == 503
+        assert client.get("/api/v1/optimizations/" + "a" * 64, headers=headers).status_code == 503
+        assert client.get("/api/v1/optimizations/not-a-hash", headers=headers).status_code == 422

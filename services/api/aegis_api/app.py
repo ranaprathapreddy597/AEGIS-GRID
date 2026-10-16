@@ -9,6 +9,7 @@ from typing import Annotated, Any, Literal
 from uuid import UUID
 
 import httpx
+from aegis_agents.optimization_service import OptimizationService
 from aegis_agents.service import InvestigationService
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
@@ -28,6 +29,7 @@ from aegis_contracts.models import (
     PlantTelemetry,
     StorageStatus,
 )
+from aegis_contracts.optimization import RecoveryAssessment
 from aegis_contracts.security import RequireToken
 from aegis_inference.budget import calculate, metadata
 from aegis_ingestion.library import fixture_library
@@ -67,6 +69,18 @@ def create_app(
     store = TelemetryStore(config)
     investigations: InvestigationService | None = None
     investigation_busy = asyncio.Lock()
+    optimizations: OptimizationService | None = None
+    optimization_busy = asyncio.Lock()
+
+    def optimization_service() -> OptimizationService:
+        nonlocal optimizations
+        if config.graph_password is None or not config.storage_enabled:
+            raise StorageUnavailable("Persistent optimization service is not configured")
+        if optimizations is None:
+            optimizations = OptimizationService(
+                config.graph_password.get_secret_value(), config.twin_library
+            )
+        return optimizations
 
     def graph_service() -> InvestigationService:
         nonlocal investigations
@@ -115,6 +129,8 @@ def create_app(
                 await store.close()
                 if investigations is not None:
                     await asyncio.to_thread(investigations.close)
+                if optimizations is not None:
+                    await asyncio.to_thread(optimizations.close)
 
     app = FastAPI(
         title="AEGIS GRID API",
@@ -131,6 +147,45 @@ def create_app(
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
+
+    @app.post(
+        "/api/v1/incidents/{incident_id}/optimize",
+        response_model=RecoveryAssessment,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}, 409: {"model": ErrorResponse}},
+    )
+    async def optimize_incident(
+        incident_id: Annotated[str, ApiPath(pattern=r"^[0-9a-f]{64}$")],
+    ) -> RecoveryAssessment:
+        if optimization_busy.locked():
+            raise HTTPException(429, "Local optimization worker busy")
+        async with optimization_busy:
+            try:
+                replay = await store.replay(incident_id)
+                if replay is None:
+                    raise HTTPException(404, "Incident not found")
+                return await asyncio.to_thread(lambda: optimization_service().run(replay.incident))
+            except ValueError:
+                raise HTTPException(409, "Optimization evidence or computation refused") from None
+            except (PyMongoError, StorageUnavailable, OSError):
+                raise HTTPException(503, "Persistent optimization unavailable") from None
+
+    @app.get(
+        "/api/v1/optimizations/{identifier}",
+        response_model=RecoveryAssessment,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}},
+    )
+    async def read_optimization(
+        identifier: Annotated[str, ApiPath(pattern=r"^[0-9a-f]{64}$")],
+    ) -> RecoveryAssessment:
+        try:
+            report = await asyncio.to_thread(lambda: optimization_service().read(identifier))
+        except (PyMongoError, StorageUnavailable, OSError, ValueError):
+            raise HTTPException(503, "Persistent optimization unavailable") from None
+        if report is None:
+            raise HTTPException(404, "Optimization not found")
+        return report
 
     @app.post(
         "/api/v1/incidents/{incident_id}/investigate",

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Self
 
 from aegis_contracts.models import Scenario, SimulatorControls, TwinMeasurement
+from aegis_contracts.optimization import SimRollout
 
 
 def scenario_from_file(directory: Path, scenario_id: str, seed: int | None = None) -> Scenario:
@@ -47,6 +48,7 @@ class NativeTwin:
             "restore": ([ctypes.c_void_p, ctypes.c_char_p], ctypes.c_int),
             "json": ([ctypes.c_void_p], ctypes.c_char_p),
             "snapshot": ([ctypes.c_void_p], ctypes.c_char_p),
+            "rollout": ([ctypes.c_void_p, ctypes.c_char_p], ctypes.c_char_p),
             "error": ([ctypes.c_void_p], ctypes.c_char_p),
         }
         for name, (arguments, result) in signatures.items():
@@ -72,6 +74,26 @@ class NativeTwin:
 
     def reset(self) -> None:
         self._check(self.lib.aegis_reset(self.handle))
+
+    def rollout(
+        self, controls: SimulatorControls | None, steps: int = 600, sample_every: int = 10
+    ) -> SimRollout:
+        if type(steps) is not int or not 1 <= steps <= 1200:
+            raise ValueError("Invalid rollout steps")
+        if type(sample_every) is not int or not (sample_every == 0 or 10 <= sample_every <= 1200):
+            raise ValueError("Invalid rollout sample stride")
+        request = json.dumps(
+            {
+                "controls": controls.model_dump() if controls else None,
+                "steps": steps,
+                "sample_every": sample_every,
+            },
+            allow_nan=False,
+        ).encode()
+        result = self.lib.aegis_rollout(self.handle, request)
+        if not isinstance(result, bytes):
+            raise ValueError("Native rollout rejected")
+        return SimRollout.model_validate_json(result)
 
     def current_version(self) -> int:
         return TwinMeasurement.model_validate_json(self.raw()).state_version

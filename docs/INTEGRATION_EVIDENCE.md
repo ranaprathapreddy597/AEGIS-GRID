@@ -190,7 +190,7 @@ all existing audits/contracts, actual local storage and HTTP/SSE checks. The fir
 QA-image missing-file failure was repaired and preserved in raw evidence. Manifest
 rendering proves configuration only; device/runtime execution remains blocked.
 
-## Phase 7 local execution — 2026-10-16
+## Phase 7 local execution â€” 2026-10-16
 
 Pinned LangGraph executes real cyclic numerical reasoning, C++ counterfactuals,
 Mongo checkpoints and durable interrupt. The observed-input boundary includes
@@ -199,4 +199,15 @@ only actual delivered sensor windows, never undelivered snapshot history.
 restart/read/idempotent retry and three actual Mongo denials for graph credentials.
 Offline inference is an abstention template, not an actual generative LLM. No
 model tokens/cost or GPU metrics are invented. MI300X/Evolus/Pinecone live gates
-remain BLOCKED; user explicitly authorized continued local Phases 8–12.
+remain BLOCKED; user explicitly authorized continued local Phases 8â€“12.
+
+## Phase 8 CPU evidence â€” 2026-10-16
+
+Actual native private-copy minimax runs eleven controls across 37 seeded full-state
+priors; 409 rollouts including paired timelines, 4,908,000 physics substeps.
+A network-none 2-CPU/512-MiB container measured 1.4994 s and 86.05 MiB process RSS
+for one development incident. Baseline peak 92.8155 versus checked stop 41.1321
+Celsius, at the explicit cost of 591 s downtime and nearly all production. These
+are synthetic model outcomes, not real economics or GPU/plant measurements.
+212 Python / 3 CTest / 10 browser / 2 Node tests and actual restart replay pass.
+MI300X, Evolus and Pinecone live acceptance remain BLOCKED. Phase 9 is next.

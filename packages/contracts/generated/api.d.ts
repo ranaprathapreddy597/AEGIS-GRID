@@ -89,6 +89,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/incidents/{incident_id}/optimize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Optimize Incident */
+        post: operations["optimize_incident_api_v1_incidents__incident_id__optimize_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/incidents/{incident_id}/replay": {
         parameters: {
             query?: never;
@@ -183,6 +200,23 @@ export interface paths {
         };
         /** Manual Source */
         get: operations["manual_source_api_v1_manuals__document_id__source_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/optimizations/{identifier}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Optimization */
+        get: operations["read_optimization_api_v1_optimizations__identifier__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -336,10 +370,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 7
+             * @default 8
              * @constant
              */
-            phase: 7;
+            phase: 8;
         };
         /** Capability */
         Capability: {
@@ -387,6 +421,15 @@ export interface components {
             source_sha256: string;
             /** Table Row */
             table_row?: number | null;
+        };
+        /** Counterexample */
+        Counterexample: {
+            /** Case Id */
+            case_id: string;
+            /** Maximum Temperature C */
+            maximum_temperature_c: number;
+            /** Violation Mask */
+            violation_mask: number;
         };
         /** DiagnosticHypothesis */
         DiagnosticHypothesis: {
@@ -507,6 +550,17 @@ export interface components {
             score_method: "hashed_lexical_cosine";
             /** Untrusted Text */
             untrusted_text: string;
+        };
+        /** FutureSample */
+        FutureSample: {
+            /** Elapsed S */
+            elapsed_s: number;
+            /** Energy Kwh */
+            energy_kwh: number;
+            /** Maximum Temperature C */
+            maximum_temperature_c: number;
+            /** Production Units */
+            production_units: number;
         };
         /** GraphTrace */
         GraphTrace: {
@@ -718,6 +772,7 @@ export interface components {
              * @constant
              */
             phase: 7;
+            recovery_assessment?: components["schemas"]["RecoveryAssessment"] | null;
             /**
              * Refusal
              * @default
@@ -877,6 +932,32 @@ export interface components {
             /** Total Flow Kg S */
             total_flow_kg_s: number;
         };
+        /** PlanEvaluation */
+        PlanEvaluation: {
+            /** Candidate Id */
+            candidate_id: string;
+            /** Checked Cases */
+            checked_cases: number;
+            controls: components["schemas"]["SimulatorControls"];
+            /** Counterexamples */
+            counterexamples: components["schemas"]["Counterexample"][];
+            /** Failed Cases */
+            failed_cases: number;
+            /** Feasible */
+            feasible: boolean;
+            /** Maximum Actuator Travel */
+            maximum_actuator_travel: number;
+            /** Maximum Downtime S */
+            maximum_downtime_s: number;
+            /** Mean Energy Kwh */
+            mean_energy_kwh: number;
+            /** Minimum Production Units */
+            minimum_production_units: number;
+            /** Worst Objective */
+            worst_objective: number;
+            /** Worst Temperature C */
+            worst_temperature_c: number;
+        };
         /** PlantTelemetry */
         PlantTelemetry: {
             /** Cells */
@@ -924,6 +1005,82 @@ export interface components {
             source: "local_cpp_simulator";
             /** State Version */
             state_version: number;
+        };
+        /** RecoveryAssessment */
+        RecoveryAssessment: {
+            /**
+             * Algorithm
+             * @default enumerative-minimax-v1
+             * @constant
+             */
+            algorithm: "enumerative-minimax-v1";
+            /** Artifact Sha256 */
+            artifact_sha256: string;
+            /** Assumptions */
+            assumptions: string[];
+            baseline: components["schemas"]["SimRollout"] | null;
+            /** Candidates */
+            candidates: components["schemas"]["PlanEvaluation"][];
+            /** Cases */
+            cases: components["schemas"]["UncertaintyCase"][];
+            /**
+             * Executable
+             * @default false
+             * @constant
+             */
+            executable: false;
+            /**
+             * Horizon S
+             * @default 600
+             * @constant
+             */
+            horizon_s: 600;
+            /** Incident Id */
+            incident_id: string;
+            intervention: components["schemas"]["SimRollout"] | null;
+            /**
+             * Live Gates
+             * @default MI300X/Evolus/Pinecone BLOCKED
+             * @constant
+             */
+            live_gates: "MI300X/Evolus/Pinecone BLOCKED";
+            /**
+             * Manual Action Gate
+             * @default BLOCKED
+             * @constant
+             */
+            manual_action_gate: "BLOCKED";
+            /**
+             * Model Version
+             * @default coupled-factory-v3
+             * @constant
+             */
+            model_version: "coupled-factory-v3";
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /** Native Substeps */
+            native_substeps: number;
+            /** Objective Weights */
+            objective_weights: {
+                [key: string]: number;
+            };
+            /** Policy */
+            policy: {
+                [key: string]: number;
+            };
+            /** Reason */
+            reason: string;
+            /** Selected Candidate Id */
+            selected_candidate_id: string | null;
+            /** Source Snapshot Sha256 */
+            source_snapshot_sha256: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "checked_non_executable" | "abstained";
+            /** Total Rollouts */
+            total_rollouts: number;
         };
         /**
          * SensorFrame
@@ -987,6 +1144,35 @@ export interface components {
              */
             state: "warming" | "nominal" | "anomaly" | "latched_stop";
         };
+        /** SimRollout */
+        SimRollout: {
+            /** Actuator Travel */
+            actuator_travel: number;
+            /** Downtime S */
+            downtime_s: number;
+            /** Energy Kwh */
+            energy_kwh: number;
+            /** Horizon S */
+            horizon_s: number;
+            /** Maximum Feeder Power W */
+            maximum_feeder_power_w: number;
+            /** Maximum Pressure Kpa */
+            maximum_pressure_kpa: number;
+            /** Maximum Ramp Excess */
+            maximum_ramp_excess: number;
+            /** Maximum Temperature C */
+            maximum_temperature_c: number;
+            /** Minimum Flow Kg S */
+            minimum_flow_kg_s: number;
+            /** Production Units */
+            production_units: number;
+            /** Samples */
+            samples: components["schemas"]["FutureSample"][];
+            /** Steps */
+            steps: number;
+            /** Violation Mask */
+            violation_mask: number;
+        };
         /** SimulatorControls */
         SimulatorControls: {
             /** Loads */
@@ -1034,6 +1220,23 @@ export interface components {
             temperature_c: number;
             /** Valve Fraction */
             valve_fraction: number;
+        };
+        /** UncertaintyCase */
+        UncertaintyCase: {
+            /** Case Id */
+            case_id: string;
+            /** Fault Mask */
+            fault_mask: number;
+            /** Seed */
+            seed: number;
+            /** Severity */
+            severity: number;
+            /** Snapshot Sha256 */
+            snapshot_sha256: string;
+            /** Target */
+            target: number;
+            /** Temperature Offset C */
+            temperature_offset_c: number;
         };
     };
     responses: never;
@@ -1302,6 +1505,84 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Investigation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    optimize_incident_api_v1_incidents__incident_id__optimize_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                incident_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecoveryAssessment"];
                 };
             };
             /** @description Unauthorized */
@@ -1698,6 +1979,75 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_optimization_api_v1_optimizations__identifier__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecoveryAssessment"];
+                };
             };
             /** @description Unauthorized */
             401: {

@@ -10,6 +10,7 @@ from aegis_contracts.inference import InferenceResult, MemoryBudget
 from aegis_contracts.investigation import Investigation
 from aegis_contracts.manuals import ManualDocument, ManualEvidence, ManualRecords, OEMConstraint
 from aegis_contracts.models import PlantTelemetry, Scenario, SimulatorControls, TwinMeasurement
+from aegis_contracts.optimization import RecoveryAssessment, SimRollout
 from pydantic import SecretStr
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +39,8 @@ def main() -> None:
         "memory-budget.schema.json": MemoryBudget.model_json_schema(),
         "inference-result.schema.json": InferenceResult.model_json_schema(),
         "investigation.schema.json": Investigation.model_json_schema(),
+        "recovery-assessment.schema.json": RecoveryAssessment.model_json_schema(),
+        "sim-rollout.schema.json": SimRollout.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

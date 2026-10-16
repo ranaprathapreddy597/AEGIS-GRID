@@ -51,6 +51,32 @@
       "title": "CandidatePlan",
       "type": "object"
     },
+    "Counterexample": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "maximum_temperature_c": {
+          "title": "Maximum Temperature C",
+          "type": "number"
+        },
+        "violation_mask": {
+          "maximum": 31,
+          "minimum": 1,
+          "title": "Violation Mask",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "case_id",
+        "violation_mask",
+        "maximum_temperature_c"
+      ],
+      "title": "Counterexample",
+      "type": "object"
+    },
     "DiagnosticHypothesis": {
       "additionalProperties": false,
       "properties": {
@@ -90,6 +116,37 @@
       "title": "DiagnosticHypothesis",
       "type": "object"
     },
+    "FutureSample": {
+      "additionalProperties": false,
+      "properties": {
+        "elapsed_s": {
+          "maximum": 1200,
+          "minimum": 0,
+          "title": "Elapsed S",
+          "type": "number"
+        },
+        "energy_kwh": {
+          "title": "Energy Kwh",
+          "type": "number"
+        },
+        "maximum_temperature_c": {
+          "title": "Maximum Temperature C",
+          "type": "number"
+        },
+        "production_units": {
+          "title": "Production Units",
+          "type": "number"
+        }
+      },
+      "required": [
+        "elapsed_s",
+        "maximum_temperature_c",
+        "production_units",
+        "energy_kwh"
+      ],
+      "title": "FutureSample",
+      "type": "object"
+    },
     "GraphTrace": {
       "additionalProperties": false,
       "properties": {
@@ -118,6 +175,339 @@
         "detail"
       ],
       "title": "GraphTrace",
+      "type": "object"
+    },
+    "PlanEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "checked_cases": {
+          "title": "Checked Cases",
+          "type": "integer"
+        },
+        "controls": {
+          "$ref": "#/$defs/SimulatorControls"
+        },
+        "counterexamples": {
+          "items": {
+            "$ref": "#/$defs/Counterexample"
+          },
+          "maxItems": 3,
+          "title": "Counterexamples",
+          "type": "array"
+        },
+        "failed_cases": {
+          "title": "Failed Cases",
+          "type": "integer"
+        },
+        "feasible": {
+          "title": "Feasible",
+          "type": "boolean"
+        },
+        "maximum_actuator_travel": {
+          "title": "Maximum Actuator Travel",
+          "type": "number"
+        },
+        "maximum_downtime_s": {
+          "title": "Maximum Downtime S",
+          "type": "number"
+        },
+        "mean_energy_kwh": {
+          "title": "Mean Energy Kwh",
+          "type": "number"
+        },
+        "minimum_production_units": {
+          "title": "Minimum Production Units",
+          "type": "number"
+        },
+        "worst_objective": {
+          "title": "Worst Objective",
+          "type": "number"
+        },
+        "worst_temperature_c": {
+          "title": "Worst Temperature C",
+          "type": "number"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "controls",
+        "feasible",
+        "checked_cases",
+        "failed_cases",
+        "worst_temperature_c",
+        "worst_objective",
+        "mean_energy_kwh",
+        "minimum_production_units",
+        "maximum_downtime_s",
+        "maximum_actuator_travel",
+        "counterexamples"
+      ],
+      "title": "PlanEvaluation",
+      "type": "object"
+    },
+    "RecoveryAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "enumerative-minimax-v1",
+          "default": "enumerative-minimax-v1",
+          "title": "Algorithm",
+          "type": "string"
+        },
+        "artifact_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Artifact Sha256",
+          "type": "string"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "baseline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SimRollout"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidates": {
+          "items": {
+            "$ref": "#/$defs/PlanEvaluation"
+          },
+          "maxItems": 11,
+          "title": "Candidates",
+          "type": "array"
+        },
+        "cases": {
+          "items": {
+            "$ref": "#/$defs/UncertaintyCase"
+          },
+          "maxItems": 37,
+          "title": "Cases",
+          "type": "array"
+        },
+        "executable": {
+          "const": false,
+          "default": false,
+          "title": "Executable",
+          "type": "boolean"
+        },
+        "horizon_s": {
+          "const": 600,
+          "default": 600,
+          "title": "Horizon S",
+          "type": "integer"
+        },
+        "incident_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "intervention": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SimRollout"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "live_gates": {
+          "const": "MI300X/Evolus/Pinecone BLOCKED",
+          "default": "MI300X/Evolus/Pinecone BLOCKED",
+          "title": "Live Gates",
+          "type": "string"
+        },
+        "manual_action_gate": {
+          "const": "BLOCKED",
+          "default": "BLOCKED",
+          "title": "Manual Action Gate",
+          "type": "string"
+        },
+        "model_version": {
+          "const": "coupled-factory-v3",
+          "default": "coupled-factory-v3",
+          "title": "Model Version",
+          "type": "string"
+        },
+        "native_binary_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Native Binary Sha256",
+          "type": "string"
+        },
+        "native_substeps": {
+          "minimum": 0,
+          "title": "Native Substeps",
+          "type": "integer"
+        },
+        "objective_weights": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Objective Weights",
+          "type": "object"
+        },
+        "policy": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Policy",
+          "type": "object"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "selected_candidate_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Selected Candidate Id"
+        },
+        "source_snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Snapshot Sha256",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "checked_non_executable",
+            "abstained"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "total_rollouts": {
+          "maximum": 500,
+          "minimum": 0,
+          "title": "Total Rollouts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "artifact_sha256",
+        "incident_id",
+        "source_snapshot_sha256",
+        "native_binary_sha256",
+        "status",
+        "reason",
+        "policy",
+        "objective_weights",
+        "assumptions",
+        "cases",
+        "candidates",
+        "selected_candidate_id",
+        "total_rollouts",
+        "native_substeps",
+        "baseline",
+        "intervention"
+      ],
+      "title": "RecoveryAssessment",
+      "type": "object"
+    },
+    "SimRollout": {
+      "additionalProperties": false,
+      "properties": {
+        "actuator_travel": {
+          "minimum": 0,
+          "title": "Actuator Travel",
+          "type": "number"
+        },
+        "downtime_s": {
+          "minimum": 0,
+          "title": "Downtime S",
+          "type": "number"
+        },
+        "energy_kwh": {
+          "minimum": 0,
+          "title": "Energy Kwh",
+          "type": "number"
+        },
+        "horizon_s": {
+          "maximum": 1200,
+          "minimum": 1,
+          "title": "Horizon S",
+          "type": "integer"
+        },
+        "maximum_feeder_power_w": {
+          "title": "Maximum Feeder Power W",
+          "type": "number"
+        },
+        "maximum_pressure_kpa": {
+          "title": "Maximum Pressure Kpa",
+          "type": "number"
+        },
+        "maximum_ramp_excess": {
+          "minimum": 0,
+          "title": "Maximum Ramp Excess",
+          "type": "number"
+        },
+        "maximum_temperature_c": {
+          "title": "Maximum Temperature C",
+          "type": "number"
+        },
+        "minimum_flow_kg_s": {
+          "title": "Minimum Flow Kg S",
+          "type": "number"
+        },
+        "production_units": {
+          "minimum": 0,
+          "title": "Production Units",
+          "type": "number"
+        },
+        "samples": {
+          "items": {
+            "$ref": "#/$defs/FutureSample"
+          },
+          "maxItems": 122,
+          "title": "Samples",
+          "type": "array"
+        },
+        "steps": {
+          "maximum": 1200,
+          "minimum": 1,
+          "title": "Steps",
+          "type": "integer"
+        },
+        "violation_mask": {
+          "maximum": 31,
+          "minimum": 0,
+          "title": "Violation Mask",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "horizon_s",
+        "steps",
+        "maximum_temperature_c",
+        "maximum_pressure_kpa",
+        "maximum_feeder_power_w",
+        "minimum_flow_kg_s",
+        "energy_kwh",
+        "production_units",
+        "downtime_s",
+        "actuator_travel",
+        "maximum_ramp_excess",
+        "violation_mask",
+        "samples"
+      ],
+      "title": "SimRollout",
       "type": "object"
     },
     "SimulatorControls": {
@@ -158,6 +548,59 @@
         "valves"
       ],
       "title": "SimulatorControls",
+      "type": "object"
+    },
+    "UncertaintyCase": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "fault_mask": {
+          "maximum": 255,
+          "minimum": 0,
+          "title": "Fault Mask",
+          "type": "integer"
+        },
+        "seed": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "title": "Seed",
+          "type": "integer"
+        },
+        "severity": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Severity",
+          "type": "number"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "target": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Target",
+          "type": "integer"
+        },
+        "temperature_offset_c": {
+          "title": "Temperature Offset C",
+          "type": "number"
+        }
+      },
+      "required": [
+        "case_id",
+        "seed",
+        "snapshot_sha256",
+        "fault_mask",
+        "target",
+        "severity",
+        "temperature_offset_c"
+      ],
+      "title": "UncertaintyCase",
       "type": "object"
     }
   },
@@ -329,6 +772,17 @@
       "default": 7,
       "title": "Phase",
       "type": "integer"
+    },
+    "recovery_assessment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RecoveryAssessment"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "refusal": {
       "default": "",

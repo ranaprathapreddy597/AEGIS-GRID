@@ -119,7 +119,7 @@ def main() -> None:
                 "--network",
                 "aegis-grid_storage",
                 *flags,
-                "aegis-grid-python:phase7",
+                "aegis-grid-python:phase8",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -162,7 +162,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase7",
+                "aegis-grid-qa:phase8",
                 ".",
             ],
             [
@@ -171,13 +171,13 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase7",
+                "aegis-grid-qa:phase8",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase7"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase8"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
@@ -189,7 +189,7 @@ def main() -> None:
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 7 checks passed.")
+        print("Phase 8 checks passed.")
 
 
 if __name__ == "__main__":

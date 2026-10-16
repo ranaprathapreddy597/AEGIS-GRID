@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "FutureSample": {
+      "additionalProperties": false,
+      "properties": {
+        "elapsed_s": {
+          "maximum": 1200,
+          "minimum": 0,
+          "title": "Elapsed S",
+          "type": "number"
+        },
+        "energy_kwh": {
+          "title": "Energy Kwh",
+          "type": "number"
+        },
+        "maximum_temperature_c": {
+          "title": "Maximum Temperature C",
+          "type": "number"
+        },
+        "production_units": {
+          "title": "Production Units",
+          "type": "number"
+        }
+      },
+      "required": [
+        "elapsed_s",
+        "maximum_temperature_c",
+        "production_units",
+        "energy_kwh"
+      ],
+      "title": "FutureSample",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actuator_travel": {
+      "minimum": 0,
+      "title": "Actuator Travel",
+      "type": "number"
+    },
+    "downtime_s": {
+      "minimum": 0,
+      "title": "Downtime S",
+      "type": "number"
+    },
+    "energy_kwh": {
+      "minimum": 0,
+      "title": "Energy Kwh",
+      "type": "number"
+    },
+    "horizon_s": {
+      "maximum": 1200,
+      "minimum": 1,
+      "title": "Horizon S",
+      "type": "integer"
+    },
+    "maximum_feeder_power_w": {
+      "title": "Maximum Feeder Power W",
+      "type": "number"
+    },
+    "maximum_pressure_kpa": {
+      "title": "Maximum Pressure Kpa",
+      "type": "number"
+    },
+    "maximum_ramp_excess": {
+      "minimum": 0,
+      "title": "Maximum Ramp Excess",
+      "type": "number"
+    },
+    "maximum_temperature_c": {
+      "title": "Maximum Temperature C",
+      "type": "number"
+    },
+    "minimum_flow_kg_s": {
+      "title": "Minimum Flow Kg S",
+      "type": "number"
+    },
+    "production_units": {
+      "minimum": 0,
+      "title": "Production Units",
+      "type": "number"
+    },
+    "samples": {
+      "items": {
+        "$ref": "#/$defs/FutureSample"
+      },
+      "maxItems": 122,
+      "title": "Samples",
+      "type": "array"
+    },
+    "steps": {
+      "maximum": 1200,
+      "minimum": 1,
+      "title": "Steps",
+      "type": "integer"
+    },
+    "violation_mask": {
+      "maximum": 31,
+      "minimum": 0,
+      "title": "Violation Mask",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "horizon_s",
+    "steps",
+    "maximum_temperature_c",
+    "maximum_pressure_kpa",
+    "maximum_feeder_power_w",
+    "minimum_flow_kg_s",
+    "energy_kwh",
+    "production_units",
+    "downtime_s",
+    "actuator_travel",
+    "maximum_ramp_excess",
+    "violation_mask",
+    "samples"
+  ],
+  "title": "SimRollout",
+  "type": "object"
+}

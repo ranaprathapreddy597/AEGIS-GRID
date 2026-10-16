@@ -19,6 +19,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
 from aegis_agents.history import observed_window, summarize
+from aegis_agents.optimizer import optimize
 
 
 class State(TypedDict):
@@ -154,19 +155,37 @@ def build_graph(
         return "FAISS exact-citation evidence; full-corpus contradiction gate checked"
 
     def cascade(data: dict[str, Any]) -> str:
-        data["baseline_maximum_temperature_c"] = forecast(record, None, library)
+        if data["recovery_assessment"] is None:
+            data["recovery_assessment"] = optimize(record, library).model_dump()
+        if data["baseline_maximum_temperature_c"] is None:
+            data["baseline_maximum_temperature_c"] = forecast(record, None, library)
         data["native_binary_sha256"] = hashlib.sha256(library.read_bytes()).hexdigest()
         return "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
 
     def blue(data: dict[str, Any]) -> str:
-        load = 0.6 if data["iteration"] == 1 else 0.0
+        search = data["recovery_assessment"]
+        selected = next(
+            (
+                item
+                for item in search["candidates"]
+                if item["candidate_id"] == search["selected_candidate_id"]
+            ),
+            None,
+        )
+        if data["iteration"] == 1:
+            controls = {"pump": 0.0, "loads": [1.0] * 6, "valves": [0.0] * 6}
+            rationale = "Deliberately flawed productivity candidate for Red challenge"
+        elif data["iteration"] == 2 and selected:
+            controls = selected["controls"]
+            rationale = "Minimax optimum; still subject to independent latched-stop policy"
+        else:
+            controls = SafetyShield.emergency_controls().model_dump()
+            rationale = "Preserve independent emergency stop after adversarial feedback"
         data["candidates"].append(
             {
                 "candidate_id": f"blue-{data['iteration']}",
-                "controls": {"pump": 1.0, "loads": [load] * 6, "valves": [1.0] * 6},
-                "rationale": "Productivity candidate"
-                if load
-                else "Preserve deterministic local stop",
+                "controls": controls,
+                "rationale": rationale,
                 "red_accepted": False,
                 "simulation_checked": False,
                 "maximum_temperature_c": None,
@@ -177,9 +196,21 @@ def build_graph(
 
     def red(data: dict[str, Any]) -> str:
         candidate = data["candidates"][-1]
-        candidate["red_accepted"] = all(load == 0 for load in candidate["controls"]["loads"])
+        checked = next(
+            (
+                item
+                for item in data["recovery_assessment"]["candidates"]
+                if item["controls"] == candidate["controls"]
+            ),
+            None,
+        )
+        candidate["red_accepted"] = bool(checked and checked["feasible"]) and (
+            candidate["controls"] == SafetyShield.emergency_controls().model_dump()
+        )
         return (
-            "Latched-stop recovery rejected" if not candidate["red_accepted"] else "Stop preserved"
+            "Counterexample or independent latched-stop policy rejected candidate"
+            if not candidate["red_accepted"]
+            else "All 37 native cases checked; stop preserved"
         )
 
     def referee(data: dict[str, Any]) -> str:

@@ -1,0 +1,21 @@
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+___ test_red_search_coverage_minimax_replay_and_actual_baseline_improvement ____
+
+    def test_red_search_coverage_minimax_replay_and_actual_baseline_improvement():
+        record = native_record()
+        report = optimize(record, LIBRARY)
+        verify_artifact(report)
+        assert len(grid()) == 11 and len(report.cases) == 37
+        assert {case.target for case in report.cases} == set(range(6))
+        assert {case.severity for case in report.cases}.issuperset({0.5, 0.8, 1.0})
+        assert len({case.snapshot_sha256 for case in report.cases}) == 37
+        assert all(item.checked_cases == 37 for item in report.candidates)
+>       assert report.total_rollouts == 409 and report.native_substeps == 4908000
+E       AssertionError: assert (408 == 409)
+E        +  where 408 = RecoveryAssessment(artifact_sha256='40b1d3a3d7d732c87bb463ab23374d5cb2121a1a8ebca70affdadcb937584f2d', incident_id='aa...294)]), intervention=None, executable=False, manual_action_gate='BLOCKED', live_gates='MI300X/Evolus/Pinecone BLOCKED').total_rollouts
+
+tests/integration/test_optimization.py:51: AssertionError
+=========================== short test summary info ============================
+FAILED tests/integration/test_optimization.py::test_red_search_coverage_minimax_replay_and_actual_baseline_improvement
+1 failed, 2 passed in 3.62s

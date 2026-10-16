@@ -34,3 +34,10 @@ Phase 7 local gate passed. Actual persisted graph and delivered sensor trends ar
 verified; full-corpus contradiction still refuses action. The local inference
 backend is a deterministic abstention template, not a generative model. Phase 8
 must replace the limited two-candidate forecasts with actual robust search.
+
+Phase 8: native binary/state/policy/seed-bound, reproducible rollout artifacts now
+exist. They are evidence only, not signed execution capabilities or industrial
+certification. Fixed-grid worst-case selection is deliberately conservative;
+severe priors require stopping and lose production. Finite coverage excludes
+unknown model error/real plants. Phase 9 must verify artifacts/current state again
+and add independent authorization before any protected mutation is enabled.

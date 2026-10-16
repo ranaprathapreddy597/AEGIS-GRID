@@ -29,7 +29,7 @@ def main() -> None:
                 {
                     "result": "PASS",
                     "actual_mongo_denials": denied,
-                    "graph_identity": "checkpoint collections only",
+                    "graph_identity": "checkpoints and append-only analysis; no protected writes",
                 }
             )
         )

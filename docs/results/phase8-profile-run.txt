@@ -1,0 +1,1 @@
+{"mode": "actual_cpp_synthetic_physics_cpu_only", "python": "3.12.15", "elapsed_s": 1.4993531620002614, "peak_process_rss_mib": 86.05078125, "rollouts_per_s": 272.7842981665241, "excludes": "Docker/WSL/other processes; GPU/NPU not used; single development incident"}

@@ -71,4 +71,9 @@ const char *aegis_snapshot(void *p) {
 const char *aegis_error(void *p) {
   return p ? static_cast<Handle *>(p)->error : "null handle";
 }
+const char *aegis_rollout(void *p, const char *request) {
+  return guard(p, [request](auto &h) {
+           h.buffer = h.twin.rollout(aegis::Json::parse(bounded(request)));
+         }) == 0 ? static_cast<Handle *>(p)->buffer.c_str() : nullptr;
+}
 }

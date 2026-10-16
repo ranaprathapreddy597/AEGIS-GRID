@@ -20,6 +20,8 @@ AEGIS_API int aegis_controls(void *handle, uint64_t version,
 AEGIS_API int aegis_restore(void *handle, const char *snapshot);
 AEGIS_API const char *aegis_json(void *handle);
 AEGIS_API const char *aegis_snapshot(void *handle);
+/* Bounded counterfactual on a private copy; original state never changes. */
+AEGIS_API const char *aegis_rollout(void *handle, const char *request_json);
 AEGIS_API const char *aegis_error(void *handle);
 #ifdef __cplusplus
 }

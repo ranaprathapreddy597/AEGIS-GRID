@@ -70,16 +70,17 @@ def test_actual_graph_cycles_runs_native_referee_and_pauses_without_mutation():
     output = graph.invoke({"report_json": report.model_dump_json()}, config)
     report = Investigation.model_validate_json(output["report_json"])
     assert output["__interrupt__"]
-    assert report.status == "paused_no_action" and report.iteration == 2
+    assert report.status == "paused_no_action" and report.iteration == 3
     assert report.candidates[0].red_accepted is False
-    assert report.candidates[1].red_accepted is True
+    assert report.candidates[1].red_accepted is False
+    assert report.candidates[2].red_accepted is True
     assert all(
         candidate.simulation_checked and not candidate.executable for candidate in report.candidates
     )
     assert report.manual_decision == "no_action" and not report.operational_write_allowed
     assert report.hypotheses[0].cause == "sensor_bias"
     assert report.native_binary_sha256 == hashlib.sha256(LIBRARY.read_bytes()).hexdigest()
-    assert len([item for item in report.traces if item.node == "evidence_collector"]) == 2
-    assert len(backend.captured) == 2
+    assert len([item for item in report.traces if item.node == "evidence_collector"]) == 3
+    assert len(backend.captured) == 3
     with pytest.raises(ValueError, match="No resume"):
         graph.invoke(Command(resume={"approved": True}), config)
