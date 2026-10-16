@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-10-16T17:39:26.372197+00:00",
+  "operation": "GET /indexes/aegis-grid-memory",
+  "http_status": 200,
+  "name": "aegis-grid-memory",
+  "host": "aegis-grid-memory-lfopsep.svc.aped-4627-b74a.pinecone.io",
+  "dimension": 256,
+  "metric": "cosine",
+  "vector_type": "dense",
+  "ready": true,
+  "matches_current_adapter": true,
+  "external_writes": false,
+  "scope": "Live authenticated control-plane metadata only; no upsert or retrieval acceptance tested",
+  "full_live_acceptance": "BLOCKED"
+}

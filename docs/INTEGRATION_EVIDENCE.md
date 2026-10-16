@@ -271,3 +271,13 @@ OS CVE scanning, signed provenance or independent assessment. No GPU/NPU/provide
 performance or external mutation is invented. MI300X/Evolus/Pinecone/GitHub live
 gates and production security/physical-key acceptance remain BLOCKED/unverified.
 No release tag. See PHASE12.md, FINAL_AUDIT.md and RELEASE_CHECKLIST.md.
+
+## Pinecone provisioned index: live metadata verified
+
+User supplied the index host; it is saved only in ignored local .env. An actual
+authenticated GET /indexes/aegis-grid-memory with API version 2025-10 returned
+HTTP 200: Ready, dense, 256 dimensions, cosine, host matching supplied endpoint.
+Only metadata was read; credentials were not printed or committed. No external
+write, document upload or retrieval comparison was performed. Full Pinecone live
+indexing/retrieval acceptance remains BLOCKED, separately from verified metadata.
+See results/pinecone-live-metadata.json. Earlier absence records are historical.
