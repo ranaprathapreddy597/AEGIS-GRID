@@ -1,5 +1,15 @@
 # Open issues
 
+2026-10-17: `real-world-v1` now has 103 verified licensed external references from
+five approved OEM/NIST/UCI/Zenodo sources. NASA PCoE dataset acquisition is BLOCKED
+until its dataset-specific redistribution/license chain is verified. CIRA data
+contains 271 empty cells and a provider-description/CSV field suffix mismatch;
+missingness is disclosed, no imputation/conversion is performed. Dense-only
+retrieval missed two pilot queries; bounded source routing/semantic reranking
+repairs the same test set. Final 9/10 top-1 and 10/10 top-5 is development source
+relevance, not held-out fault diagnosis or real-plant safety validation. References
+remain untrusted context and cannot change policies. See results/REAL_WORLD_ACQUISITION.md.
+
 2026-10-16 live follow-up supersedes historical Pinecone credential/absence
 statements: the dedicated synthetic namespace has 1,235 verified persisted
 semantic vectors and live filtered retrieval/cleanup proof. AMD hosted LangGraph

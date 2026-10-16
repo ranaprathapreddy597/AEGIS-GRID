@@ -1,0 +1,26 @@
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js
+✔ executor fails closed without a token (2.5554ms)
+✔ authenticated and unauthenticated mutations both fail closed (157.1669ms)
+✔ independent verifier accepts only a fixed signed simulator scope (16.0939ms)
+✔ independent verifier refuses signed violation {"sub":"wrong-user"} (1.1835ms)
+✔ independent verifier refuses signed violation {"aud":"github"} (0.8642ms)
+✔ independent verifier refuses signed violation {"iss":"model"} (0.7948ms)
+✔ independent verifier refuses signed violation {"exp":1} (0.7482ms)
+✔ independent verifier refuses signed violation {"iat":1} (0.8417ms)
+✔ independent verifier refuses signed violation {"user_verification":false} (1.2534ms)
+✔ independent verifier refuses signed violation {"expected_database_version":99} (1.0291ms)
+✔ independent verifier refuses signed violation {"expected_state_version":999} (0.9285ms)
+✔ independent verifier refuses signed violation {"plan_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"} (0.9198ms)
+✔ independent verifier refuses signed violation {"resource_id":"live-edge"} (0.8485ms)
+✔ independent verifier refuses signed violation {"extra":true} (0.6957ms)
+✔ a valid issuer signature never overrides the independent actuator interlock (2.0793ms)
+✔ an operational Mongo diff must be explicit, fixed and schema-valid (2.1666ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.0603

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "checks": {
+    "same_pilot_ids": true,
+    "same_queries": true,
+    "pilot_size_at_most_20": true,
+    "initial_bulk_stopped": true,
+    "repaired_pilot_passed_before_bulk": true,
+    "new_total_equals_persisted": true,
+    "existing_pilot_skipped": true,
+    "other_namespaces_unchanged": true,
+    "no_delete_calls": true,
+    "no_failed_or_unattempted_records": true,
+    "within_download_caps": true,
+    "original_hashes_match": true
+  },
+  "upsert_batch_counts": [
+    20,
+    50,
+    33
+  ]
+}

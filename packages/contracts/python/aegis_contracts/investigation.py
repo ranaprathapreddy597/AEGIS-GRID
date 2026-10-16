@@ -66,4 +66,5 @@ class Investigation(Contract):
     live_gates: Literal[
         "MI300X/Evolus/Pinecone BLOCKED",
         "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified",
+        "MI300X/Evolus BLOCKED; Pinecone real-world references verified",
     ] = "MI300X/Evolus/Pinecone BLOCKED"

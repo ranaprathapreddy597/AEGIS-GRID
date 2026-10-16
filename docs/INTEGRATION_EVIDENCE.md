@@ -1,5 +1,26 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Public reference pipeline — 2026-10-17, Asia/Calcutta
+
+Actual licensed public acquisition retained 79,208,625 original bytes from five
+accepted OEM/NIST/UCI/Zenodo sources (79,436,077 ledger bytes including license
+evidence). NASA donated-data licensing/provenance remains blocked; no NASA raw
+asset was downloaded or uploaded. Exact file hashes, licenses, allowed source URLs
+and exclusions are in results/real-world-ingestion.json and data/real-world-sources.json.
+Originals remain in ignored `.run/real-world-v1/originals/`.
+
+The first 20-record pilot persisted but failed two dense retrieval cases, so bulk
+writes stopped. The retained failure report is real-world-pilot-initial-failure.json.
+After a query-only semantic retrieval repair, all same pilot checks passed and
+83 additional records were acknowledged: `real-world-v1` has 103 verified records,
+zero failed/unconfirmed IDs, no overwrites/deletes, and unchanged other namespace
+counts. Final source relevance: 9/10 top-1 and 10/10 top-5, development-only. All
+stored vectors/metadata were fetched and compared to native semantic embeddings.
+The real native LangGraph reads ten verified external-reference IDs, performs its
+independent numerical search and reaches an approval interrupt with `no_action`.
+No AMD call or external non-Pinecone write was used by this proof. See
+results/REAL_WORLD_ACQUISITION.md, real-world-ingestion.json and real-world-langgraph.json.
+
 ## Current live follow-up — 2026-10-16, Asia/Calcutta
 
 The user explicitly authorized synthetic Pinecone writes. Actual authenticated

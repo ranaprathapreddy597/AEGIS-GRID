@@ -21,6 +21,8 @@ from aegis_ingestion.pinecone import PineconeEvidenceReader
 
 
 class SemanticStore(PineconeEvidenceReader):
+    gate_label = "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified"
+
     def __init__(
         self,
         host: str,
@@ -138,9 +140,7 @@ class SemanticStore(PineconeEvidenceReader):
             "batches": receipts,
         }
 
-    async def search(self, query: str, *, kind: str | None = None) -> list[KnowledgeChunk]:
-        if not query.strip() or len(query) > 500:
-            raise ValueError("Query exceeds bound")
+    def search_scope(self, kind: str | None) -> dict[str, Any]:
         scope: dict[str, Any] = {
             "tenant_id": {"$eq": "local"},
             "plant_id": {"$eq": "isolated-simulator"},
@@ -151,6 +151,15 @@ class SemanticStore(PineconeEvidenceReader):
             if kind not in {"manual", "scenario", "incident", "recovery"}:
                 raise ValueError("Invalid knowledge kind")
             scope["kind"] = {"$eq": kind}
+        return scope
+
+    def matches_kind(self, chunk: KnowledgeChunk, kind: str | None) -> bool:
+        return kind is None or chunk.metadata["kind"] == kind
+
+    async def search(self, query: str, *, kind: str | None = None) -> list[KnowledgeChunk]:
+        if not query.strip() or len(query) > 500:
+            raise ValueError("Query exceeds bound")
+        scope = self.search_scope(kind)
         value = await self.request(
             "/query",
             {
@@ -161,6 +170,9 @@ class SemanticStore(PineconeEvidenceReader):
                 "filter": scope,
             },
         )
+        return self.validate_matches(value, kind)
+
+    def validate_matches(self, value: dict[str, Any], kind: str | None) -> list[KnowledgeChunk]:
         matches = value.get("matches")
         if not isinstance(matches, list) or len(matches) > 5:
             raise ProviderUnavailable("Invalid Pinecone matches")
@@ -174,7 +186,7 @@ class SemanticStore(PineconeEvidenceReader):
             if (
                 chunk is None
                 or match.get("metadata") != {**chunk.metadata, "text": chunk.text}
-                or (kind and chunk.metadata["kind"] != kind)
+                or not self.matches_kind(chunk, kind)
                 or not isinstance(score, (float, int))
                 or isinstance(score, bool)
                 or not math.isfinite(score)

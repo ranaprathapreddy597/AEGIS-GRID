@@ -1169,7 +1169,7 @@ export interface components {
              * @default MI300X/Evolus/Pinecone BLOCKED
              * @enum {string}
              */
-            live_gates: "MI300X/Evolus/Pinecone BLOCKED" | "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified";
+            live_gates: "MI300X/Evolus/Pinecone BLOCKED" | "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified" | "MI300X/Evolus BLOCKED; Pinecone real-world references verified";
             /**
              * Manual Decision
              * @default no_action

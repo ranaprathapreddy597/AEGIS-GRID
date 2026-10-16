@@ -1,0 +1,17 @@
+{
+  "scope": "Existing UCI archive ancillary documentation; official landing-page CC-BY-4.0 grant retained",
+  "review": [
+    {
+      "member": "description.txt",
+      "bytes": 4044,
+      "decoder": "cp1252",
+      "rights_related_lines": []
+    },
+    {
+      "member": "documentation.txt",
+      "bytes": 4719,
+      "decoder": "cp1252",
+      "rights_related_lines": []
+    }
+  ]
+}

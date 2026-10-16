@@ -1,0 +1,1 @@
+{"status": "ACQUIRED", "uploaded_records": 0}

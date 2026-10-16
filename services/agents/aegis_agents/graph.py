@@ -98,7 +98,7 @@ def build_graph(
         hits = retrieved[kind]
         if hits:
             data["retrieval_backend"] = "pinecone_semantic"
-            data["live_gates"] = "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified"
+            data["live_gates"] = knowledge.gate_label
             data["retrieved_source_ids"] = sorted(
                 set(data["retrieved_source_ids"] + [hit.identifier for hit in hits])
             )[:15]
@@ -172,13 +172,11 @@ def build_graph(
         )
 
     def detective(data: dict[str, Any]) -> str:
+        sources = retrieve(data, "manual", "temperature sensor disagreement coolant flow safety")
         data["hypotheses"] = [
             item.model_dump() for item in diagnose(record.event.observed, record.event.evidence)
         ]
         if isinstance(model, TokenFactoryClient):
-            sources = retrieve(
-                data, "manual", "temperature sensor disagreement coolant flow safety"
-            )
             return hosted(
                 data,
                 {

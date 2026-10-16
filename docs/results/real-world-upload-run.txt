@@ -1,0 +1,2 @@
+{"status": "BLOCKED", "error_class": "AcquisitionBlocked"}
+{"status": "BLOCKED", "uploaded_records": 20}

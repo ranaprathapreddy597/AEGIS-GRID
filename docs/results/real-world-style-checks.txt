@@ -1,0 +1,12 @@
+All checks passed!
+173 files already formatted
+Success: no issues found in 54 source files
+Contract schemas match
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/generated/openapi.json → C:\Users\ranap\AppData\Local\Temp\aegis-contract-oxmsj8ms\api.d.ts [272.5ms]
+TypeScript contracts match
+Scope: 2 of 3 workspace projects
+apps/web typecheck$ tsc --noEmit
+services/executor typecheck$ tsc --noEmit
+services/executor typecheck: Done
+apps/web typecheck: Done

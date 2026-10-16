@@ -1,0 +1,589 @@
+{
+  "status": "BLOCKED",
+  "namespace": "real-world-v1",
+  "index": "aegis-grid-memory",
+  "acquisition": {
+    "accepted": [
+      {
+        "source_id": "raspberrypi-compute-module",
+        "title": "Raspberry Pi Compute Module introduction",
+        "attribution": "Raspberry Pi Ltd and documentation contributors",
+        "landing_url": "https://github.com/raspberrypi/documentation/blob/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+        "download_url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+        "license_id": "CC-BY-SA-4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "license_evidence_url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/LICENSE.md",
+        "license_marker": "Attribution-ShareAlike 4.0",
+        "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+        "format": "adoc",
+        "origin": "official_oem_documentation",
+        "expected_md5": null,
+        "expected_bytes": null,
+        "local_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\raspberrypi-compute-module.adoc",
+        "bytes": 25627,
+        "sha256": "6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff",
+        "license_evidence_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\raspberrypi-compute-module-license-evidence.txt",
+        "license_evidence_sha256": "234247fb0cd987c3dd6a1918ca62cf5b9a519e5e9cbbf8007a63a8913206e2df",
+        "processing_notice": "Extracted, normalized and chunked by AEGIS GRID on 2026-10-17; reference only; no source endorsement or plant authorization"
+      },
+      {
+        "source_id": "arduino-opta-datasheet",
+        "title": "Arduino Opta industrial controller datasheet source",
+        "attribution": "Arduino and documentation contributors",
+        "landing_url": "https://github.com/arduino/docs-content/blob/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "download_url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "license_id": "CC-BY-SA-4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "license_evidence_url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/LICENSE.md",
+        "license_marker": "Creative Commons Attribution-ShareAlike 4.0 International Public License",
+        "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+        "format": "md",
+        "origin": "official_oem_documentation",
+        "expected_md5": null,
+        "expected_bytes": null,
+        "local_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\arduino-opta-datasheet.md",
+        "bytes": 42093,
+        "sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+        "license_evidence_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\arduino-opta-datasheet-license-evidence.txt",
+        "license_evidence_sha256": "733e4dca70c92c4259348b1c8c8223d072dca7a3f72bff73221dec21f892236d",
+        "processing_notice": "Extracted, normalized and chunked by AEGIS GRID on 2026-10-17; reference only; no source endorsement or plant authorization"
+      },
+      {
+        "source_id": "nist-sms-test-bed",
+        "title": "Design and Configuration of the Smart Manufacturing Systems Test Bed",
+        "attribution": "Thomas Hedberg Jr. and Moneer Helu, NIST (2017), DOI 10.6028/NIST.AMS.200-1. Republished courtesy of the National Institute of Standards and Technology.",
+        "landing_url": "https://doi.org/10.6028/NIST.AMS.200-1",
+        "download_url": "https://nvlpubs.nist.gov/nistpubs/ams/NIST.AMS.200-1.pdf",
+        "license_id": "NIST-technical-series",
+        "license_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+        "license_evidence_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+        "license_marker": "worldwide right to reprint works",
+        "revision": "NIST.AMS.200-1-2017",
+        "format": "pdf",
+        "origin": "government_technical_reference",
+        "expected_md5": null,
+        "expected_bytes": null,
+        "local_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\nist-sms-test-bed.pdf",
+        "bytes": 1553663,
+        "sha256": "4a8ba0ac4b739bc26cd95984a75386b636c123dcab57fdbd35b181dcedd0fbdf",
+        "license_evidence_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\nist-sms-test-bed-license-evidence.txt",
+        "license_evidence_sha256": "566c77d496b35c860ccc3586cc59f5098595d853ab60e2eaacbb236e9cc9810c",
+        "processing_notice": "Extracted, normalized and chunked by AEGIS GRID on 2026-10-17; reference only; no source endorsement or plant authorization"
+      },
+      {
+        "source_id": "uci-hydraulic",
+        "title": "Condition monitoring of hydraulic systems",
+        "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+        "landing_url": "https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems",
+        "download_url": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "license_id": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_evidence_url": "https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems",
+        "license_marker": "This dataset is licensed under",
+        "revision": "UCI-447-2018-04-25",
+        "format": "zip",
+        "origin": "measured_hydraulic_test_rig",
+        "expected_md5": null,
+        "expected_bytes": null,
+        "local_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\uci-hydraulic.zip",
+        "bytes": 76601704,
+        "sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+        "license_evidence_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\uci-hydraulic-license-evidence.txt",
+        "license_evidence_sha256": "ade81d43ecd5d9ab30c2dd3d00606547adfc3617d005e354a423d74849346b18",
+        "processing_notice": "Extracted, normalized and chunked by AEGIS GRID on 2026-10-17; reference only; no source endorsement or plant authorization"
+      },
+      {
+        "source_id": "zenodo-cira-pump",
+        "title": "CIRA centrifugal pump A operational data 2024-04-10",
+        "attribution": "Angelo Martone and Gaetano Zazzaro, Italian Aerospace Research Centre (2026), Centrifugal Pump Dataset v2, DOI 10.5281/zenodo.18479728",
+        "landing_url": "https://zenodo.org/records/18479728",
+        "download_url": "https://zenodo.org/api/records/18479728/files/A_2024-04-10.csv/content",
+        "license_id": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_evidence_url": "https://zenodo.org/api/records/18479728",
+        "license_marker": "cc-by-4.0",
+        "revision": "zenodo-18479728-v2",
+        "format": "csv",
+        "origin": "measured_heating_plant_pump",
+        "expected_md5": "a49e78ca69f87c301a867f02c61b2dc2",
+        "expected_bytes": 985538,
+        "local_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\zenodo-cira-pump.csv",
+        "bytes": 985538,
+        "sha256": "d933211d68206cef84c0cfc833bc410dc7933328529cd7be59494b5f353b8a6b",
+        "license_evidence_path": "D:\\AEGIS GRID\\.run\\real-world-v1\\originals\\zenodo-cira-pump-license-evidence.txt",
+        "license_evidence_sha256": "fb3622da8f72ca04c01c1683806645564eb58b65f5dd164d0d7bf0065cc39fa1",
+        "processing_notice": "Extracted, normalized and chunked by AEGIS GRID on 2026-10-17; reference only; no source endorsement or plant authorization"
+      }
+    ],
+    "failures": [],
+    "excluded": [
+      {
+        "source": "NASA PCoE donated datasets",
+        "status": "BLOCKED",
+        "url": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+        "reason": "Official catalog requests attribution but does not specify a dataset-specific redistribution/adaptation license. Third-party donated data cannot inherit a blanket government-work assumption. No original downloaded."
+      },
+      {
+        "source": "Zenodo NASA C-MAPSS mirror 15346912",
+        "status": "REJECTED",
+        "url": "https://zenodo.org/records/15346912",
+        "reason": "Record declares CC-BY-4.0, but uploader authority/license chain to official NASA distribution not verified; C-MAPSS is simulated data, not measured plant evidence. No download or upload."
+      },
+      {
+        "source": "Raspberry Pi product PDFs",
+        "status": "REJECTED",
+        "url": "https://www.raspberrypi.com/licensing/",
+        "reason": "Many product PDFs are CC-BY-ND; derivative chunk/embedding rights not accepted for this workflow. Use separately licensed online documentation."
+      },
+      {
+        "source": "Zenodo 12750599",
+        "status": "REJECTED",
+        "url": "https://zenodo.org/records/12750599",
+        "reason": "CC-BY-4.0 verified but geological dating data is irrelevant to industrial fault/recovery context. No asset download."
+      }
+    ],
+    "network_bytes": 79436077,
+    "operations": [
+      {
+        "url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/LICENSE.md",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/LICENSE.md",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://nvlpubs.nist.gov/nistpubs/ams/NIST.AMS.200-1.pdf",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://zenodo.org/api/records/18479728",
+        "http_status": 200,
+        "attempt": 1
+      },
+      {
+        "url": "https://zenodo.org/api/records/18479728/files/A_2024-04-10.csv/content",
+        "http_status": 200,
+        "attempt": 1
+      }
+    ]
+  },
+  "eligible_chunks": 103,
+  "chunks_by_source": {
+    "arduino-opta-datasheet": 25,
+    "uci-hydraulic": 9,
+    "zenodo-cira-pump": 32,
+    "nist-sms-test-bed": 14,
+    "raspberrypi-compute-module": 23
+  },
+  "corpus_sha256": "906467a470ba5bda8a67aef3fe9f9bd0a40516c460d16a1b3af447fb2da0c2be",
+  "pump_quality": {
+    "rows": 4981,
+    "missing_cells": 271,
+    "imputation": false,
+    "units_normalized": false,
+    "schema_note": "Provider description uses some .SV field suffixes; CSV uses .PV. No unit conversion, fault diagnosis or limits inferred."
+  },
+  "index_metadata_http": 200,
+  "embedding_artifacts_sha256": {
+    "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+    "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+    "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50"
+  },
+  "namespace_count_before": 0,
+  "pilot": {
+    "status": "RUNNING",
+    "selected_ids": [
+      "agrw1-c17adf2ff43d137d1079166debc527a2c9d7216545761b68ef6f0099f8c732cc",
+      "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+      "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+      "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed",
+      "agrw1-cacf590fb49d53dace6272f457158634735264fdfed38b4860695f0e95dbc1e1",
+      "agrw1-4fbf306e9493df1512022d695f858c9c6a1fc5ff55fcdbd28825cedd0b91e74e",
+      "agrw1-f957804f65947852f014720e34b487bf415e25bccdde28dff354f70e37cf7b3c",
+      "agrw1-37efbc30998fa81997d96a5019bff8a7feea3595183905ecaaf1f6ab4b05e8c0",
+      "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+      "agrw1-e9a77b0ee8acb8e3e2a6535c59dfe9b605353c1c91f9d3a8411baab48b60e320",
+      "agrw1-fb233cbbde23f3f60dd1d856c053b40dda0201b28abe3832d1911e621f6c8caf",
+      "agrw1-6d56ff439a6cd0e0e61cbf1df58495f7f37855143576d29560085045e2bcb0f7",
+      "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+      "agrw1-3168366ca3166611fe20ff79e242a759c96548a78d03de634716863daf73d4fb",
+      "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+      "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93",
+      "agrw1-183b1def53001250d3543109c1557403ba15dffad9e5ce646333fa1806983ee8",
+      "agrw1-87a5ca55d0bce392cc473638339c0d4a16fa4111a46f53df3ef8e72fca048016",
+      "agrw1-a05f625ec62dd987cd18dc8f1c45edc5edc101c2293b96d86573f8e50a70ac3f",
+      "agrw1-c70b8dfdc9065e7a74b2fa8b2e1d4aff29ef5241fc864246123eb285c10f93ee"
+    ],
+    "persisted_namespace_count": 20,
+    "metadata_and_vectors_verified": 20,
+    "retrieval": {
+      "queries": 10,
+      "top1_correct": 8,
+      "top5_correct": 8,
+      "rows": [
+        {
+          "query": "Opta micro PLC industrial controller Industrial IoT",
+          "expected_source": "arduino-opta-datasheet",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+            "agrw1-c17adf2ff43d137d1079166debc527a2c9d7216545761b68ef6f0099f8c732cc",
+            "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+            "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed"
+          ]
+        },
+        {
+          "query": "DIN rail industrial programmable logic controller connectivity",
+          "expected_source": "arduino-opta-datasheet",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-c17adf2ff43d137d1079166debc527a2c9d7216545761b68ef6f0099f8c732cc",
+            "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed",
+            "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212"
+          ]
+        },
+        {
+          "query": "Raspberry Pi Compute Module embedded industrial carrier board",
+          "expected_source": "raspberrypi-compute-module",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+            "agrw1-e9a77b0ee8acb8e3e2a6535c59dfe9b605353c1c91f9d3a8411baab48b60e320",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-6d56ff439a6cd0e0e61cbf1df58495f7f37855143576d29560085045e2bcb0f7",
+            "agrw1-fb233cbbde23f3f60dd1d856c053b40dda0201b28abe3832d1911e621f6c8caf"
+          ]
+        },
+        {
+          "query": "compact embedded computer module custom carrier board",
+          "expected_source": "raspberrypi-compute-module",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+            "agrw1-e9a77b0ee8acb8e3e2a6535c59dfe9b605353c1c91f9d3a8411baab48b60e320",
+            "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-fb233cbbde23f3f60dd1d856c053b40dda0201b28abe3832d1911e621f6c8caf"
+          ]
+        },
+        {
+          "query": "NIST smart manufacturing test bed digital thread MTConnect",
+          "expected_source": "nist-sms-test-bed",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-4fbf306e9493df1512022d695f858c9c6a1fc5ff55fcdbd28825cedd0b91e74e",
+            "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-cacf590fb49d53dace6272f457158634735264fdfed38b4860695f0e95dbc1e1",
+            "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94"
+          ]
+        },
+        {
+          "query": "digital thread design fabrication inspection data exchange",
+          "expected_source": "nist-sms-test-bed",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-4fbf306e9493df1512022d695f858c9c6a1fc5ff55fcdbd28825cedd0b91e74e",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-501db0f25587b1bfabf075962477399f269ae6c4a76eabffdc23b7952210e8ed",
+            "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+            "agrw1-e9a77b0ee8acb8e3e2a6535c59dfe9b605353c1c91f9d3a8411baab48b60e320"
+          ]
+        },
+        {
+          "query": "hydraulic test rig cooler efficiency internal pump leakage flow",
+          "expected_source": "uci-hydraulic",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-3168366ca3166611fe20ff79e242a759c96548a78d03de634716863daf73d4fb",
+            "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+            "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+            "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6"
+          ]
+        },
+        {
+          "query": "sixty second oil cooling test cycles and internal pump leakage",
+          "expected_source": "uci-hydraulic",
+          "top1_correct": true,
+          "top5_correct": true,
+          "ids": [
+            "agrw1-3168366ca3166611fe20ff79e242a759c96548a78d03de634716863daf73d4fb",
+            "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+            "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+            "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93",
+            "agrw1-4fbf306e9493df1512022d695f858c9c6a1fc5ff55fcdbd28825cedd0b91e74e"
+          ]
+        },
+        {
+          "query": "CIRA heating plant centrifugal pump motor vibration temperature",
+          "expected_source": "zenodo-cira-pump",
+          "top1_correct": false,
+          "top5_correct": false,
+          "ids": [
+            "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+            "agrw1-c17adf2ff43d137d1079166debc527a2c9d7216545761b68ef6f0099f8c732cc",
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+            "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93"
+          ]
+        },
+        {
+          "query": "heating boiler water pump recorded vibration and outlet pressure",
+          "expected_source": "zenodo-cira-pump",
+          "top1_correct": false,
+          "top5_correct": false,
+          "ids": [
+            "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+            "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+            "agrw1-3168366ca3166611fe20ff79e242a759c96548a78d03de634716863daf73d4fb",
+            "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+            "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93"
+          ]
+        }
+      ],
+      "scope": "Fixed development source-relevance queries, not fault diagnosis accuracy"
+    }
+  },
+  "uploaded_records": 20,
+  "skipped_existing": 0,
+  "failed_or_unconfirmed_ids": [],
+  "operations": [
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1262.7207000005
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1283.6440999999468
+    },
+    {
+      "operation": "/vectors/fetch",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1"
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "namespace": "real-world-v1",
+      "count": 20,
+      "attempt": 1
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1220.931699997891
+    },
+    {
+      "operation": "/vectors/fetch",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1"
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1458.7341000005836
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1415.9330000002228
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1428.253099998983
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1379.2997000018659
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1449.821599999268
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1489.21220000193
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1167.9094999999506
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1148.9237999994657
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1442.1169999986887
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1170.9723000021768
+    }
+  ],
+  "not_attempted_or_skipped_ids": [
+    "agrw1-00ccb71a5144ff217d84be72552ab90f99f3d6bd14f2861ddd99aeb0c983517a",
+    "agrw1-08dfd5b91368475b174e896febc611004897f581ce10aa65565f896c356671c4",
+    "agrw1-0d1638662778183357beae5571a3c20293e87aaa1b402eab8ca6aeb424f97769",
+    "agrw1-0dbf44dfa38c19a35f957fbf47998422a0b1f6c31c3bc3c4a85e5cc10f6516b5",
+    "agrw1-1311c00438dfbf59bb85f8713b012631883886fe8e3dd73b050b8f8ad2c7dcd4",
+    "agrw1-1be02f7d0cf6d3cd4baeddda57fdb8c2c4cb714e70dc395b3cfb38860368c5ed",
+    "agrw1-1feefe6cad03fbabf9705953a2007ffbdd65d1c6130c9f14c43c90a093f3b56b",
+    "agrw1-21368269e2458095800874552dc9577ce782842784cf97dd0873c2170136476c",
+    "agrw1-218367b6d512d7172cb2c648c34b142e388ba96ab0012ffb8ade06031af97109",
+    "agrw1-21b61e4b1b57a7d8f1402a0fa46ff595029702fe67c9f4882b64afd4210aea3a",
+    "agrw1-256ef616fe8b6b9f0a8147444f49322bff31045e1957814f4d3af605df860f13",
+    "agrw1-267c37481d3c0e9f1f4c06e8c9327fb1eeafbd0c3e20ee80e74ec9646b905240",
+    "agrw1-282b3155fb905eb8284e22075806c0155932513bb157ace87266c440cd48a9b3",
+    "agrw1-29bddd81691b82202af5fb0c0499284ab455226a313541a184da68ed14cfecfc",
+    "agrw1-2b8c637fe8160cf9aeac41aa4518ded7a09e8f0557df33ca1b899ce70c42cde9",
+    "agrw1-2cf07ecb4d6e8d4c51238b1c6157fd8afa690fee19418f760376d2600158658c",
+    "agrw1-31f51741a733a4f5bddd9fa04cefa65a4ac8eebe1bdb4bad70e1905a903b5c4f",
+    "agrw1-32f06711ab9024c231fe6d5aad2cab7507f7ad1eb93fac98d8c470637410a881",
+    "agrw1-355e0af31d9849ae19e171946a88a27f25027b69f6d45d81b35d7bdf6c1a5c9b",
+    "agrw1-3649ba446eafc2953883374705060bedda1af5c80638cda31876dede812500ff",
+    "agrw1-3a63653538efc8a98c548657ab705ba21cbc6b0f995adcdbcb395a5aa759e5ce",
+    "agrw1-3c01150f0f680a8b0046cf47eb2fd63fd241d8750f45f4a80d56ba8bb2b06fe1",
+    "agrw1-3d782b477bab35fb57eab80437abaa40deee37e3a4b6dae6bed2197bea3bc68f",
+    "agrw1-3e46e59c28fd81a56cc2c2b6ab4ac2c46ba61855732084be7ce85a1fb03b1639",
+    "agrw1-457e10dc9c70d368823ed0f9b05531a8119bd6ffd81ea22bf610a7a3aee9d76c",
+    "agrw1-482f16590ce63ffa0b7fd20fc4fd7d90c728361561b8c44264fbda732f09be65",
+    "agrw1-4c822ad73f63916f7c0d72cda536e7bc85d44fdee5d4593f8cb8bd009071642a",
+    "agrw1-4dc728db8e2316534c382b6f98bdb8be5416d9d0870e317da05d6cc517d7352a",
+    "agrw1-4ece7543debeda7af0080c79d3f97505089388fa7659662c872dd33b5c2ca025",
+    "agrw1-5adaae0d02ebec2be5526b748455439f68873f0de84689c15288d2b39a799646",
+    "agrw1-5c336bda91341d40dea45759c16d85d9e7b2d930535c96eecfd086c10851ad76",
+    "agrw1-68097e5ceba5b6bf6d3cbf40922ac8b4a26e1fb7d8eeaa7541911a27f119d331",
+    "agrw1-690b67d8c492af5e3e131252dcde4cbba0ceea38308fc3077d7f799d35c518a5",
+    "agrw1-6a88d99871fbf0944ced26003fe3dc4b9123945a9887b88b67d86754ddc47e1a",
+    "agrw1-6dc87651504248fb96996867d9b3bd1c3637e11fbd017bacb45bce583c3de6ff",
+    "agrw1-6e384de5628b45adc80aff966b6c0d2cefd306cc306d0fe93090b983501355bc",
+    "agrw1-6f7d9fcd248164731a173ef0343a18ddfc93213284431ad9fc7ab1ad1e54a744",
+    "agrw1-70bbaefa110b703eb7277e94bc2b13355674bbd4a37b6985177afcb7315cc84b",
+    "agrw1-70dfdf77637bfdb94148e03b9b1fb3c7e69ed725b1151e24dd7bb68a9568e61f",
+    "agrw1-720355bf7963df4a9528806e16d27ef2bee45726a2b177bdf8915e4602193597",
+    "agrw1-76af29be269c516727eff24ed6358ba87ea442a3da99db32170edf592676b081",
+    "agrw1-78bb1ff6a642b1157cf35a090e7f68120aef4c881c9e530d9c9fdffde17349e0",
+    "agrw1-7c01b9bde5b2f5c0334c816f6182fbbd5158a2ed7a9ce316e1afc8fcbd1aeca4",
+    "agrw1-7da5417be0a0e4f88e6760f984f06e41241abf3afc55d3bd908500f53a6e8c6b",
+    "agrw1-85e4661eeea26bee0496512f327c89f1b5c3c7f5fc6a8fe97a51b3a2aa1e329b",
+    "agrw1-8f34d63a717848d04c714dd19b20d0edd03494d237ec543cc40a90be30cfa4e8",
+    "agrw1-910ee8dbb96f3c7e18f143bb268e75b409c0ec284a38cd69eedf4758f0aa8eda",
+    "agrw1-957375661653d0a43978dba68d2fe166487c2eee8eff81264bcec6cf469c4d75",
+    "agrw1-98bf0ddc36c0c52636a5ad34b432ca36a5b10d01ad260be08caa8dcbe573741c",
+    "agrw1-9977ab1b66edd6645477246e010424f484e5558ddcf575efb04fe7ee2fdbc547",
+    "agrw1-9d7634b9a748380b59bbf72762d511dcdaaf4e43fa053e36f9ab8a10d1618da9",
+    "agrw1-a09a3694cd85b891e5cc9b68caf0fa555a67fc44decfffda272a0f8aecd9bec5",
+    "agrw1-a3eb8407ceefec4bc4187b4ff92e8b8fb697f3f477b03e1a7c11a8caf409164f",
+    "agrw1-a52b547f037ca039843f627a9a9010a26d16925650053e14f6776f72c64ed5f0",
+    "agrw1-a8309fbbfba3a848adc2cd690ae67c38da7e9e76c52d24d740c5c2efa1f80ef0",
+    "agrw1-aa5eb01dee97bdfbb1f6044939ddcaafc79fabbe48a0598c5e2d0a4ffe632e18",
+    "agrw1-ab5398ce3f5d3b3740e9ea8413925bdcc277048231d5e25e6a292f88493b78fa",
+    "agrw1-b67c2e5c70ecc966ce252ef2a6301076612f7386eb4cfd3c5c2d24726e1533cd",
+    "agrw1-b6bb6775978ff1880c257ef32e32cdc2f892eeb8d3d4aa93bb853690ac56b3cf",
+    "agrw1-b801b10969c62aaa1b4eee4062f81bcef09d47df41bcc0c6245982d9a760c747",
+    "agrw1-bb94425833fdeec3d84c036a0e132f500feb044bd5b18d54d4e473faef964d3e",
+    "agrw1-bebbc861107742a44a8f7d9b390242bd05c5f5ba57a64a347457be7317a525e6",
+    "agrw1-bff0d542abb3e745b7f05522acdd87f6f72655dcb0b561b96151a586f72f02d6",
+    "agrw1-c5f84ca5f9c304573b5c683c278edae691d918fd68f05d1d8cf22be22af421ab",
+    "agrw1-c9360d6b17935b16eec719f139ca7660bccf5556b53f40d799cb59647e5ba841",
+    "agrw1-cea0101261e145c6a7e4fdb3288c31b051a2b2d4685b286514ec2261382dd064",
+    "agrw1-cf75038a4a0901c1b6f3708a44999df423f1a18b36d303615c3e122674996371",
+    "agrw1-d04ac7e2db42e94d356ff0456bf5f828c7c65c2a1575bf7ea5e2bf1a00c8e5e2",
+    "agrw1-d528445865d78f8adcc7af9032f7ac14abfa7725805a24dfe7e9d0657f80e5a3",
+    "agrw1-d7143dafd9f074d25ef2b2ea39e861584ee29c0fc53ae1593cece36bdf9c1be4",
+    "agrw1-d9ee0fb0390ea9fe3d97f2c91ebc179a8ba22557868a59087782aba2e21b7005",
+    "agrw1-dc7c559d35e7955194a383a8b16bd63295daf780e77f96b71b51fb7dbedfce5e",
+    "agrw1-dd20d76c5e70a00aac7d45e6dc5b7fd3742d1dae7f43bad79b629c91dfe40c03",
+    "agrw1-dd4406fede2c47af41945a5179089e051ebc5e7e558d75d37fed08b0806e1a01",
+    "agrw1-de4ac470abcccf266c4ac50b90206bc23c5463743cc7f8e39d52b88649b96eb5",
+    "agrw1-e3e00829c838f576bd722ff6d6ebca4f2961cac13005317c582454ac6effa139",
+    "agrw1-e4a4b579a5e8bdc84f21ead13af838657847aa7b09691b7e3f9b64046dd9f74e",
+    "agrw1-eb4458e25d3ac48369b05a815d86af062d86cf16211af5470564937e64db2ecf",
+    "agrw1-ed12536e8b7366ff52b3ecdb0d2adc7116b1e9bab7a901b343c678c5ecf6cc5a",
+    "agrw1-f0bf9fc46062e2844ff001aaa15c3288e5610c17cb48f094364d1a9193f129d8",
+    "agrw1-f3bf9748b0f70a8aba587014009660581221b7ed03ab613026577be7707fe752",
+    "agrw1-f9c08878136f46620f73e92f3917570f21e7da2ddccb6f8d69854c1619c99a87",
+    "agrw1-fb7aab66e240c5bcbb4e128c8c11528cb9ab77a91c4c40598077ac31c28efcf7"
+  ],
+  "error_class": "AcquisitionBlocked",
+  "blocker": "Pilot retrieval gate failed; bulk writes forbidden"
+}

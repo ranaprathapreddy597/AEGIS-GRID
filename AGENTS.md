@@ -6,6 +6,14 @@ authoritative project instructions. Preserve them unchanged.
 
 ## Current execution state
 
+- Public acquisition follow-up authorized on 2026-10-17: `real-world-v1` now has
+  103 verified licensed references from five OEM/NIST/UCI/Zenodo sources. The first
+  pilot correctly blocked on 2/10 dense-query failures; query-only repair passed
+  the same pilot before 83 further inserts. No records were overwritten/deleted.
+  NASA PCoE acquisition remains BLOCKED on license/provenance verification.
+  External references never authorize commands or change independent safety/HITL.
+  Read docs/results/REAL_WORLD_ACQUISITION.md for actual evidence and constraints.
+
 - Assigned work: **remaining phases in order**, authorized on 2026-10-15.
   Phase 1 passed at `f024ab5`; Phase 2 at `57010e1`; Phase 3 at `b9985f6`.
   Phase 4 passed at `12c2d86` on 2026-10-16. Phase 5 local gate passed at `5513a27`; Evolus/Pinecone live gates remain blocked.

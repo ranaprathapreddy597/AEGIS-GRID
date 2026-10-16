@@ -1,5 +1,20 @@
 # Execution status
 
+## Public real-world reference acquisition — 2026-10-17
+
+PARTIAL overall: five approved sources from official OEM documentation, NIST,
+UCI and Zenodo completed acquisition/validation/processing/native-256 embedding
+and live append-only ingestion to `real-world-v1`. Exactly 103 records persist:
+20 pilot + 83 later inserts, zero failed/unconfirmed records, existing IDs skipped
+and other namespace counts unchanged. The original dense-only pilot failed 2/10
+queries and correctly stopped bulk writes; a query-only semantic routing/reranking
+fix passed the same pilot without rewriting its records. Final fixed development
+retrieval is 9/10 top-1 and 10/10 top-5. Actual LangGraph uses ten verified reference
+IDs while independent safety/HITL still block action. NASA PCoE data remains
+BLOCKED on license/provenance verification. Original files remain locally in
+`.run/real-world-v1/originals/`; see results/REAL_WORLD_ACQUISITION.md and raw evidence.
+Dedicated MI300X, Evolus and production acceptance remain blocked.
+
 ## AMD/Pinecone live synthetic follow-up — 2026-10-16
 
 User explicitly authorized live Pinecone population. Actual ingestion persisted

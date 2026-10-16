@@ -4,6 +4,12 @@ An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
 **Current scope: Phase 12 — local validation passed; release BLOCKED.**
 
+Public-reference follow-up: `real-world-v1` retains 103 licensed OEM/NIST/UCI/Zenodo
+knowledge records with verified native 256-D vectors and live LangGraph retrieval.
+The first pilot failure and query-only repair are retained. NASA acquisition is
+blocked on license/provenance verification. See
+[`public acquisition evidence`](docs/results/REAL_WORLD_ACQUISITION.md).
+
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.

@@ -1,0 +1,179 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from python.Dockerfile
+#1 transferring dockerfile: 2.79kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 203B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 60.20kB 0.1s done
+#4 DONE 0.1s
+
+#5 [base  1/20] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#5 DONE 0.1s
+
+#6 [base  8/20] COPY services/api services/api
+#6 CACHED
+
+#7 [base  6/20] RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
+#7 CACHED
+
+#8 [base  3/20] RUN pip install --no-cache-dir uv==0.13.1
+#8 CACHED
+
+#9 [base  2/20] WORKDIR /app
+#9 CACHED
+
+#10 [base  5/20] COPY pyproject.toml uv.lock ./
+#10 CACHED
+
+#11 [base  7/20] COPY packages/contracts/python packages/contracts/python
+#11 CACHED
+
+#12 [base  4/20] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [base  9/20] COPY services/edge services/edge
+#13 CACHED
+
+#14 [base 10/20] COPY services/ingestion services/ingestion
+#14 DONE 0.1s
+
+#15 [base 11/20] COPY services/inference services/inference
+#15 DONE 0.1s
+
+#16 [base 12/20] COPY services/agents services/agents
+#16 DONE 0.1s
+
+#17 [base 13/20] COPY data/scenarios data/scenarios
+#17 DONE 0.1s
+
+#18 [base 14/20] COPY data/manuals data/manuals
+#18 DONE 0.3s
+
+#19 [base 15/20] COPY data/repairs data/repairs
+#19 DONE 0.1s
+
+#20 [base 16/20] COPY data/futures data/futures
+#20 DONE 0.1s
+
+#21 [base 17/20] COPY data/real-world-sources.json data/real-world-sources.json
+#21 DONE 0.1s
+
+#22 [base 18/20] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#22 DONE 0.1s
+
+#23 [base 19/20] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#23 DONE 0.1s
+
+#24 [base 20/20] RUN uv sync --locked --no-dev --no-editable
+#24 0.857 Resolved 119 packages in 3ms
+#24 0.878    Building aegis-grid @ file:///app
+#24 4.405       Built aegis-grid @ file:///app
+#24 4.439 Prepared 1 package in 3.56s
+#24 4.487 Installed 1 package in 46ms
+#24 4.487  + aegis-grid==0.1.0 (from file:///app)
+#24 DONE 4.6s
+
+#25 [build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#25 CACHED
+
+#26 [build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#26 CACHED
+
+#27 [build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#27 CACHED
+
+#28 [qa 1/7] COPY --from=base /app /app
+#28 DONE 4.8s
+
+#29 [qa 2/7] COPY --from=base /usr/local/bin/uv /usr/local/bin/uv
+#29 DONE 0.3s
+
+#30 [qa 3/7] RUN uv sync --locked
+#30 0.759 Resolved 119 packages in 2ms
+#30 0.862    Building aegis-grid @ file:///app
+#30 1.202 Downloading pygments (1.2MiB)
+#30 1.216 Downloading pip (1.7MiB)
+#30 1.234 Downloading mypy (14.8MiB)
+#30 1.235 Downloading pillow (6.6MiB)
+#30 1.237 Downloading reportlab (1.9MiB)
+#30 1.240 Downloading ast-serialize (1.3MiB)
+#30 1.241 Downloading ruff (9.9MiB)
+#30 3.769  Downloaded pygments
+#30 3.791  Downloaded ast-serialize
+#30 4.088  Downloaded pip
+#30 4.140  Downloaded reportlab
+#30 6.012  Downloaded pillow
+#30 6.119       Built aegis-grid @ file:///app
+#30 6.633  Downloaded ruff
+#30 7.395  Downloaded mypy
+#30 7.397 Prepared 33 packages in 6.62s
+#30 7.432 Uninstalled 1 package in 33ms
+#30 8.397 Installed 33 packages in 964ms
+#30 8.397  ~ aegis-grid==0.1.0 (from file:///app)
+#30 8.397  + ast-serialize==0.13.0
+#30 8.397  + boolean-py==5.0
+#30 8.397  + cachecontrol==0.14.4
+#30 8.397  + cyclonedx-python-lib==11.12.0
+#30 8.397  + defusedxml==0.7.1
+#30 8.397  + iniconfig==2.3.1
+#30 8.397  + librt==0.16.0
+#30 8.397  + license-expression==30.4.4
+#30 8.397  + markdown-it-py==4.2.0
+#30 8.397  + mdurl==0.1.2
+#30 8.397  + msgpack==1.2.3
+#30 8.397  + mypy==2.4.0
+#30 8.397  + mypy-extensions==1.1.0
+#30 8.398  + packageurl-python==0.17.6
+#30 8.398  + pathspec==1.1.1
+#30 8.398  + pillow==12.3.0
+#30 8.398  + pip==26.2.1
+#30 8.398  + pip-api==0.0.35
+#30 8.398  + pip-audit==2.10.1
+#30 8.398  + pip-requirements-parser==32.0.1
+#30 8.398  + platformdirs==4.13.0
+#30 8.398  + pluggy==1.6.0
+#30 8.398  + py-serializable==2.1.0
+#30 8.398  + pygments==2.21.0
+#30 8.398  + pyparsing==3.3.3
+#30 8.398  + pytest==9.1.1
+#30 8.398  + reportlab==5.0.1
+#30 8.398  + rich==15.0.0
+#30 8.398  + ruff==0.17.0
+#30 8.398  + sortedcontainers==2.4.0
+#30 8.398  + tomli==2.5.0
+#30 8.398  + tomli-w==1.2.0
+#30 DONE 8.8s
+
+#31 [qa 4/7] COPY tests tests
+#31 DONE 0.2s
+
+#32 [qa 5/7] COPY tools tools
+#32 DONE 0.1s
+
+#33 [qa 6/7] COPY infra/cloud infra/cloud
+#33 DONE 0.1s
+
+#34 [qa 7/7] COPY packages/contracts/generated packages/contracts/generated
+#34 DONE 0.1s
+
+#35 exporting to image
+#35 exporting layers
+#35 exporting layers 18.3s done
+#35 exporting manifest sha256:166d1a3116b39cfab1f2065421d7acdcb684d44959f93ea428805ef755cb3b3e 0.0s done
+#35 exporting config sha256:013879b0a8437fd2231044434b7793bcc7683c2b147145f5b97b6cda25c630d9 0.0s done
+#35 exporting attestation manifest sha256:f98c5ffdaa4ed1517e03eeedae5457140774f34c092bc4bff664d9167c88d3c9 0.0s done
+#35 exporting manifest list sha256:111035c73cc9aa5d046e797910ebb719fcb1b7dab35a2f84a635b9c64e7c221f
+#35 exporting manifest list sha256:111035c73cc9aa5d046e797910ebb719fcb1b7dab35a2f84a635b9c64e7c221f 0.0s done
+#35 naming to docker.io/library/aegis-grid-qa:real-world-v1 done
+#35 unpacking to docker.io/library/aegis-grid-qa:real-world-v1
+#35 unpacking to docker.io/library/aegis-grid-qa:real-world-v1 11.6s done
+#35 DONE 30.1s

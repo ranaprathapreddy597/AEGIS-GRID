@@ -1,0 +1,82 @@
+{
+  "sources": [
+    {
+      "source_id": "raspberrypi-compute-module",
+      "title": "Raspberry Pi Compute Module introduction",
+      "attribution": "Raspberry Pi Ltd and documentation contributors",
+      "landing_url": "https://github.com/raspberrypi/documentation/blob/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+      "download_url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+      "license_id": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_evidence_url": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/LICENSE.md",
+      "license_marker": "Attribution-ShareAlike 4.0",
+      "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+      "format": "adoc",
+      "origin": "official_oem_documentation"
+    },
+    {
+      "source_id": "arduino-opta-datasheet",
+      "title": "Arduino Opta industrial controller datasheet source",
+      "attribution": "Arduino and documentation contributors",
+      "landing_url": "https://github.com/arduino/docs-content/blob/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+      "download_url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+      "license_id": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_evidence_url": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/LICENSE.md",
+      "license_marker": "Creative Commons Attribution-ShareAlike 4.0 International Public License",
+      "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+      "format": "md",
+      "origin": "official_oem_documentation"
+    },
+    {
+      "source_id": "nist-sms-test-bed",
+      "title": "Design and Configuration of the Smart Manufacturing Systems Test Bed",
+      "attribution": "Thomas Hedberg Jr. and Moneer Helu, NIST (2017), DOI 10.6028/NIST.AMS.200-1. Republished courtesy of the National Institute of Standards and Technology.",
+      "landing_url": "https://doi.org/10.6028/NIST.AMS.200-1",
+      "download_url": "https://nvlpubs.nist.gov/nistpubs/ams/NIST.AMS.200-1.pdf",
+      "license_id": "NIST-technical-series",
+      "license_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "license_evidence_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "license_marker": "worldwide right to reprint works",
+      "revision": "NIST.AMS.200-1-2017",
+      "format": "pdf",
+      "origin": "government_technical_reference"
+    },
+    {
+      "source_id": "uci-hydraulic",
+      "title": "Condition monitoring of hydraulic systems",
+      "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+      "landing_url": "https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems",
+      "download_url": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+      "license_id": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_evidence_url": "https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems",
+      "license_marker": "This dataset is licensed under",
+      "revision": "UCI-447-2018-04-25",
+      "format": "zip",
+      "origin": "measured_hydraulic_test_rig"
+    },
+    {
+      "source_id": "zenodo-cira-pump",
+      "title": "CIRA centrifugal pump A operational data 2024-04-10",
+      "attribution": "Angelo Martone and Gaetano Zazzaro, Italian Aerospace Research Centre (2026), Centrifugal Pump Dataset v2, DOI 10.5281/zenodo.18479728",
+      "landing_url": "https://zenodo.org/records/18479728",
+      "download_url": "https://zenodo.org/api/records/18479728/files/A_2024-04-10.csv/content",
+      "license_id": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_evidence_url": "https://zenodo.org/api/records/18479728",
+      "license_marker": "cc-by-4.0",
+      "revision": "zenodo-18479728-v2",
+      "format": "csv",
+      "origin": "measured_heating_plant_pump",
+      "expected_md5": "a49e78ca69f87c301a867f02c61b2dc2",
+      "expected_bytes": 985538
+    }
+  ],
+  "excluded": [
+    {"source": "NASA PCoE donated datasets", "status": "BLOCKED", "url": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/", "reason": "Official catalog requests attribution but does not specify a dataset-specific redistribution/adaptation license. Third-party donated data cannot inherit a blanket government-work assumption. No original downloaded."},
+    {"source": "Zenodo NASA C-MAPSS mirror 15346912", "status": "REJECTED", "url": "https://zenodo.org/records/15346912", "reason": "Record declares CC-BY-4.0, but uploader authority/license chain to official NASA distribution not verified; C-MAPSS is simulated data, not measured plant evidence. No download or upload."},
+    {"source": "Raspberry Pi product PDFs", "status": "REJECTED", "url": "https://www.raspberrypi.com/licensing/", "reason": "Many product PDFs are CC-BY-ND; derivative chunk/embedding rights not accepted for this workflow. Use separately licensed online documentation."},
+    {"source": "Zenodo 12750599", "status": "REJECTED", "url": "https://zenodo.org/records/12750599", "reason": "CC-BY-4.0 verified but geological dating data is irrelevant to industrial fault/recovery context. No asset download."}
+  ]
+}

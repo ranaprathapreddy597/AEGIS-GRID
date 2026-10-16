@@ -1438,7 +1438,8 @@
             "default": "MI300X/Evolus/Pinecone BLOCKED",
             "enum": [
               "MI300X/Evolus/Pinecone BLOCKED",
-              "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified"
+              "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified",
+              "MI300X/Evolus BLOCKED; Pinecone real-world references verified"
             ],
             "title": "Live Gates",
             "type": "string"
