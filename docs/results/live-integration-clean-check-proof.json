@@ -1,0 +1,9 @@
+{
+  "source_tree": "a33d50206fb4c35b8ae5ab2ccca8637d85fcde0b",
+  "project": "aegis-proof-68dbffb2",
+  "scope": "Actual source export, new host venv/node_modules, isolated proof DB; same OS/download/browser caches.",
+  "result": "PASS",
+  "separate_venv": true,
+  "separate_node_modules": true,
+  "cleanup": "Only proof containers/networks stopped; all volumes and main stack retained."
+}

@@ -1350,7 +1350,8 @@
             "default": "offline_template",
             "enum": [
               "offline_template",
-              "remote_vllm"
+              "remote_vllm",
+              "amd_token_factory"
             ],
             "title": "Backend",
             "type": "string"
@@ -1388,6 +1389,26 @@
             "title": "Evidence Page Hashes",
             "type": "array"
           },
+          "hosted_diagnosis": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelOpinion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "hosted_planning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningOpinion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "hypotheses": {
             "default": [],
             "items": {
@@ -1414,8 +1435,11 @@
             "type": "integer"
           },
           "live_gates": {
-            "const": "MI300X/Evolus/Pinecone BLOCKED",
             "default": "MI300X/Evolus/Pinecone BLOCKED",
+            "enum": [
+              "MI300X/Evolus/Pinecone BLOCKED",
+              "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified"
+            ],
             "title": "Live Gates",
             "type": "string"
           },
@@ -1437,14 +1461,14 @@
           },
           "model_token_budget": {
             "default": 1024,
-            "maximum": 2048.0,
+            "maximum": 16384.0,
             "minimum": 128.0,
             "title": "Model Token Budget",
             "type": "integer"
           },
           "model_tokens_used": {
             "default": 0,
-            "maximum": 2048.0,
+            "maximum": 16384.0,
             "minimum": 0.0,
             "title": "Model Tokens Used",
             "type": "integer"
@@ -1504,6 +1528,15 @@
             "title": "Phase",
             "type": "integer"
           },
+          "provider_failures": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Provider Failures",
+            "type": "array"
+          },
           "recovery_assessment": {
             "anyOf": [
               {
@@ -1518,6 +1551,24 @@
             "default": "",
             "title": "Refusal",
             "type": "string"
+          },
+          "retrieval_backend": {
+            "default": "local_faiss",
+            "enum": [
+              "local_faiss",
+              "pinecone_semantic"
+            ],
+            "title": "Retrieval Backend",
+            "type": "string"
+          },
+          "retrieved_source_ids": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 15,
+            "title": "Retrieved Source Ids",
+            "type": "array"
           },
           "status": {
             "default": "running",
@@ -1848,6 +1899,48 @@
         "title": "MemoryMatch",
         "type": "object"
       },
+      "ModelOpinion": {
+        "additionalProperties": false,
+        "properties": {
+          "assessment": {
+            "enum": [
+              "insufficient_evidence",
+              "investigate"
+            ],
+            "title": "Assessment",
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "hypotheses": {
+            "items": {
+              "enum": [
+                "sensor_bias",
+                "restricted_flow",
+                "weak_pump",
+                "overload"
+              ],
+              "type": "string"
+            },
+            "maxItems": 4,
+            "title": "Hypotheses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "assessment",
+          "hypotheses",
+          "evidence_ids"
+        ],
+        "title": "ModelOpinion",
+        "type": "object"
+      },
       "MutationReceipt": {
         "additionalProperties": false,
         "properties": {
@@ -2138,6 +2231,38 @@
           "counterexamples"
         ],
         "title": "PlanEvaluation",
+        "type": "object"
+      },
+      "PlanningOpinion": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_ids": {
+            "items": {
+              "enum": [
+                "candidate_evaluations",
+                "retrieved_sources"
+              ],
+              "type": "string"
+            },
+            "maxItems": 2,
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "recommendation": {
+            "enum": [
+              "minimax_candidate",
+              "emergency_stop",
+              "abstain"
+            ],
+            "title": "Recommendation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recommendation",
+          "evidence_ids"
+        ],
+        "title": "PlanningOpinion",
         "type": "object"
       },
       "PlantTelemetry": {

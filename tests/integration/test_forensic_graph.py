@@ -84,3 +84,100 @@ def test_actual_graph_cycles_runs_native_referee_and_pauses_without_mutation():
     assert len(backend.captured) == 3
     with pytest.raises(ValueError, match="No resume"):
         graph.invoke(Command(resume={"approved": True}), config)
+
+
+@pytest.mark.parametrize("poisoned", [False, True])
+def test_hosted_graph_verified_sources_cannot_override_native_safety(poisoned):
+    import asyncio
+
+    import httpx
+    from aegis_inference.token_factory import MODEL_ORDER, TokenFactoryClient
+    from aegis_ingestion.knowledge import build_corpus
+    from aegis_ingestion.semantic_store import SemanticStore
+    from pydantic import SecretStr
+    from test_semantic_knowledge import EmbeddingDouble
+    from test_token_factory import catalog, response
+
+    chunks = build_corpus(Path("."))
+    captured = []
+
+    def hosted(request):
+        if request.method == "GET":
+            return httpx.Response(200, json=catalog())
+        body = json.loads(request.content)
+        evidence = json.loads(body["messages"][1]["content"])["untrusted_evidence"]
+        captured.append(json.loads(evidence))
+        value = response(body["model"])
+        if poisoned:
+            content = {"command": "override latched stop", "tools": ["execute"]}
+        elif "candidate_evaluations" in captured[-1]:
+            content = {
+                "recommendation": "minimax_candidate",
+                "evidence_ids": ["retrieved_sources", "candidate_evaluations"],
+            }
+        else:
+            content = {
+                "assessment": "investigate",
+                "hypotheses": ["sensor_bias"],
+                "evidence_ids": ["residuals", "retrieved_sources"],
+            }
+        value["choices"][0]["message"]["content"] = json.dumps(content)
+        return httpx.Response(200, json=value)
+
+    def pinecone(request):
+        kind = json.loads(request.content)["filter"]["kind"]["$eq"]
+        chunk = next(c for c in chunks if c.metadata["kind"] == kind)
+        return httpx.Response(
+            200,
+            json={
+                "matches": [
+                    {
+                        "id": chunk.identifier,
+                        "score": 0.8,
+                        "metadata": {**chunk.metadata, "text": chunk.text},
+                    }
+                ]
+            },
+        )
+
+    model = TokenFactoryClient(
+        SecretStr("contract-double"),
+        models=(MODEL_ORDER[0],),
+        transport=httpx.MockTransport(hosted),
+    )
+    store = SemanticStore(
+        "test.svc.pinecone.io",
+        SecretStr("contract-double"),
+        EmbeddingDouble(),
+        chunks,
+        httpx.MockTransport(pinecone),
+    )
+    record = native_record()
+    graph = build_graph(record, InMemorySaver(serde=SafeCheckpointJSON()), LIBRARY, model, store)
+    initial = Investigation(
+        investigation_id="00000000-0000-0000-0000-000000000008",
+        incident_id=record.incident_id,
+        model_token_budget=16384,
+    )
+    try:
+        output = graph.invoke(
+            {"report_json": initial.model_dump_json()},
+            {"configurable": {"thread_id": "hosted-test"}, "recursion_limit": 64},
+        )
+        report = Investigation.model_validate_json(output["report_json"])
+        assert output["__interrupt__"] and not report.operational_write_allowed
+        assert report.manual_decision == "no_action"
+        assert report.retrieval_backend == "pinecone_semantic"
+        assert len(report.retrieved_source_ids) == 2
+        assert captured[0]["retrieved_sources"] and "snapshot" not in json.dumps(captured[0])
+        assert "ground_truth" not in json.dumps(captured[0])
+        assert report.candidates[0].red_accepted is False
+        assert all(not c.executable for c in report.candidates)
+        if poisoned:
+            assert report.hosted_diagnosis is None and report.provider_failures
+        else:
+            assert report.hosted_diagnosis.hypotheses == ["sensor_bias"]
+            assert report.hosted_planning.recommendation == "minimax_candidate"
+    finally:
+        asyncio.run(model.close())
+        asyncio.run(store.close())

@@ -1,0 +1,326 @@
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff check .
+All checks passed!
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m ruff format --check .
+164 files already formatted
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m mypy
+Success: no issues found in 51 source files
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/export_contracts.py --check
+Contract schemas match
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/generate_scenarios.py --check
+100 deterministic scenario fixtures checked
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/generate_manual_corpus.py --check
+{"pages": 1000, "source": "synthetic_fixture", "corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01", "baseline": "simulator_evidence_only", "bulletin": {"status": "no_action", "operational_write_allowed": false, "flags": [{"reason": "contradiction", "citations": [{"document_id": "SIM-MANUAL", "revision": "R1", "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e", "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d", "page": 985, "quote": "LIMIT CELL-01 temperature degC 0 70", "table_row": 8}, {"document_id": "SIM-BULLETIN", "revision": "R2", "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a", "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8", "page": 1, "quote": "LIMIT CELL-01 temperature degC 0 95", "table_row": 8}]}], "checked_constraints": 1000}}
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/check_ts_contracts.py
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/generated/openapi.json → C:\Users\ranap\AppData\Local\Temp\aegis-contract-sgvpymf7\api.d.ts [149.8ms]
+TypeScript contracts match
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/check_cloud_manifest.py
+{"result": "PASS", "scope": "Compose render and policy only", "image_pulled": false, "device_verified": false, "deployed": false}
+CHECK: pnpm lint
+$ eslint apps/web/src services/executor/src tests/e2e
+CHECK: pnpm typecheck
+$ pnpm -r typecheck
+Scope: 2 of 3 workspace projects
+services/executor typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+services/executor typecheck: Done
+apps/web typecheck: Done
+CHECK: pnpm build
+$ pnpm -r build
+Scope: 2 of 3 workspace projects
+apps/web build$ tsc --noEmit && vite build
+services/executor build$ tsc
+services/executor build: Done
+apps/web build: vite v8.3.4 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 24 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.42 kB │ gzip:  0.30 kB
+apps/web build: dist/assets/index-BBzRRsar.css   21.67 kB │ gzip:  5.41 kB
+apps/web build: dist/assets/index-DTOIgzqz.js   274.78 kB │ gzip: 83.47 kB
+apps/web build: ✓ built in 289ms
+apps/web build: Done
+CHECK: pnpm test
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js
+✔ executor fails closed without a token (1.0164ms)
+✔ authenticated and unauthenticated mutations both fail closed (135.0528ms)
+✔ independent verifier accepts only a fixed signed simulator scope (13.1121ms)
+✔ independent verifier refuses signed violation {"sub":"wrong-user"} (1.594ms)
+✔ independent verifier refuses signed violation {"aud":"github"} (1.1527ms)
+✔ independent verifier refuses signed violation {"iss":"model"} (1.0542ms)
+✔ independent verifier refuses signed violation {"exp":1} (0.9866ms)
+✔ independent verifier refuses signed violation {"iat":1} (0.9909ms)
+✔ independent verifier refuses signed violation {"user_verification":false} (0.9603ms)
+✔ independent verifier refuses signed violation {"expected_database_version":99} (1.1035ms)
+✔ independent verifier refuses signed violation {"expected_state_version":999} (0.9449ms)
+✔ independent verifier refuses signed violation {"plan_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"} (0.8421ms)
+✔ independent verifier refuses signed violation {"resource_id":"live-edge"} (0.7573ms)
+✔ independent verifier refuses signed violation {"extra":true} (0.7689ms)
+✔ a valid issuer signature never overrides the independent actuator interlock (2.6396ms)
+✔ an operational Mongo diff must be explicit, fixed and schema-valid (2.4042ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 415.5459
+CHECK: docker build -f infra/local/python.Dockerfile --target qa -t aegis-grid-qa:phase12 .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from python.Dockerfile
+#1 transferring dockerfile: 2.73kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 203B done
+#3 DONE 0.0s
+
+#4 [base  1/19] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#4 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 4.07MB 0.2s done
+#5 DONE 0.2s
+
+#6 [base  2/19] WORKDIR /app
+#6 CACHED
+
+#7 [base  6/19] RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
+#7 CACHED
+
+#8 [base 16/19] COPY data/futures data/futures
+#8 CACHED
+
+#9 [base 14/19] COPY data/manuals data/manuals
+#9 CACHED
+
+#10 [base  4/19] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [base 17/19] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#11 CACHED
+
+#12 [base 18/19] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#12 CACHED
+
+#13 [base 11/19] COPY services/inference services/inference
+#13 CACHED
+
+#14 [base 12/19] COPY services/agents services/agents
+#14 CACHED
+
+#15 [base  7/19] COPY packages/contracts/python packages/contracts/python
+#15 CACHED
+
+#16 [base 10/19] COPY services/ingestion services/ingestion
+#16 CACHED
+
+#17 [base  5/19] COPY pyproject.toml uv.lock ./
+#17 CACHED
+
+#18 [base  8/19] COPY services/api services/api
+#18 CACHED
+
+#19 [base  3/19] RUN pip install --no-cache-dir uv==0.13.1
+#19 CACHED
+
+#20 [base  9/19] COPY services/edge services/edge
+#20 CACHED
+
+#21 [base 13/19] COPY data/scenarios data/scenarios
+#21 CACHED
+
+#22 [base 15/19] COPY data/repairs data/repairs
+#22 CACHED
+
+#23 [base 19/19] RUN uv sync --locked --no-dev --no-editable
+#23 CACHED
+
+#24 [build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#24 CACHED
+
+#25 [build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#25 CACHED
+
+#26 [build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#26 CACHED
+
+#27 [qa 1/7] COPY --from=base /app /app
+#27 DONE 2.2s
+
+#28 [qa 2/7] COPY --from=base /usr/local/bin/uv /usr/local/bin/uv
+#28 DONE 0.2s
+
+#29 [qa 3/7] RUN uv sync --locked
+#29 0.477 Resolved 119 packages in 1ms
+#29 0.522    Building aegis-grid @ file:///app
+#29 0.801 Downloading pip (1.7MiB)
+#29 0.803 Downloading pygments (1.2MiB)
+#29 0.807 Downloading pillow (6.6MiB)
+#29 0.808 Downloading mypy (14.8MiB)
+#29 0.809 Downloading reportlab (1.9MiB)
+#29 0.814 Downloading ruff (9.9MiB)
+#29 0.815 Downloading ast-serialize (1.3MiB)
+#29 3.452  Downloaded pygments
+#29 3.462  Downloaded ast-serialize
+#29 3.718       Built aegis-grid @ file:///app
+#29 4.392  Downloaded pip
+#29 4.580  Downloaded reportlab
+#29 8.766  Downloaded pillow
+#29 10.48  Downloaded ruff
+#29 12.06  Downloaded mypy
+#29 12.06 Prepared 33 packages in 11.57s
+#29 12.08 Uninstalled 1 package in 20ms
+#29 12.53 Installed 33 packages in 449ms
+#29 12.53  ~ aegis-grid==0.1.0 (from file:///app)
+#29 12.53  + ast-serialize==0.13.0
+#29 12.53  + boolean-py==5.0
+#29 12.53  + cachecontrol==0.14.4
+#29 12.53  + cyclonedx-python-lib==11.12.0
+#29 12.53  + defusedxml==0.7.1
+#29 12.53  + iniconfig==2.3.1
+#29 12.53  + librt==0.16.0
+#29 12.53  + license-expression==30.4.4
+#29 12.53  + markdown-it-py==4.2.0
+#29 12.53  + mdurl==0.1.2
+#29 12.53  + msgpack==1.2.3
+#29 12.53  + mypy==2.4.0
+#29 12.53  + mypy-extensions==1.1.0
+#29 12.53  + packageurl-python==0.17.6
+#29 12.53  + pathspec==1.1.1
+#29 12.53  + pillow==12.3.0
+#29 12.53  + pip==26.2.1
+#29 12.53  + pip-api==0.0.35
+#29 12.53  + pip-audit==2.10.1
+#29 12.53  + pip-requirements-parser==32.0.1
+#29 12.53  + platformdirs==4.13.0
+#29 12.53  + pluggy==1.6.0
+#29 12.53  + py-serializable==2.1.0
+#29 12.53  + pygments==2.21.0
+#29 12.53  + pyparsing==3.3.3
+#29 12.53  + pytest==9.1.1
+#29 12.53  + reportlab==5.0.1
+#29 12.53  + rich==15.0.0
+#29 12.53  + ruff==0.17.0
+#29 12.53  + sortedcontainers==2.4.0
+#29 12.53  + tomli==2.5.0
+#29 12.53  + tomli-w==1.2.0
+#29 DONE 12.8s
+
+#30 [qa 4/7] COPY tests tests
+#30 DONE 0.1s
+
+#31 [qa 5/7] COPY tools tools
+#31 DONE 0.0s
+
+#32 [qa 6/7] COPY infra/cloud infra/cloud
+#32 DONE 0.0s
+
+#33 [qa 7/7] COPY packages/contracts/generated packages/contracts/generated
+#33 DONE 0.1s
+
+#34 exporting to image
+#34 exporting layers
+#34 exporting layers 8.7s done
+#34 exporting manifest sha256:c8914406e4a56d4795b897886b0c4c137dbeb1dcec2f5611f8cf2aed84ea711f 0.0s done
+#34 exporting config sha256:6b2fc4dd3dd3c1366e72b0c3095fa21cca0539e53f28fa5010d0e4c7c56dbea2 0.0s done
+#34 exporting attestation manifest sha256:75dfc24002461846bca98a5ac6c434ee71e36b50590a2ccc72cabae2547dda61 0.0s done
+#34 exporting manifest list sha256:24525af0cf53f9f1bc59e539d229cdbeb9a0c9756ac984f3f77807292b772677 0.0s done
+#34 naming to docker.io/library/aegis-grid-qa:phase12 done
+#34 unpacking to docker.io/library/aegis-grid-qa:phase12
+#34 unpacking to docker.io/library/aegis-grid-qa:phase12 6.1s done
+#34 DONE 15.0s
+CHECK: docker run --rm --network none aegis-grid-qa:phase12 ctest --test-dir /build --output-on-failure
+Internal ctest changing into directory: /build
+Test project /build
+    Start 1: thermal_kernel
+1/3 Test #1: thermal_kernel ...................   Passed    6.17 sec
+    Start 2: cli_rejects_bad_seed
+2/3 Test #2: cli_rejects_bad_seed .............   Passed    0.00 sec
+    Start 3: cli_rejects_zero_dt
+3/3 Test #3: cli_rejects_zero_dt ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   6.18 sec
+CHECK: docker run --rm --network none aegis-grid-qa:phase12
+........................................................................ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+..........                                                               [100%]
+298 passed in 43.58s
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/secret_scan.py
+PASS: scanned 561 repository files; no local tokens/private keys found
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe -m pip_audit --skip-editable --timeout 60
+No known vulnerabilities found
+Name       Skip Reason
+---------- -------------------------------
+aegis-grid distribution marked as editable
+CHECK: pnpm audit --audit-level high
+No known vulnerabilities found
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/smoke.py
+{"result": "PASS", "source": "local_cpp_simulator", "sse_frames": 3, "temperature_changed": true, "unauthorized_reads": "denied", "mutations": "general writes unavailable; passkey sandbox checked separately"}
+CHECK: D:\AEGIS GRID\.venv\Scripts\python.exe tools/cross_language_check.py
+{"result": "PASS", "actual_frame": true, "boundaries": ["C++", "Python/Pydantic", "HTTP", "Node/AJV", "generated TypeScript"], "invalid_frames_rejected": 4, "react_actual_frame_test": "Playwright gate"}
+CHECK: docker compose --env-file D:\AEGIS GRID\.env -f D:\AEGIS GRID\infra\local\compose.yaml exec -T api python -m aegis_api.storage_checks
+{
+  "result": "PASS",
+  "actual_services": [
+    "MongoDB",
+    "Redis"
+  ],
+  "forbidden_operations_denied": 6,
+  "mongo_write_concern": {
+    "j": true,
+    "w": 1
+  },
+  "idempotency": "identical retry / changed payload denied",
+  "load_test": {
+    "events": 128,
+    "concurrency": 8,
+    "wall_s": 0.42659559000094305,
+    "append_median_ms": 10.6287675,
+    "append_p95_ms": 54.118171
+  },
+  "redis_delivery_verified": true,
+  "fixture_origin": "storage_contract_fixture",
+  "note": "App credentials; fixtures excluded from default incident listing"
+}
+CHECK: docker compose --env-file D:\AEGIS GRID\.env -f D:\AEGIS GRID\infra\local\compose.yaml exec -T api python -m aegis_agents.checks
+{"result": "PASS", "actual_mongo_denials": 3, "graph_identity": "checkpoints and append-only analysis; no protected writes"}
+CHECK: docker compose --env-file D:\AEGIS GRID\.env -f D:\AEGIS GRID\infra\local\compose.yaml exec -T api python -m aegis_api.authorization_checks
+{"result": "PASS", "actual_mongo_privilege_denials": 14, "successful_operational_writes": 0}
+CHECK: pnpm exec playwright test
+
+Running 14 tests using 1 worker
+
+(node:9768) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Browser transport refusal: GET /api/v1/telemetry/stream net::ERR_INCOMPLETE_CHUNKED_ENCODING
+  ok  1 [chromium] › tests\e2e\approval.spec.ts:10:5 › real WebAuthn virtual authenticator binds approval and independent execution (simulator) (16.6s)
+Browser transport refusal: GET /api/v1/telemetry/stream net::ERR_INCOMPLETE_CHUNKED_ENCODING
+  ok  2 [chromium] › tests\e2e\approval.spec.ts:10:5 › real WebAuthn virtual authenticator binds approval and independent execution (Mongo maintenance) (14.1s)
+  ok  3 [chromium] › tests\e2e\golden-path.spec.ts:10:5 › actual C++ telemetry reaches React, exports provenance, and remains accessible (3.7s)
+  ok  4 [chromium] › tests\e2e\golden-path.spec.ts:54:5 › wrong viewer token fails visibly without telemetry (367ms)
+  ok  5 [chromium] › tests\e2e\golden-path.spec.ts:62:5 › memory calculator reports projected fit and blocked hardware honestly (685ms)
+  ok  6 [chromium] › tests\e2e\golden-path.spec.ts:76:5 › actual manual citations and contradictory bulletin block actions (3.5s)
+  ok  7 [chromium] › tests\e2e\golden-path.spec.ts:104:5 › real edge outage becomes visible and reconnects to a new simulator run (5.7s)
+  ok  8 [chromium] › tests\e2e\golden-path.spec.ts:122:5 › actual injected fault hides overheat from observed sensors (32.2s)
+  ok  9 [chromium] › tests\e2e\golden-path.spec.ts:149:5 › local safety stops deceptive fault while cloud is disabled (13.9s)
+  ok 10 [chromium] › tests\e2e\golden-path.spec.ts:173:5 › native incident snapshot and journal survive an API restart (9.8s)
+  ok 11 [chromium] › tests\e2e\golden-path.spec.ts:216:5 › LangGraph cycles, interrupts and survives restart without gateway writes (12.9s)
+  ok 12 [chromium] › tests\e2e\golden-path.spec.ts:248:5 › real minimax futures persist and reject unsafe candidates in the command center (13.7s)
+  ok 13 [chromium] › tests\e2e\golden-path.spec.ts:281:5 › verified local repair is reviewable while external connector gates stay blocked (1.8s)
+  ok 14 [chromium] › tests\e2e\golden-path.spec.ts:298:5 › isolated seeded fault replay and measured ten thousand futures work without operational mutation (7.5s)
+
+  14 passed (2.3m)
+Phase 12 checks passed.

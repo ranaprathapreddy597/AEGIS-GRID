@@ -7,8 +7,14 @@ An industrial incident-response system, built in the twelve phases supplied in
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
-Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
-reasoners and C++ forecasts work locally; the offline model template abstains.
+Explicit AMD hosted LangGraph and Pinecone synthetic retrieval now have live
+acceptance evidence. Pinecone retains 1,235 native 256-dimensional semantic
+vectors; 12/12 fixed development queries retrieved relevant sources. Hosted
+reasoning reliability is **PARTIAL** (GLM timeout and graph abstentions). See
+[`docs/LIVE_KNOWLEDGE.md`](docs/LIVE_KNOWLEDGE.md) for opt-in commands and
+[`docs/results/LIVE_INTEGRATION.md`](docs/results/LIVE_INTEGRATION.md) for evidence.
+Default Compose remains offline; numerical reasoners and C++ forecasts work locally.
+Dedicated MI300X, Evolus, other unverified external and production gates remain **BLOCKED**.
 Passkey approval covers a separate stationary simulator test resource and an
 atomic maintenance record in local Mongo. The reviewed repair diff is downloadable;
 Evolus invocation and GitHub publication remain closed. Required live acceptance remains blocked.
@@ -80,7 +86,9 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 | Node executor | Independent Ed25519/schema/scope/stop verifier; fixed private gateway, no external tool scope |
 | Redis / Mongo | Append-only monitoring journal, immutable snapshots/incidents and bounded fanout; scoped credentials; only the WebAuthn-bound stationary sandbox record may mutate |
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
-| Evolus / Pinecone / GitHub | Verified read contracts/metadata; live acceptance and external mutations blocked |
+| Pinecone | Live synthetic ingestion/retrieval verified; production/OEM acceptance unverified |
+| AMD hosted opinions | Real opt-in LangGraph diagnosis/planning; reliability PARTIAL; no MI300X hardware claim |
+| Evolus / GitHub | Verified read contracts/metadata; invocation/publication acceptance blocked |
 | Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
 | LangGraph | Real bounded cycles, Mongo checkpoints, observed-only inputs, C++ forecasts and durable no-action interrupt |
 | Passkeys / authorization | Actual WebAuthn UV, owner session, immutable digest and durable approval; isolated test sandbox only |

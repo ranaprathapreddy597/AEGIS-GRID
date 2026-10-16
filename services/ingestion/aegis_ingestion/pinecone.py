@@ -50,6 +50,7 @@ class PineconeEvidenceReader:
             timeout=10,
             trust_env=False,
             follow_redirects=False,
+            limits=httpx.Limits(max_keepalive_connections=0, max_connections=1),
             transport=transport,
         )
 

@@ -1,0 +1,99 @@
+{
+  "scope": "One small synthetic sensor case per model; not a representative accuracy benchmark",
+  "routing_order": [
+    "DeepSeek-V4-Flash",
+    "GLM-5.3-Flash",
+    "Qwen3.8-Flash-Next"
+  ],
+  "rows": [
+    {
+      "status": "VALIDATED",
+      "model_id": "DeepSeek-V4-Flash",
+      "served_model_id": "self-dploy/DeepSeek-V4-Flash",
+      "opinion": {
+        "assessment": "investigate",
+        "hypotheses": [
+          "sensor_bias",
+          "restricted_flow"
+        ],
+        "evidence_ids": [
+          "observed",
+          "residuals",
+          "trends",
+          "correlations"
+        ]
+      },
+      "prompt_tokens": 319,
+      "completion_tokens": 47,
+      "latency_ms": 3115.4834,
+      "attempted_models": [
+        "DeepSeek-V4-Flash"
+      ],
+      "backend": "amd_token_factory",
+      "hardware_verified": false,
+      "operational_write_allowed": false,
+      "diagnostics": [
+        {
+          "model": "DeepSeek-V4-Flash",
+          "http_status": 200,
+          "stage": "validated",
+          "model_identity_matches": true,
+          "finished": true,
+          "content_present": true
+        }
+      ]
+    },
+    {
+      "status": "REFUSED_OR_UNAVAILABLE",
+      "model_id": "GLM-5.3-Flash",
+      "diagnostics": [
+        {
+          "model": "GLM-5.3-Flash",
+          "stage": "transport",
+          "rejection_class": "ReadTimeout"
+        }
+      ],
+      "last": {
+        "stage": "transport",
+        "rejection_class": "ReadTimeout"
+      }
+    },
+    {
+      "status": "VALIDATED",
+      "model_id": "Qwen3.8-Flash-Next",
+      "served_model_id": "self-dploy/Qwen3.8-Flash-Next",
+      "opinion": {
+        "assessment": "investigate",
+        "hypotheses": [
+          "sensor_bias"
+        ],
+        "evidence_ids": [
+          "observed",
+          "residuals",
+          "trends",
+          "correlations"
+        ]
+      },
+      "prompt_tokens": 364,
+      "completion_tokens": 224,
+      "latency_ms": 16178.3218,
+      "attempted_models": [
+        "Qwen3.8-Flash-Next"
+      ],
+      "backend": "amd_token_factory",
+      "hardware_verified": false,
+      "operational_write_allowed": false,
+      "diagnostics": [
+        {
+          "model": "Qwen3.8-Flash-Next",
+          "http_status": 200,
+          "stage": "validated",
+          "model_identity_matches": true,
+          "finished": true,
+          "content_present": true
+        }
+      ]
+    }
+  ],
+  "historical_failures": "Earlier response text was not retained; no retrospective root cause claimed"
+}

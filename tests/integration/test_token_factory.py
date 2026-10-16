@@ -166,3 +166,115 @@ def test_unreviewed_model_and_oversized_evidence_refuse_before_network():
             await client.close()
 
     asyncio.run(check())
+
+
+def test_field_diagnostics_never_retain_model_text_and_quota_circuit_persists():
+    async def check():
+        calls = []
+
+        def double(request):
+            calls.append(request.method)
+            if request.method == "GET":
+                return httpx.Response(200, json=catalog())
+            value = response(MODEL_ORDER[0])
+            value["choices"][0]["message"]["content"] = '{"command":"SECRET-INJECTION"}'
+            return httpx.Response(200, json=value)
+
+        client = TokenFactoryClient(
+            SecretStr("test"), models=(MODEL_ORDER[0],), transport=httpx.MockTransport(double)
+        )
+        try:
+            with pytest.raises(InferenceUnavailable):
+                await client.investigate("observed data")
+            diagnostic = json.dumps(client.diagnostics)
+            assert "schema_errors" in diagnostic and "extra_forbidden" in diagnostic
+            assert "SECRET-INJECTION" not in diagnostic
+        finally:
+            await client.close()
+
+        def quota(request):
+            calls.append(request.method)
+            return httpx.Response(429)
+
+        client = TokenFactoryClient(SecretStr("test"), transport=httpx.MockTransport(quota))
+        try:
+            with pytest.raises(InferenceUnavailable):
+                await client.investigate("data")
+            before = len(calls)
+            with pytest.raises(InferenceUnavailable, match="circuit"):
+                await client.plan("data")
+            assert len(calls) == before
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
+def test_timeout_routes_to_reviewed_fallback_and_planning_has_no_command_payload():
+    async def check():
+        calls = []
+
+        def double(request):
+            if request.method == "GET":
+                return httpx.Response(200, json=catalog())
+            body = json.loads(request.content)
+            calls.append(body["model"])
+            if len(calls) == 1:
+                raise httpx.ReadTimeout("contract timeout")
+            value = response(body["model"])
+            value["choices"][0]["message"]["content"] = json.dumps(
+                {"recommendation": "emergency_stop", "evidence_ids": ["candidate_evaluations"]}
+            )
+            return httpx.Response(200, json=value)
+
+        client = TokenFactoryClient(SecretStr("test"), transport=httpx.MockTransport(double))
+        try:
+            result = await client.plan('{"candidate_evaluations":{}}')
+            assert result.opinion.recommendation == "emergency_stop"
+            assert calls == list(MODEL_ORDER[:2])
+            assert client.diagnostics[0]["rejection_class"] == "ReadTimeout"
+            assert not result.operational_write_allowed
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
+def test_reference_to_absent_structured_evidence_is_refused():
+    async def check():
+        client = TokenFactoryClient(
+            SecretStr("test"),
+            models=(MODEL_ORDER[0],),
+            transport=httpx.MockTransport(
+                lambda r: httpx.Response(
+                    200, json=catalog() if r.method == "GET" else response(MODEL_ORDER[0])
+                )
+            ),
+        )
+        try:
+            with pytest.raises(InferenceUnavailable):
+                await client.investigate('{"observed":{}}')
+            assert client.last_diagnostic["stage"] == "references"
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
+@pytest.mark.parametrize("payload", [[], {"choices": []}, {"choices": [None]}])
+def test_malformed_envelopes_fail_closed(payload):
+    async def check():
+        client = TokenFactoryClient(
+            SecretStr("test"),
+            models=(MODEL_ORDER[0],),
+            transport=httpx.MockTransport(
+                lambda r: httpx.Response(200, json=catalog() if r.method == "GET" else payload)
+            ),
+        )
+        try:
+            with pytest.raises(InferenceUnavailable):
+                await client.investigate("data")
+        finally:
+            await client.close()
+
+    asyncio.run(check())

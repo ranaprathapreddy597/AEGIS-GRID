@@ -8,12 +8,17 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any, TypedDict
 
+from aegis_contracts.inference import ModelOpinion, PlanningOpinion
 from aegis_contracts.investigation import DiagnosticHypothesis, GraphTrace, Investigation
 from aegis_contracts.models import AnomalyEvidence, IncidentRecord, SensorFrame, SimulatorControls
 from aegis_edge.sentinel import SafetyShield
 from aegis_edge.twin import NativeTwin, scenario_from_file
-from aegis_inference.client import OfflineDevelopmentBackend, VLLMClient
+from aegis_inference.client import InferenceUnavailable, OfflineDevelopmentBackend, VLLMClient
+from aegis_inference.token_factory import TokenFactoryClient
+from aegis_ingestion.evolus import ProviderUnavailable
+from aegis_ingestion.knowledge import KnowledgeChunk
 from aegis_ingestion.library import fixture_library
+from aegis_ingestion.semantic_store import SemanticStore
 from langchain_core.runnables import RunnableLambda
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
@@ -74,10 +79,61 @@ def build_graph(
     record: IncidentRecord,
     checkpointer: Any,
     library: Path,
-    backend: OfflineDevelopmentBackend | VLLMClient | None = None,
+    backend: OfflineDevelopmentBackend | VLLMClient | TokenFactoryClient | None = None,
+    knowledge: SemanticStore | None = None,
 ) -> Any:
     model = backend or OfflineDevelopmentBackend()
     graph = StateGraph(State)
+    retrieved: dict[str, list[KnowledgeChunk]] = {}
+
+    def retrieve(data: dict[str, Any], kind: str, query: str) -> list[dict[str, str]]:
+        if knowledge is None:
+            return []
+        if kind not in retrieved:
+            try:
+                retrieved[kind] = asyncio.run(knowledge.search(query, kind=kind))
+            except ProviderUnavailable:
+                retrieved[kind] = []
+                data["provider_failures"].append("Pinecone unavailable; local evidence retained")
+        hits = retrieved[kind]
+        if hits:
+            data["retrieval_backend"] = "pinecone_semantic"
+            data["live_gates"] = "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified"
+            data["retrieved_source_ids"] = sorted(
+                set(data["retrieved_source_ids"] + [hit.identifier for hit in hits])
+            )[:15]
+        return [{"id": hit.identifier, "untrusted_text": hit.text[:600]} for hit in hits[:2]]
+
+    def hosted(data: dict[str, Any], evidence: dict[str, Any], planning: bool) -> str:
+        assert isinstance(model, TokenFactoryClient)  # noqa: S101 - internal narrowing
+        field = "hosted_planning" if planning else "hosted_diagnosis"
+        if data[field] is not None or data["iteration"] > (2 if planning else 1):
+            return "Hosted opinion already attempted; no repeated quota consumption"
+        payload = json.dumps(evidence)
+        remaining = data["model_token_budget"] - data["model_tokens_used"]
+        # UTF-8 bytes are a conservative token admission estimate for bounded ASCII evidence.
+        if len(payload.encode()) + 1800 > remaining:
+            data["provider_failures"].append("AMD graph token preflight abstention")
+            return "Insufficient hosted budget; deterministic local reasoning retained"
+        try:
+            result = asyncio.run(
+                model.plan(payload, 256) if planning else model.investigate(payload, 256)
+            )
+            used = result.prompt_tokens + result.completion_tokens
+            if used > remaining:
+                raise InferenceUnavailable("AMD actual usage exceeds graph budget")
+            data["model_tokens_used"] += used
+            data["backend"] = result.backend
+            expected = PlanningOpinion if planning else ModelOpinion
+            if not isinstance(result.opinion, expected):
+                raise InferenceUnavailable("Unexpected hosted schema")
+            data[field] = result.opinion.model_dump()
+            return (
+                "Validated AMD opinion recorded; independent numerical safety remains authoritative"
+            )
+        except InferenceUnavailable:
+            data["provider_failures"].append("AMD unavailable/refused; local fallback/abstention")
+            return "AMD unavailable; deterministic local reasoning retained"
 
     def node(name: str, function: Callable[[dict[str, Any]], str]) -> Callable[[State], State]:
         def run(state: State) -> State:
@@ -119,6 +175,24 @@ def build_graph(
         data["hypotheses"] = [
             item.model_dump() for item in diagnose(record.event.observed, record.event.evidence)
         ]
+        if isinstance(model, TokenFactoryClient):
+            sources = retrieve(
+                data, "manual", "temperature sensor disagreement coolant flow safety"
+            )
+            return hosted(
+                data,
+                {
+                    "observed": [
+                        {"temperature_c": c.temperature_c, "flow_kg_s": c.flow_kg_s}
+                        for c in record.event.observed.cells
+                    ]
+                    if record.event.observed
+                    else [],
+                    "residuals": [e.model_dump() for e in record.event.evidence][:2],
+                    "retrieved_sources": sources,
+                },
+                False,
+            )
         if isinstance(model, VLLMClient):
             data["refusal"] = "MI300X live gate blocked; remote budget preflight unverified"
             return str(data["refusal"])
@@ -149,10 +223,11 @@ def build_graph(
         return "Physics hypotheses retained; model opinion has no policy or execution authority"
 
     def manual(data: dict[str, Any]) -> str:
+        retrieve(data, "manual", "temperature sensor disagreement coolant flow safety")
         evidence = fixture_library().evidence("CELL-01 temperature flow")
         data["manual_decision"] = evidence.decision.status
         data["evidence_page_hashes"] = [hit.citation.page_sha256 for hit in evidence.hits]
-        return "FAISS exact-citation evidence; full-corpus contradiction gate checked"
+        return "Verified source retrieval; local full-corpus contradiction gate checked"
 
     def cascade(data: dict[str, Any]) -> str:
         if data["recovery_assessment"] is None:
@@ -163,6 +238,7 @@ def build_graph(
         return "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
 
     def blue(data: dict[str, Any]) -> str:
+        sources = retrieve(data, "recovery", "minimax recovery emergency stop thermal safety")
         search = data["recovery_assessment"]
         selected = next(
             (
@@ -178,6 +254,22 @@ def build_graph(
         elif data["iteration"] == 2 and selected:
             controls = selected["controls"]
             rationale = "Minimax optimum; still subject to independent latched-stop policy"
+            if isinstance(model, TokenFactoryClient):
+                hosted(
+                    data,
+                    {
+                        "candidate_evaluations": {
+                            "minimax_candidate": {"feasible": selected["feasible"]},
+                            "emergency_stop": "Independent policy requires latched stop",
+                        },
+                        "retrieved_sources": sources,
+                    },
+                    True,
+                )
+                opinion = data["hosted_planning"]
+                if not opinion or opinion["recommendation"] != "minimax_candidate":
+                    controls = SafetyShield.emergency_controls().model_dump()
+                    rationale = "Hosted stop/abstention or unavailable; preserve independent stop"
         else:
             controls = SafetyShield.emergency_controls().model_dump()
             rationale = "Preserve independent emergency stop after adversarial feedback"

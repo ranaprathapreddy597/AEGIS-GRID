@@ -1133,7 +1133,7 @@ export interface components {
              * @default offline_template
              * @enum {string}
              */
-            backend: "offline_template" | "remote_vllm";
+            backend: "offline_template" | "remote_vllm" | "amd_token_factory";
             /** Baseline Maximum Temperature C */
             baseline_maximum_temperature_c?: number | null;
             /**
@@ -1148,6 +1148,8 @@ export interface components {
              * @default []
              */
             evidence_page_hashes: string[];
+            hosted_diagnosis?: components["schemas"]["ModelOpinion"] | null;
+            hosted_planning?: components["schemas"]["PlanningOpinion"] | null;
             /**
              * Hypotheses
              * @default []
@@ -1165,9 +1167,9 @@ export interface components {
             /**
              * Live Gates
              * @default MI300X/Evolus/Pinecone BLOCKED
-             * @constant
+             * @enum {string}
              */
-            live_gates: "MI300X/Evolus/Pinecone BLOCKED";
+            live_gates: "MI300X/Evolus/Pinecone BLOCKED" | "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified";
             /**
              * Manual Decision
              * @default no_action
@@ -1218,12 +1220,28 @@ export interface components {
              * @constant
              */
             phase: 7;
+            /**
+             * Provider Failures
+             * @default []
+             */
+            provider_failures: string[];
             recovery_assessment?: components["schemas"]["RecoveryAssessment"] | null;
             /**
              * Refusal
              * @default
              */
             refusal: string;
+            /**
+             * Retrieval Backend
+             * @default local_faiss
+             * @enum {string}
+             */
+            retrieval_backend: "local_faiss" | "pinecone_semantic";
+            /**
+             * Retrieved Source Ids
+             * @default []
+             */
+            retrieved_source_ids: string[];
             /**
              * Status
              * @default running
@@ -1378,6 +1396,18 @@ export interface components {
             /** State Version */
             state_version: number;
         };
+        /** ModelOpinion */
+        ModelOpinion: {
+            /**
+             * Assessment
+             * @enum {string}
+             */
+            assessment: "insufficient_evidence" | "investigate";
+            /** Evidence Ids */
+            evidence_ids: string[];
+            /** Hypotheses */
+            hypotheses: ("sensor_bias" | "restricted_flow" | "weak_pump" | "overload")[];
+        };
         /** MutationReceipt */
         MutationReceipt: {
             /** Action Id */
@@ -1494,6 +1524,16 @@ export interface components {
             worst_objective: number;
             /** Worst Temperature C */
             worst_temperature_c: number;
+        };
+        /** PlanningOpinion */
+        PlanningOpinion: {
+            /** Evidence Ids */
+            evidence_ids: ("candidate_evaluations" | "retrieved_sources")[];
+            /**
+             * Recommendation
+             * @enum {string}
+             */
+            recommendation: "minimax_candidate" | "emergency_stop" | "abstain";
         };
         /** PlantTelemetry */
         PlantTelemetry: {

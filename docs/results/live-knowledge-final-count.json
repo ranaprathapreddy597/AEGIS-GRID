@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "index": "aegis-grid-memory",
+  "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+  "expected": 1235,
+  "persisted_vectors_after_graph_and_cleanup": 1235,
+  "operations": [
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1237.928099999408
+    }
+  ]
+}

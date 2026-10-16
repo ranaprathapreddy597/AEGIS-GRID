@@ -1,5 +1,10 @@
 # AMD Token Factory routing — provisional, 2026-10-16
 
+Follow-up: explicit live LangGraph diagnosis/planning and Pinecone semantic
+retrieval acceptance now exists; see LIVE_INTEGRATION.md and live-amd-diagnostics.json.
+Default Compose remains offline. The statements below describe the original
+standalone probe; its failures are preserved. Dedicated MI300X remains blocked.
+
 Keep DeepSeek-V4-Flash primary, GLM-5.3-Flash secondary and
 Qwen3.8-Flash-Next fallback. This is a provisional operational order, not a
 measured quality ranking. Official documentation and authenticated catalog reads

@@ -1,10 +1,21 @@
 # Open issues
 
+2026-10-16 live follow-up supersedes historical Pinecone credential/absence
+statements: the dedicated synthetic namespace has 1,235 verified persisted
+semantic vectors and live filtered retrieval/cleanup proof. AMD hosted LangGraph
+connectivity/strict validation is verified via the explicit runner; useful hosted
+reasoning reliability remains PARTIAL because GLM times out and graph opinions
+abstain. Earlier opaque validation failures cannot be reconstructed from retained
+metadata. Automatic hosted service egress, hosted Mongo acceptance, production
+tenancy/identity and representative semantic/diagnosis evaluation remain pending.
+MI300X, Evolus and all other unverified external gates remain BLOCKED. See
+results/LIVE_INTEGRATION.md for the current evidence; entries below are historical.
+
 | ID | State / phase | Issue and next action |
 |---|---|---|
 | EXT-01 | Blocked / Phase 6 | Pinned model/image, memory projections, read client and deployment/collection scripts implemented. No endpoint/device logs or actual long-context/HBM measurements. User will provision access later; live gate remains blocked. |
 | EXT-02 | Blocked / Phase 5 | Verified supplied OpenAPI read adapter and exact-match pipeline implemented. Application scope supplied; rotated local key, existing document IDs/personal read auth and live extraction proof pending. No provider call verified. |
-| EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no credentialed integration calls or writes attempted. |
+| EXT-03 | Partial / live follow-up | Pinecone synthetic ingestion and filtered retrieval verified (1,235 vectors); production/OEM retrieval and GitHub live acceptance remain unverified/blocked. Historical credential absence no longer describes Pinecone. |
 | HW-01 | Unverified | NPU device enumerated OK and amd-smi on PATH; no compatible accelerated inference workload verified. CPU backend tested. |
 | TOOL-01 | Resolved for Docker path | Native Windows CMake/compiler absent. Container CMake/CTest is the chosen Phase 1 path; native MSVC remains unverified. |
 | MODEL-01 | Resolved / Phase 2 | Coupled coolant/pressure/feeder, bounded actuators, instrument noise, seeded faults and snapshots are implemented; see PHYSICS.md and phase evidence. |

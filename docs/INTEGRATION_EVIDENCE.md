@@ -1,5 +1,35 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Current live follow-up — 2026-10-16, Asia/Calcutta
+
+The user explicitly authorized synthetic Pinecone writes. Actual authenticated
+index metadata, 25 batch upserts, 1,235 persisted semantic records, 12/12 fixed
+development retrieval queries, zero wrong-tenant matches, count-stable repeat
+upserts and a separate 2→0 cleanup test are recorded in
+`results/live-knowledge-ingest.json`. Every source is labeled synthetic. Existing
+unrelated records were not targeted. Embeddings use pinned pretrained native
+256-dimensional potion-base-8M outputs with artifact hashes; no random or
+truncated vectors are used. Live Pinecone synthetic acceptance supersedes the
+earlier blocked indexing statements below.
+
+`results/live-knowledge-graph.json` proves a new native fault, real AMD structured
+diagnosis/planning calls, verified Pinecone references, 409 native minimax rollouts
+and a private recovery counterfactual, followed by HITL interruption. The provider
+opinions abstained; independent numerical reasoning and the manual contradiction
+block remained authoritative. No execution permission was fabricated. Focused
+DeepSeek/Qwen diagnostic calls validated; GLM timed out, so hosted reliability is
+PARTIAL. See `results/live-amd-diagnostics.json`, `results/LIVE_INTEGRATION.md` and
+`LIVE_KNOWLEDGE.md`. MI300X, Evolus and production acceptance remain BLOCKED.
+
+Stable main regression passed 298 Python / 3 CTest / 16 Node / 14 browser checks.
+The final separate-install clean-source gate passed 299 Python / 3 CTest / 16 Node /
+14 browser checks, scans/contracts and real storage/authorization checks; the
+fresh-source demo passed in 180.0068 seconds. Source tree, separate dependency
+installation, isolated credentials/DB, actual logs/video/receipts and cache limits
+are recorded in the live integration report. Earlier failed overlapping browser
+execution is retained. No release tag or production acceptance is implied.
+Earlier evidence below remains historical, rather than rewritten as provider success.
+
 ## Verified host discovery
 
 PowerShell CIM and executable probes observed:

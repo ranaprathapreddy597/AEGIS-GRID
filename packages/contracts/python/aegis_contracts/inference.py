@@ -37,6 +37,13 @@ class ModelOpinion(Contract):
     # No free-form commands, arbitrary tools, credentials, actions or write scope.
 
 
+class PlanningOpinion(Contract):
+    recommendation: Literal["minimax_candidate", "emergency_stop", "abstain"]
+    evidence_ids: Annotated[
+        list[Literal["candidate_evaluations", "retrieved_sources"]], Field(max_length=2)
+    ]
+
+
 class InferenceResult(Contract):
     backend: Literal["remote_vllm", "offline_template"]
     model_id: str

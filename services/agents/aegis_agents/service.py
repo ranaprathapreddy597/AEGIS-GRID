@@ -6,6 +6,8 @@ from uuid import UUID
 
 from aegis_contracts.investigation import Investigation
 from aegis_contracts.models import IncidentRecord
+from aegis_inference.token_factory import TokenFactoryClient
+from aegis_ingestion.semantic_store import SemanticStore
 from langchain_core.runnables import RunnableConfig
 from langgraph.checkpoint.mongodb import MongoDBSaver
 from langsmith.run_helpers import tracing_context
@@ -16,7 +18,16 @@ from aegis_agents.serde import SafeCheckpointJSON
 
 
 class InvestigationService:
-    def __init__(self, password: str, library: Path) -> None:
+    def __init__(
+        self,
+        password: str,
+        library: Path,
+        *,
+        hosted_backend: TokenFactoryClient | None = None,
+        knowledge: SemanticStore | None = None,
+    ) -> None:
+        self.hosted_backend = hosted_backend
+        self.knowledge = knowledge
         self.client: MongoClient[dict[str, Any]] = MongoClient(
             "mongo",
             27017,
@@ -71,9 +82,11 @@ class InvestigationService:
                 raise ValueError("Investigation key belongs to another incident")
             if existing.status != "running":
                 return existing
-        graph = build_graph(record, self.saver, self.library)
+        graph = build_graph(record, self.saver, self.library, self.hosted_backend, self.knowledge)
         initial = Investigation(
-            investigation_id=str(UUID(identifier)), incident_id=record.incident_id
+            investigation_id=str(UUID(identifier)),
+            incident_id=record.incident_id,
+            model_token_budget=16384 if self.hosted_backend else 1024,
         )
         try:
             with tracing_context(enabled=False):

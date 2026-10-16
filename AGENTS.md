@@ -18,7 +18,14 @@ authoritative project instructions. Preserve them unchanged.
   Phase 12 local gate and clean-source demo/full gate passed; see docs/results/PHASE12.md.
   Local phases 1–12 are validated. Required live and production gates remain BLOCKED.
   No release tag, external write or production completion is authorized by the local gate.
-  MI300X/Evolus/Pinecone live acceptance gates remain BLOCKED until verified.
+  MI300X/Evolus and production acceptance gates remain BLOCKED until verified.
+  Live follow-up authorized on 2026-10-16: scoped synthetic Pinecone upserts,
+  retrieval/count/filter/cleanup tests and AMD inference diagnostics. Pinecone now
+  retains 1,235 verified native 256-D semantic vectors; actual LangGraph hosted
+  diagnosis/planning and retrieved sources reach the native recovery/HITL boundary.
+  Hosted reasoning reliability remains PARTIAL (GLM timeout; graph abstentions).
+  See docs/results/LIVE_INTEGRATION.md and docs/LIVE_KNOWLEDGE.md. This specific
+  provider authorization does not authorize enterprise writes or deployments.
   Complete/test/commit/report each phase before proceeding. Record unavailable
   external gates explicitly; never waive them to mark a release complete.
 - Read `docs/PROGRESS.md`, `docs/OPEN_ISSUES.md`, and

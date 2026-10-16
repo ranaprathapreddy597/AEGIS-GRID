@@ -1,5 +1,6 @@
 """Install frozen host dependencies and run the full gate in clean_demo's source export."""
 
+import argparse
 import json
 import os
 import re
@@ -12,8 +13,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--evidence-prefix", default="phase12")
+    prefix = parser.parse_args().evidence_prefix
+    if not re.fullmatch(r"[a-z0-9-]{1,64}", prefix):
+        raise ValueError("Invalid evidence prefix")
     proof = json.loads(
-        (ROOT / "docs/results/phase12-clean-bootstrap.json").read_text(encoding="utf-8")
+        (ROOT / f"docs/results/{prefix}-clean-bootstrap.json").read_text(encoding="utf-8")
     )
     project = proof["project"]
     if not re.fullmatch(r"aegis-proof-[0-9a-f]{8}", project):
@@ -43,7 +49,7 @@ def main() -> None:
         Path(sys.executable).with_name("uv.exe" if os.name == "nt" else "uv")
     )
     pnpm = shutil.which("pnpm") or "pnpm"
-    log_path = ROOT / "docs/results/phase12-clean-checks.txt"
+    log_path = ROOT / f"docs/results/{prefix}-clean-checks.txt"
     try:
         with log_path.open("w", encoding="utf-8") as log:
 
@@ -104,7 +110,7 @@ def main() -> None:
         result["cleanup"] = (
             "Only proof containers/networks stopped; all volumes and main stack retained."
         )
-        (ROOT / "docs/results/phase12-clean-check-proof.json").write_text(
+        (ROOT / f"docs/results/{prefix}-clean-check-proof.json").write_text(
             json.dumps(result, indent=2) + "\n", encoding="utf-8"
         )
 

@@ -1,5 +1,24 @@
 # Execution status
 
+## AMD/Pinecone live synthetic follow-up — 2026-10-16
+
+User explicitly authorized live Pinecone population. Actual ingestion persisted
+1,235 semantic vectors in a dedicated versioned synthetic namespace, with zero
+failed records, 12/12 fixed development retrieval queries, metadata isolation,
+idempotent upserts and isolated cleanup verified. Real AMD opinions now run in
+LangGraph diagnosis/planning nodes with verified Pinecone source references,
+strict schemas, bounded budgets/deadlines and deterministic fallback. Native
+fault/recovery acceptance reaches the HITL interrupt; manual contradiction still
+blocks action. Hosted opinion reliability is PARTIAL (GLM timeout; graph
+abstentions), not an industrial diagnosis claim. See results/LIVE_INTEGRATION.md
+and LIVE_KNOWLEDGE.md. Stable main gate passed 298 Python / 3 CTest / 16 Node /
+14 browser checks; final clean-source gate passed 299 Python / 3 CTest / 16 Node /
+14 browser checks, scans/contracts and actual storage/authorization checks. The
+separate fresh-source 180.0068-second demo passed. Only documentation/evidence
+changed after its frozen executable source export.
+Dedicated MI300X, Evolus and production gates remain BLOCKED. Earlier phase/status
+entries below describe their historical execution states.
+
 Current status: **local Phases 1–12 validated; required live/production gates BLOCKED**.
 User accepted Phase 6 local gate and authorized Phases 7–12 on 2026-10-16.
 Phase 4 passed at `12c2d86` on 2026-10-16.

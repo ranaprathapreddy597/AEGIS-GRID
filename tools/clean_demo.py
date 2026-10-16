@@ -1,7 +1,9 @@
 """Export the staged source and run the actual demo in a new local Compose project."""
 
+import argparse
 import json
 import os
+import re
 import shutil
 import socket
 import subprocess
@@ -17,6 +19,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--evidence-prefix", default="phase12")
+    prefix = parser.parse_args().evidence_prefix
+    if not re.fullmatch(r"[a-z0-9-]{1,64}", prefix):
+        raise ValueError("Invalid evidence prefix")
+    demo_output = ROOT / f"docs/results/{prefix}-demo"
     identifier = "aegis-proof-" + uuid4().hex[:8]
     directory = ROOT / ".run" / identifier
     source = directory / "source"
@@ -86,7 +94,7 @@ def main() -> None:
                     "--workspace",
                     str(source),
                     "--output",
-                    str(ROOT / "docs/results/phase12-demo"),
+                    str(demo_output),
                 ],
                 cwd=ROOT,
                 stdout=log,
@@ -94,9 +102,7 @@ def main() -> None:
                 check=True,
                 timeout=240,
             )
-        proof = json.loads(
-            (ROOT / "docs/results/phase12-demo/proof.json").read_text(encoding="utf-8")
-        )
+        proof = json.loads((demo_output / "proof.json").read_text(encoding="utf-8"))
         if proof["result"] != "PASS" or proof["duration_s"] < 180:
             raise RuntimeError("Actual complete demo proof required")
         report.update(
@@ -124,7 +130,7 @@ def main() -> None:
         report["cleanup"] = (
             "Only new proof project's containers/networks stopped; volumes and main stack retained."
         )
-        (ROOT / "docs/results/phase12-clean-bootstrap.json").write_text(
+        (ROOT / f"docs/results/{prefix}-clean-bootstrap.json").write_text(
             json.dumps(report, indent=2) + "\n", encoding="utf-8"
         )
 

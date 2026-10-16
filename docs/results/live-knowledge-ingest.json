@@ -1,0 +1,648 @@
+{
+  "status": "PASS",
+  "mi300x": "BLOCKED",
+  "evolus": "BLOCKED",
+  "embedding": "minishlab/potion-base-8M@bf8b056651a2c21b8d2565580b8569da283cab23",
+  "native_dimension": 256,
+  "model_artifacts_sha256": {
+    "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+    "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+    "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50"
+  },
+  "corpus_sha256": "6e4d75051cbcaf1eb901043954f988a147e41b43d051ba3527e705f3a307ca94",
+  "expected_vectors": 1235,
+  "kinds": {
+    "manual": 1000,
+    "incident": 102,
+    "scenario": 100,
+    "recovery": 33
+  },
+  "synthetic": true,
+  "index_metadata_http": 200,
+  "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+  "namespace_count_before": 0,
+  "upsert": {
+    "acknowledged_vectors": 1235,
+    "failed_or_unconfirmed_ids": [],
+    "batches": [
+      {
+        "offset": 0,
+        "acknowledged": 50
+      },
+      {
+        "offset": 50,
+        "acknowledged": 50
+      },
+      {
+        "offset": 100,
+        "acknowledged": 50
+      },
+      {
+        "offset": 150,
+        "acknowledged": 50
+      },
+      {
+        "offset": 200,
+        "acknowledged": 50
+      },
+      {
+        "offset": 250,
+        "acknowledged": 50
+      },
+      {
+        "offset": 300,
+        "acknowledged": 50
+      },
+      {
+        "offset": 350,
+        "acknowledged": 50
+      },
+      {
+        "offset": 400,
+        "acknowledged": 50
+      },
+      {
+        "offset": 450,
+        "acknowledged": 50
+      },
+      {
+        "offset": 500,
+        "acknowledged": 50
+      },
+      {
+        "offset": 550,
+        "acknowledged": 50
+      },
+      {
+        "offset": 600,
+        "acknowledged": 50
+      },
+      {
+        "offset": 650,
+        "acknowledged": 50
+      },
+      {
+        "offset": 700,
+        "acknowledged": 50
+      },
+      {
+        "offset": 750,
+        "acknowledged": 50
+      },
+      {
+        "offset": 800,
+        "acknowledged": 50
+      },
+      {
+        "offset": 850,
+        "acknowledged": 50
+      },
+      {
+        "offset": 900,
+        "acknowledged": 50
+      },
+      {
+        "offset": 950,
+        "acknowledged": 50
+      },
+      {
+        "offset": 1000,
+        "acknowledged": 50
+      },
+      {
+        "offset": 1050,
+        "acknowledged": 50
+      },
+      {
+        "offset": 1100,
+        "acknowledged": 50
+      },
+      {
+        "offset": 1150,
+        "acknowledged": 50
+      },
+      {
+        "offset": 1200,
+        "acknowledged": 35
+      }
+    ]
+  },
+  "persisted_vectors": 1235,
+  "idempotent_repeat": {
+    "acknowledged_vectors": 2,
+    "failed_or_unconfirmed_ids": [],
+    "batches": [
+      {
+        "offset": 0,
+        "acknowledged": 2
+      }
+    ]
+  },
+  "count_after_repeat": 1235,
+  "retrieval": {
+    "scope": "12 fixed development queries; repeated synthetic manual pages, not held out",
+    "top1_correct": 12,
+    "top5_correct": 12,
+    "queries": 12,
+    "rows": [
+      {
+        "query": "maximum temperature in Celsius before a thermal alarm",
+        "expected": "temperature",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-bf43c2ebf4b3033d903fa9c47f5e7a5b87a1af465457d597365458d1adcafedc",
+          "agk1-6c6fcf28bb94fca45af7c6b2a270b4d2e545feaa88a57baafad193813a3a3b7c",
+          "agk1-f86e7240c18634cfaf5d240fb2a686be528a70057d97581ddc1b84ed8b8bc93d",
+          "agk1-04a14e1111b79287265925a5ba18346a4271a04eefb8c62d1aac8094907a7bd7",
+          "agk1-f5db2b525da5f24f83a8dfeb0de5aa50f58c507213c49e5783dda4b6f4661554"
+        ]
+      },
+      {
+        "query": "heat overheating thermal engineering envelope",
+        "expected": "temperature",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-c3cb97b419dd8a2a95b6b393985e970423bf53f18c1b2ec5eb17106de46a117b",
+          "agk1-92fbf02656afd8830a659307f40b9e452afe3a476fa6bb7d7ff955e902c59ad9",
+          "agk1-4d52ffc56d7c01dfaa124de07f5996641e8248b7ce1b3fe109226ff792576f43",
+          "agk1-f5db2b525da5f24f83a8dfeb0de5aa50f58c507213c49e5783dda4b6f4661554",
+          "agk1-e90360493588ef8e15f6baaa546d178641d8d79fc8925254282dbab99a5dc958"
+        ]
+      },
+      {
+        "query": "allowable pressure in kilopascals",
+        "expected": "pressure",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-c6e1b75f648a8a93e5facccb472335c3dd76b786b2f9cc635fc2f0e6ed3b709c",
+          "agk1-de04a55ae8f79a25839e7928d1e1925703730d88914e164d5a285c2a847cb588",
+          "agk1-10390e718a93cd094a481d72bd1438ae986566cf583ce6dcaaaa0dc4e900aa64",
+          "agk1-19a197a10ebdf86b68b2b5763e505b1b6e3661912307185f1770b034fe5d2a6a",
+          "agk1-3288718c98365eb8a8d903d88594f70523051f886c6afc09ad9e0958e144434c"
+        ]
+      },
+      {
+        "query": "hydraulic pressure limit kPa",
+        "expected": "pressure",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-f180d79b440c4fb4aaee69f6af91b44a27269d149f3568c8378aff30b68e50f7",
+          "agk1-de04a55ae8f79a25839e7928d1e1925703730d88914e164d5a285c2a847cb588",
+          "agk1-c25f2984e4ad17457c2a8510f7852dc67d228967fa65ef67830cd09307e2bd66",
+          "agk1-0e6f57512d8c810d0614181de1529091aec68bf5df07008799d44501f1c35d44",
+          "agk1-e77e280e6fabbd89ebc18b2a38bc42e45b5ca002d4a6ad56aa8dddaa90f9cecf"
+        ]
+      },
+      {
+        "query": "coolant flow kilograms per second",
+        "expected": "flow",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-6e180f39bbc60d71005f6ca61e63dcffd4c1db58cf1a995847abe45dd504be84",
+          "agk1-b9bdf79d8690f6f7bbb612748cc6906750f409b1ba976dfe49e97012c1f9a261",
+          "agk1-184f71c9ea4cfcbdae1ac577831771001ca602edf2ef45881be5fdf4aa7022a4",
+          "agk1-3f446cac06a2bf48eb3976d6c38f4c866202fe4b0e86724612d22ccb351d13d5",
+          "agk1-3fab34041edf4ed73765e5278b283b291cf1dac1720ab371d012b3c055e78d69"
+        ]
+      },
+      {
+        "query": "liquid flow rate kg/s",
+        "expected": "flow",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-9b3cdbd70a22842cfe95cad4ab5eec09c6b5d66756ecc1c549950fc750582f0b",
+          "agk1-1a9b8c222bde0b59bf9079c428280ce02b72e10edd9cf2abf0d45381740af763",
+          "agk1-714199257c65260009454258d15d62f53cc134e8250852464a636cf4d2c706a8",
+          "agk1-8c285ec93c433b3ef3fb390c44483f295914bfa308cd08791a976379673b3a56",
+          "agk1-c34b51244247cecb745eea2d39f2dbf7e3cefb8bb7b19ce8a2110ccd26a2be18"
+        ]
+      },
+      {
+        "query": "machine workload load fraction operating limit",
+        "expected": "load",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-3ea424ef8e475b71203a4ff7c118790a1e70ef94eb2f1502bc8c33d26c88e904",
+          "agk1-b4405eeb8231ba88b0dd009193e44140663d9967e64cc788258ed4b07dddafea",
+          "agk1-050763a8f5dd960a97ece791bb87520ecafbce1bcf5d6c97e9cf64229a007ba7",
+          "agk1-0e4aa779ce91ddf9c0cfcc66a0a3e1b6c0eb636d4b0821a2ab90a9136fc9c8db",
+          "agk1-423aa2a3cc332b371a5b616b48617175187f6537821c4eebef5457721beb7c43"
+        ]
+      },
+      {
+        "query": "allowed production load fraction",
+        "expected": "load",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-a167678ec7bd4f877038882eafbcd911597b2ea4f15b7deaf37ade6f1142cc23",
+          "agk1-cdc1dab40eba2b643e215070dd3cc082c8d45850639293c82de42f1fa2da4eba",
+          "agk1-423aa2a3cc332b371a5b616b48617175187f6537821c4eebef5457721beb7c43",
+          "agk1-fda52b39b5445e922073b0c0b096ceee01c8992a76d76a8079359f66f96b89c9",
+          "agk1-31c6db6bed9ff145932beb741dd90f2caf052a6fb20d086389e4534d30867569"
+        ]
+      },
+      {
+        "query": "human approval may not defeat a latched interlock",
+        "expected": "LATCH-01",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-c29fecff7735d8e716af86ac5d879e06c225fda5a2999bf5411de21425a5498a",
+          "agk1-c2d6a29c054338e913f86ac740942b0f12d166971b10394caabc6411d64dff3d",
+          "agk1-5881a544bcc9e773382e7fc4fac27dddf5e5c7e323edb8af0bd44aa72668bed7",
+          "agk1-93ad00ae8df425788ff2ae8a35cb8adeb6ebfeb72e213767f5b0733fd5153827",
+          "agk1-fe6e7d24d5887ed3f86fc7acfb8f5ee61b3b7e4992027496447ee151d2716b0a"
+        ]
+      },
+      {
+        "query": "preserve local stop and request human review",
+        "expected": "STOP-01",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-bcfdcd09a29f5b41f751a68eea4ca78ac1038ecb7b0fbe9c5640779990db20c3",
+          "agk1-c88d912efc63940556983afba63f93dadd41c48d4bf6deafda62b977ed65a978",
+          "agk1-d34b497199a8feefee0c048f6f68c68e43633d8c099c840c5770b2bb65f830f3",
+          "agk1-c71377a79346753b45c4c3d5bef85e60c1903d835ba1d300407c62b97c71a240",
+          "agk1-655d502db21f44deeb03a8e46b17891b1c3436286b9cac36ad8c232428859982"
+        ]
+      },
+      {
+        "query": "physical equipment connection permitted",
+        "expected": "No physical I/O",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-10390e718a93cd094a481d72bd1438ae986566cf583ce6dcaaaa0dc4e900aa64",
+          "agk1-0f8cb314faaa52f4cbfb405f2e1521bf8d6f83bd9c39790abeb74fb78d73bfd5",
+          "agk1-4a6d996f60684f0d5220a5d93d1a6b2c6a60520f97a96090670dec1ad93488c1",
+          "agk1-7d4a48c6ffa1747e32bd9c673ce307063460ec620e44feba861527532ca920b7",
+          "agk1-faae8b754efb0895eb79fa6b754cbeff5edf8058d765a32b655f06aec034b966"
+        ]
+      },
+      {
+        "query": "is this real OEM documentation",
+        "expected": "NOT OEM AUTHORITY",
+        "top1_relevant": true,
+        "top5_relevant": true,
+        "ids": [
+          "agk1-c3cb97b419dd8a2a95b6b393985e970423bf53f18c1b2ec5eb17106de46a117b",
+          "agk1-73e6a6b6c05ff4e1d2c34f06ca4f1d264baf48a9ae7c69196013af13a5487e23",
+          "agk1-1ce77ad89f30b865827e285a8d2f25f7615b09c0434ab8ffbb7263e3c5f67ae9",
+          "agk1-dc730a3ebe3d926163817b23659f0716114e93bc22c771d0ea2e1937b351463e",
+          "agk1-08f015cc237573fcd2d2155ee9ca01a2dbf76a1d8c3726dbab51864f47b7f592"
+        ]
+      }
+    ]
+  },
+  "embedding_quality": {
+    "repeat_exact": true,
+    "related_cosine": 0.2558589577674866,
+    "unrelated_cosine": 0.0035236701369285583,
+    "unit_norm_finite": true
+  },
+  "wrong_tenant_matches": 0,
+  "isolated_test": {
+    "namespace": "aegis-integration-test-6571b9e8a85a403fbb3b281291697ea5",
+    "upsert": {
+      "acknowledged_vectors": 2,
+      "failed_or_unconfirmed_ids": [],
+      "batches": [
+        {
+          "offset": 0,
+          "acknowledged": 2
+        }
+      ]
+    },
+    "persisted_before_cleanup": 2,
+    "persisted_after_cleanup": 0,
+    "operations": [
+      {
+        "operation": "/vectors/upsert",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-integration-test-6571b9e8a85a403fbb3b281291697ea5",
+        "elapsed_ms": 1391.9026000003214
+      },
+      {
+        "operation": "/describe_index_stats",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-integration-test-6571b9e8a85a403fbb3b281291697ea5",
+        "elapsed_ms": 1029.4375000012224
+      },
+      {
+        "operation": "/vectors/delete",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-integration-test-6571b9e8a85a403fbb3b281291697ea5",
+        "elapsed_ms": 1149.1853999978048
+      },
+      {
+        "operation": "/describe_index_stats",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-integration-test-6571b9e8a85a403fbb3b281291697ea5",
+        "elapsed_ms": 1018.9331000001403
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1171.6123999976844
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2442.1688000002177
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2510.302499998943
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2407.286199999362
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2507.511699997849
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2391.8397999987064
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2303.4193999992567
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2335.566800000379
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2280.359000000317
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2428.992199998902
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2430.6332000014663
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2426.199400000769
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2382.367800000793
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2464.3176999998104
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2451.2418000012985
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2398.7338000006275
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2287.6327999983914
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2384.3990999994276
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2305.4969999975583
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2371.9085000011546
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2563.8812000033795
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2630.222899999353
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2459.0152999990096
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2459.9162000013166
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 2387.271999999939
+    },
+    {
+      "operation": "/vectors/upsert",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1999.308899998141
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1117.9340999988199
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1069.4610999998986
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1038.8851999996405
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1115.0750999986485
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1050.0802999995358
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 987.7704999998969
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1094.7013000004517
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 983.0091999974684
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 998.5778000009304
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 997.429099999863
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1088.5168999993766
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 961.2433999973291
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1066.666399998212
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1062.5021000014385
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 973.4144999965793
+    }
+  ],
+  "elapsed_s": 87.51096429999961
+}
