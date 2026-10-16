@@ -1,6 +1,6 @@
 name: aegis-grid
 x-python: &python
-  image: aegis-grid-python:phase11
+  image: aegis-grid-python:phase12
   build:
     context: ../..
     dockerfile: infra/local/python.Dockerfile
@@ -63,7 +63,7 @@ services:
       timeout: 3s
       retries: 10
   executor:
-    image: aegis-grid-executor:phase11
+    image: aegis-grid-executor:phase12
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: executor}
     environment:
       AEGIS_EXECUTOR_TOKEN: ${AEGIS_EXECUTOR_TOKEN:?Run python tools/dev.py start}
@@ -83,7 +83,7 @@ services:
       timeout: 3s
       retries: 10
   web:
-    image: aegis-grid-web:phase11
+    image: aegis-grid-web:phase12
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: web}
     ports: ["127.0.0.1:${AEGIS_WEB_PORT:-8080}:8080"]
     depends_on:

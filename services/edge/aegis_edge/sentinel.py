@@ -16,6 +16,11 @@ from aegis_contracts.models import (
 )
 from numpy.typing import NDArray
 
+# A 5 C operating guard reserves time for sampled detection and bounded load ramps.
+# The hard 70 C rollout limit is unchanged; this is synthetic engineering headroom,
+# not a proof for uncalibrated plants or arbitrary external heating.
+THERMAL_STOP_GUARD_C = 65.0
+
 
 class PhysicsObserver:
     def __init__(self) -> None:
@@ -68,7 +73,7 @@ class PhysicsObserver:
                 reason = "stale_measurement"
             elif self.bad_count[i] >= 3:
                 reason = "physics_disagreement"
-            elif max(cell.temperature_c, self.estimated[i]) >= 70:
+            elif max(cell.temperature_c, self.estimated[i]) >= THERMAL_STOP_GUARD_C:
                 reason = "thermal_limit"
             if reason is not None:
                 evidence.append(

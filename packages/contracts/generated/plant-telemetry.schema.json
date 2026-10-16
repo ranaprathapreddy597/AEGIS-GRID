@@ -309,8 +309,11 @@
           "type": "boolean"
         },
         "policy_revision": {
-          "const": "synthetic-shield-v1",
-          "default": "synthetic-shield-v1",
+          "default": "synthetic-shield-v2",
+          "enum": [
+            "synthetic-shield-v1",
+            "synthetic-shield-v2"
+          ],
           "title": "Policy Revision",
           "type": "string"
         },

@@ -1,6 +1,6 @@
 # Execution status
 
-Current assigned phase: **12 — final hardening, benchmark and reproducible demo**.
+Current status: **local Phases 1–12 validated; required live/production gates BLOCKED**.
 User accepted Phase 6 local gate and authorized Phases 7–12 on 2026-10-16.
 Phase 4 passed at `12c2d86` on 2026-10-16.
 Phase 3 passed at `b9985f6`.
@@ -192,3 +192,22 @@ fault reaches the real persisted LangGraph and 409-rollout tournament on a fresh
 install without inserting fake live incidents. See PHASE11.md and ADR 0014.
 External live gates remain BLOCKED. Final validation plan is frozen before Phase
 12 measurement in FINAL_VALIDATION_PLAN.md.
+
+## Phase 12 — local gate PASS, release BLOCKED, 2026-10-16
+
+- Actual frozen 100-scenario benchmark and separate post-fix regression, full raw
+  rows/learned parameters/latency/RSS and descriptive intervals recorded.
+- Fixed five real late thermal trips with a versioned 65 C operating guard; hard
+  bound stays 70 C. Original metrics retained; Sentinel misses 44/90 faults.
+- Actual security/chaos/signature mutation/capacity/rollback checks and inventory.
+- Actual 180.0156-second clean-source browser demo, video, captures and local receipt.
+- Main and separate clean-source full gates each PASS: 268 Python / 3 CTest /
+  16 Node / 14 Chromium, complete audits/contracts and real storage/ACL/transport.
+- Clean export has its own installed venv/node_modules, new credentials/volumes and
+  a unique Compose project. Only proof containers/networks stopped; volumes/main
+  stack preserved. No cold-machine timing or physical authenticator claim.
+
+See results/PHASE12.md, BENCHMARKS.md, FINAL_AUDIT.md and RELEASE_CHECKLIST.md.
+MI300X/Evolus/Pinecone, approved GitHub/hosted CI and production-security/hardware
+requirements remain blocked/unverified. No external write, deployment or release
+tag was performed. The master production/live gates are not complete.

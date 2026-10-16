@@ -673,10 +673,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 11
+             * @default 12
              * @constant
              */
-            phase: 11;
+            phase: 12;
         };
         /** Capability */
         Capability: {
@@ -802,10 +802,10 @@ export interface components {
             origin: "edge_observer" | "storage_contract_fixture" | "isolated_analysis";
             /**
              * Policy Revision
-             * @default synthetic-shield-v1
-             * @constant
+             * @default synthetic-shield-v2
+             * @enum {string}
              */
-            policy_revision: "synthetic-shield-v1";
+            policy_revision: "synthetic-shield-v1" | "synthetic-shield-v2";
             /** Run Id */
             run_id: string;
             /** Simulation Time S */
@@ -1845,10 +1845,10 @@ export interface components {
             npu_verified: false;
             /**
              * Policy Revision
-             * @default synthetic-shield-v1
-             * @constant
+             * @default synthetic-shield-v2
+             * @enum {string}
              */
-            policy_revision: "synthetic-shield-v1";
+            policy_revision: "synthetic-shield-v1" | "synthetic-shield-v2";
             /**
              * State
              * @enum {string}

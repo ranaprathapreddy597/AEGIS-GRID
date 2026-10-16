@@ -246,3 +246,28 @@ detects scenario-090 seed42 at 109 s (dt .5), 87.20 versus 40.95 C peak over
 600 s. This is synthetic CPU analysis, not cloud inference or operational control.
 252 Python / 3 CTest / 16 Node / 14 browser checks pass, including real selected
 analysis LangGraph and tournament. Live external gates remain BLOCKED.
+
+## Phase 12 final actual local evidence — 2026-10-16
+
+Main and separately installed clean-source gates each passed 268 Python / 3 CTest
+/ 16 Node / 14 browser tests and all existing audit/contract/transport/storage
+checks. Actual fresh-source export tree 64d4da5ded1a00b056e137af853e95e908a3e0b7
+started a unique project with new credentials/volumes; its 180.0156-second demo
+produced real LangGraph/rollout/manual/WebAuthn/Node/Mongo evidence. Video,
+analysis export and receipt proof retained. A later separate source venv and
+node_modules install passed the complete gate against that isolated database.
+Only completion docs/evidence and its validation helper changed after the export;
+runtime source/contracts match. Main stack and all volumes were preserved.
+
+The original 100-case benchmark is not hidden: Sentinel 46/90 fault detections,
+31/90 numerical diagnoses and five late thermal trips. A 65 C operating guard
+with unchanged 70 C hard limit fixes all five native regressions; the separate
+post-fix 100-case run has zero thermal violations and diagnosis 34/90. These are
+post-evaluation synthetic regressions, not held-out industrial results. Learned
+CPU baseline 62/90; all misses/intervals and model parameters are published.
+
+Actual package inventory/Node lock matching and pip/pnpm/secret scans do not imply
+OS CVE scanning, signed provenance or independent assessment. No GPU/NPU/provider
+performance or external mutation is invented. MI300X/Evolus/Pinecone/GitHub live
+gates and production security/physical-key acceptance remain BLOCKED/unverified.
+No release tag. See PHASE12.md, FINAL_AUDIT.md and RELEASE_CHECKLIST.md.

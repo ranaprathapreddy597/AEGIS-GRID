@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 11 — responsive command center, private fault laboratory and measured futures; local gate passed.**
+**Current scope: Phase 12 — local validation passed; release BLOCKED.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -11,7 +11,7 @@ Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
 reasoners and C++ forecasts work locally; the offline model template abstains.
 Passkey approval covers a separate stationary simulator test resource and an
 atomic maintenance record in local Mongo. The reviewed repair diff is downloadable;
-Evolus invocation and GitHub publication remain closed. Phase 12 final validation is next.
+Evolus invocation and GitHub publication remain closed. Required live acceptance remains blocked.
 The incident's contradictory evidence and protected external writes remain closed.
 
 ## Start locally
@@ -78,9 +78,9 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 | C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots; independent local emergency policy |
 | Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
 | Node executor | Independent Ed25519/schema/scope/stop verifier; fixed private gateway, no external tool scope |
-| Redis / Mongo | Append-only monitoring journal, immutable snapshots/incidents and bounded fanout; scoped credentials, operational collections closed |
+| Redis / Mongo | Append-only monitoring journal, immutable snapshots/incidents and bounded fanout; scoped credentials; only the WebAuthn-bound stationary sandbox record may mutate |
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
-| Evolus / Pinecone / GitHub | No live connector implemented or called |
+| Evolus / Pinecone / GitHub | Verified read contracts/metadata; live acceptance and external mutations blocked |
 | Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
 | LangGraph | Real bounded cycles, Mongo checkpoints, observed-only inputs, C++ forecasts and durable no-action interrupt |
 | Passkeys / authorization | Actual WebAuthn UV, owner session, immutable digest and durable approval; isolated test sandbox only |
@@ -89,7 +89,9 @@ See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 10–12 and the external live gates remain.
+The full master prompt and production release remain incomplete because required
+external live acceptance gates are BLOCKED. Local phase evidence is recorded
+separately; simulation is never counted as provider success.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
 [phase reports](docs/results/PHASE3.md). Toggle **Simulation ground truth**
@@ -148,3 +150,21 @@ The command center can select/replay a seeded fault in private C++ copies and
 investigate it through real persisted LangGraph without a developer console. The
 10,000-future histogram is backed by 5,000 actual paired CPU priors, explicitly
 precomputed for one development incident. See docs/results/PHASE11.md.
+
+
+Final scenario results are in [BENCHMARKS.md](docs/results/BENCHMARKS.md). On the
+frozen original 100 development scenarios, Sentinel detects 46/90 faults versus
+5/90 for the 70 C threshold and 62/90 for the learned CPU baseline; 44 Sentinel
+misses remain. The five late thermal trips found there were repaired with a
+versioned 65 C operating guard; a separate post-fix run keeps all 16 hazardous
+trajectories below the unchanged 70 C hard bound. This is post-evaluation
+regression validation, not held-out industrial performance.
+
+The actual three-minute browser runner is `pnpm exec node tools/run_demo.mjs`.
+It uses a clearly labeled virtual passkey and real local server/Node/Mongo/C++.
+See [runbook](docs/DEMO_RUNBOOK.md), [submission narration/FAQ](docs/SUBMISSION.md)
+and [release checklist](docs/RELEASE_CHECKLIST.md). No release tag while blocked.
+
+Main and clean-source gates each pass 268 Python / 3 CTest / 16 Node / 14 browser
+checks. The actual clean-source demo runs 180.02 seconds with retained video and
+receipt proof. See [Phase 12 report](docs/results/PHASE12.md).

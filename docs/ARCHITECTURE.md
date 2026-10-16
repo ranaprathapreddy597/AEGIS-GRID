@@ -104,3 +104,33 @@ rollout operates on a copy and cannot change the live edge. A graph cycle reject
 even a physically feasible optimum if the independent latched-stop policy differs.
 The contradictory bulletin keeps the approval interrupt closed. ADRs 0010/0011
 document bounds and limitations; no certificate is an execution capability.
+
+## Final local trust and data flow
+
+```mermaid
+flowchart LR
+  UI[React command center] -->|viewer token / SSE reads| API[FastAPI local gateway]
+  API --> EDGE[Sensor-only Sentinel / FAISS]
+  EDGE --> CPP[C++20 synthetic factory]
+  API --> LAB[Private seeded analysis copies]
+  LAB --> GRAPH[Persistent cyclic LangGraph]
+  GRAPH --> NATIVE[Native minimax / counterexamples]
+  GRAPH --> MANUAL[Hashed synthetic manual / contradiction refusal]
+  GRAPH --> CHECKPOINT[Scoped Mongo checkpoints]
+  UI -->|separate owner session + WebAuthn UV| AUTH[Trusted authorizer / exact digest]
+  AUTH -->|Ed25519 scoped capability| NODE[Independent Node verifier]
+  NODE --> GW[Private native execution gateway]
+  GW -->|one CAS: snapshot + record + nonce + receipt| DB[Local stationary Mongo sandbox]
+  API -. BLOCKED .-> REMOTE[MI300X / Evolus / Pinecone / GitHub]
+```
+
+There is no physical I/O. Private fault analysis does not mutate the live edge or
+stationary approval resource, and does not publish fake live incidents. Incident
+manual contradiction still blocks action. The approved local maintenance mutation
+is separate and explicit. Production authorizer/gateway OS isolation is absent:
+the Python API process holds trusted configuration for both. Node cannot mint
+approval. Shared read credentials and local HTTP are development boundaries only.
+
+Policy v2 trips at 65 C to reserve sampled/ramp headroom; 70 C remains the hard
+native rollout limit. V1 records remain readable. Fixed 10K futures retain their
+original measured source; they are not current-incident posterior samples.

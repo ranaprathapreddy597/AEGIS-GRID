@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 import secrets
 import shutil
 import socket
@@ -117,7 +118,7 @@ def main() -> None:
                 "none",
                 "--env",
                 "AEGIS_CAPABILITY_SIGNING_SEED",
-                "aegis-grid-python:phase11",
+                "aegis-grid-python:phase12",
                 "python",
                 "-m",
                 "aegis_api.capabilities",
@@ -139,6 +140,9 @@ def main() -> None:
             encoding="utf-8",
         )
         run([*COMPOSE, "up", "--detach", "--wait", "--wait-timeout", "180", "mongo", "redis"])
+        local_project = os.environ.get("COMPOSE_PROJECT_NAME", "aegis-grid")
+        if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,50}", local_project):
+            raise SystemExit("Invalid local Compose project name")
         bootstrap_names = [
             "AEGIS_MONGO_PASSWORD",
             "AEGIS_REDIS_PASSWORD",
@@ -157,9 +161,9 @@ def main() -> None:
                 "run",
                 "--rm",
                 "--network",
-                "aegis-grid_storage",
+                f"{local_project}_storage",
                 *flags,
-                "aegis-grid-python:phase11",
+                "aegis-grid-python:phase12",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -204,7 +208,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase11",
+                "aegis-grid-qa:phase12",
                 ".",
             ],
             [
@@ -213,13 +217,13 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase11",
+                "aegis-grid-qa:phase12",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase11"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase12"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
@@ -232,7 +236,7 @@ def main() -> None:
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 11 checks passed.")
+        print("Phase 12 checks passed.")
 
 
 if __name__ == "__main__":

@@ -60,3 +60,23 @@ and hardware attestation remain unverified. See ADR 0012.
 private-key headers. It is a narrow baseline, not a general-purpose secret scanner.
 Python and npm dependency audits are executed during the phase gate; production
 release also requires container/OS scanning and the Phase 12 hostile audit.
+
+## Phase 12 evidence and remaining boundaries
+
+Actual final hardening covers a generated hostile PDF, malformed/tool-bearing model
+outputs, connector timeout/503 doubles, all 512 one-bit Ed25519 signature changes,
+partial database rollback/receipt/snapshot corruption, resource-capacity denial,
+and the five real native late-trip regressions. Doubles remain explicitly labeled;
+WebAuthn/Node/Mongo/browser and outage/restart proof use the actual local stack.
+Whole-database rollback remains undetectable without an external trusted anchor.
+
+The authenticated compressed-futures read now has one expensive reader, refusing
+concurrent requests with 429/Retry-After rather than decoding up to forty copies.
+Native fault analysis is separately bounded; graph loop/token/checkpoint quotas
+remain enforced. No new live control or provider invocation route is exposed.
+
+Actual installed Python/OS and Node production packages are inventoried. All five
+Node runtime packages match the lock; pip/pnpm audits and baseline secret scanning
+run in the full gate. This is not an OS CVE scan, signed SBOM/provenance, independent
+penetration test, enterprise identity, physical passkey acceptance or safety case.
+Those production requirements and live provider gates remain release blockers.

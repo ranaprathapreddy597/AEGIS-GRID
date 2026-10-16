@@ -1,5 +1,10 @@
-# Chaos testing
+# Chaos evidence
 
-Phase 1 covers actual simulator child termination in the Python integration test
-and transport outages in the browser suite. It does not prove physical fail-safe
-control. Phase 3 and Phase 12 add the complete cloud-disconnection and safety suite.
+The full gate executes real edge stop/reconnect, API restart with unchanged
+incident/graph/approval data, Redis delivery/restart and Mongo privilege denials.
+Native cases exercise spoof/freeze/blockage/weak pump/burst/delay/drop/spike.
+Final hardening adds receipt/snapshot/partial rollback corruption, finite
+signature fuzzing and bounded reader saturation. Model timeout/503 and hostile
+outputs use explicitly labeled HTTP doubles. Cloud HTTPS refusal is a real
+unreachable loopback test, not a provider outage claim. Complete administrator
+rollback needs an external anchor and remains a production limitation.

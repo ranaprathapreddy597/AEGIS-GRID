@@ -265,8 +265,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 11,
-            "default": 11,
+            "const": 12,
+            "default": 12,
             "title": "Phase",
             "type": "integer"
           }
@@ -606,8 +606,11 @@
             "type": "string"
           },
           "policy_revision": {
-            "const": "synthetic-shield-v1",
-            "default": "synthetic-shield-v1",
+            "default": "synthetic-shield-v2",
+            "enum": [
+              "synthetic-shield-v1",
+              "synthetic-shield-v2"
+            ],
             "title": "Policy Revision",
             "type": "string"
           },
@@ -2918,8 +2921,11 @@
             "type": "boolean"
           },
           "policy_revision": {
-            "const": "synthetic-shield-v1",
-            "default": "synthetic-shield-v1",
+            "default": "synthetic-shield-v2",
+            "enum": [
+              "synthetic-shield-v1",
+              "synthetic-shield-v2"
+            ],
             "title": "Policy Revision",
             "type": "string"
           },

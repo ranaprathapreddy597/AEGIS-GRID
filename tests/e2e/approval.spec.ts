@@ -98,8 +98,8 @@ test(`real WebAuthn virtual authenticator binds approval and independent executi
     expect(retry.receipt).toEqual(executed.receipt);
     expect((await client.post(`${secondPath}/execute`, { headers, data: { plan_sha256: second.plan_sha256 } })).status()).toBe(403);
     expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
-    await page.locator(".approval-panel").screenshot({ path: "docs/results/phase11-approval.png" });
-    writeFileSync("docs/results/phase11-webauthn-browser.json", JSON.stringify({ mode: "actual_Chromium_WebAuthn_virtual_authenticator_NOT_physical_key", proof: "real server cryptographic verification; persistent approval interrupt; real Node gateway and Mongo CAS", receipt: executed.receipt, no_approval: "denied", changed_digest: "denied", assertion_replay: "denied", stale_approved_state: "denied", retry: "same receipt, no second mutation" }, null, 2) + "\n");
+    await page.locator(".approval-panel").screenshot({ path: "docs/results/phase12-approval.png" });
+    writeFileSync("docs/results/phase12-webauthn-browser.json", JSON.stringify({ mode: "actual_Chromium_WebAuthn_virtual_authenticator_NOT_physical_key", proof: "real server cryptographic verification; persistent approval interrupt; real Node gateway and Mongo CAS", receipt: executed.receipt, no_approval: "denied", changed_digest: "denied", assertion_replay: "denied", stale_approved_state: "denied", retry: "same receipt, no second mutation" }, null, 2) + "\n");
   } finally {
     const { credentials } = await cdp.send("WebAuthn.getCredentials", { authenticatorId });
     if (credentials.length) { mkdirSync(".run", { recursive: true }); writeFileSync(fixturePath, JSON.stringify(credentials[0]), { mode: 0o600 }); }

@@ -143,7 +143,7 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[11] = 11
+    phase: Literal[12] = 12
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     guarded_authorization_sandbox: bool = False
@@ -197,7 +197,7 @@ class SentinelStatus(Contract):
     latched: bool
     first_detection_time_s: FiniteFloat | None
     applied_policy: Literal["observe_only", "none", "local_emergency_stop"]
-    policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
+    policy_revision: Literal["synthetic-shield-v1", "synthetic-shield-v2"] = "synthetic-shield-v2"
     latency_ms: Annotated[FiniteFloat, Field(ge=0)]
     max_estimated_temperature_c: FiniteFloat
     memory_entries: Annotated[int, Field(ge=0, le=4096)]
@@ -215,7 +215,7 @@ class EdgeIncident(Contract):
     simulation_time_s: Annotated[FiniteFloat, Field(ge=0)]
     kind: Literal["anomaly", "local_stop"]
     evidence: Annotated[list[AnomalyEvidence], Field(max_length=12)]
-    policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
+    policy_revision: Literal["synthetic-shield-v1", "synthetic-shield-v2"] = "synthetic-shield-v2"
     snapshot: "IncidentSnapshot | None" = None
     origin: Literal["edge_observer", "storage_contract_fixture", "isolated_analysis"] = (
         "edge_observer"

@@ -80,6 +80,7 @@ def create_app(
     optimizations: OptimizationService | None = None
     optimization_busy = asyncio.Lock()
     preview_busy = threading.BoundedSemaphore(1)
+    futures_busy = threading.BoundedSemaphore(1)
     authorizations: AuthorizationService | None = None
     protected_gateway: SimulatorGateway | None = None
 
@@ -576,10 +577,16 @@ def create_app(
         responses=errors,
     )
     def futures_ensemble() -> FuturesEnsemble:
+        if not futures_busy.acquire(blocking=False):
+            raise HTTPException(
+                429, "Future artifact capacity reached", headers={"Retry-After": "3"}
+            )
         try:
             return load_ensemble(Path("data/futures"), config.twin_library)
         except (OSError, ValueError) as error:
             raise HTTPException(503, "Verified future artifact unavailable") from error
+        finally:
+            futures_busy.release()
 
     @app.get(
         "/api/v1/telemetry/latest",

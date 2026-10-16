@@ -1,0 +1,22 @@
+# Release checklist — RELEASE BLOCKED
+
+Local Phase 12 validation passed; no release tag is authorized while
+required live acceptance gates remain blocked.
+
+- Local native/crypto/API/browser regression gate: **PASS**, main and clean-source
+  runs each 268 Python / 3 CTest / 16 Node / 14 browser.
+- Actual 100-scenario benchmark and separate post-fix regression: recorded; see results/BENCHMARKS.md.
+- Actual 10K CPU futures and all outcome rows: verified, synthetic finite coverage only.
+- Actual 180.02-second clean-source demo: **PASS**, proof/video retained. Separate
+  frozen host dependency installation and full clean-source gate also pass.
+- MI300X real endpoint/device/runtime/TLS/long-context/HBM/throughput: **BLOCKED**.
+- Evolus live extraction, MCP transport/tool schemas and authorized sandbox: **BLOCKED**.
+- Pinecone live indexing/read comparisons: **BLOCKED**.
+- GitHub approved remote scope/branch/commit/PR/required hosted CI: **BLOCKED**.
+- Physical passkey/user acceptance and enterprise credential lifecycle: **UNVERIFIED**.
+- Production TLS/IAM, separate secured processes/secrets and external audit anchor: **NOT IMPLEMENTED**.
+- Container OS CVE scan/signed provenance/HA/OEM calibration/physical I/O: **NOT VERIFIED / absent**.
+
+Detector misses and diagnosis limits are published, not waived. No physical plant
+or production-capability claim. Do not create a release tag, deploy or publish a
+remote write based on the local gate alone.

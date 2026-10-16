@@ -1,0 +1,15 @@
+{
+  "configured": {
+    "EVOLUS_API_KEY": false,
+    "EVOLUS_APPLICATION_ID": true,
+    "EVOLUS_MEMORY_ID": false,
+    "EVOLUS_DOCUMENT_ID": false,
+    "PINECONE_API_KEY": false,
+    "PINECONE_INDEX_HOST": false,
+    "GITHUB_TOKEN": false,
+    "GH_TOKEN": false,
+    "AEGIS_INFERENCE_URL": false
+  },
+  "live_gates": "MI300X/Evolus/Pinecone/GitHub BLOCKED",
+  "credentialed_provider_calls": 0
+}

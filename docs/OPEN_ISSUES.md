@@ -56,3 +56,14 @@ UX-01 resolved / Phase 10: browser reload restores the owner session and paused
 proposal from authenticated APIs; actual before/after Chromium proof retained.
 External MCP invocation/GitHub publication remains BLOCKED: metadata/configured
 tool names are not verified invocation schemas or hosted CI/publication proof.
+
+
+Phase 12 findings: original 100-case benchmark exposed five late thermal trips;
+policy v2 adds a 65 C operating guard, with unchanged 70 C hard bound. All five
+native regressions pass and the separate post-fix run has 0/100 thermal hazards.
+Fault recall remains 46/90 (44 misses); numerical diagnosis is 34/90 after the
+fix. These development limitations block production claims. See BENCHMARKS.md.
+Concurrent expensive futures reads are now bounded with 429. Local Compose
+migration networking now respects a separate project for fresh-source proof.
+Container OS CVE scanning/signed provenance, production IAM/TLS/process isolation,
+physical-key acceptance and external audit anchoring remain outstanding.
