@@ -13,11 +13,24 @@ Identifier = Annotated[
 ]
 
 
+class MaintenanceChange(Contract):
+    record_id: Literal["local-sandbox-maintenance"] = "local-sandbox-maintenance"
+    expected_record_version: Annotated[int, Field(ge=0, le=256)]
+    status_before: Literal["not_recorded", "safety_stop_verified"]
+    status_after: Literal["safety_stop_verified"] = "safety_stop_verified"
+    reason: Literal["Independent native emergency-stop verification"] = (
+        "Independent native emergency-stop verification"
+    )
+
+
 class ProposedPlan(Contract):
     action_id: Identifier
     tenant_id: Literal["local"] = "local"
     resource_id: Literal["authorization-sandbox-01"] = "authorization-sandbox-01"
-    action: Literal["simulator.emergency_stop"] = "simulator.emergency_stop"
+    action: Literal["simulator.emergency_stop", "simulator.stop_and_record_maintenance"] = (
+        "simulator.emergency_stop"
+    )
+    maintenance: MaintenanceChange | None = None
     scope: Literal["isolated_authorization_sandbox"] = "isolated_authorization_sandbox"
     risk: Literal["simulator_only"] = "simulator_only"
     evidence_policy: Literal["authorization-test-sandbox-v1"] = "authorization-test-sandbox-v1"
@@ -37,6 +50,10 @@ class ProposedPlan(Contract):
     def exact_stop(self) -> "ProposedPlan":
         if self.controls != SimulatorControls(pump=1.0, loads=[0.0] * 6, valves=[1.0] * 6):
             raise ValueError("Independent authorization scope only permits the exact safe stop")
+        if (self.action == "simulator.stop_and_record_maintenance") != (
+            self.maintenance is not None
+        ):
+            raise ValueError("Maintenance mutation must be explicit in the signed action")
         return self
 
 
@@ -62,6 +79,9 @@ class ExecutionEnvelope(Contract):
 
 
 class MutationReceipt(Contract):
+    receipt_format: Literal["sandbox-receipt-v1", "sandbox-receipt-v2"] = "sandbox-receipt-v1"
+    maintenance_record_sha256: Digest | None = None
+    tool: Literal["isolated_simulator", "local_mongo_and_simulator"] = "isolated_simulator"
     receipt_sha256: Digest
     previous_receipt_sha256: Digest
     action_id: Identifier
@@ -85,6 +105,16 @@ class ApprovalView(Contract):
     action_json: str
     status: Literal["waiting_for_passkey", "approved", "executed"]
     receipt: MutationReceipt | None = None
+
+
+def receipt_hash_fields(receipt: MutationReceipt) -> dict[str, Any]:
+    """Preserve original receipt-v1 fingerprints during additive schema upgrades."""
+    content = receipt.model_dump()
+    content.pop("receipt_sha256")
+    if receipt.receipt_format == "sandbox-receipt-v1":
+        for name in ("receipt_format", "maintenance_record_sha256", "tool"):
+            content.pop(name)
+    return content
 
 
 class ApprovalChallenge(Contract):

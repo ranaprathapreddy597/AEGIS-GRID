@@ -1,5 +1,48 @@
 {
   "$defs": {
+    "MaintenanceChange": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_record_version": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Expected Record Version",
+          "type": "integer"
+        },
+        "reason": {
+          "const": "Independent native emergency-stop verification",
+          "default": "Independent native emergency-stop verification",
+          "title": "Reason",
+          "type": "string"
+        },
+        "record_id": {
+          "const": "local-sandbox-maintenance",
+          "default": "local-sandbox-maintenance",
+          "title": "Record Id",
+          "type": "string"
+        },
+        "status_after": {
+          "const": "safety_stop_verified",
+          "default": "safety_stop_verified",
+          "title": "Status After",
+          "type": "string"
+        },
+        "status_before": {
+          "enum": [
+            "not_recorded",
+            "safety_stop_verified"
+          ],
+          "title": "Status Before",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_record_version",
+        "status_before"
+      ],
+      "title": "MaintenanceChange",
+      "type": "object"
+    },
     "SimulatorControls": {
       "additionalProperties": false,
       "properties": {
@@ -44,8 +87,11 @@
   "additionalProperties": false,
   "properties": {
     "action": {
-      "const": "simulator.emergency_stop",
       "default": "simulator.emergency_stop",
+      "enum": [
+        "simulator.emergency_stop",
+        "simulator.stop_and_record_maintenance"
+      ],
       "title": "Action",
       "type": "string"
     },
@@ -88,6 +134,17 @@
       "minimum": 1,
       "title": "Expires At",
       "type": "integer"
+    },
+    "maintenance": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MaintenanceChange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "native_binary_sha256": {
       "pattern": "^[0-9a-f]{64}$",

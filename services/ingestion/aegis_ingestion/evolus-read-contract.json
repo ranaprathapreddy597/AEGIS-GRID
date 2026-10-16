@@ -7590,6 +7590,92 @@
   },
   "openapi": "3.0.4",
   "paths": {
+    "/api/v1/agents": {
+      "get": {
+        "description": "Retrieves all agents configured for the current application. The model of each agent is its `modelKey` (null = \"Let Evolus decide\"), with `modelDisplayName` and `modelState` (`ok`, `deprecated`, `not_in_catalog`: the model left the catalog and the agent must be reconfigured). The `avatarUrl` field, when present, is returned as a time-limited SAS URL ready to be displayed.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Agent"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvolusProblemDetails"
+                }
+              }
+            },
+            "description": "Unexpected error (standard problem+json with errorCode and traceId)"
+          }
+        },
+        "summary": "List agents",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
+    "/api/v1/agents/{agentId}": {
+      "get": {
+        "description": "Retrieves a single agent by its `agentId` within the current application. The `avatarUrl` field, when present, is returned as a time-limited SAS URL. Returns `404 Not Found` if the agent does not exist.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvolusProblemDetails"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvolusProblemDetails"
+                }
+              }
+            },
+            "description": "Unexpected error (standard problem+json with errorCode and traceId)"
+          }
+        },
+        "summary": "Get an agent",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
     "/api/v1/memories": {
       "get": {
         "description": "Returns all memory configurations available for the current application, without sensitive configuration data. Use the `isConversationMemory` query parameter to filter conversation memories in or out.\n\n**User authentication required** \u2014 this operation does NOT accept the application API key (`X-ApiKey`): call it with a personal User API Key (`X-User-ApiKey` + `X-Application-Id`).",

@@ -141,6 +141,15 @@ def install_approval_routes(
         return await invoke(lambda: service().view(value, str(action_id)))
 
     @router.post(
+        "/api/v1/approval/maintenance-proposals",
+        response_model=ApprovalView,
+        dependencies=[limit, Depends(origin)],
+    )
+    async def propose_maintenance(request: Request) -> ApprovalView:
+        value = cookie(request)
+        return await invoke(lambda: service().propose(value, record_maintenance=True))
+
+    @router.post(
         "/api/v1/approval/proposals/{action_id}/options",
         response_model=ApprovalChallenge,
         dependencies=[limit, Depends(origin)],

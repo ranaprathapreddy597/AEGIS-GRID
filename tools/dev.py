@@ -117,7 +117,7 @@ def main() -> None:
                 "none",
                 "--env",
                 "AEGIS_CAPABILITY_SIGNING_SEED",
-                "aegis-grid-python:phase9",
+                "aegis-grid-python:phase10",
                 "python",
                 "-m",
                 "aegis_api.capabilities",
@@ -159,7 +159,7 @@ def main() -> None:
                 "--network",
                 "aegis-grid_storage",
                 *flags,
-                "aegis-grid-python:phase9",
+                "aegis-grid-python:phase10",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -204,7 +204,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase9",
+                "aegis-grid-qa:phase10",
                 ".",
             ],
             [
@@ -213,13 +213,13 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase9",
+                "aegis-grid-qa:phase10",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase9"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase10"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
@@ -232,7 +232,7 @@ def main() -> None:
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 9 checks passed.")
+        print("Phase 10 checks passed.")
 
 
 if __name__ == "__main__":

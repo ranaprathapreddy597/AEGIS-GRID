@@ -27,3 +27,8 @@
 .approval-panel dd { margin:0; overflow-wrap:anywhere; }
 .approval-panel .actions { flex-wrap:wrap; margin:20px 0; }
 .approval-panel a { text-decoration:underline; color:#77dfc4; }
+.integration-panel { margin:24px 0; }
+.integration-panel h2 { font-size:21px; }
+.integration-panel li { margin:18px 0; font-size:13px; }
+.integration-panel li p { color:#adc2ca; }
+.integration-panel pre { max-height:360px; overflow:auto; padding:16px; background:#091218; color:#b7d5c9; font-size:12px; }

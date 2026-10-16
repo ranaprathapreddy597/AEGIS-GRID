@@ -2,14 +2,16 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 9 — WebAuthn and independent sandbox authorization; local gate passed.**
+**Current scope: Phase 10 — guarded local Mongo maintenance and reviewed repair; local gate passed.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
 Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
 reasoners and C++ forecasts work locally; the offline model template abstains.
-Passkey approval is confined to a separate stationary simulator test resource.
+Passkey approval covers a separate stationary simulator test resource and an
+atomic maintenance record in local Mongo. The reviewed repair diff is downloadable;
+Evolus invocation and GitHub publication remain closed. Phases 11–12 are next.
 The incident's contradictory evidence and protected external writes remain closed.
 
 ## Start locally

@@ -26,6 +26,19 @@
       "title": "Database Version Before",
       "type": "integer"
     },
+    "maintenance_record_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Maintenance Record Sha256"
+    },
     "native_binary_sha256": {
       "pattern": "^[0-9a-f]{64}$",
       "title": "Native Binary Sha256",
@@ -60,6 +73,15 @@
       "title": "Previous Receipt Sha256",
       "type": "string"
     },
+    "receipt_format": {
+      "default": "sandbox-receipt-v1",
+      "enum": [
+        "sandbox-receipt-v1",
+        "sandbox-receipt-v2"
+      ],
+      "title": "Receipt Format",
+      "type": "string"
+    },
     "receipt_sha256": {
       "pattern": "^[0-9a-f]{64}$",
       "title": "Receipt Sha256",
@@ -74,6 +96,15 @@
     "snapshot_sha256_after": {
       "pattern": "^[0-9a-f]{64}$",
       "title": "Snapshot Sha256 After",
+      "type": "string"
+    },
+    "tool": {
+      "default": "isolated_simulator",
+      "enum": [
+        "isolated_simulator",
+        "local_mongo_and_simulator"
+      ],
+      "title": "Tool",
       "type": "string"
     }
   },

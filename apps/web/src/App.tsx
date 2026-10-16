@@ -4,6 +4,7 @@ import { InferencePanel } from "./InferencePanel";
 import { InvestigationPanel } from "./InvestigationPanel";
 import { RecoveryPanel } from "./RecoveryPanel";
 import { ApprovalPanel } from "./ApprovalPanel";
+import { IntegrationPanel } from "./IntegrationPanel";
 import { ManualEvidencePanel } from "./ManualEvidencePanel";
 import { streamTelemetry } from "./stream";
 import type { Capabilities, EdgeStatus, IncidentPage, IncidentReplay, StorageStatus, Telemetry } from "./stream";
@@ -118,7 +119,7 @@ export function App() {
     <a className="skip-link" href="#main">Skip to main content</a>
     <aside className="rail"><a className="brand-icon" href="#main" aria-label="AEGIS GRID home">A<span>Ⅱ</span></a><span className="rail-label">AEGIS / SYSTEMS</span><span className="rail-bottom">01</span></aside>
     <div className="workspace">
-      <header className="topbar"><a className="wordmark" href="#main">AEGIS<span>//</span>GRID <small>2.0</small></a><div className="topbar-right"><span className="environment">LOCAL SIMULATION</span><span className="phase">PHASE 09</span></div></header>
+      <header className="topbar"><a className="wordmark" href="#main">AEGIS<span>//</span>GRID <small>2.0</small></a><div className="topbar-right"><span className="environment">LOCAL SIMULATION</span><span className="phase">PHASE 10</span></div></header>
       <main id="main">
         <div className="page-heading"><div><div className="eyebrow"><span className="tiny-square"/> INDUSTRIAL OBSERVABILITY / EDGE 01</div><h1>Factory signal room<span>.</span></h1><p>A live view into the local thermal twin. Every reading starts in C++.</p></div><div className="connection"><span className={`status-dot ${live ? "live" : ""}`}/><span role="status" data-testid="connection-status">{status}</span></div></div>
         <div className="disclosure"><span>SIMULATED PLANT</span><p>Six cells · shared coolant loop · electrical feeder. Synthetic physics and sensor faults; ground truth is available for simulator inspection.</p><span className="lock-label">INCIDENT WRITES CLOSED</span></div>
@@ -130,6 +131,7 @@ export function App() {
           <InvestigationPanel token={token} incidentId={incidents?.items[0]?.incident_id}/>
           <RecoveryPanel token={token} incidentId={incidents?.items[0]?.incident_id}/>
           <ApprovalPanel/>
+          <IntegrationPanel token={token}/>
           <ManualEvidencePanel token={token}/>
           <div className="section-toolbar"><div className="tabs" role="tablist" aria-label="Telemetry view"><button role="tab" aria-selected={tab === "overview"} onClick={() => setTab("overview")}>Live overview</button><button role="tab" aria-selected={tab === "log"} onClick={() => setTab("log")}>Signal log <span>{history.length}</span></button></div><div className="actions"><button aria-pressed={showTruth} onClick={() => setShowTruth(!showTruth)}>Simulation ground truth</button><button onClick={download} disabled={!latest}>Export frame ↓</button><button onClick={disconnect}>Disconnect</button></div></div>
           {tab === "overview" ? <div className="dashboard-grid"><section className="panel topology"><PanelTitle number="01" title="Shared-loop cell topology" detail="C++20 / SYNTHETIC"/><div className="coolant-line"><span>SHARED COOLANT</span><div/><strong>{latest?.coolant_temperature_c.toFixed(1) ?? "—"} °C</strong></div><div className="cell-grid">{Array.from({ length: 6 }, (_, i) => { const cell = latest?.cells[i]; return <article className="cell" key={i} style={{ borderTopColor: colors[i] }}><div className="cell-name"><span>{cell?.cell_id ?? `CELL-0${i + 1}`}</span><span className={`status-dot ${live ? "live" : ""}`}/></div><div className="temperature" data-testid={`temperature-${i}`}>{cell?.temperature_c.toFixed(3) ?? "—"}<small>°C</small></div><div className="load-track"><div style={{ width: `${(cell?.load_fraction ?? 0) * 100}%`, background: colors[i] }}/></div><div className="cell-detail"><span>Load {cell ? Math.round(cell.load_fraction * 100) : "—"}%</span><span>{cell?.heat_input_w.toFixed(0) ?? "—"} W</span></div>{showTruth && latest && <div className="truth-detail" data-testid={`truth-${i}`}><span>Truth {latest.ground_truth.cells[i]?.temperature_c.toFixed(2)} °C</span><span>Flow {latest.ground_truth.cells[i]?.flow_kg_s.toFixed(3)} kg/s</span></div>}</article>; })}</div><div className="panel-foot"><span className="status-dot live"/> Direct simulator output <span>NO PHYSICAL I/O</span></div></section>
@@ -138,7 +140,7 @@ export function App() {
           <section className="panel journal" aria-label="Persistent incident journal"><PanelTitle number="04" title="Persistent incident journal" detail={`MONGO ${storageStatus?.mongo ?? "unavailable"} / REDIS ${storageStatus?.redis ?? "unavailable"}`}/>{journalError && <p role="alert" className="error">{journalError}</p>}<div className="incident-rows">{incidents?.items.length === 0 && <p>No recorded incidents yet. Detection events will persist here.</p>}{incidents?.items.slice(0, 8).map((item) => <article key={item.incident_id} data-testid={`incident-${item.incident_id}`}><div><strong>{item.event.kind} · frame {item.event.state_version}</strong><p>{item.ingested_at} · {item.event.snapshot ? "Native snapshot available" : "Evidence only"}</p><code>{item.incident_id.slice(0, 20)}</code></div><button onClick={() => { void loadReplay(item.incident_id); }}>Replay incident</button></article>)}</div>{replay && <div className="replay-detail" data-testid="incident-replay"><h3>Recorded incident replay</h3><p>{replay.events.length} immutable events · {replay.snapshot_available ? "Native state captured before local policy" : "No native snapshot"}</p><code>{replay.reproducibility_sha256}</code><button onClick={downloadReplay}>Download replay</button></div>}</section>
           <section className="integration-grid" aria-label="Capability status">{capabilities?.capabilities.filter((item) => ["blocked", "not_implemented"].includes(item.status)).map((item) => <article key={item.name}><div><span className="capability-state">{item.status.replaceAll("_", " ")}</span><h3>{item.name}</h3></div><p>{item.detail}</p></article>)}</section>
         </>}
-      </main><footer><span>AEGIS//GRID <b>LOCAL DEVELOPMENT</b></span><span>Phase 9 · passkey sandbox; incident and external writes closed.</span></footer>
+      </main><footer><span>AEGIS//GRID <b>LOCAL DEVELOPMENT</b></span><span>Phase 10 · approved local Mongo; external writes closed.</span></footer>
     </div>
   </div>;
 }

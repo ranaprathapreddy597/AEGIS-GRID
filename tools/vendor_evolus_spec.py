@@ -16,6 +16,8 @@ def main() -> None:
         for path, methods in source["paths"].items()
         if path == prefix or path.startswith(prefix + "/") and "document" in path
     }
+    for path in ("/api/v1/agents", "/api/v1/agents/{agentId}"):
+        paths[path] = {"get": source["paths"][path]["get"]}
     result = {
         "openapi": source["openapi"],
         "info": source["info"],

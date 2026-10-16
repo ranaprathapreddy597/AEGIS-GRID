@@ -1,6 +1,6 @@
 # Execution status
 
-Current assigned phase: **7 — persistent forensic LangGraph**.
+Current assigned phase: **11 — React command center**.
 User accepted Phase 6 local gate and authorized Phases 7–12 on 2026-10-16.
 Phase 4 passed at `12c2d86` on 2026-10-16.
 Phase 3 passed at `b9985f6`.
@@ -172,3 +172,13 @@ Phase 9 provides real cryptographic WebAuthn proof through an explicitly labeled
 Chromium virtual authenticator, persistent approval interrupt, independent Node
 verifier and atomic native-sandbox/Mongo receipt. Physical authenticator acceptance
 is unverified. The incident and external writes remain closed. See PHASE9.md.
+
+## Phase 10 — local gate PASS, 2026-10-16
+
+Actual passkey-bound Mongo maintenance + native stop commits atomically with a
+versioned receipt; legacy Phase 9 receipt hashes remain valid. Real browser
+reload regression is repaired with a reviewable standalone diff and before/after
+proof. Evolus metadata discovery is read-only; invocation and GitHub publication
+remain BLOCKED. Full gate: 248 Python / 3 CTest / 16 Node / 13 Chromium plus
+all prior audits/contracts/actual ACL and transport checks. See PHASE10.md.
+Phase 11 is next; no external live gate is waived.

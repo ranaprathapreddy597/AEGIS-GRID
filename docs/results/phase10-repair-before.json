@@ -1,0 +1,8 @@
+{
+  "probe": "actual_Chromium_owner_session_and_paused_proposal_reload",
+  "resumed": false,
+  "expected": "missing",
+  "operational_write": false,
+  "source": "running_local_stack",
+  "observed_at": "2026-10-16T12:29:25.038Z"
+}

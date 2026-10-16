@@ -17,6 +17,7 @@ from aegis_contracts.authorization import (
     ApprovalView,
     CredentialResponse,
     ExecutionEnvelope,
+    MaintenanceChange,
     MutationReceipt,
     ProposedPlan,
     VerifiedCapability,
@@ -379,13 +380,22 @@ class AuthorizationService:
     def workflow_config(action_id: str) -> dict[str, Any]:
         return {"configurable": {"thread_id": "authorization:" + action_id}, "recursion_limit": 8}
 
-    def propose(self, cookie: str) -> ApprovalView:
+    def propose(self, cookie: str, *, record_maintenance: bool = False) -> ApprovalView:
         session = self.session(cookie)
         if self.client.aegis.auth_proposals.count_documents({"session_id": session["_id"]}) >= 32:
             raise ValueError("Local proposal quota")
         resource = self.gateway.resource()
         state = json.loads(resource["snapshot"]["payload"])
+        record = resource.get("maintenance", {"record_version": 0, "status": "not_recorded"})
         plan = ProposedPlan(
+            action="simulator.stop_and_record_maintenance"
+            if record_maintenance
+            else "simulator.emergency_stop",
+            maintenance=MaintenanceChange(
+                expected_record_version=record["record_version"], status_before=record["status"]
+            )
+            if record_maintenance
+            else None,
             action_id=str(uuid4()),
             expected_database_version=resource["version"],
             expected_state_version=state["version"],

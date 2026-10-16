@@ -6,7 +6,12 @@ from pathlib import Path
 from typing import Any
 
 from aegis_agents.optimizer import canonical, digest
-from aegis_contracts.authorization import ExecutionEnvelope, MutationReceipt, ProposedPlan
+from aegis_contracts.authorization import (
+    ExecutionEnvelope,
+    MutationReceipt,
+    ProposedPlan,
+    receipt_hash_fields,
+)
 from aegis_contracts.models import SimulatorControls
 from aegis_edge.sentinel import SafetyShield
 from aegis_edge.twin import NativeTwin, scenario_from_file
@@ -82,8 +87,7 @@ class SimulatorGateway:
         version = 1
         for item in value["receipts"]:
             receipt = MutationReceipt.model_validate(item)
-            content = receipt.model_dump()
-            content.pop("receipt_sha256")
+            content = receipt_hash_fields(receipt)
             if (
                 digest(content) != receipt.receipt_sha256
                 or receipt.previous_receipt_sha256 != previous
@@ -100,11 +104,25 @@ class SimulatorGateway:
             and value["snapshot"]["sha256"] != value["receipts"][-1]["snapshot_sha256_after"]
         ):
             raise ValueError("Committed snapshot differs from receipt")
+        hashes = [
+            item.get("maintenance_record_sha256")
+            for item in value["receipts"]
+            if item.get("maintenance_record_sha256")
+        ]
+        if hashes and digest(value.get("maintenance")) != hashes[-1]:
+            raise ValueError("Maintenance record differs from committed receipt")
         return value
 
     def check_current(self, plan: ProposedPlan, resource: dict[str, Any]) -> None:
         snapshot = resource["snapshot"]
         state = json.loads(snapshot["payload"])
+        if plan.maintenance:
+            record = resource.get("maintenance", {"record_version": 0, "status": "not_recorded"})
+            if (
+                plan.maintenance.expected_record_version != record["record_version"]
+                or plan.maintenance.status_before != record["status"]
+            ):
+                raise ValueError("Operational maintenance record is stale")
         if (
             plan.expected_database_version != resource["version"]
             or plan.expected_state_version != state["version"]
@@ -159,7 +177,19 @@ class SimulatorGateway:
                 if max(cell.temperature_c for cell in frame.ground_truth.cells) >= 70:
                     raise ValueError("Simulator verification failed; private copy discarded")
             after = json.loads(twin.snapshot())
+            maintenance = resource.get("maintenance")
+            if plan.maintenance:
+                maintenance = {
+                    "record_id": plan.maintenance.record_id,
+                    "record_version": plan.maintenance.expected_record_version + 1,
+                    "status": plan.maintenance.status_after,
+                    "reason": plan.maintenance.reason,
+                    "last_action_id": plan.action_id,
+                }
             receipt = MutationReceipt(
+                receipt_format="sandbox-receipt-v2",
+                tool="local_mongo_and_simulator" if plan.maintenance else "isolated_simulator",
+                maintenance_record_sha256=digest(maintenance) if maintenance else None,
                 receipt_sha256="0" * 64,
                 previous_receipt_sha256=resource["last_receipt_sha256"],
                 action_id=plan.action_id,
@@ -172,11 +202,13 @@ class SimulatorGateway:
                 snapshot_sha256_after=after["sha256"],
                 native_binary_sha256=plan.native_binary_sha256,
             )
-        content = receipt.model_dump()
-        content.pop("receipt_sha256")
+        content = receipt_hash_fields(receipt)
         receipt = receipt.model_copy(update={"receipt_sha256": digest(content)})
         if fail_before_commit:
             raise ValueError("Injected test-only failure before atomic commit; copy discarded")
+        fields = {"snapshot": after, "last_receipt_sha256": receipt.receipt_sha256}
+        if maintenance:
+            fields["maintenance"] = maintenance
         result = self.client.aegis.sandbox_resources.update_one(
             {
                 "_id": RESOURCE,
@@ -185,7 +217,7 @@ class SimulatorGateway:
                 "nonces": {"$ne": capability.jti},
             },
             {
-                "$set": {"snapshot": after, "last_receipt_sha256": receipt.receipt_sha256},
+                "$set": fields,
                 "$inc": {"version": 1},
                 "$push": {"receipts": receipt.model_dump(), "nonces": capability.jti},
             },

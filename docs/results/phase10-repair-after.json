@@ -1,0 +1,9 @@
+{
+  "probe": "actual_Chromium_owner_session_and_paused_proposal_reload",
+  "resumed": true,
+  "expected": "resumed",
+  "operational_write": false,
+  "source": "running_local_stack",
+  "source_sha256": "8ce680d2a90135f950b6e2b29189761e4df4150357816f5223df0890df9ecd10",
+  "observed_at": "2026-10-16T12:38:11.809Z"
+}

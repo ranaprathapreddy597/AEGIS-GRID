@@ -13,6 +13,7 @@ from aegis_contracts.authorization import (
 )
 from aegis_contracts.config import Settings
 from aegis_contracts.inference import InferenceResult, MemoryBudget
+from aegis_contracts.integrations import RepairBundle
 from aegis_contracts.investigation import Investigation
 from aegis_contracts.manuals import ManualDocument, ManualEvidence, ManualRecords, OEMConstraint
 from aegis_contracts.models import PlantTelemetry, Scenario, SimulatorControls, TwinMeasurement
@@ -59,6 +60,7 @@ def main() -> None:
         "verified-capability.schema.json": VerifiedCapability.model_json_schema(),
         "execution-envelope.schema.json": ExecutionEnvelope.model_json_schema(),
         "mutation-receipt.schema.json": MutationReceipt.model_json_schema(),
+        "repair-bundle.schema.json": RepairBundle.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

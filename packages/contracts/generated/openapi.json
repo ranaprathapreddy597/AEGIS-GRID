@@ -265,8 +265,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 9,
-            "default": 9,
+            "const": 10,
+            "default": 10,
             "title": "Phase",
             "type": "integer"
           }
@@ -1063,6 +1063,69 @@
         "title": "InferenceStatus",
         "type": "object"
       },
+      "IntegrationGate": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "BLOCKED",
+              "verified_local"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "status",
+          "reason"
+        ],
+        "title": "IntegrationGate",
+        "type": "object"
+      },
+      "IntegrationStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "evolus_spec_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Evolus Spec Sha256",
+            "type": "string"
+          },
+          "external_mutations_enabled": {
+            "const": false,
+            "default": false,
+            "title": "External Mutations Enabled",
+            "type": "boolean"
+          },
+          "gates": {
+            "items": {
+              "$ref": "#/components/schemas/IntegrationGate"
+            },
+            "title": "Gates",
+            "type": "array"
+          },
+          "verified_evolus_mcp_invocation_tools": {
+            "const": 0,
+            "default": 0,
+            "title": "Verified Evolus Mcp Invocation Tools",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "gates",
+          "evolus_spec_sha256"
+        ],
+        "title": "IntegrationStatus",
+        "type": "object"
+      },
       "Investigation": {
         "additionalProperties": false,
         "properties": {
@@ -1270,6 +1333,49 @@
           "incident_id"
         ],
         "title": "Investigation",
+        "type": "object"
+      },
+      "MaintenanceChange": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_record_version": {
+            "maximum": 256,
+            "minimum": 0,
+            "title": "Expected Record Version",
+            "type": "integer"
+          },
+          "reason": {
+            "const": "Independent native emergency-stop verification",
+            "default": "Independent native emergency-stop verification",
+            "title": "Reason",
+            "type": "string"
+          },
+          "record_id": {
+            "const": "local-sandbox-maintenance",
+            "default": "local-sandbox-maintenance",
+            "title": "Record Id",
+            "type": "string"
+          },
+          "status_after": {
+            "const": "safety_stop_verified",
+            "default": "safety_stop_verified",
+            "title": "Status After",
+            "type": "string"
+          },
+          "status_before": {
+            "enum": [
+              "not_recorded",
+              "safety_stop_verified"
+            ],
+            "title": "Status Before",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_record_version",
+          "status_before"
+        ],
+        "title": "MaintenanceChange",
         "type": "object"
       },
       "ManualDecision": {
@@ -1559,6 +1665,18 @@
             "title": "Database Version Before",
             "type": "integer"
           },
+          "maintenance_record_sha256": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maintenance Record Sha256"
+          },
           "native_binary_sha256": {
             "pattern": "^[0-9a-f]{64}$",
             "title": "Native Binary Sha256",
@@ -1593,6 +1711,15 @@
             "title": "Previous Receipt Sha256",
             "type": "string"
           },
+          "receipt_format": {
+            "default": "sandbox-receipt-v1",
+            "enum": [
+              "sandbox-receipt-v1",
+              "sandbox-receipt-v2"
+            ],
+            "title": "Receipt Format",
+            "type": "string"
+          },
           "receipt_sha256": {
             "pattern": "^[0-9a-f]{64}$",
             "title": "Receipt Sha256",
@@ -1607,6 +1734,15 @@
           "snapshot_sha256_after": {
             "pattern": "^[0-9a-f]{64}$",
             "title": "Snapshot Sha256 After",
+            "type": "string"
+          },
+          "tool": {
+            "default": "isolated_simulator",
+            "enum": [
+              "isolated_simulator",
+              "local_mongo_and_simulator"
+            ],
+            "title": "Tool",
             "type": "string"
           }
         },
@@ -1916,8 +2052,11 @@
         "additionalProperties": false,
         "properties": {
           "action": {
-            "const": "simulator.emergency_stop",
             "default": "simulator.emergency_stop",
+            "enum": [
+              "simulator.emergency_stop",
+              "simulator.stop_and_record_maintenance"
+            ],
             "title": "Action",
             "type": "string"
           },
@@ -1960,6 +2099,17 @@
             "minimum": 1,
             "title": "Expires At",
             "type": "integer"
+          },
+          "maintenance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MaintenanceChange"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
           },
           "native_binary_sha256": {
             "pattern": "^[0-9a-f]{64}$",
@@ -2185,6 +2335,121 @@
           "intervention"
         ],
         "title": "RecoveryAssessment",
+        "type": "object"
+      },
+      "RepairBundle": {
+        "additionalProperties": false,
+        "properties": {
+          "after_probe": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "After Probe",
+            "type": "object"
+          },
+          "after_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "After Sha256",
+            "type": "string"
+          },
+          "artifact_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Artifact Sha256",
+            "type": "string"
+          },
+          "base_revision": {
+            "pattern": "^[0-9a-f]{40}$",
+            "title": "Base Revision",
+            "type": "string"
+          },
+          "before_probe": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Before Probe",
+            "type": "object"
+          },
+          "before_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Before Sha256",
+            "type": "string"
+          },
+          "hosted_ci_verified": {
+            "const": false,
+            "default": false,
+            "title": "Hosted Ci Verified",
+            "type": "boolean"
+          },
+          "local_browser_regression_verified": {
+            "const": true,
+            "default": true,
+            "title": "Local Browser Regression Verified",
+            "type": "boolean"
+          },
+          "patch": {
+            "maxLength": 65536,
+            "title": "Patch",
+            "type": "string"
+          },
+          "patch_apply_verified": {
+            "const": true,
+            "default": true,
+            "title": "Patch Apply Verified",
+            "type": "boolean"
+          },
+          "patch_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Patch Sha256",
+            "type": "string"
+          },
+          "problem": {
+            "title": "Problem",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "remote_publication": {
+            "const": "BLOCKED",
+            "default": "BLOCKED",
+            "title": "Remote Publication",
+            "type": "string"
+          },
+          "target_path": {
+            "const": "apps/web/src/ApprovalPanel.tsx",
+            "default": "apps/web/src/ApprovalPanel.tsx",
+            "title": "Target Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact_sha256",
+          "base_revision",
+          "before_sha256",
+          "after_sha256",
+          "patch_sha256",
+          "patch",
+          "problem",
+          "before_probe",
+          "after_probe",
+          "reason"
+        ],
+        "title": "RepairBundle",
         "type": "object"
       },
       "SensorFrame": {
@@ -2701,6 +2966,74 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/approval/maintenance-proposals": {
+      "post": {
+        "operationId": "propose_maintenance_api_v1_approval_maintenance_proposals_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Propose Maintenance"
+      }
+    },
     "/api/v1/approval/proposals": {
       "post": {
         "operationId": "propose_api_v1_approval_proposals_post",
@@ -4316,6 +4649,52 @@
         "summary": "Inference Status"
       }
     },
+    "/api/v1/integrations/status": {
+      "get": {
+        "operationId": "integration_status_api_v1_integrations_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Integration Status"
+      }
+    },
     "/api/v1/investigations/{identifier}": {
       "get": {
         "operationId": "read_investigation_api_v1_investigations__identifier__get",
@@ -4682,6 +5061,52 @@
           }
         },
         "summary": "Read Optimization"
+      }
+    },
+    "/api/v1/repairs/local": {
+      "get": {
+        "operationId": "repair_bundle_api_v1_repairs_local_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairBundle"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Repair Bundle"
       }
     },
     "/api/v1/storage/status": {

@@ -10,10 +10,12 @@ from uuid import UUID
 
 import httpx
 from aegis_agents.optimization_service import OptimizationService
+from aegis_agents.optimizer import digest
 from aegis_agents.service import InvestigationService
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
 from aegis_contracts.inference import InferenceStatus, MemoryBudget
+from aegis_contracts.integrations import IntegrationGate, IntegrationStatus, RepairBundle
 from aegis_contracts.investigation import Investigation
 from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
@@ -182,6 +184,53 @@ def create_app(
     auth = Depends(RequireToken(config.viewer_token.get_secret_value()))
     limit = Depends(RateLimit())
     install_approval_routes(app, config, authorization_service, gateway_service, limit)
+
+    @app.get(
+        "/api/v1/integrations/status", response_model=IntegrationStatus, dependencies=[auth, limit]
+    )
+    async def integration_status() -> IntegrationStatus:
+        return IntegrationStatus(
+            evolus_spec_sha256="0af55c67c60d07dc35f37b70553f1a2a6b1cce76a3311d014c6be1473fadd4f8",
+            gates=[
+                IntegrationGate(
+                    provider="Local guarded Mongo + simulator",
+                    status="verified_local"
+                    if config.storage_enabled and config.gateway_password
+                    else "BLOCKED",
+                    reason="Passkey-bound explicit diff, native checks and atomic receipt",
+                ),
+                IntegrationGate(
+                    provider="Evolus MCP",
+                    status="BLOCKED",
+                    reason="Configuration read schemas only; live transport/tool schemas absent",
+                ),
+                IntegrationGate(
+                    provider="GitHub publication",
+                    status="BLOCKED",
+                    reason="Remote scope, write approval and hosted CI unverified",
+                ),
+                IntegrationGate(
+                    provider="MI300X / Pinecone",
+                    status="BLOCKED",
+                    reason="Live operational acceptance evidence absent",
+                ),
+            ],
+        )
+
+    @app.get("/api/v1/repairs/local", response_model=RepairBundle, dependencies=[auth, limit])
+    async def repair_bundle() -> RepairBundle:
+        try:
+            report = RepairBundle.model_validate_json(
+                Path("data/repairs/approval-session.json").read_bytes()
+            )
+            fields = report.model_dump()
+            fields.pop("artifact_sha256")
+            if digest(fields) != report.artifact_sha256:
+                raise ValueError("Repair integrity mismatch")
+            return report
+        except (OSError, ValueError):
+            raise HTTPException(503, "Verified local repair bundle unavailable") from None
+
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }

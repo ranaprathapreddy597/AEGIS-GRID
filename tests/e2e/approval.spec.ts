@@ -6,7 +6,8 @@ import AxeBuilder from "@axe-core/playwright";
 const env = Object.fromEntries(readFileSync(".env", "utf8").split(/\r?\n/).filter((line) => line && !line.startsWith("#")).map((line) => line.split("=")));
 const origin = `http://localhost:${env.AEGIS_WEB_PORT ?? "8080"}`;
 
-test("real WebAuthn virtual authenticator binds approval and independent execution", async ({ page, context }) => {
+for (const maintenance of [false, true]) {
+test(`real WebAuthn virtual authenticator binds approval and independent execution (${maintenance ? "Mongo maintenance" : "simulator"})`, async ({ page, context }) => {
   test.setTimeout(90000);
   page.on("requestfailed", (request) => { console.log("Browser transport refusal:", request.method(), new URL(request.url()).pathname, request.failure()?.errorText); });
   const cdp = await context.newCDPSession(page);
@@ -46,7 +47,7 @@ test("real WebAuthn virtual authenticator binds approval and independent executi
       await page.getByRole("button", { name: "Enroll passkey" }).click();
       await expect(page.locator(".approval-panel").getByRole("status")).toContainText("Passkey enrolled");
     }
-    await page.getByRole("button", { name: "Prepare sandbox stop" }).click();
+    await page.getByRole("button", { name: maintenance ? "Prepare maintenance record + stop" : "Prepare sandbox stop" }).click();
     await expect(page.getByTestId("approval-proposal")).toContainText("waiting for passkey");
     const proposed = await client.get(`${origin}/api/v1/approval/session`);
     expect(proposed.status()).toBe(200);
@@ -56,6 +57,10 @@ test("real WebAuthn virtual authenticator binds approval and independent executi
     await page.getByText("Inspect exact immutable action and safety artifact", { exact: true }).click();
     const plan = JSON.parse(await page.locator(".approval-panel pre").innerText());
     const path = `${origin}/api/v1/approval/proposals/${plan.action_id}`;
+    await page.reload();
+    await page.getByLabel("Local viewer token").fill(env.AEGIS_VIEWER_TOKEN!);
+    await page.getByRole("button", { name: "Connect to live stream" }).click();
+    await expect(page.getByTestId("approval-proposal")).toContainText(digest);
     expect((await client.post(`${path}/execute`, { headers, data: { plan_sha256: digest } })).status()).toBe(403);
     const assertionRequest = page.waitForRequest((request) => request.url() === `${path}/verify`);
     await page.getByRole("button", { name: "Approve exact action with passkey" }).click();
@@ -66,7 +71,7 @@ test("real WebAuthn virtual authenticator binds approval and independent executi
     expect((await client.post(`${path}/execute`, { headers, data: { plan_sha256: digest, action_json: "modified" } })).status()).toBe(422);
 
     // Approve a second proposal against the SAME initial state; it must become stale.
-    const second = await (await client.post(`${origin}/api/v1/approval/proposals`, { headers })).json();
+    const second = await (await client.post(`${origin}/api/v1/approval/${maintenance ? "maintenance-proposals" : "proposals"}`, { headers })).json();
     const secondPath = `${origin}/api/v1/approval/proposals/${second.action_id}`;
     const challenge = await (await client.post(`${secondPath}/options`, { headers })).json();
     const credential = await page.evaluate(async (options) => {
@@ -85,17 +90,21 @@ test("real WebAuthn virtual authenticator binds approval and independent executi
     await expect(page.getByTestId("approval-receipt")).toContainText("WebAuthn_user_verified", { timeout: 15000 });
     const executed = await (await client.get(path)).json();
     expect(executed.status).toBe("executed");
+    expect(executed.receipt.tool).toBe(maintenance ? "local_mongo_and_simulator" : "isolated_simulator");
+    if (maintenance) expect(executed.receipt.maintenance_record_sha256).toMatch(/^[0-9a-f]{64}$/);
     expect(executed.receipt.database_version_after).toBe(executed.receipt.database_version_before + 1);
     expect(executed.receipt.native_version_after).toBe(executed.receipt.native_version_before + 60);
     const retry = await (await client.post(`${path}/execute`, { headers, data: { plan_sha256: digest } })).json();
     expect(retry.receipt).toEqual(executed.receipt);
     expect((await client.post(`${secondPath}/execute`, { headers, data: { plan_sha256: second.plan_sha256 } })).status()).toBe(403);
     expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
-    await page.locator(".approval-panel").screenshot({ path: "docs/results/phase9-approval.png" });
-    writeFileSync("docs/results/phase9-webauthn-browser.json", JSON.stringify({ mode: "actual_Chromium_WebAuthn_virtual_authenticator_NOT_physical_key", proof: "real server cryptographic verification; persistent approval interrupt; real Node gateway and Mongo CAS", receipt: executed.receipt, no_approval: "denied", changed_digest: "denied", assertion_replay: "denied", stale_approved_state: "denied", retry: "same receipt, no second mutation" }, null, 2) + "\n");
+    await page.locator(".approval-panel").screenshot({ path: "docs/results/phase10-approval.png" });
+    writeFileSync("docs/results/phase10-webauthn-browser.json", JSON.stringify({ mode: "actual_Chromium_WebAuthn_virtual_authenticator_NOT_physical_key", proof: "real server cryptographic verification; persistent approval interrupt; real Node gateway and Mongo CAS", receipt: executed.receipt, no_approval: "denied", changed_digest: "denied", assertion_replay: "denied", stale_approved_state: "denied", retry: "same receipt, no second mutation" }, null, 2) + "\n");
   } finally {
     const { credentials } = await cdp.send("WebAuthn.getCredentials", { authenticatorId });
     if (credentials.length) { mkdirSync(".run", { recursive: true }); writeFileSync(fixturePath, JSON.stringify(credentials[0]), { mode: 0o600 }); }
     await cdp.send("WebAuthn.removeVirtualAuthenticator", { authenticatorId });
   }
 });
+
+}

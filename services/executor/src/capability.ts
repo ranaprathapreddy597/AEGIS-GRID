@@ -37,14 +37,18 @@ export function verifyEnvelope(input: unknown, publicKey: string): Envelope {
   const hash = createHash("sha256").update(envelope.action_json).digest("hex");
   if (cap.iat > now + 2 || now >= cap.exp || cap.exp > cap.iat + 60 || cap.exp > plan.expires_at || now >= plan.expires_at || hash !== cap.plan_sha256 || cap.action_id !== plan.action_id || cap.resource_id !== plan.resource_id || cap.scope !== plan.scope || cap.expected_database_version !== plan.expected_database_version || cap.expected_state_version !== plan.expected_state_version) throw new Error("Scope, digest, expiry or expected state refused");
   if (plan.controls.pump !== 1 || !plan.controls.loads.every((v) => v === 0) || !plan.controls.valves.every((v) => v === 1)) throw new Error("Independent stop interlock refused");
+  if ((plan.action === "simulator.stop_and_record_maintenance") !== !!plan.maintenance) throw new Error("Operational diff must be explicit in the signed action");
   return envelope;
 }
 export function verifyReceipt(input: unknown, envelope: Envelope): Receipt {
   if (!validReceipt(input)) throw new Error("Receipt schema refused");
   const receipt = input as Receipt;
   const cap = JSON.parse(decode(envelope.capability.split(".")[0]!).toString("utf8")) as components["schemas"]["VerifiedCapability"];
+  const plan = JSON.parse(envelope.action_json) as components["schemas"]["ProposedPlan"];
+  if (plan.maintenance && (receipt.tool !== "local_mongo_and_simulator" || receipt.receipt_format !== "sandbox-receipt-v2" || !receipt.maintenance_record_sha256)) throw new Error("Operational Mongo receipt missing");
   if (receipt.action_id !== cap.action_id || receipt.plan_sha256 !== cap.plan_sha256 || receipt.nonce !== cap.jti || receipt.database_version_after !== receipt.database_version_before + 1 || receipt.native_version_after !== receipt.native_version_before + 60) throw new Error("Receipt scope refused");
-  const content = Object.fromEntries(Object.entries(receipt).filter(([key]) => key !== "receipt_sha256").sort(([a], [b]) => a.localeCompare(b)));
+  const omitted = receipt.receipt_format === "sandbox-receipt-v2" ? ["receipt_sha256"] : ["receipt_sha256", "receipt_format", "maintenance_record_sha256", "tool"];
+  const content = Object.fromEntries(Object.entries(receipt).filter(([key]) => !omitted.includes(key)).sort(([a], [b]) => a.localeCompare(b)));
   if (createHash("sha256").update(JSON.stringify(content)).digest("hex") !== receipt.receipt_sha256) throw new Error("Receipt integrity refused");
   return receipt;
 }

@@ -224,3 +224,15 @@ This uses a labeled Chromium virtual authenticator, not a physical security key 
 hardware attestation. The initial transport failures and final passing full output
 are preserved; no timeout/security rule was relaxed. MI300X/Evolus/Pinecone live
 gates remain BLOCKED. No incident, external enterprise or physical I/O was enabled.
+
+## Phase 10 actual local enterprise sandbox — 2026-10-16
+
+248 Python / 3 CTest / 16 Node / 13 Chromium checks passed. Both real ES256
+virtual-authenticator flows (native stop and local Mongo maintenance + stop)
+survive browser/API restart and reject replay/tamper/stale state. V2 receipts
+bind the maintenance record; actual V1 records remain verifiable. The original
+reload bug and independently applied repair have actual before/after browser
+proof. No hosted CI/PR or Evolus invocation is claimed. Presence-only probe
+confirms required external credentials/endpoints absent; live gates BLOCKED.
+Public GitHub version metadata was read to verify header compatibility only.
+See PHASE10.md, ADR 0013 and the raw full gate.

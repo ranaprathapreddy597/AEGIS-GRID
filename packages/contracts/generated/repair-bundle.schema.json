@@ -1,0 +1,115 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "after_probe": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "After Probe",
+      "type": "object"
+    },
+    "after_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "After Sha256",
+      "type": "string"
+    },
+    "artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Artifact Sha256",
+      "type": "string"
+    },
+    "base_revision": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Base Revision",
+      "type": "string"
+    },
+    "before_probe": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Before Probe",
+      "type": "object"
+    },
+    "before_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Before Sha256",
+      "type": "string"
+    },
+    "hosted_ci_verified": {
+      "const": false,
+      "default": false,
+      "title": "Hosted Ci Verified",
+      "type": "boolean"
+    },
+    "local_browser_regression_verified": {
+      "const": true,
+      "default": true,
+      "title": "Local Browser Regression Verified",
+      "type": "boolean"
+    },
+    "patch": {
+      "maxLength": 65536,
+      "title": "Patch",
+      "type": "string"
+    },
+    "patch_apply_verified": {
+      "const": true,
+      "default": true,
+      "title": "Patch Apply Verified",
+      "type": "boolean"
+    },
+    "patch_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Patch Sha256",
+      "type": "string"
+    },
+    "problem": {
+      "title": "Problem",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "remote_publication": {
+      "const": "BLOCKED",
+      "default": "BLOCKED",
+      "title": "Remote Publication",
+      "type": "string"
+    },
+    "target_path": {
+      "const": "apps/web/src/ApprovalPanel.tsx",
+      "default": "apps/web/src/ApprovalPanel.tsx",
+      "title": "Target Path",
+      "type": "string"
+    }
+  },
+  "required": [
+    "artifact_sha256",
+    "base_revision",
+    "before_sha256",
+    "after_sha256",
+    "patch_sha256",
+    "patch",
+    "problem",
+    "before_probe",
+    "after_probe",
+    "reason"
+  ],
+  "title": "RepairBundle",
+  "type": "object"
+}

@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/v1/approval/maintenance-proposals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Propose Maintenance */
+        post: operations["propose_maintenance_api_v1_approval_maintenance_proposals_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/approval/proposals": {
         parameters: {
             query?: never;
@@ -295,6 +312,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/integrations/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Integration Status */
+        get: operations["integration_status_api_v1_integrations_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/investigations/{identifier}": {
         parameters: {
             query?: never;
@@ -355,6 +389,23 @@ export interface paths {
         };
         /** Read Optimization */
         get: operations["read_optimization_api_v1_optimizations__identifier__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/repairs/local": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Repair Bundle */
+        get: operations["repair_bundle_api_v1_repairs_local_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -571,10 +622,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 9
+             * @default 10
              * @constant
              */
-            phase: 9;
+            phase: 10;
         };
         /** Capability */
         Capability: {
@@ -896,6 +947,37 @@ export interface components {
              */
             state: "blocked" | "offline_development";
         };
+        /** IntegrationGate */
+        IntegrationGate: {
+            /** Provider */
+            provider: string;
+            /** Reason */
+            reason: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "BLOCKED" | "verified_local";
+        };
+        /** IntegrationStatus */
+        IntegrationStatus: {
+            /** Evolus Spec Sha256 */
+            evolus_spec_sha256: string;
+            /**
+             * External Mutations Enabled
+             * @default false
+             * @constant
+             */
+            external_mutations_enabled: false;
+            /** Gates */
+            gates: components["schemas"]["IntegrationGate"][];
+            /**
+             * Verified Evolus Mcp Invocation Tools
+             * @default 0
+             * @constant
+             */
+            verified_evolus_mcp_invocation_tools: 0;
+        };
         /** Investigation */
         Investigation: {
             /**
@@ -1011,6 +1093,34 @@ export interface components {
              * @default []
              */
             traces: components["schemas"]["GraphTrace"][];
+        };
+        /** MaintenanceChange */
+        MaintenanceChange: {
+            /** Expected Record Version */
+            expected_record_version: number;
+            /**
+             * Reason
+             * @default Independent native emergency-stop verification
+             * @constant
+             */
+            reason: "Independent native emergency-stop verification";
+            /**
+             * Record Id
+             * @default local-sandbox-maintenance
+             * @constant
+             */
+            record_id: "local-sandbox-maintenance";
+            /**
+             * Status After
+             * @default safety_stop_verified
+             * @constant
+             */
+            status_after: "safety_stop_verified";
+            /**
+             * Status Before
+             * @enum {string}
+             */
+            status_before: "not_recorded" | "safety_stop_verified";
         };
         /** ManualDecision */
         ManualDecision: {
@@ -1146,6 +1256,8 @@ export interface components {
             database_version_after: number;
             /** Database Version Before */
             database_version_before: number;
+            /** Maintenance Record Sha256 */
+            maintenance_record_sha256?: string | null;
             /** Native Binary Sha256 */
             native_binary_sha256: string;
             /** Native Version After */
@@ -1164,6 +1276,12 @@ export interface components {
             plan_sha256: string;
             /** Previous Receipt Sha256 */
             previous_receipt_sha256: string;
+            /**
+             * Receipt Format
+             * @default sandbox-receipt-v1
+             * @enum {string}
+             */
+            receipt_format: "sandbox-receipt-v1" | "sandbox-receipt-v2";
             /** Receipt Sha256 */
             receipt_sha256: string;
             /**
@@ -1174,6 +1292,12 @@ export interface components {
             resource_id: "authorization-sandbox-01";
             /** Snapshot Sha256 After */
             snapshot_sha256_after: string;
+            /**
+             * Tool
+             * @default isolated_simulator
+             * @enum {string}
+             */
+            tool: "isolated_simulator" | "local_mongo_and_simulator";
         };
         /** ObservedSample */
         ObservedSample: {
@@ -1282,9 +1406,9 @@ export interface components {
             /**
              * Action
              * @default simulator.emergency_stop
-             * @constant
+             * @enum {string}
              */
-            action: "simulator.emergency_stop";
+            action: "simulator.emergency_stop" | "simulator.stop_and_record_maintenance";
             /** Action Id */
             action_id: string;
             before_controls: components["schemas"]["SimulatorControls"];
@@ -1307,6 +1431,8 @@ export interface components {
             expected_state_version: number;
             /** Expires At */
             expires_at: number;
+            /** @default null */
+            maintenance: components["schemas"]["MaintenanceChange"] | null;
             /** Native Binary Sha256 */
             native_binary_sha256: string;
             /**
@@ -1413,6 +1539,63 @@ export interface components {
             status: "checked_non_executable" | "abstained";
             /** Total Rollouts */
             total_rollouts: number;
+        };
+        /** RepairBundle */
+        RepairBundle: {
+            /** After Probe */
+            after_probe: {
+                [key: string]: string | boolean;
+            };
+            /** After Sha256 */
+            after_sha256: string;
+            /** Artifact Sha256 */
+            artifact_sha256: string;
+            /** Base Revision */
+            base_revision: string;
+            /** Before Probe */
+            before_probe: {
+                [key: string]: string | boolean;
+            };
+            /** Before Sha256 */
+            before_sha256: string;
+            /**
+             * Hosted Ci Verified
+             * @default false
+             * @constant
+             */
+            hosted_ci_verified: false;
+            /**
+             * Local Browser Regression Verified
+             * @default true
+             * @constant
+             */
+            local_browser_regression_verified: true;
+            /** Patch */
+            patch: string;
+            /**
+             * Patch Apply Verified
+             * @default true
+             * @constant
+             */
+            patch_apply_verified: true;
+            /** Patch Sha256 */
+            patch_sha256: string;
+            /** Problem */
+            problem: string;
+            /** Reason */
+            reason: string;
+            /**
+             * Remote Publication
+             * @default BLOCKED
+             * @constant
+             */
+            remote_publication: "BLOCKED";
+            /**
+             * Target Path
+             * @default apps/web/src/ApprovalPanel.tsx
+             * @constant
+             */
+            target_path: "apps/web/src/ApprovalPanel.tsx";
         };
         /**
          * SensorFrame
@@ -1632,6 +1815,71 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    propose_maintenance_api_v1_approval_maintenance_proposals_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalView"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     propose_api_v1_approval_proposals_post: {
         parameters: {
             query?: never;
@@ -2886,6 +3134,37 @@ export interface operations {
             };
         };
     };
+    integration_status_api_v1_integrations_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IntegrationStatus"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     read_investigation_api_v1_investigations__identifier__get: {
         parameters: {
             query?: never;
@@ -3142,6 +3421,37 @@ export interface operations {
             };
             /** @description Service Unavailable */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    repair_bundle_api_v1_repairs_local_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RepairBundle"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };

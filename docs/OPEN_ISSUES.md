@@ -4,7 +4,7 @@
 |---|---|---|
 | EXT-01 | Blocked / Phase 6 | Pinned model/image, memory projections, read client and deployment/collection scripts implemented. No endpoint/device logs or actual long-context/HBM measurements. User will provision access later; live gate remains blocked. |
 | EXT-02 | Blocked / Phase 5 | Verified supplied OpenAPI read adapter and exact-match pipeline implemented. Application scope supplied; rotated local key, existing document IDs/personal read auth and live extraction proof pending. No provider call verified. |
-| EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no external calls or writes attempted. |
+| EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no credentialed integration calls or writes attempted. |
 | HW-01 | Unverified | NPU device enumerated OK and amd-smi on PATH; no compatible accelerated inference workload verified. CPU backend tested. |
 | TOOL-01 | Resolved for Docker path | Native Windows CMake/compiler absent. Container CMake/CTest is the chosen Phase 1 path; native MSVC remains unverified. |
 | MODEL-01 | Resolved / Phase 2 | Coupled coolant/pressure/feeder, bounded actuators, instrument noise, seeded faults and snapshots are implemented; see PHYSICS.md and phase evidence. |
@@ -52,5 +52,7 @@ TEST-02: one owner-login transport failure and one restart readiness timeout wer
 observed and retained. Two-second bounded API shutdown and sanitized diagnostics
 were added; final focused/full suites pass. The intermittent failure's complete
 cause is not established; no production SLA or stability guarantee is claimed.
-UX-01 / Phase 11: add browser-reload/session history recovery to the approval UI;
-server checkpoints/approvals already survive real API process restarts.
+UX-01 resolved / Phase 10: browser reload restores the owner session and paused
+proposal from authenticated APIs; actual before/after Chromium proof retained.
+External MCP invocation/GitHub publication remains BLOCKED: metadata/configured
+tool names are not verified invocation schemas or hosted CI/publication proof.

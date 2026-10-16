@@ -5,11 +5,11 @@ import { createExecutor } from "./server.js";
 import { createHash, generateKeyPairSync, randomUUID, sign } from "node:crypto";
 import { verifyEnvelope } from "./capability.js";
 
-function signedFixture(change: { cap?: Record<string, unknown>; controls?: Record<string, unknown> } = {}) {
+function signedFixture(change: { cap?: Record<string, unknown>; controls?: Record<string, unknown>; plan?: Record<string, unknown> } = {}) {
   const { privateKey, publicKey } = generateKeyPairSync("ed25519");
   const now = Math.floor(Date.now() / 1000);
   const actionId = randomUUID();
-  const action = { action_id: actionId, tenant_id: "local", resource_id: "authorization-sandbox-01", action: "simulator.emergency_stop", scope: "isolated_authorization_sandbox", risk: "simulator_only", evidence_policy: "authorization-test-sandbox-v1", expected_database_version: 1, expected_state_version: 30, source_snapshot_sha256: "a".repeat(64), native_binary_sha256: "b".repeat(64), safety_rollout_sha256: "c".repeat(64), before_controls: { pump: 0.85, loads: Array(6).fill(0.7), valves: Array(6).fill(1) }, controls: { pump: 1, loads: Array(6).fill(0), valves: Array(6).fill(1), ...change.controls }, compensation: "retain_committed_state_or_emergency_stop", expires_at: now + 600 };
+  const action = { action_id: actionId, tenant_id: "local", resource_id: "authorization-sandbox-01", action: "simulator.emergency_stop", scope: "isolated_authorization_sandbox", risk: "simulator_only", evidence_policy: "authorization-test-sandbox-v1", expected_database_version: 1, expected_state_version: 30, source_snapshot_sha256: "a".repeat(64), native_binary_sha256: "b".repeat(64), safety_rollout_sha256: "c".repeat(64), before_controls: { pump: 0.85, loads: Array(6).fill(0.7), valves: Array(6).fill(1) }, controls: { pump: 1, loads: Array(6).fill(0), valves: Array(6).fill(1), ...change.controls }, compensation: "retain_committed_state_or_emergency_stop", expires_at: now + 600, ...change.plan };
   const action_json = JSON.stringify(action);
   const cap = { iss: "aegis-local-approver", aud: "aegis-independent-executor", sub: "local-owner", jti: randomUUID(), action_id: actionId, plan_sha256: createHash("sha256").update(action_json).digest("hex"), resource_id: "authorization-sandbox-01", scope: "isolated_authorization_sandbox", expected_database_version: 1, expected_state_version: 30, iat: now, exp: now + 60, user_verification: true, ...change.cap };
   const data = Buffer.from(JSON.stringify(cap));
@@ -59,6 +59,13 @@ for (const cap of [{ sub: "wrong-user" }, { aud: "github" }, { iss: "model" }, {
 test("a valid issuer signature never overrides the independent actuator interlock", () => {
   for (const controls of [{ pump: 0 }, { loads: Array(6).fill(1) }, { valves: Array(6).fill(0) }]) {
     const fixture = signedFixture({ controls });
+    assert.throws(() => verifyEnvelope(fixture.envelope, fixture.publicKey));
+  }
+});
+
+test("an operational Mongo diff must be explicit, fixed and schema-valid", () => {
+  for (const plan of [{ action: "simulator.stop_and_record_maintenance" }, { maintenance: { expected_record_version: 0, status_before: "not_recorded" } }, { action: "simulator.stop_and_record_maintenance", maintenance: { record_id: "unapproved", expected_record_version: 0, status_before: "not_recorded" } }]) {
+    const fixture = signedFixture({ plan });
     assert.throws(() => verifyEnvelope(fixture.envelope, fixture.publicKey));
   }
 });
