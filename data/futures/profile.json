@@ -1,0 +1,9 @@
+{
+  "elapsed_s": 40.13908953000009,
+  "peak_process_rss_mib": 89.0859375,
+  "total_rollouts": 10000,
+  "native_substeps": 120000000,
+  "artifact_sha256": "55f0a8a56a40102e5d0ab36a67c1662fcf9c024a15cc5e5f10cf7bd4ffd174b2",
+  "mode": "actual_CPU_no_GPU",
+  "excludes": "Docker/WSL memory and other processes"
+}

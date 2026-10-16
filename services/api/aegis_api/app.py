@@ -1,6 +1,7 @@
 import asyncio
 import hashlib
 import logging
+import threading
 import time
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager, suppress
@@ -9,6 +10,7 @@ from typing import Annotated, Any, Literal
 from uuid import UUID
 
 import httpx
+from aegis_agents.laboratory import analysis_incident, load_ensemble, preview
 from aegis_agents.optimization_service import OptimizationService
 from aegis_agents.optimizer import digest
 from aegis_agents.service import InvestigationService
@@ -17,6 +19,7 @@ from aegis_contracts.http import install_http_boundary
 from aegis_contracts.inference import InferenceStatus, MemoryBudget
 from aegis_contracts.integrations import IntegrationGate, IntegrationStatus, RepairBundle
 from aegis_contracts.investigation import Investigation
+from aegis_contracts.laboratory import FuturesEnsemble, PreviewRequest, ScenarioPreview
 from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
     Capabilities,
@@ -76,6 +79,7 @@ def create_app(
     investigation_busy = asyncio.Lock()
     optimizations: OptimizationService | None = None
     optimization_busy = asyncio.Lock()
+    preview_busy = threading.BoundedSemaphore(1)
     authorizations: AuthorizationService | None = None
     protected_gateway: SimulatorGateway | None = None
 
@@ -527,6 +531,55 @@ def create_app(
                 ),
             ],
         )
+
+    @app.post(
+        "/api/v1/analysis/investigate",
+        response_model=Investigation,
+        dependencies=[auth, limit],
+        responses={**errors, 409: {"model": ErrorResponse}},
+    )
+    async def investigate_analysis(
+        body: PreviewRequest, idempotency_key: Annotated[UUID, Header()]
+    ) -> Investigation:
+        if investigation_busy.locked():
+            raise HTTPException(429, "Local investigation worker busy")
+        async with investigation_busy:
+            try:
+                service = graph_service()
+                record = await asyncio.to_thread(analysis_incident, body, config.twin_library)
+                return await asyncio.to_thread(service.run, record, str(idempotency_key))
+            except ValueError:
+                raise HTTPException(409, "Analysis has no anomaly or evidence refused") from None
+            except (PyMongoError, StorageUnavailable, OSError):
+                raise HTTPException(503, "Persistent analysis unavailable") from None
+
+    @app.post(
+        "/api/v1/analysis/scenario",
+        response_model=ScenarioPreview,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    def scenario_preview(body: PreviewRequest) -> ScenarioPreview:
+        if not preview_busy.acquire(blocking=False):
+            raise HTTPException(429, "Analysis capacity reached", headers={"Retry-After": "3"})
+        try:
+            return preview(body, config.twin_library)
+        except (OSError, ValueError) as error:
+            raise HTTPException(503, "Native analysis unavailable") from error
+        finally:
+            preview_busy.release()
+
+    @app.get(
+        "/api/v1/analysis/futures",
+        response_model=FuturesEnsemble,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    def futures_ensemble() -> FuturesEnsemble:
+        try:
+            return load_ensemble(Path("data/futures"), config.twin_library)
+        except (OSError, ValueError) as error:
+            raise HTTPException(503, "Verified future artifact unavailable") from error
 
     @app.get(
         "/api/v1/telemetry/latest",

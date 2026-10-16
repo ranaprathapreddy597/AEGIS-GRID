@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 10 — guarded local Mongo maintenance and reviewed repair; local gate passed.**
+**Current scope: Phase 11 — responsive command center, private fault laboratory and measured futures; local gate passed.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -11,7 +11,7 @@ Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
 reasoners and C++ forecasts work locally; the offline model template abstains.
 Passkey approval covers a separate stationary simulator test resource and an
 atomic maintenance record in local Mongo. The reviewed repair diff is downloadable;
-Evolus invocation and GitHub publication remain closed. Phases 11–12 are next.
+Evolus invocation and GitHub publication remain closed. Phase 12 final validation is next.
 The incident's contradictory evidence and protected external writes remain closed.
 
 ## Start locally
@@ -143,3 +143,8 @@ The receipt proves one atomic local Mongo/native-snapshot change. Never share
 either token. Physical passkey acceptance is unverified; automated Chromium uses
 a labeled virtual authenticator with real server cryptographic verification.
 See ADR 0012 and the runbook for the limited scope and production gaps.
+
+The command center can select/replay a seeded fault in private C++ copies and
+investigate it through real persisted LangGraph without a developer console. The
+10,000-future histogram is backed by 5,000 actual paired CPU priors, explicitly
+precomputed for one development incident. See docs/results/PHASE11.md.

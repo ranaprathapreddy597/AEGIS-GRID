@@ -1,6 +1,6 @@
 # Execution status
 
-Current assigned phase: **11 — React command center**.
+Current assigned phase: **12 — final hardening, benchmark and reproducible demo**.
 User accepted Phase 6 local gate and authorized Phases 7–12 on 2026-10-16.
 Phase 4 passed at `12c2d86` on 2026-10-16.
 Phase 3 passed at `b9985f6`.
@@ -182,3 +182,13 @@ proof. Evolus metadata discovery is read-only; invocation and GitHub publication
 remain BLOCKED. Full gate: 248 Python / 3 CTest / 16 Node / 13 Chromium plus
 all prior audits/contracts/actual ACL and transport checks. See PHASE10.md.
 Phase 11 is next; no external live gate is waived.
+
+## Phase 11 — local gate PASS, 2026-10-16
+
+Responsive instrument-first UI, actual private seeded fault/replay/investigation
+flow and measured 10K C++ futures pass 252 Python / 3 CTest / 16 Node / 14 browser
+checks. Full desktop/mobile laboratory captures inspected. The selected private
+fault reaches the real persisted LangGraph and 409-rollout tournament on a fresh
+install without inserting fake live incidents. See PHASE11.md and ADR 0014.
+External live gates remain BLOCKED. Final validation plan is frozen before Phase
+12 measurement in FINAL_VALIDATION_PLAN.md.

@@ -14,6 +14,7 @@ COPY services/agents services/agents
 COPY data/scenarios data/scenarios
 COPY data/manuals data/manuals
 COPY data/repairs data/repairs
+COPY data/futures data/futures
 RUN uv sync --locked --no-dev --no-editable
 ENV PATH="/app/.venv/bin:$PATH"
 ENV LANGSMITH_TRACING=false LANGCHAIN_TRACING_V2=false DO_NOT_TRACK=1

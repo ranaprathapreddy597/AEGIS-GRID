@@ -1,0 +1,149 @@
+{
+  "artifact_sha256": "55f0a8a56a40102e5d0ab36a67c1662fcf9c024a15cc5e5f10cf7bd4ffd174b2",
+  "rows_sha256": "511bde5055d8ce96b1e5259c0f81222ba284650aa2ffd4c787723974ac608364",
+  "source_snapshot_sha256": "8cb0b9e70988f859aba7c1b05dfabe426844a96c4557cecca2b54471c21c5d87",
+  "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+  "mode": "precomputed_actual_cpp_cpu",
+  "pairs": 5000,
+  "total_rollouts": 10000,
+  "native_substeps": 120000000,
+  "horizon_s": 600,
+  "baseline_failed": 1971,
+  "intervention_failed": 0,
+  "histogram": [
+    {
+      "lower_c": 20.0,
+      "upper_c": 30.0,
+      "baseline": 0,
+      "intervention": 0
+    },
+    {
+      "lower_c": 30.0,
+      "upper_c": 40.0,
+      "baseline": 0,
+      "intervention": 2126
+    },
+    {
+      "lower_c": 40.0,
+      "upper_c": 50.0,
+      "baseline": 44,
+      "intervention": 2874
+    },
+    {
+      "lower_c": 50.0,
+      "upper_c": 60.0,
+      "baseline": 1698,
+      "intervention": 0
+    },
+    {
+      "lower_c": 60.0,
+      "upper_c": 70.0,
+      "baseline": 1287,
+      "intervention": 0
+    },
+    {
+      "lower_c": 70.0,
+      "upper_c": 80.0,
+      "baseline": 955,
+      "intervention": 0
+    },
+    {
+      "lower_c": 80.0,
+      "upper_c": 90.0,
+      "baseline": 647,
+      "intervention": 0
+    },
+    {
+      "lower_c": 90.0,
+      "upper_c": 100.0,
+      "baseline": 359,
+      "intervention": 0
+    },
+    {
+      "lower_c": 100.0,
+      "upper_c": 110.0,
+      "baseline": 10,
+      "intervention": 0
+    },
+    {
+      "lower_c": 110.0,
+      "upper_c": 120.0,
+      "baseline": 0,
+      "intervention": 0
+    }
+  ],
+  "counterexamples": [
+    {
+      "case": 0,
+      "seed": 1100000,
+      "target": 2,
+      "severity": 0.8449971872990438,
+      "baseline_peak_c": 77.83889954710924,
+      "intervention_peak_c": 40.89800351814967,
+      "baseline_violations": 1,
+      "intervention_violations": 0
+    },
+    {
+      "case": 4,
+      "seed": 1100004,
+      "target": 5,
+      "severity": 0.9668054136898132,
+      "baseline_peak_c": 94.86309486030079,
+      "intervention_peak_c": 38.341062175296706,
+      "baseline_violations": 3,
+      "intervention_violations": 0
+    },
+    {
+      "case": 11,
+      "seed": 1100011,
+      "target": 4,
+      "severity": 0.8625165951393614,
+      "baseline_peak_c": 82.24275148889262,
+      "intervention_peak_c": 38.56809965009549,
+      "baseline_violations": 1,
+      "intervention_violations": 0
+    },
+    {
+      "case": 15,
+      "seed": 1100015,
+      "target": 1,
+      "severity": 0.7889081372408218,
+      "baseline_peak_c": 71.21276439873309,
+      "intervention_peak_c": 39.902179934933464,
+      "baseline_violations": 1,
+      "intervention_violations": 0
+    },
+    {
+      "case": 17,
+      "seed": 1100017,
+      "target": 2,
+      "severity": 0.8272505374323362,
+      "baseline_peak_c": 76.14406649812445,
+      "intervention_peak_c": 40.385907087324625,
+      "baseline_violations": 1,
+      "intervention_violations": 0
+    },
+    {
+      "case": 18,
+      "seed": 1100018,
+      "target": 3,
+      "severity": 0.8067070620654191,
+      "baseline_peak_c": 76.61038975201627,
+      "intervention_peak_c": 41.65273213882758,
+      "baseline_violations": 1,
+      "intervention_violations": 0
+    }
+  ],
+  "baseline_mean_energy_kwh": 2.069734671889339,
+  "intervention_mean_energy_kwh": 0.3381048736522952,
+  "baseline_mean_production": 47.7629980901408,
+  "intervention_mean_production": 0.4687416666666237,
+  "intervention_mean_downtime_s": 591.0,
+  "assumptions": [
+    "Precomputed scenario-090 seed 42 incident, not the currently selected incident or live posterior.",
+    "5000 seeded synthetic priors: target uniform 0..5, severity uniform .3..1, temperature offset uniform -2..2C; combined mask 156.",
+    "Each prior executes baseline and exact emergency stop for 600s at 20 native substeps/s; 10000 actual CPU futures.",
+    "Histogram outer bins include overflow; finite synthetic coverage is not industrial confidence.",
+    "Native rollout checks thermal/flow/pressure/feeder/ramp constraints. Costs are assumed dimensionless, not dollars."
+  ]
+}

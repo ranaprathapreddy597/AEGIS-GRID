@@ -236,3 +236,13 @@ proof. No hosted CI/PR or Evolus invocation is claimed. Presence-only probe
 confirms required external credentials/endpoints absent; live gates BLOCKED.
 Public GitHub version metadata was read to verify header compatibility only.
 See PHASE10.md, ADR 0013 and the raw full gate.
+
+## Phase 11 actual CPU/UI — 2026-10-16
+
+10,000 real CPU C++ futures / 120 million substeps: 40.1391 s, 89.09 MiB
+process RSS, bounded network-none 2-CPU/512-MiB container. All 5,000 paired rows
+are fingerprinted; a stored prior re-executes exactly. Private analysis replay
+detects scenario-090 seed42 at 109 s (dt .5), 87.20 versus 40.95 C peak over
+600 s. This is synthetic CPU analysis, not cloud inference or operational control.
+252 Python / 3 CTest / 16 Node / 14 browser checks pass, including real selected
+analysis LangGraph and tournament. Live external gates remain BLOCKED.

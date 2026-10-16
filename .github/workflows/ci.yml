@@ -3,7 +3,7 @@ on: [push, pull_request]
 permissions:
   contents: read
 concurrency:
-  group: phase10-${{ github.ref }}
+  group: phase11-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   local-golden-path:
@@ -32,15 +32,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: phase10-test-results
+          name: phase11-test-results
           path: |
             test-results/e2e-results.json
-            docs/results/phase10-dashboard.png
-            docs/results/phase10-memory-panel.png
-            docs/results/phase10-mobile.png
-            docs/results/phase10-restart-replay.png
-            docs/results/phase10-manual-evidence.png
-            docs/results/phase10-manual-mobile.png
+            docs/results/phase11-dashboard.png
+            docs/results/phase11-memory-panel.png
+            docs/results/phase11-mobile.png
+            docs/results/phase11-restart-replay.png
+            docs/results/phase11-manual-evidence.png
+            docs/results/phase11-manual-mobile.png
           if-no-files-found: ignore
       - name: Stop containers, preserve no credentials in artifacts
         if: always()

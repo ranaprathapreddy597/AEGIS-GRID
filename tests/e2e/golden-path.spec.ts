@@ -39,13 +39,13 @@ test("actual C++ telemetry reaches React, exports provenance, and remains access
   expect(data.scenario_sha256).toMatch(/^[0-9a-f]{64}$/);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(accessibility.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target) }))).toEqual([]);
-  await page.screenshot({ path: "docs/results/phase10-dashboard.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase11-dashboard.png", fullPage: true });
   await page.getByRole("tab", { name: /Signal log/ }).click();
   await expect(page.getByRole("table")).toBeVisible();
   await page.getByRole("tab", { name: "Live overview" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.screenshot({ path: "docs/results/phase10-mobile.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase11-mobile.png", fullPage: true });
   await page.getByRole("button", { name: "Disconnect" }).click();
   await expect(page.getByLabel("Local viewer token")).toHaveValue("");
   expect(errors).toEqual([]);
@@ -70,7 +70,7 @@ test("memory calculator reports projected fit and blocked hardware honestly", as
   await page.getByRole("button", { name: "Project 192 GiB budget" }).click();
   await expect(page.getByTestId("memory-budget")).toContainText("PROJECTED HEADROOM");
   await expect(page.locator(".inference-panel")).toContainText("live gate blocked");
-  await page.locator(".inference-panel").screenshot({ path: "docs/results/phase10-memory-panel.png" });
+  await page.locator(".inference-panel").screenshot({ path: "docs/results/phase11-memory-panel.png" });
 });
 
 test("actual manual citations and contradictory bulletin block actions", async ({ page, request }) => {
@@ -94,11 +94,11 @@ test("actual manual citations and contradictory bulletin block actions", async (
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(accessibility.violations).toEqual([]);
   await page.getByRole("heading", { name: "Factory signal room." }).click();
-  await page.screenshot({ path: "docs/results/phase10-manual-evidence.png", fullPage: true });
-  await page.locator(".manual-evidence").screenshot({ path: "docs/results/phase10-manual-panel.png" });
+  await page.screenshot({ path: "docs/results/phase11-manual-evidence.png", fullPage: true });
+  await page.locator(".manual-evidence").screenshot({ path: "docs/results/phase11-manual-panel.png" });
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.screenshot({ path: "docs/results/phase10-manual-mobile.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase11-manual-mobile.png", fullPage: true });
 });
 
 test("real edge outage becomes visible and reconnects to a new simulator run", async ({ page }) => {
@@ -139,7 +139,7 @@ test("actual injected fault hides overheat from observed sensors", async ({ page
     expect(data.ground_truth.cells[0].temperature_c).toBeGreaterThan(80);
     expect(Math.max(...data.cells.map((cell: { temperature_c: number }) => cell.temperature_c))).toBeLessThan(80);
     await expect(page.getByTestId("temperature-0")).toContainText(/3[78]\./);
-    await page.screenshot({ path: "docs/results/phase10-observe-only-overheat.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase11-observe-only-overheat.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
@@ -163,7 +163,7 @@ test("local safety stops deceptive fault while cloud is disabled", async ({ page
       return Math.max(...data.cells.map((cell: { load_fraction: number }) => cell.load_fraction));
     }, { timeout: 10000, intervals: [1000] }).toBeLessThan(0.001);
     await page.getByRole("button", { name: "Simulation ground truth" }).click();
-    await page.screenshot({ path: "docs/results/phase10-local-stop.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase11-local-stop.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
@@ -210,7 +210,7 @@ test("native incident snapshot and journal survive an API restart", async ({ pag
   await page.getByRole("button", { name: "Download replay" }).click();
   expect((await downloadWait).suggestedFilename()).toMatch(/^aegis-incident-/);
   await page.getByRole("heading", { name: "Factory signal room." }).click();
-  await page.screenshot({ path: "docs/results/phase10-restart-replay.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase11-restart-replay.png", fullPage: true });
 });
 
 test("LangGraph cycles, interrupts and survives restart without gateway writes", async ({ page, request }) => {
@@ -242,7 +242,7 @@ test("LangGraph cycles, interrupts and survives restart without gateway writes",
   await page.getByRole("button", { name: "Investigate latest incident" }).click();
   await expect(page.getByTestId("investigation-report")).toContainText("PAUSED");
   await expect(page.getByTestId("investigation-report")).toContainText("rejected by Red/Shield");
-  await page.locator(".investigation-panel").screenshot({ path: "docs/results/phase10-investigation.png" });
+  await page.locator(".investigation-panel").screenshot({ path: "docs/results/phase11-investigation.png" });
 });
 
 test("real minimax futures persist and reject unsafe candidates in the command center", async ({ page, request }) => {
@@ -272,10 +272,10 @@ test("real minimax futures persist and reject unsafe candidates in the command c
   await expect(page.getByTestId("recovery-report")).toContainText("NON-EXECUTABLE");
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(accessibility.violations).toEqual([]);
-  await page.locator(".recovery-panel").screenshot({ path: "docs/results/phase10-recovery.png" });
+  await page.locator(".recovery-panel").screenshot({ path: "docs/results/phase11-recovery.png" });
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.locator(".recovery-panel").screenshot({ path: "docs/results/phase10-recovery-mobile.png" });
+  await page.locator(".recovery-panel").screenshot({ path: "docs/results/phase11-recovery-mobile.png" });
 });
 
 test("verified local repair is reviewable while external connector gates stay blocked", async ({ page, request }) => {
@@ -292,5 +292,43 @@ test("verified local repair is reviewable while external connector gates stay bl
   await page.getByRole("button", { name: "Download reviewed repair diff" }).click();
   expect((await waiting).suggestedFilename()).toBe("aegis-reviewed-approval-repair.diff");
   expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
-  await page.locator(".integration-panel").screenshot({ path: "docs/results/phase10-integrations.png" });
+  await page.locator(".integration-panel").screenshot({ path: "docs/results/phase11-integrations.png" });
+});
+
+test("isolated seeded fault replay and measured ten thousand futures work without operational mutation", async ({ page, request }) => {
+  const headers = { Authorization: `Bearer ${token}` };
+  const liveBefore = await (await request.get("/api/v1/telemetry/latest", { headers })).json();
+  expect((await request.post("/api/v1/analysis/scenario", { data: { scenario_id: "scenario-090" } })).status()).toBe(401);
+  await page.goto("/");
+  await page.getByLabel("Local viewer token").fill(token);
+  await page.getByRole("button", { name: "Connect to live stream" }).click();
+  await page.getByRole("link", { name: "02 Fault laboratory" }).click();
+  await page.getByRole("button", { name: "Run isolated fault" }).click();
+  await expect(page.getByTestId("laboratory-replay")).toContainText("RECORDED ANALYSIS", { timeout: 15000 });
+  await page.getByRole("button", { name: "Pause replay" }).click();
+  await page.getByRole("slider", { name: "Analysis replay position" }).fill("59");
+  await expect(page.getByTestId("laboratory-replay")).toContainText("600 / 600 s");
+  const waiting = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Download analysis replay" }).click();
+  const file = await waiting;
+  const artifact = JSON.parse(readFileSync((await file.path())!, "utf8"));
+  expect(artifact.operational_mutation).toBe(false);
+  expect(artifact.baseline_peak_c).toBeGreaterThan(70);
+  expect(artifact.shielded_peak_c).toBeLessThan(70);
+  await page.getByRole("button", { name: "Investigate selected fault" }).click();
+  await expect(page.getByTestId("laboratory-investigation")).toContainText("paused_no_action", { timeout: 20000 });
+  await expect(page.getByTestId("laboratory-investigation")).toContainText("planted-unsafe");
+  await expect(page.getByTestId("laboratory-investigation")).toContainText("409 actual rollouts");
+  await page.getByRole("button", { name: "Inspect 10,000 actual futures" }).click();
+  await expect(page.getByTestId("futures-ensemble")).toContainText("120,000,000 native substeps");
+  expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
+  await page.locator(".laboratory-panel").screenshot({ path: "docs/results/phase11-laboratory.png" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.locator(".laboratory-panel").screenshot({ path: "docs/results/phase11-laboratory-mobile.png" });
+  await page.getByRole("button", { name: "Reset replay" }).click();
+  await expect(page.getByRole("slider", { name: "Analysis replay position" })).toHaveValue("0");
+  const liveAfter = await (await request.get("/api/v1/telemetry/latest", { headers })).json();
+  expect(liveAfter.run_id).toBe(liveBefore.run_id);
+  expect(liveAfter.scenario_id).toBe(liveBefore.scenario_id);
 });

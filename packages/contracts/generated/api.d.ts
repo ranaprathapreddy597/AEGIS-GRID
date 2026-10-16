@@ -4,6 +4,57 @@
  */
 
 export interface paths {
+    "/api/v1/analysis/futures": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Futures Ensemble */
+        get: operations["futures_ensemble_api_v1_analysis_futures_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/analysis/investigate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Investigate Analysis */
+        post: operations["investigate_analysis_api_v1_analysis_investigate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/analysis/scenario": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Scenario Preview */
+        post: operations["scenario_preview_api_v1_analysis_scenario_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/approval/maintenance-proposals": {
         parameters: {
             query?: never;
@@ -622,10 +673,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 10
+             * @default 11
              * @constant
              */
-            phase: 10;
+            phase: 11;
         };
         /** Capability */
         Capability: {
@@ -748,7 +799,7 @@ export interface components {
              * @default edge_observer
              * @enum {string}
              */
-            origin: "edge_observer" | "storage_contract_fixture";
+            origin: "edge_observer" | "storage_contract_fixture" | "isolated_analysis";
             /**
              * Policy Revision
              * @default synthetic-shield-v1
@@ -824,6 +875,25 @@ export interface components {
             /** Capability */
             capability: string;
         };
+        /** FutureFailure */
+        FutureFailure: {
+            /** Baseline Peak C */
+            baseline_peak_c: number;
+            /** Baseline Violations */
+            baseline_violations: number;
+            /** Case */
+            case: number;
+            /** Intervention Peak C */
+            intervention_peak_c: number;
+            /** Intervention Violations */
+            intervention_violations: number;
+            /** Seed */
+            seed: number;
+            /** Severity */
+            severity: number;
+            /** Target */
+            target: number;
+        };
         /** FutureSample */
         FutureSample: {
             /** Elapsed S */
@@ -834,6 +904,67 @@ export interface components {
             maximum_temperature_c: number;
             /** Production Units */
             production_units: number;
+        };
+        /** FuturesEnsemble */
+        FuturesEnsemble: {
+            /** Artifact Sha256 */
+            artifact_sha256: string;
+            /** Assumptions */
+            assumptions: string[];
+            /** Baseline Failed */
+            baseline_failed: number;
+            /** Baseline Mean Energy Kwh */
+            baseline_mean_energy_kwh: number;
+            /** Baseline Mean Production */
+            baseline_mean_production: number;
+            /** Counterexamples */
+            counterexamples: components["schemas"]["FutureFailure"][];
+            /** Histogram */
+            histogram: components["schemas"]["HistogramBin"][];
+            /**
+             * Horizon S
+             * @default 600
+             * @constant
+             */
+            horizon_s: 600;
+            /** Intervention Failed */
+            intervention_failed: number;
+            /** Intervention Mean Downtime S */
+            intervention_mean_downtime_s: number;
+            /** Intervention Mean Energy Kwh */
+            intervention_mean_energy_kwh: number;
+            /** Intervention Mean Production */
+            intervention_mean_production: number;
+            /**
+             * Mode
+             * @default precomputed_actual_cpp_cpu
+             * @constant
+             */
+            mode: "precomputed_actual_cpp_cpu";
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /**
+             * Native Substeps
+             * @default 120000000
+             * @constant
+             */
+            native_substeps: 120000000;
+            /**
+             * Pairs
+             * @default 5000
+             * @constant
+             */
+            pairs: 5000;
+            /** Rows Sha256 */
+            rows_sha256: string;
+            /** Source Snapshot Sha256 */
+            source_snapshot_sha256: string;
+            /**
+             * Total Rollouts
+             * @default 10000
+             * @constant
+             */
+            total_rollouts: 10000;
         };
         /** GraphTrace */
         GraphTrace: {
@@ -863,6 +994,17 @@ export interface components {
              * @enum {string}
              */
             status: "ok" | "degraded";
+        };
+        /** HistogramBin */
+        HistogramBin: {
+            /** Baseline */
+            baseline: number;
+            /** Intervention */
+            intervention: number;
+            /** Lower C */
+            lower_c: number;
+            /** Upper C */
+            upper_c: number;
         };
         /** IncidentPage */
         IncidentPage: {
@@ -1401,6 +1543,22 @@ export interface components {
             /** State Version */
             state_version: number;
         };
+        /** PreviewRequest */
+        PreviewRequest: {
+            /** Scenario Id */
+            scenario_id: string;
+            /**
+             * Seed
+             * @default 42
+             */
+            seed: number;
+        };
+        /** PreviewSample */
+        PreviewSample: {
+            baseline: components["schemas"]["TwinMeasurement"];
+            sentinel: components["schemas"]["SentinelStatus"] | null;
+            shielded: components["schemas"]["TwinMeasurement"];
+        };
         /** ProposedPlan */
         ProposedPlan: {
             /**
@@ -1597,6 +1755,44 @@ export interface components {
              */
             target_path: "apps/web/src/ApprovalPanel.tsx";
         };
+        /** ScenarioPreview */
+        ScenarioPreview: {
+            /** Artifact Sha256 */
+            artifact_sha256: string;
+            /** Baseline Final Snapshot Sha256 */
+            baseline_final_snapshot_sha256: string;
+            /** Baseline Peak C */
+            baseline_peak_c: number;
+            /** Detection S */
+            detection_s: number | null;
+            /**
+             * Duration S
+             * @default 600
+             * @constant
+             */
+            duration_s: 600;
+            /**
+             * Mode
+             * @default isolated_analysis_replay
+             * @constant
+             */
+            mode: "isolated_analysis_replay";
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /**
+             * Operational Mutation
+             * @default false
+             * @constant
+             */
+            operational_mutation: false;
+            request: components["schemas"]["PreviewRequest"];
+            /** Samples */
+            samples: components["schemas"]["PreviewSample"][];
+            /** Shielded Final Snapshot Sha256 */
+            shielded_final_snapshot_sha256: string;
+            /** Shielded Peak C */
+            shielded_peak_c: number;
+        };
         /**
          * SensorFrame
          * @description Detector input allowlist. Hidden truth, labels and scenario ID are absent.
@@ -1736,6 +1932,39 @@ export interface components {
             /** Valve Fraction */
             valve_fraction: number;
         };
+        /** TwinMeasurement */
+        TwinMeasurement: {
+            /** Cells */
+            cells: components["schemas"]["CellMeasurement"][];
+            /** Coolant Temperature C */
+            coolant_temperature_c: number;
+            ground_truth: components["schemas"]["PhysicsState"];
+            /** Injected Fault Mask */
+            injected_fault_mask: number;
+            /** Loop Pressure Kpa */
+            loop_pressure_kpa: number;
+            measurement: components["schemas"]["MeasurementQuality"];
+            /**
+             * Model Version
+             * @default coupled-factory-v3
+             * @constant
+             */
+            model_version: "coupled-factory-v3";
+            /** Scenario Id */
+            scenario_id: string;
+            /**
+             * Schema Version
+             * @default 3.0.0
+             * @constant
+             */
+            schema_version: "3.0.0";
+            /** Seed */
+            seed: number;
+            /** Simulation Time S */
+            simulation_time_s: number;
+            /** State Version */
+            state_version: number;
+        };
         /** UncertaintyCase */
         UncertaintyCase: {
             /** Case Id */
@@ -1815,6 +2044,198 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    futures_ensemble_api_v1_analysis_futures_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FuturesEnsemble"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    investigate_analysis_api_v1_analysis_investigate_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreviewRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Investigation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    scenario_preview_api_v1_analysis_scenario_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreviewRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScenarioPreview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     propose_maintenance_api_v1_approval_maintenance_proposals_post: {
         parameters: {
             query?: never;

@@ -1,0 +1,32 @@
+
+Running 1 test using 1 worker
+
+(node:33468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\golden-path.spec.ts:298:5 › isolated seeded fault replay and measured ten thousand futures work without operational mutation (2.1s)
+
+
+  1) [chromium] › tests\e2e\golden-path.spec.ts:298:5 › isolated seeded fault replay and measured ten thousand futures work without operational mutation 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 70
+    Received:   63.592144908110384
+
+      314 |   const artifact = JSON.parse(readFileSync((await file.path())!, "utf8"));
+      315 |   expect(artifact.operational_mutation).toBe(false);
+    > 316 |   expect(artifact.baseline_peak_c).toBeGreaterThan(70);
+          |                                    ^
+      317 |   expect(artifact.shielded_peak_c).toBeLessThan(70);
+      318 |   await page.getByRole("button", { name: "Inspect 10,000 actual futures" }).click();
+      319 |   await expect(page.getByTestId("futures-ensemble")).toContainText("120,000,000 native substeps");
+        at D:\AEGIS GRID\tests\e2e\golden-path.spec.ts:316:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\golden-path-isolated-seede-42c2b-ithout-operational-mutation-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\golden-path-isolated-seede-42c2b-ithout-operational-mutation-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests\e2e\golden-path.spec.ts:298:5 › isolated seeded fault replay and measured ten thousand futures work without operational mutation 

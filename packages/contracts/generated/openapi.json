@@ -265,8 +265,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 10,
-            "default": 10,
+            "const": 11,
+            "default": 11,
             "title": "Phase",
             "type": "integer"
           }
@@ -599,7 +599,8 @@
             "default": "edge_observer",
             "enum": [
               "edge_observer",
-              "storage_contract_fixture"
+              "storage_contract_fixture",
+              "isolated_analysis"
             ],
             "title": "Origin",
             "type": "string"
@@ -792,6 +793,55 @@
         "title": "ExecutionEnvelope",
         "type": "object"
       },
+      "FutureFailure": {
+        "additionalProperties": false,
+        "properties": {
+          "baseline_peak_c": {
+            "title": "Baseline Peak C",
+            "type": "number"
+          },
+          "baseline_violations": {
+            "title": "Baseline Violations",
+            "type": "integer"
+          },
+          "case": {
+            "title": "Case",
+            "type": "integer"
+          },
+          "intervention_peak_c": {
+            "title": "Intervention Peak C",
+            "type": "number"
+          },
+          "intervention_violations": {
+            "title": "Intervention Violations",
+            "type": "integer"
+          },
+          "seed": {
+            "title": "Seed",
+            "type": "integer"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "number"
+          },
+          "target": {
+            "title": "Target",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "case",
+          "seed",
+          "target",
+          "severity",
+          "baseline_peak_c",
+          "intervention_peak_c",
+          "baseline_violations",
+          "intervention_violations"
+        ],
+        "title": "FutureFailure",
+        "type": "object"
+      },
       "FutureSample": {
         "additionalProperties": false,
         "properties": {
@@ -821,6 +871,131 @@
           "energy_kwh"
         ],
         "title": "FutureSample",
+        "type": "object"
+      },
+      "FuturesEnsemble": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Artifact Sha256",
+            "type": "string"
+          },
+          "assumptions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Assumptions",
+            "type": "array"
+          },
+          "baseline_failed": {
+            "title": "Baseline Failed",
+            "type": "integer"
+          },
+          "baseline_mean_energy_kwh": {
+            "title": "Baseline Mean Energy Kwh",
+            "type": "number"
+          },
+          "baseline_mean_production": {
+            "title": "Baseline Mean Production",
+            "type": "number"
+          },
+          "counterexamples": {
+            "items": {
+              "$ref": "#/components/schemas/FutureFailure"
+            },
+            "maxItems": 6,
+            "title": "Counterexamples",
+            "type": "array"
+          },
+          "histogram": {
+            "items": {
+              "$ref": "#/components/schemas/HistogramBin"
+            },
+            "maxItems": 10,
+            "minItems": 10,
+            "title": "Histogram",
+            "type": "array"
+          },
+          "horizon_s": {
+            "const": 600,
+            "default": 600,
+            "title": "Horizon S",
+            "type": "integer"
+          },
+          "intervention_failed": {
+            "title": "Intervention Failed",
+            "type": "integer"
+          },
+          "intervention_mean_downtime_s": {
+            "title": "Intervention Mean Downtime S",
+            "type": "number"
+          },
+          "intervention_mean_energy_kwh": {
+            "title": "Intervention Mean Energy Kwh",
+            "type": "number"
+          },
+          "intervention_mean_production": {
+            "title": "Intervention Mean Production",
+            "type": "number"
+          },
+          "mode": {
+            "const": "precomputed_actual_cpp_cpu",
+            "default": "precomputed_actual_cpp_cpu",
+            "title": "Mode",
+            "type": "string"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "native_substeps": {
+            "const": 120000000,
+            "default": 120000000,
+            "title": "Native Substeps",
+            "type": "integer"
+          },
+          "pairs": {
+            "const": 5000,
+            "default": 5000,
+            "title": "Pairs",
+            "type": "integer"
+          },
+          "rows_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rows Sha256",
+            "type": "string"
+          },
+          "source_snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Snapshot Sha256",
+            "type": "string"
+          },
+          "total_rollouts": {
+            "const": 10000,
+            "default": 10000,
+            "title": "Total Rollouts",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "artifact_sha256",
+          "rows_sha256",
+          "source_snapshot_sha256",
+          "native_binary_sha256",
+          "baseline_failed",
+          "intervention_failed",
+          "histogram",
+          "counterexamples",
+          "baseline_mean_energy_kwh",
+          "intervention_mean_energy_kwh",
+          "baseline_mean_production",
+          "intervention_mean_production",
+          "intervention_mean_downtime_s",
+          "assumptions"
+        ],
+        "title": "FuturesEnsemble",
         "type": "object"
       },
       "GraphTrace": {
@@ -885,6 +1060,39 @@
           "detail"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "HistogramBin": {
+        "additionalProperties": false,
+        "properties": {
+          "baseline": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Baseline",
+            "type": "integer"
+          },
+          "intervention": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Intervention",
+            "type": "integer"
+          },
+          "lower_c": {
+            "title": "Lower C",
+            "type": "number"
+          },
+          "upper_c": {
+            "title": "Upper C",
+            "type": "number"
+          }
+        },
+        "required": [
+          "lower_c",
+          "upper_c",
+          "baseline",
+          "intervention"
+        ],
+        "title": "HistogramBin",
         "type": "object"
       },
       "IncidentPage": {
@@ -2048,6 +2256,56 @@
         "title": "PlantTelemetry",
         "type": "object"
       },
+      "PreviewRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "scenario_id": {
+            "pattern": "^scenario-0[0-9]{2}$",
+            "title": "Scenario Id",
+            "type": "string"
+          },
+          "seed": {
+            "default": 42,
+            "maximum": 4294967295.0,
+            "minimum": 0.0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "scenario_id"
+        ],
+        "title": "PreviewRequest",
+        "type": "object"
+      },
+      "PreviewSample": {
+        "additionalProperties": false,
+        "properties": {
+          "baseline": {
+            "$ref": "#/components/schemas/TwinMeasurement"
+          },
+          "sentinel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SentinelStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "shielded": {
+            "$ref": "#/components/schemas/TwinMeasurement"
+          }
+        },
+        "required": [
+          "baseline",
+          "shielded",
+          "sentinel"
+        ],
+        "title": "PreviewSample",
+        "type": "object"
+      },
       "ProposedPlan": {
         "additionalProperties": false,
         "properties": {
@@ -2452,6 +2710,93 @@
         "title": "RepairBundle",
         "type": "object"
       },
+      "ScenarioPreview": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Artifact Sha256",
+            "type": "string"
+          },
+          "baseline_final_snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Baseline Final Snapshot Sha256",
+            "type": "string"
+          },
+          "baseline_peak_c": {
+            "title": "Baseline Peak C",
+            "type": "number"
+          },
+          "detection_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detection S"
+          },
+          "duration_s": {
+            "const": 600,
+            "default": 600,
+            "title": "Duration S",
+            "type": "integer"
+          },
+          "mode": {
+            "const": "isolated_analysis_replay",
+            "default": "isolated_analysis_replay",
+            "title": "Mode",
+            "type": "string"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "operational_mutation": {
+            "const": false,
+            "default": false,
+            "title": "Operational Mutation",
+            "type": "boolean"
+          },
+          "request": {
+            "$ref": "#/components/schemas/PreviewRequest"
+          },
+          "samples": {
+            "items": {
+              "$ref": "#/components/schemas/PreviewSample"
+            },
+            "maxItems": 61,
+            "minItems": 60,
+            "title": "Samples",
+            "type": "array"
+          },
+          "shielded_final_snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Shielded Final Snapshot Sha256",
+            "type": "string"
+          },
+          "shielded_peak_c": {
+            "title": "Shielded Peak C",
+            "type": "number"
+          }
+        },
+        "required": [
+          "artifact_sha256",
+          "request",
+          "native_binary_sha256",
+          "baseline_final_snapshot_sha256",
+          "shielded_final_snapshot_sha256",
+          "detection_s",
+          "baseline_peak_c",
+          "shielded_peak_c",
+          "samples"
+        ],
+        "title": "ScenarioPreview",
+        "type": "object"
+      },
       "SensorFrame": {
         "additionalProperties": false,
         "description": "Detector input allowlist. Hidden truth, labels and scenario ID are absent.",
@@ -2816,6 +3161,91 @@
         "title": "TruthCell",
         "type": "object"
       },
+      "TwinMeasurement": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "$ref": "#/components/schemas/CellMeasurement"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Cells",
+            "type": "array"
+          },
+          "coolant_temperature_c": {
+            "maximum": 1000.0,
+            "minimum": -273.15,
+            "title": "Coolant Temperature C",
+            "type": "number"
+          },
+          "ground_truth": {
+            "$ref": "#/components/schemas/PhysicsState"
+          },
+          "injected_fault_mask": {
+            "maximum": 255.0,
+            "minimum": 0.0,
+            "title": "Injected Fault Mask",
+            "type": "integer"
+          },
+          "loop_pressure_kpa": {
+            "maximum": 180.0,
+            "minimum": 0.0,
+            "title": "Loop Pressure Kpa",
+            "type": "number"
+          },
+          "measurement": {
+            "$ref": "#/components/schemas/MeasurementQuality"
+          },
+          "model_version": {
+            "const": "coupled-factory-v3",
+            "default": "coupled-factory-v3",
+            "title": "Model Version",
+            "type": "string"
+          },
+          "scenario_id": {
+            "pattern": "^scenario-\\d{3}$",
+            "title": "Scenario Id",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": "3.0.0",
+            "default": "3.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "seed": {
+            "maximum": 4294967295.0,
+            "minimum": 0.0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "simulation_time_s": {
+            "minimum": 0.0,
+            "title": "Simulation Time S",
+            "type": "number"
+          },
+          "state_version": {
+            "minimum": 1.0,
+            "title": "State Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "scenario_id",
+          "seed",
+          "state_version",
+          "simulation_time_s",
+          "coolant_temperature_c",
+          "loop_pressure_kpa",
+          "cells",
+          "ground_truth",
+          "measurement",
+          "injected_fault_mask"
+        ],
+        "title": "TwinMeasurement",
+        "type": "object"
+      },
       "UncertaintyCase": {
         "additionalProperties": false,
         "properties": {
@@ -2966,6 +3396,274 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/analysis/futures": {
+      "get": {
+        "operationId": "futures_ensemble_api_v1_analysis_futures_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuturesEnsemble"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Futures Ensemble"
+      }
+    },
+    "/api/v1/analysis/investigate": {
+      "post": {
+        "operationId": "investigate_analysis_api_v1_analysis_investigate_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Investigation"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Investigate Analysis"
+      }
+    },
+    "/api/v1/analysis/scenario": {
+      "post": {
+        "operationId": "scenario_preview_api_v1_analysis_scenario_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioPreview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Scenario Preview"
+      }
+    },
     "/api/v1/approval/maintenance-proposals": {
       "post": {
         "operationId": "propose_maintenance_api_v1_approval_maintenance_proposals_post",

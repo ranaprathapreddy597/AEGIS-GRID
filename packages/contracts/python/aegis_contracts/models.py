@@ -143,7 +143,7 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[10] = 10
+    phase: Literal[11] = 11
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     guarded_authorization_sandbox: bool = False
@@ -217,7 +217,9 @@ class EdgeIncident(Contract):
     evidence: Annotated[list[AnomalyEvidence], Field(max_length=12)]
     policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
     snapshot: "IncidentSnapshot | None" = None
-    origin: Literal["edge_observer", "storage_contract_fixture"] = "edge_observer"
+    origin: Literal["edge_observer", "storage_contract_fixture", "isolated_analysis"] = (
+        "edge_observer"
+    )
 
     @model_validator(mode="after")
     def snapshot_version_matches(self) -> "EdgeIncident":
