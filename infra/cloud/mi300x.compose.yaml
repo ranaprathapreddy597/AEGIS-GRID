@@ -1,0 +1,41 @@
+name: aegis-mi300x
+services:
+  inference:
+    image: rocm/vllm:rocm7.0.0_vllm_0.11.2_20251210@sha256:e7f02dd2ce3824959658bc0391296f6158638e3ebce164f6c019c4eca8150ec7
+    devices: [/dev/kfd:/dev/kfd, /dev/dri:/dev/dri]
+    group_add: [video, render]
+    shm_size: 16gb
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      VLLM_API_KEY: ${INFERENCE_API_KEY:?Configure a distinct cloud inference key locally}
+      DO_NOT_TRACK: '1'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      HIP_VISIBLE_DEVICES: '0'
+      AEGIS_CONTEXT_TOKENS: ${AEGIS_CONTEXT_TOKENS:-8192}
+      AEGIS_CONCURRENT_SEQUENCES: ${AEGIS_CONCURRENT_SEQUENCES:-1}
+    volumes:
+      - ./serve.py:/opt/aegis/serve.py:ro
+      - ./probe_device.py:/opt/aegis/probe_device.py:ro
+      - ../../services/inference/aegis_inference/model-config.json:/opt/aegis/model-config.json:ro
+      - ../../services/inference/aegis_inference/model-metadata.json:/opt/aegis/model-metadata.json:ro
+      - model-cache:/root/.cache/huggingface
+    entrypoint: [python3, /opt/aegis/serve.py]
+    restart: 'no'
+  benchmark:
+    profiles: [benchmark]
+    image: rocm/vllm:rocm7.0.0_vllm_0.11.2_20251210@sha256:e7f02dd2ce3824959658bc0391296f6158638e3ebce164f6c019c4eca8150ec7
+    working_dir: /workspace
+    environment:
+      INFERENCE_API_KEY: ${INFERENCE_API_KEY:?Configure distinct inference authentication}
+      INFERENCE_BASE_URL: ${INFERENCE_BASE_URL:-}
+      PYTHONPATH: /workspace/services/inference:/workspace/packages/contracts/python:/workspace/tools
+      DO_NOT_TRACK: '1'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+    volumes:
+      - ../../tools:/workspace/tools:ro
+      - ../../services/inference:/workspace/services/inference:ro
+      - ../../packages/contracts/python:/workspace/packages/contracts/python:ro
+      - model-cache:/root/.cache/huggingface
+    entrypoint: [python3, /workspace/tools/benchmark_inference.py]
+volumes:
+  model-cache:

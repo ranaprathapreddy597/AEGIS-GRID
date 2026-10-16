@@ -6,6 +6,7 @@ from pathlib import Path
 
 from aegis_api.app import create_app
 from aegis_contracts.config import Settings
+from aegis_contracts.inference import InferenceResult, MemoryBudget
 from aegis_contracts.manuals import ManualDocument, ManualEvidence, ManualRecords, OEMConstraint
 from aegis_contracts.models import PlantTelemetry, Scenario, SimulatorControls, TwinMeasurement
 from pydantic import SecretStr
@@ -33,6 +34,8 @@ def main() -> None:
         "oem-constraint.schema.json": OEMConstraint.model_json_schema(),
         "manual-evidence.schema.json": ManualEvidence.model_json_schema(),
         "manual-records.schema.json": ManualRecords.model_json_schema(),
+        "memory-budget.schema.json": MemoryBudget.model_json_schema(),
+        "inference-result.schema.json": InferenceResult.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

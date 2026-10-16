@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 5 — cited manual evidence (local gate passed; live providers blocked).**
+**Current scope: Phase 6 — local automated gate passed; MI300X live gate blocked.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -111,3 +111,10 @@ to the local UI. The corpus is 999 project-authored synthetic reference pages pl
 a contradictory bulletin; it is not an OEM manual. The bulletin blocks action.
 The actual Evolus read adapter follows the supplied OpenAPI; live extraction and
 Pinecone remain blocked. See `docs/results/PHASE5.md` and ADR 0008.
+
+Phase 6 selects an upstream revision with native 262,144 context and adds an
+authenticated serving client, labeled offline abstention, projected memory
+calculator, render-tested cloud recipe and actual-result collection tools. The
+local UI compares 80/192 GiB projections. No MI300X load, cloud deployment, GPU
+benchmark or 200K success is claimed. See `docs/results/PHASE6.md` and
+`infra/cloud/README.md` for the remaining live gates. Phases 7–12 are not complete.

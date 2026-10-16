@@ -2,7 +2,7 @@
 
 | ID | State / phase | Issue and next action |
 |---|---|---|
-| EXT-01 | Blocked / Phase 6 | No MI300X endpoint, access credentials or device logs. User provisioning needed before live hardware proof. |
+| EXT-01 | Blocked / Phase 6 | Pinned model/image, memory projections, read client and deployment/collection scripts implemented. No endpoint/device logs or actual long-context/HBM measurements. User will provision access later; live gate remains blocked. |
 | EXT-02 | Blocked / Phase 5 | Verified supplied OpenAPI read adapter and exact-match pipeline implemented. Application scope supplied; rotated local key, existing document IDs/personal read auth and live extraction proof pending. No provider call verified. |
 | EXT-03 | Blocked / later phases | Pinecone/GitHub credential variables not present; no external calls or writes attempted. |
 | HW-01 | Unverified | NPU device enumerated OK and amd-smi on PATH; no compatible accelerated inference workload verified. CPU backend tested. |

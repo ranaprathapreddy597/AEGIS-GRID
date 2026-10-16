@@ -10,6 +10,7 @@ from typing import Annotated, Any, Literal
 import httpx
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
+from aegis_contracts.inference import InferenceStatus, MemoryBudget
 from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
     Capabilities,
@@ -25,6 +26,7 @@ from aegis_contracts.models import (
     StorageStatus,
 )
 from aegis_contracts.security import RequireToken
+from aegis_inference.budget import calculate, metadata
 from aegis_ingestion.library import fixture_library
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi import Path as ApiPath
@@ -112,6 +114,35 @@ def create_app(
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
+
+    @app.get(
+        "/api/v1/inference/status",
+        response_model=InferenceStatus,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def inference_status() -> InferenceStatus:
+        info, config = metadata()
+        return InferenceStatus(
+            state="blocked",
+            model_id=info["model_id"],
+            native_context_tokens=config["max_position_embeddings"],
+            reason="Provisioned MI300X, runtime/device logs and live path are pending",
+        )
+
+    @app.get(
+        "/api/v1/inference/memory",
+        response_model=MemoryBudget,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def memory_budget(
+        context_tokens: Annotated[int, Query(ge=1, le=262144)] = 262144,
+        sequences: Annotated[int, Query(ge=1, le=2)] = 2,
+        capacity_gib: Annotated[int, Query(ge=1, le=512)] = 80,
+        kv_dtype: Literal["bf16", "fp8"] = "bf16",
+    ) -> MemoryBudget:
+        return calculate(context_tokens, sequences, kv_dtype, capacity_gib * 1024**3)
 
     @app.get(
         "/api/v1/manuals/evidence",

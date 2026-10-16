@@ -1,0 +1,116 @@
+{
+  "$defs": {
+    "ModelOpinion": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment": {
+          "enum": [
+            "insufficient_evidence",
+            "investigate"
+          ],
+          "title": "Assessment",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "hypotheses": {
+          "items": {
+            "enum": [
+              "sensor_bias",
+              "restricted_flow",
+              "weak_pump",
+              "overload"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Hypotheses",
+          "type": "array"
+        }
+      },
+      "required": [
+        "assessment",
+        "hypotheses",
+        "evidence_ids"
+      ],
+      "title": "ModelOpinion",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "backend": {
+      "enum": [
+        "remote_vllm",
+        "offline_template"
+      ],
+      "title": "Backend",
+      "type": "string"
+    },
+    "completion_tokens": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Completion Tokens"
+    },
+    "latency_ms": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Latency Ms"
+    },
+    "model_id": {
+      "title": "Model Id",
+      "type": "string"
+    },
+    "operational_write_allowed": {
+      "const": false,
+      "default": false,
+      "title": "Operational Write Allowed",
+      "type": "boolean"
+    },
+    "opinion": {
+      "$ref": "#/$defs/ModelOpinion"
+    },
+    "prompt_tokens": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Prompt Tokens"
+    }
+  },
+  "required": [
+    "backend",
+    "model_id",
+    "opinion",
+    "prompt_tokens",
+    "completion_tokens",
+    "latency_ms"
+  ],
+  "title": "InferenceResult",
+  "type": "object"
+}

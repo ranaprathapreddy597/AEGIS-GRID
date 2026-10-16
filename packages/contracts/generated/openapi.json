@@ -101,8 +101,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 5,
-            "default": 5,
+            "const": 6,
+            "default": 6,
             "title": "Phase",
             "type": "integer"
           }
@@ -658,6 +658,45 @@
         "title": "IncidentSnapshot",
         "type": "object"
       },
+      "InferenceStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "hardware_verified": {
+            "const": false,
+            "default": false,
+            "title": "Hardware Verified",
+            "type": "boolean"
+          },
+          "model_id": {
+            "title": "Model Id",
+            "type": "string"
+          },
+          "native_context_tokens": {
+            "title": "Native Context Tokens",
+            "type": "integer"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "blocked",
+              "offline_development"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "model_id",
+          "native_context_tokens",
+          "reason"
+        ],
+        "title": "InferenceStatus",
+        "type": "object"
+      },
       "ManualDecision": {
         "additionalProperties": false,
         "properties": {
@@ -786,6 +825,105 @@
           "dropped_packets"
         ],
         "title": "MeasurementQuality",
+        "type": "object"
+      },
+      "MemoryBudget": {
+        "additionalProperties": false,
+        "properties": {
+          "capacity_gib": {
+            "title": "Capacity Gib",
+            "type": "number"
+          },
+          "concurrent_sequences": {
+            "title": "Concurrent Sequences",
+            "type": "integer"
+          },
+          "context_tokens": {
+            "title": "Context Tokens",
+            "type": "integer"
+          },
+          "fragmentation_gib": {
+            "title": "Fragmentation Gib",
+            "type": "number"
+          },
+          "hardware_measured": {
+            "const": false,
+            "default": false,
+            "title": "Hardware Measured",
+            "type": "boolean"
+          },
+          "kv_dtype": {
+            "enum": [
+              "bf16",
+              "fp8"
+            ],
+            "title": "Kv Dtype",
+            "type": "string"
+          },
+          "kv_gib": {
+            "title": "Kv Gib",
+            "type": "number"
+          },
+          "model_id": {
+            "title": "Model Id",
+            "type": "string"
+          },
+          "model_revision": {
+            "title": "Model Revision",
+            "type": "string"
+          },
+          "other_buffers_gib": {
+            "title": "Other Buffers Gib",
+            "type": "number"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "integer"
+          },
+          "projected_fits": {
+            "title": "Projected Fits",
+            "type": "boolean"
+          },
+          "projected_headroom_gib": {
+            "title": "Projected Headroom Gib",
+            "type": "number"
+          },
+          "runtime_reserved_gib": {
+            "title": "Runtime Reserved Gib",
+            "type": "number"
+          },
+          "temporary_activations_gib": {
+            "title": "Temporary Activations Gib",
+            "type": "number"
+          },
+          "total_gib": {
+            "title": "Total Gib",
+            "type": "number"
+          },
+          "weight_gib": {
+            "title": "Weight Gib",
+            "type": "number"
+          }
+        },
+        "required": [
+          "model_id",
+          "model_revision",
+          "parameters",
+          "context_tokens",
+          "concurrent_sequences",
+          "kv_dtype",
+          "weight_gib",
+          "kv_gib",
+          "runtime_reserved_gib",
+          "temporary_activations_gib",
+          "fragmentation_gib",
+          "other_buffers_gib",
+          "total_gib",
+          "capacity_gib",
+          "projected_headroom_gib",
+          "projected_fits"
+        ],
+        "title": "MemoryBudget",
         "type": "object"
       },
       "MemoryMatch": {
@@ -1618,6 +1756,208 @@
           }
         },
         "summary": "Replay"
+      }
+    },
+    "/api/v1/inference/memory": {
+      "get": {
+        "operationId": "memory_budget_api_v1_inference_memory_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "context_tokens",
+            "required": false,
+            "schema": {
+              "default": 262144,
+              "maximum": 262144,
+              "minimum": 1,
+              "title": "Context Tokens",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sequences",
+            "required": false,
+            "schema": {
+              "default": 2,
+              "maximum": 2,
+              "minimum": 1,
+              "title": "Sequences",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "capacity_gib",
+            "required": false,
+            "schema": {
+              "default": 80,
+              "maximum": 512,
+              "minimum": 1,
+              "title": "Capacity Gib",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kv_dtype",
+            "required": false,
+            "schema": {
+              "default": "bf16",
+              "enum": [
+                "bf16",
+                "fp8"
+              ],
+              "title": "Kv Dtype",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemoryBudget"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Memory Budget"
+      }
+    },
+    "/api/v1/inference/status": {
+      "get": {
+        "operationId": "inference_status_api_v1_inference_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InferenceStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Inference Status"
       }
     },
     "/api/v1/manuals/evidence": {

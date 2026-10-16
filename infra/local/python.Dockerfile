@@ -9,6 +9,7 @@ COPY packages/contracts/python packages/contracts/python
 COPY services/api services/api
 COPY services/edge services/edge
 COPY services/ingestion services/ingestion
+COPY services/inference services/inference
 COPY data/scenarios data/scenarios
 COPY data/manuals data/manuals
 RUN uv sync --locked --no-dev --no-editable
@@ -28,6 +29,7 @@ ENV PATH="/app/.venv/bin:$PATH" PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_
 RUN uv sync --locked
 COPY tests tests
 COPY tools tools
+COPY infra/cloud infra/cloud
 COPY packages/contracts/generated packages/contracts/generated
 ENV AEGIS_TWIN_BINARY=/build/aegis-twin
 CMD ["python", "-m", "pytest", "-q"]

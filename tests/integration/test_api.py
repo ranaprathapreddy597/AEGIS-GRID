@@ -3,6 +3,23 @@ from aegis_api.app import create_app
 from fastapi.testclient import TestClient
 
 
+def test_inference_projection_is_authenticated_and_never_claims_device_measurement(settings):
+    with TestClient(create_app(settings)) as client:
+        headers = {"Authorization": f"Bearer {settings.viewer_token.get_secret_value()}"}
+        assert client.get("/api/v1/inference/memory").status_code == 401
+        status = client.get("/api/v1/inference/status", headers=headers).json()
+        assert status["state"] == "blocked" and not status["hardware_verified"]
+        budget = client.get("/api/v1/inference/memory", headers=headers).json()
+        assert not budget["projected_fits"] and not budget["hardware_measured"]
+        assert budget["kv_gib"] == 48
+        assert (
+            client.get(
+                "/api/v1/inference/memory?context_tokens=262145", headers=headers
+            ).status_code
+            == 422
+        )
+
+
 def test_manual_api_citations_refusal_auth_and_exact_source(settings):
     with TestClient(create_app(settings)) as client:
         assert client.get("/api/v1/manuals/evidence").status_code == 401

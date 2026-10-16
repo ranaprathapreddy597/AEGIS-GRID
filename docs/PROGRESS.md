@@ -107,3 +107,21 @@ Phase 5 full gate: 179 Python / 3 CTest / 7 Chromium plus all existing checks.
 Final CSS-only build and manual browser/axe/download/mobile check passed again
 (1/1); the focused evidence panel capture was visually inspected. Local phase
 commit contains this report. External Evolus/Pinecone gates are not waived.
+
+## Phase 6 — local automated gate PASS; live acceptance BLOCKED
+
+- [x] Actual upstream model/config and registry image digest verified and pinned.
+- [x] Exact BF16 weight/GQA KV calculator; 80-GiB refusal and explicit reserve assumptions.
+- [x] HTTPS structured serving client, deadline/size/token checks and offline abstention.
+- [x] Compose recipe, device/runtime refusal, read-only probes and benchmark collector.
+- [x] Authenticated local budget/status API and React projection controls.
+- [x] Complete current gate, capture evidence, record local implementation commit.
+- [ ] MI300X access/load, actual versions/HBM, TLS/auth pathway and long-context benchmarks.
+
+The user will provision MI300X later. No external gate is waived; Phases 7–12 and
+release remain incomplete. Phase 5 local commit is `5513a27`.
+
+Phase 6 local gate: 203 Python / 3 CTest / 8 Chromium, two Node tests, audits,
+contracts, manifest render, actual storage and HTTP/SSE passed. The missing-QA-file
+failure was fixed and its log preserved. Current phase remains 6 because its live
+acceptance evidence is unavailable; no GPU or master-prompt completion is claimed.

@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+  "model_revision": "b2cff646eb4bb1d68355c01b18ae02e7cf42d120",
+  "parameters": 30532122624,
+  "context_tokens": 262144,
+  "concurrent_sequences": 2,
+  "kv_dtype": "bf16",
+  "weight_gib": 56.87051010131836,
+  "kv_gib": 48.0,
+  "runtime_reserved_gib": 12.0,
+  "temporary_activations_gib": 4.0,
+  "fragmentation_gib": 8.0,
+  "other_buffers_gib": 4.0,
+  "total_gib": 132.87051010131836,
+  "capacity_gib": 178.81393432617188,
+  "projected_headroom_gib": 45.943424224853516,
+  "projected_fits": true,
+  "hardware_measured": false
+}

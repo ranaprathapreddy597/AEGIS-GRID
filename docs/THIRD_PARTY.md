@@ -35,3 +35,9 @@ Phase 5: pypdf 6.20.1 (BSD-3-Clause), jsonschema 4.26.0 (MIT), reportlab 5.0.1
 (BSD, development PDF generator), Pillow 12.3.0 (HPND, locked generator dependency).
 Manual PDFs are project-authored CC0-1.0 synthetic fixtures. Evolus schema subset
 is derived from the user-supplied specification; it is not a provider recording.
+
+Phase 6: selected Qwen3-Coder-30B-A3B-Instruct metadata/config is from the
+Apache-2.0 upstream repository, pinned by revision/config hash. Weights are not
+distributed. The AMD ROCm/vLLM image is referenced by digest, not redistributed
+or downloaded here. Its actual runtime dependency/license inventory must be
+collected on the provisioned host before deployment.

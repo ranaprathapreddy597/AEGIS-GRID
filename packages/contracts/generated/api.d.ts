@@ -89,6 +89,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/inference/memory": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Memory Budget */
+        get: operations["memory_budget_api_v1_inference_memory_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inference/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Inference Status */
+        get: operations["inference_status_api_v1_inference_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/manuals/evidence": {
         parameters: {
             query?: never;
@@ -242,10 +276,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 5
+             * @default 6
              * @constant
              */
-            phase: 5;
+            phase: 6;
         };
         /** Capability */
         Capability: {
@@ -471,6 +505,26 @@ export interface components {
             /** State Version */
             state_version: number;
         };
+        /** InferenceStatus */
+        InferenceStatus: {
+            /**
+             * Hardware Verified
+             * @default false
+             * @constant
+             */
+            hardware_verified: false;
+            /** Model Id */
+            model_id: string;
+            /** Native Context Tokens */
+            native_context_tokens: number;
+            /** Reason */
+            reason: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "blocked" | "offline_development";
+        };
         /** ManualDecision */
         ManualDecision: {
             /** Checked Constraints */
@@ -528,6 +582,50 @@ export interface components {
             sampled_time_s: number;
             /** Sampled Version */
             sampled_version: number;
+        };
+        /** MemoryBudget */
+        MemoryBudget: {
+            /** Capacity Gib */
+            capacity_gib: number;
+            /** Concurrent Sequences */
+            concurrent_sequences: number;
+            /** Context Tokens */
+            context_tokens: number;
+            /** Fragmentation Gib */
+            fragmentation_gib: number;
+            /**
+             * Hardware Measured
+             * @default false
+             * @constant
+             */
+            hardware_measured: false;
+            /**
+             * Kv Dtype
+             * @enum {string}
+             */
+            kv_dtype: "bf16" | "fp8";
+            /** Kv Gib */
+            kv_gib: number;
+            /** Model Id */
+            model_id: string;
+            /** Model Revision */
+            model_revision: string;
+            /** Other Buffers Gib */
+            other_buffers_gib: number;
+            /** Parameters */
+            parameters: number;
+            /** Projected Fits */
+            projected_fits: boolean;
+            /** Projected Headroom Gib */
+            projected_headroom_gib: number;
+            /** Runtime Reserved Gib */
+            runtime_reserved_gib: number;
+            /** Temporary Activations Gib */
+            temporary_activations_gib: number;
+            /** Total Gib */
+            total_gib: number;
+            /** Weight Gib */
+            weight_gib: number;
         };
         /** MemoryMatch */
         MemoryMatch: {
@@ -971,6 +1069,127 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    memory_budget_api_v1_inference_memory_get: {
+        parameters: {
+            query?: {
+                context_tokens?: number;
+                sequences?: number;
+                capacity_gib?: number;
+                kv_dtype?: "bf16" | "fp8";
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemoryBudget"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inference_status_api_v1_inference_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InferenceStatus"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };

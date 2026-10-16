@@ -170,3 +170,22 @@ checks, audits, contract drift, live storage and HTTP/SSE. Actual network-none C
 retrieval profile: 96.70 MiB peak RSS, 0.536 ms p95, 20/24 exact-term top-1 relevant
 queries. Misses are recorded. These are development lexical tests, not semantic
 OEM validation. Contradiction refusal checks the complete corpus. See PHASE5.md.
+
+## Phase 6 source/registry discovery — 2026-10-16
+
+Actual upstream metadata/config and a real Docker registry inspection verified
+Qwen3-Coder-30B-A3B-Instruct revision b2cff646eb4bb1d68355c01b18ae02e7cf42d120
+and the pinned ROCm 7.0/vLLM 0.11.2 image digest. These are source/registry checks,
+not GPU observations. Model metadata reports 30,532,122,624 BF16 parameters;
+config reports 48 layers, four KV heads, head dimension 128 and native 262,144
+context. No model weights or GPU image were downloaded to the laptop.
+Projected BF16 weights 56.8705 GiB + 24 GiB KV per full-context sequence; the
+two-sequence case totals 132.8705 GiB with explicit assumed reserves. No real
+OOM, throughput, engine prefill/decode, peak HBM or 200K success is claimed.
+The user will provide MI300X access later. Probe/benchmark outputs are blocked
+and contain no fabricated measurement rows. See results/PHASE6.md and ADR 0009.
+
+Phase 6 final local gate passed 203 Python / 3 CTest / 8 Chromium checks plus
+all existing audits/contracts, actual local storage and HTTP/SSE checks. The first
+QA-image missing-file failure was repaired and preserved in raw evidence. Manifest
+rendering proves configuration only; device/runtime execution remains blocked.
