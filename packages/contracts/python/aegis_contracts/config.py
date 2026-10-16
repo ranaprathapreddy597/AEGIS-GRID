@@ -29,6 +29,32 @@ class Settings(BaseModel):
     redis_writer_password: SecretStr | None = None
     ingest_token: SecretStr | None = None
     graph_password: SecretStr | None = None
+    approver_token: SecretStr | None = None
+    approver_password: SecretStr | None = None
+    gateway_password: SecretStr | None = None
+    executor_token: SecretStr | None = None
+    gateway_token: SecretStr | None = None
+    signing_seed: SecretStr | None = None
+    capability_public_key: str = ""
+    approval_origin: str = "http://localhost:8080"
+
+    @field_validator("approval_origin")
+    @classmethod
+    def loopback_approval_origin(cls, value: str) -> str:
+        parsed = urlsplit(value)
+        if (
+            parsed.scheme != "http"
+            or parsed.hostname != "localhost"
+            or parsed.username
+            or parsed.password
+            or parsed.path
+            or parsed.query
+            or parsed.fragment
+            or parsed.port is None
+            or not 1024 <= parsed.port <= 65535
+        ):
+            raise ValueError("Local passkeys require an explicit http://localhost:PORT origin")
+        return value
 
     @field_validator("cloud_events_url")
     @classmethod
@@ -65,6 +91,26 @@ class Settings(BaseModel):
     @classmethod
     def from_env(cls) -> "Settings":
         return cls(
+            approver_token=SecretStr(os.environ["AEGIS_APPROVER_TOKEN"])
+            if os.environ.get("AEGIS_APPROVER_TOKEN")
+            else None,
+            approver_password=SecretStr(os.environ["AEGIS_APPROVER_PASSWORD"])
+            if os.environ.get("AEGIS_APPROVER_PASSWORD")
+            else None,
+            gateway_password=SecretStr(os.environ["AEGIS_GATEWAY_PASSWORD"])
+            if os.environ.get("AEGIS_GATEWAY_PASSWORD")
+            else None,
+            executor_token=SecretStr(os.environ["AEGIS_EXECUTOR_TOKEN"])
+            if os.environ.get("AEGIS_EXECUTOR_TOKEN")
+            else None,
+            gateway_token=SecretStr(os.environ["AEGIS_GATEWAY_TOKEN"])
+            if os.environ.get("AEGIS_GATEWAY_TOKEN")
+            else None,
+            signing_seed=SecretStr(os.environ["AEGIS_CAPABILITY_SIGNING_SEED"])
+            if os.environ.get("AEGIS_CAPABILITY_SIGNING_SEED")
+            else None,
+            capability_public_key=os.environ.get("AEGIS_CAPABILITY_PUBLIC_KEY", ""),
+            approval_origin=os.environ.get("AEGIS_APPROVAL_ORIGIN", "http://localhost:8080"),
             graph_password=SecretStr(os.environ["AEGIS_GRAPH_PASSWORD"])
             if os.environ.get("AEGIS_GRAPH_PASSWORD")
             else None,

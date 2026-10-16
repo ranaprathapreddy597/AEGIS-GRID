@@ -1,6 +1,7 @@
 """Cross-platform local startup. Never connects to a plant or cloud provider."""
 
 import argparse
+import json
 import os
 import secrets
 import shutil
@@ -28,6 +29,12 @@ SECRET_NAMES = (
     "AEGIS_REDIS_WRITER_PASSWORD",
     "AEGIS_INGEST_TOKEN",
     "AEGIS_GRAPH_PASSWORD",
+    "AEGIS_APPROVER_TOKEN",
+    "AEGIS_APPROVER_PASSWORD",
+    "AEGIS_GATEWAY_PASSWORD",
+    "AEGIS_EXECUTOR_TOKEN",
+    "AEGIS_GATEWAY_TOKEN",
+    "AEGIS_CAPABILITY_SIGNING_SEED",
 )
 
 
@@ -91,7 +98,7 @@ def run(command: list[str], environment: dict[str, str] | None = None) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=["start", "stop", "status", "token", "init-env", "check"]
+        "command", choices=["start", "stop", "status", "token", "owner-token", "init-env", "check"]
     )
     args = parser.parse_args()
     if args.command in {"start", "init-env"}:
@@ -100,6 +107,37 @@ def main() -> None:
         print("Local configuration ready; secret values not displayed.")
     elif args.command == "start":
         run([*COMPOSE, "build"])
+        values = read_env()
+        derived = subprocess.run(
+            [
+                shutil.which("docker") or "docker",
+                "run",
+                "--rm",
+                "--network",
+                "none",
+                "--env",
+                "AEGIS_CAPABILITY_SIGNING_SEED",
+                "aegis-grid-python:phase9",
+                "python",
+                "-m",
+                "aegis_api.capabilities",
+                "public-key",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            env={
+                **os.environ,
+                "AEGIS_CAPABILITY_SIGNING_SEED": values["AEGIS_CAPABILITY_SIGNING_SEED"],
+            },
+        )
+        values["AEGIS_CAPABILITY_PUBLIC_KEY"] = json.loads(derived.stdout)["public_key"]
+        (ROOT / ".env").write_text(
+            "# Local development only. Never commit.\n"
+            + "".join(f"{key}={value}\n" for key, value in values.items()),
+            encoding="utf-8",
+        )
         run([*COMPOSE, "up", "--detach", "--wait", "--wait-timeout", "180", "mongo", "redis"])
         bootstrap_names = [
             "AEGIS_MONGO_PASSWORD",
@@ -108,6 +146,8 @@ def main() -> None:
             "AEGIS_MONGO_READER_PASSWORD",
             "AEGIS_REDIS_WRITER_PASSWORD",
             "AEGIS_GRAPH_PASSWORD",
+            "AEGIS_APPROVER_PASSWORD",
+            "AEGIS_GATEWAY_PASSWORD",
         ]
         values = read_env()
         flags = [item for name in bootstrap_names for item in ("--env", name)]
@@ -119,7 +159,7 @@ def main() -> None:
                 "--network",
                 "aegis-grid_storage",
                 *flags,
-                "aegis-grid-python:phase8",
+                "aegis-grid-python:phase9",
                 "python",
                 "-m",
                 "aegis_api.storage",
@@ -129,14 +169,16 @@ def main() -> None:
         )
         run([*COMPOSE, "up", "--detach", "--wait", "--wait-timeout", "180"])
         port = os.environ.get("AEGIS_WEB_PORT", read_env().get("AEGIS_WEB_PORT", "8080"))
-        print(f"Local simulation ready at http://127.0.0.1:{port}")
+        print(f"Local simulation ready at http://localhost:{port}")
         print("In your own terminal, run python tools/dev.py token for the viewer token.")
     elif args.command == "stop":
         run([*COMPOSE, "down"])  # Named volumes are deliberately preserved.
     elif args.command == "status":
         run([*COMPOSE, "ps"])
-    elif args.command == "token":
-        value = read_env().get("AEGIS_VIEWER_TOKEN")
+    elif args.command in {"token", "owner-token"}:
+        value = read_env().get(
+            "AEGIS_APPROVER_TOKEN" if args.command == "owner-token" else "AEGIS_VIEWER_TOKEN"
+        )
         if not value:
             raise SystemExit("Run python tools/dev.py start first")
         print(value)  # Explicit user-only reveal command. Never run in agent logs.
@@ -162,7 +204,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase8",
+                "aegis-grid-qa:phase9",
                 ".",
             ],
             [
@@ -171,13 +213,13 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase8",
+                "aegis-grid-qa:phase9",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase8"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase9"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
@@ -185,11 +227,12 @@ def main() -> None:
             [sys.executable, "tools/cross_language_check.py"],
             [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_api.storage_checks"],
             [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_agents.checks"],
+            [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_api.authorization_checks"],
             ["pnpm", "exec", "playwright", "test"],
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 8 checks passed.")
+        print("Phase 9 checks passed.")
 
 
 if __name__ == "__main__":

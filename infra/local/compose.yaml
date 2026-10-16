@@ -1,6 +1,6 @@
 name: aegis-grid
 x-python: &python
-  image: aegis-grid-python:phase8
+  image: aegis-grid-python:phase9
   build:
     context: ../..
     dockerfile: infra/local/python.Dockerfile
@@ -39,6 +39,14 @@ services:
     <<: *python
     networks: [app, storage]
     environment:
+      AEGIS_APPROVER_TOKEN: ${AEGIS_APPROVER_TOKEN:?Run python tools/dev.py start}
+      AEGIS_APPROVER_PASSWORD: ${AEGIS_APPROVER_PASSWORD:?Run python tools/dev.py start}
+      AEGIS_GATEWAY_PASSWORD: ${AEGIS_GATEWAY_PASSWORD:?Run python tools/dev.py start}
+      AEGIS_EXECUTOR_TOKEN: ${AEGIS_EXECUTOR_TOKEN:?Run python tools/dev.py start}
+      AEGIS_GATEWAY_TOKEN: ${AEGIS_GATEWAY_TOKEN:?Run python tools/dev.py start}
+      AEGIS_CAPABILITY_SIGNING_SEED: ${AEGIS_CAPABILITY_SIGNING_SEED:?Run python tools/dev.py start}
+      AEGIS_CAPABILITY_PUBLIC_KEY: ${AEGIS_CAPABILITY_PUBLIC_KEY:-}
+      AEGIS_APPROVAL_ORIGIN: http://localhost:${AEGIS_WEB_PORT:-8080}
       AEGIS_STORAGE_ENABLED: "true"
       AEGIS_GRAPH_PASSWORD: ${AEGIS_GRAPH_PASSWORD:?Run python tools/dev.py start}
       AEGIS_MONGO_WRITER_PASSWORD: ${AEGIS_MONGO_WRITER_PASSWORD:?Run python tools/dev.py start}
@@ -55,10 +63,12 @@ services:
       timeout: 3s
       retries: 10
   executor:
-    image: aegis-grid-executor:phase8
+    image: aegis-grid-executor:phase9
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: executor}
     environment:
-      AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
+      AEGIS_EXECUTOR_TOKEN: ${AEGIS_EXECUTOR_TOKEN:?Run python tools/dev.py start}
+      AEGIS_GATEWAY_TOKEN: ${AEGIS_GATEWAY_TOKEN:?Run python tools/dev.py start}
+      AEGIS_CAPABILITY_PUBLIC_KEY: ${AEGIS_CAPABILITY_PUBLIC_KEY:-}
     init: true
     read_only: true
     cap_drop: [ALL]
@@ -73,7 +83,7 @@ services:
       timeout: 3s
       retries: 10
   web:
-    image: aegis-grid-web:phase8
+    image: aegis-grid-web:phase9
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: web}
     ports: ["127.0.0.1:${AEGIS_WEB_PORT:-8080}:8080"]
     depends_on:

@@ -78,6 +78,115 @@
         "title": "AnomalyEvidence",
         "type": "object"
       },
+      "ApprovalChallenge": {
+        "additionalProperties": false,
+        "properties": {
+          "bound_plan_sha256": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bound Plan Sha256"
+          },
+          "ceremony_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Ceremony Id",
+            "type": "string"
+          },
+          "options": {
+            "additionalProperties": true,
+            "title": "Options",
+            "type": "object"
+          }
+        },
+        "required": [
+          "ceremony_id",
+          "options"
+        ],
+        "title": "ApprovalChallenge",
+        "type": "object"
+      },
+      "ApprovalSession": {
+        "additionalProperties": false,
+        "properties": {
+          "canonical_origin": {
+            "title": "Canonical Origin",
+            "type": "string"
+          },
+          "enrolled_credentials": {
+            "title": "Enrolled Credentials",
+            "type": "integer"
+          },
+          "expires_at": {
+            "title": "Expires At",
+            "type": "integer"
+          },
+          "user": {
+            "const": "local-owner",
+            "default": "local-owner",
+            "title": "User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "enrolled_credentials",
+          "expires_at",
+          "canonical_origin"
+        ],
+        "title": "ApprovalSession",
+        "type": "object"
+      },
+      "ApprovalView": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "action_json": {
+            "title": "Action Json",
+            "type": "string"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MutationReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "waiting_for_passkey",
+              "approved",
+              "executed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id",
+          "plan_sha256",
+          "action_json",
+          "status"
+        ],
+        "title": "ApprovalView",
+        "type": "object"
+      },
       "CandidatePlan": {
         "additionalProperties": false,
         "properties": {
@@ -138,6 +247,11 @@
             "title": "Capabilities",
             "type": "array"
           },
+          "guarded_authorization_sandbox": {
+            "default": false,
+            "title": "Guarded Authorization Sandbox",
+            "type": "boolean"
+          },
           "mode": {
             "const": "local_simulation",
             "default": "local_simulation",
@@ -151,8 +265,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 8,
-            "default": 8,
+            "const": 9,
+            "default": 9,
             "title": "Phase",
             "type": "integer"
           }
@@ -333,6 +447,27 @@
           "maximum_temperature_c"
         ],
         "title": "Counterexample",
+        "type": "object"
+      },
+      "CredentialResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "ceremony_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Ceremony Id",
+            "type": "string"
+          },
+          "credential": {
+            "additionalProperties": true,
+            "title": "Credential",
+            "type": "object"
+          }
+        },
+        "required": [
+          "ceremony_id",
+          "credential"
+        ],
+        "title": "CredentialResponse",
         "type": "object"
       },
       "DiagnosticHypothesis": {
@@ -619,6 +754,42 @@
           "untrusted_text"
         ],
         "title": "EvidenceHit",
+        "type": "object"
+      },
+      "ExecuteRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "plan_sha256"
+        ],
+        "title": "ExecuteRequest",
+        "type": "object"
+      },
+      "ExecutionEnvelope": {
+        "additionalProperties": false,
+        "properties": {
+          "action_json": {
+            "maxLength": 16384,
+            "title": "Action Json",
+            "type": "string"
+          },
+          "capability": {
+            "maxLength": 8192,
+            "title": "Capability",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_json",
+          "capability"
+        ],
+        "title": "ExecutionEnvelope",
         "type": "object"
       },
       "FutureSample": {
@@ -1360,6 +1531,101 @@
         "title": "MemoryMatch",
         "type": "object"
       },
+      "MutationReceipt": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "authorization": {
+            "const": "WebAuthn_user_verified",
+            "default": "WebAuthn_user_verified",
+            "title": "Authorization",
+            "type": "string"
+          },
+          "authorized_user": {
+            "const": "local-owner",
+            "default": "local-owner",
+            "title": "Authorized User",
+            "type": "string"
+          },
+          "database_version_after": {
+            "title": "Database Version After",
+            "type": "integer"
+          },
+          "database_version_before": {
+            "title": "Database Version Before",
+            "type": "integer"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "native_version_after": {
+            "title": "Native Version After",
+            "type": "integer"
+          },
+          "native_version_before": {
+            "title": "Native Version Before",
+            "type": "integer"
+          },
+          "nonce": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Nonce",
+            "type": "string"
+          },
+          "outcome": {
+            "const": "applied_to_isolated_sandbox",
+            "default": "applied_to_isolated_sandbox",
+            "title": "Outcome",
+            "type": "string"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "previous_receipt_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Previous Receipt Sha256",
+            "type": "string"
+          },
+          "receipt_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Receipt Sha256",
+            "type": "string"
+          },
+          "resource_id": {
+            "const": "authorization-sandbox-01",
+            "default": "authorization-sandbox-01",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "snapshot_sha256_after": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Snapshot Sha256 After",
+            "type": "string"
+          }
+        },
+        "required": [
+          "receipt_sha256",
+          "previous_receipt_sha256",
+          "action_id",
+          "nonce",
+          "plan_sha256",
+          "database_version_before",
+          "database_version_after",
+          "native_version_before",
+          "native_version_after",
+          "snapshot_sha256_after",
+          "native_binary_sha256"
+        ],
+        "title": "MutationReceipt",
+        "type": "object"
+      },
       "ObservedSample": {
         "additionalProperties": false,
         "properties": {
@@ -1644,6 +1910,109 @@
           "sentinel"
         ],
         "title": "PlantTelemetry",
+        "type": "object"
+      },
+      "ProposedPlan": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "const": "simulator.emergency_stop",
+            "default": "simulator.emergency_stop",
+            "title": "Action",
+            "type": "string"
+          },
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "before_controls": {
+            "$ref": "#/components/schemas/SimulatorControls"
+          },
+          "compensation": {
+            "const": "retain_committed_state_or_emergency_stop",
+            "default": "retain_committed_state_or_emergency_stop",
+            "title": "Compensation",
+            "type": "string"
+          },
+          "controls": {
+            "$ref": "#/components/schemas/SimulatorControls"
+          },
+          "evidence_policy": {
+            "const": "authorization-test-sandbox-v1",
+            "default": "authorization-test-sandbox-v1",
+            "title": "Evidence Policy",
+            "type": "string"
+          },
+          "expected_database_version": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Expected Database Version",
+            "type": "integer"
+          },
+          "expected_state_version": {
+            "maximum": 1000000000,
+            "minimum": 1,
+            "title": "Expected State Version",
+            "type": "integer"
+          },
+          "expires_at": {
+            "minimum": 1,
+            "title": "Expires At",
+            "type": "integer"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "resource_id": {
+            "const": "authorization-sandbox-01",
+            "default": "authorization-sandbox-01",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "risk": {
+            "const": "simulator_only",
+            "default": "simulator_only",
+            "title": "Risk",
+            "type": "string"
+          },
+          "safety_rollout_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Safety Rollout Sha256",
+            "type": "string"
+          },
+          "scope": {
+            "const": "isolated_authorization_sandbox",
+            "default": "isolated_authorization_sandbox",
+            "title": "Scope",
+            "type": "string"
+          },
+          "source_snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Snapshot Sha256",
+            "type": "string"
+          },
+          "tenant_id": {
+            "const": "local",
+            "default": "local",
+            "title": "Tenant Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id",
+          "expected_database_version",
+          "expected_state_version",
+          "source_snapshot_sha256",
+          "native_binary_sha256",
+          "safety_rollout_sha256",
+          "before_controls",
+          "controls",
+          "expires_at"
+        ],
+        "title": "ProposedPlan",
         "type": "object"
       },
       "RecoveryAssessment": {
@@ -2234,6 +2603,95 @@
         ],
         "title": "UncertaintyCase",
         "type": "object"
+      },
+      "VerifiedCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "aud": {
+            "const": "aegis-independent-executor",
+            "default": "aegis-independent-executor",
+            "title": "Aud",
+            "type": "string"
+          },
+          "exp": {
+            "minimum": 1,
+            "title": "Exp",
+            "type": "integer"
+          },
+          "expected_database_version": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Expected Database Version",
+            "type": "integer"
+          },
+          "expected_state_version": {
+            "maximum": 1000000000,
+            "minimum": 1,
+            "title": "Expected State Version",
+            "type": "integer"
+          },
+          "iat": {
+            "minimum": 1,
+            "title": "Iat",
+            "type": "integer"
+          },
+          "iss": {
+            "const": "aegis-local-approver",
+            "default": "aegis-local-approver",
+            "title": "Iss",
+            "type": "string"
+          },
+          "jti": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Jti",
+            "type": "string"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "resource_id": {
+            "const": "authorization-sandbox-01",
+            "default": "authorization-sandbox-01",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "scope": {
+            "const": "isolated_authorization_sandbox",
+            "default": "isolated_authorization_sandbox",
+            "title": "Scope",
+            "type": "string"
+          },
+          "sub": {
+            "const": "local-owner",
+            "default": "local-owner",
+            "title": "Sub",
+            "type": "string"
+          },
+          "user_verification": {
+            "const": true,
+            "default": true,
+            "title": "User Verification",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "jti",
+          "action_id",
+          "plan_sha256",
+          "expected_database_version",
+          "expected_state_version",
+          "iat",
+          "exp"
+        ],
+        "title": "VerifiedCapability",
+        "type": "object"
       }
     }
   },
@@ -2243,6 +2701,771 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/approval/proposals": {
+      "post": {
+        "operationId": "propose_api_v1_approval_proposals_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Propose"
+      }
+    },
+    "/api/v1/approval/proposals/{action_id}": {
+      "get": {
+        "operationId": "read_proposal_api_v1_approval_proposals__action_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "action_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Action Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Read Proposal"
+      }
+    },
+    "/api/v1/approval/proposals/{action_id}/execute": {
+      "post": {
+        "operationId": "execute_api_v1_approval_proposals__action_id__execute_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "action_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Action Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Execute"
+      }
+    },
+    "/api/v1/approval/proposals/{action_id}/options": {
+      "post": {
+        "operationId": "approval_options_api_v1_approval_proposals__action_id__options_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "action_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Action Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalChallenge"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Approval Options"
+      }
+    },
+    "/api/v1/approval/proposals/{action_id}/verify": {
+      "post": {
+        "operationId": "approval_verify_api_v1_approval_proposals__action_id__verify_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "action_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Action Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Approval Verify"
+      }
+    },
+    "/api/v1/approval/registration/options": {
+      "post": {
+        "operationId": "registration_options_api_v1_approval_registration_options_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalChallenge"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Registration Options"
+      }
+    },
+    "/api/v1/approval/registration/verify": {
+      "post": {
+        "operationId": "registration_verify_api_v1_approval_registration_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Registration Verify"
+      }
+    },
+    "/api/v1/approval/session": {
+      "delete": {
+        "operationId": "logout_api_v1_approval_session_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Logout"
+      },
+      "get": {
+        "operationId": "session_api_v1_approval_session_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Session"
+      },
+      "post": {
+        "operationId": "login_api_v1_approval_session_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Login"
+      }
+    },
     "/api/v1/capabilities": {
       "get": {
         "operationId": "capabilities_api_v1_capabilities_get",
@@ -3714,6 +4937,102 @@
           }
         },
         "summary": "Health"
+      }
+    },
+    "/internal/v1/sandbox/execute": {
+      "post": {
+        "operationId": "protected_gateway_internal_v1_sandbox_execute_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecutionEnvelope"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MutationReceipt"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Protected Gateway"
       }
     }
   }

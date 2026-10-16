@@ -45,3 +45,8 @@ collected on the provisioned host before deployment.
 Phase 7 adds LangGraph 1.2.15 (MIT) and langgraph-checkpoint-mongodb 0.5.1
 (MIT), with locked LangChain Core/checkpoint dependencies and their notices.
 No LangSmith account or external tracing is used; tracing is disabled explicitly.
+
+Phase 9: py_webauthn 3.0.1 (BSD-3-Clause), cryptography 50.0.2 (Apache-2.0/BSD),
+and locked CBOR/OpenSSL support dependencies. Node's built-in Ed25519 verifier and
+AJV 8.20.0 validate the generated contracts; only executor production dependencies
+are packaged into its runtime. Exact package/wheel hashes remain in the locks.

@@ -158,3 +158,17 @@ checks. Actual CPU profile: 409 rollouts / 4,908,000 substeps, 1.4994 s, 86.05 M
 peak process RSS. Severe uncertainty requires a stop: 92.8155 to 41.1321 degC
 peak with 591 s downtime. The independent latched shield still rejects any
 different recovery vector; no operational authority is granted. See PHASE8.md.
+
+## Phase 9 — local gate PASS, 2026-10-16
+
+- [x] Real WebAuthn UV verification, immutable action/digest, owner session/challenge binding.
+- [x] Persistent approval interrupt/resume, Ed25519 capability, independent Node policies.
+- [x] Private C++ sandbox and atomic version/snapshot/nonce/hash-chain receipt commit.
+- [x] Actual focused browser proof and negative crypto/native tests.
+- [x] Final full gate: 244 Python / 3 CTest / 15 Node / 11 Chromium, audits and
+      14 additional actual role denials pass. Earlier transport failures retained.
+
+Phase 9 provides real cryptographic WebAuthn proof through an explicitly labeled
+Chromium virtual authenticator, persistent approval interrupt, independent Node
+verifier and atomic native-sandbox/Mongo receipt. Physical authenticator acceptance
+is unverified. The incident and external writes remain closed. See PHASE9.md.

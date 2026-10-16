@@ -2,14 +2,15 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 8 — native adversarial recovery search; local gate passed.**
+**Current scope: Phase 9 — WebAuthn and independent sandbox authorization; local gate passed.**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
 They are not a validated industrial plant. No physical I/O exists.
 Live cloud inference and provider access remain **BLOCKED**. Numerical forensic
 reasoners and C++ forecasts work locally; the offline model template abstains.
-Approval and protected enterprise writes remain closed pending later gates.
+Passkey approval is confined to a separate stationary simulator test resource.
+The incident's contradictory evidence and protected external writes remain closed.
 
 ## Start locally
 
@@ -74,19 +75,19 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 |---|---|
 | C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots; independent local emergency policy |
 | Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
-| Node executor | Running health service; every mutation is denied |
+| Node executor | Independent Ed25519/schema/scope/stop verifier; fixed private gateway, no external tool scope |
 | Redis / Mongo | Append-only monitoring journal, immutable snapshots/incidents and bounded fanout; scoped credentials, operational collections closed |
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
 | Evolus / Pinecone / GitHub | No live connector implemented or called |
 | Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
 | LangGraph | Real bounded cycles, Mongo checkpoints, observed-only inputs, C++ forecasts and durable no-action interrupt |
-| Passkeys / approved recovery | Later phases; no protected operational write path exposed |
+| Passkeys / authorization | Actual WebAuthn UV, owner session, immutable digest and durable approval; isolated test sandbox only |
 
 See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 9–12 and the external live gates remain.
+The full master prompt is not finished. Phases 10–12 and the external live gates remain.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
 [phase reports](docs/results/PHASE3.md). Toggle **Simulation ground truth**
@@ -119,15 +120,24 @@ authenticated serving client, labeled offline abstention, projected memory
 calculator, render-tested cloud recipe and actual-result collection tools. The
 local UI compares 80/192 GiB projections. No MI300X load, cloud deployment, GPU
 benchmark or 200K success is claimed. See `docs/results/PHASE6.md` and
-`infra/cloud/README.md` for the remaining live gates. Phases 7–12 are not complete.
+`infra/cloud/README.md` for the remaining live gates. No live GPU success is claimed.
 
 Phase 7 provides a real cyclic LangGraph investigation with Mongo checkpoints,
 sensor-only heuristic diagnosis, real C++ forecasts and a durable no-action
 interrupt. The offline model backend is an abstention template, not a generative
 LLM. Run the investigator from the local UI after a simulator incident. See
-`docs/results/PHASE7.md`; operational execution remains closed pending Phase 9.
+`docs/results/PHASE7.md`; incident execution remains closed by manual evidence.
 
 The Phase 8 analysis endpoint runs eleven controls across 37 native uncertainty
 cases, with a content-hashed artifact and actual baseline/intervention timelines.
 It cannot execute a proposal. Severe uncertain blockage may require losing
 production to preserve hard constraints. See docs/ADR/0011-finite-robust-recovery-search.md.
+
+For Phase 9 open **http://localhost:PORT** (the port printed by startup), connect
+with the viewer token, then use the separate owner token from your own terminal:
+`python tools/dev.py owner-token`. Enroll a passkey, prepare the stationary sandbox
+stop, inspect its exact diff/digest, approve with user verification and execute.
+The receipt proves one atomic local Mongo/native-snapshot change. Never share
+either token. Physical passkey acceptance is unverified; automated Chromium uses
+a labeled virtual authenticator with real server cryptographic verification.
+See ADR 0012 and the runbook for the limited scope and production gaps.

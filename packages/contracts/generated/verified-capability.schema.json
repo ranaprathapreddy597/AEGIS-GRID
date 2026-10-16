@@ -1,0 +1,89 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "aud": {
+      "const": "aegis-independent-executor",
+      "default": "aegis-independent-executor",
+      "title": "Aud",
+      "type": "string"
+    },
+    "exp": {
+      "minimum": 1,
+      "title": "Exp",
+      "type": "integer"
+    },
+    "expected_database_version": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Expected Database Version",
+      "type": "integer"
+    },
+    "expected_state_version": {
+      "maximum": 1000000000,
+      "minimum": 1,
+      "title": "Expected State Version",
+      "type": "integer"
+    },
+    "iat": {
+      "minimum": 1,
+      "title": "Iat",
+      "type": "integer"
+    },
+    "iss": {
+      "const": "aegis-local-approver",
+      "default": "aegis-local-approver",
+      "title": "Iss",
+      "type": "string"
+    },
+    "jti": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Jti",
+      "type": "string"
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "resource_id": {
+      "const": "authorization-sandbox-01",
+      "default": "authorization-sandbox-01",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "scope": {
+      "const": "isolated_authorization_sandbox",
+      "default": "isolated_authorization_sandbox",
+      "title": "Scope",
+      "type": "string"
+    },
+    "sub": {
+      "const": "local-owner",
+      "default": "local-owner",
+      "title": "Sub",
+      "type": "string"
+    },
+    "user_verification": {
+      "const": true,
+      "default": true,
+      "title": "User Verification",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "jti",
+    "action_id",
+    "plan_sha256",
+    "expected_database_version",
+    "expected_state_version",
+    "iat",
+    "exp"
+  ],
+  "title": "VerifiedCapability",
+  "type": "object"
+}

@@ -1,6 +1,44 @@
 {
   "additionalProperties": false,
   "properties": {
+    "approval_origin": {
+      "default": "http://localhost:8080",
+      "title": "Approval Origin",
+      "type": "string"
+    },
+    "approver_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approver Password"
+    },
+    "approver_token": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approver Token"
+    },
+    "capability_public_key": {
+      "default": "",
+      "title": "Capability Public Key",
+      "type": "string"
+    },
     "cloud_events_url": {
       "anyOf": [
         {
@@ -31,6 +69,48 @@
       "default": "http://edge:8001",
       "title": "Edge Url",
       "type": "string"
+    },
+    "executor_token": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Executor Token"
+    },
+    "gateway_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Gateway Password"
+    },
+    "gateway_token": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Gateway Token"
     },
     "graph_password": {
       "anyOf": [
@@ -142,6 +222,20 @@
       "title": "Service Token",
       "type": "string",
       "writeOnly": true
+    },
+    "signing_seed": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Signing Seed"
     },
     "storage_enabled": {
       "default": false,

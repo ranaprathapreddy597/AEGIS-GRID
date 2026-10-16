@@ -1,0 +1,145 @@
+{
+  "$defs": {
+    "SimulatorControls": {
+      "additionalProperties": false,
+      "properties": {
+        "loads": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Loads",
+          "type": "array"
+        },
+        "pump": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Pump",
+          "type": "number"
+        },
+        "valves": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Valves",
+          "type": "array"
+        }
+      },
+      "required": [
+        "pump",
+        "loads",
+        "valves"
+      ],
+      "title": "SimulatorControls",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "const": "simulator.emergency_stop",
+      "default": "simulator.emergency_stop",
+      "title": "Action",
+      "type": "string"
+    },
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "before_controls": {
+      "$ref": "#/$defs/SimulatorControls"
+    },
+    "compensation": {
+      "const": "retain_committed_state_or_emergency_stop",
+      "default": "retain_committed_state_or_emergency_stop",
+      "title": "Compensation",
+      "type": "string"
+    },
+    "controls": {
+      "$ref": "#/$defs/SimulatorControls"
+    },
+    "evidence_policy": {
+      "const": "authorization-test-sandbox-v1",
+      "default": "authorization-test-sandbox-v1",
+      "title": "Evidence Policy",
+      "type": "string"
+    },
+    "expected_database_version": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Expected Database Version",
+      "type": "integer"
+    },
+    "expected_state_version": {
+      "maximum": 1000000000,
+      "minimum": 1,
+      "title": "Expected State Version",
+      "type": "integer"
+    },
+    "expires_at": {
+      "minimum": 1,
+      "title": "Expires At",
+      "type": "integer"
+    },
+    "native_binary_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Native Binary Sha256",
+      "type": "string"
+    },
+    "resource_id": {
+      "const": "authorization-sandbox-01",
+      "default": "authorization-sandbox-01",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "risk": {
+      "const": "simulator_only",
+      "default": "simulator_only",
+      "title": "Risk",
+      "type": "string"
+    },
+    "safety_rollout_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Safety Rollout Sha256",
+      "type": "string"
+    },
+    "scope": {
+      "const": "isolated_authorization_sandbox",
+      "default": "isolated_authorization_sandbox",
+      "title": "Scope",
+      "type": "string"
+    },
+    "source_snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Snapshot Sha256",
+      "type": "string"
+    },
+    "tenant_id": {
+      "const": "local",
+      "default": "local",
+      "title": "Tenant Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "expected_database_version",
+    "expected_state_version",
+    "source_snapshot_sha256",
+    "native_binary_sha256",
+    "safety_rollout_sha256",
+    "before_controls",
+    "controls",
+    "expires_at"
+  ],
+  "title": "ProposedPlan",
+  "type": "object"
+}

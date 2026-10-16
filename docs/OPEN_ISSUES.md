@@ -10,7 +10,7 @@
 | MODEL-01 | Resolved / Phase 2 | Coupled coolant/pressure/feeder, bounded actuators, instrument noise, seeded faults and snapshots are implemented; see PHYSICS.md and phase evidence. |
 | MODEL-02 | Synthetic model limitation | No plant/OEM calibration, cavitation, boiling, leakage or physical I/O. Sensor intervals cover assumed instrument noise only, not spoof/delay uncertainty. |
 | SEC-02 | Simulator inspection only | Authenticated local telemetry includes ground truth/fault labels for developer inspection. Phase 3 SensorFrame excludes truth, scenario and fault labels; injection-invariance tests pass. No production tenant boundary is claimed. |
-| SAFE-01 | Deferred / Phases 3/9 | Phase 3 deterministic local emergency shield is tested. Signed capabilities/passkeys/planned recovery are later gates; HTTP operational mutations remain unavailable. |
+| SAFE-01 | Verified local / Phase 9 | Actual WebAuthn, Ed25519, Node policy and native sandbox CAS pass. Only the stationary test sandbox is enabled; incident manual conflict and external writes remain closed. |
 | DATA-01 | Resolved / Phase 4 | Journal-acknowledged append-only Mongo events and snapshots, bounded Redis fanout, scoped ACLs and actual API-restart replay are implemented and tested; see PHASE4.md. |
 | SEC-01 | Local-only baseline | Shared read tokens and loopback HTTP are not production identity/TLS. Cloud configuration intentionally unavailable. |
 | BUILD-01 | Hardening backlog | Direct tool pins and image digests do not freeze all Debian apt transitive packages. Snapshot repository/SBOM validation deferred. |
@@ -41,3 +41,16 @@ certification. Fixed-grid worst-case selection is deliberately conservative;
 severe priors require stopping and lose production. Finite coverage excludes
 unknown model error/real plants. Phase 9 must verify artifacts/current state again
 and add independent authorization before any protected mutation is enabled.
+
+Phase 9 local gate passes; see PHASE9.md and ADR 0012. Physical passkey/hardware
+attestation, production TLS/IAM, credential lifecycle/revocation and external audit
+anchoring remain unverified. The API process holds trusted authorizer/gateway
+configuration; production process isolation is not claimed. A full administrator
+rollback of all Mongo state needs an external trusted anchor to detect.
+
+TEST-02: one owner-login transport failure and one restart readiness timeout were
+observed and retained. Two-second bounded API shutdown and sanitized diagnostics
+were added; final focused/full suites pass. The intermittent failure's complete
+cause is not established; no production SLA or stability guarantee is claimed.
+UX-01 / Phase 11: add browser-reload/session history recovery to the approval UI;
+server checkpoints/approvals already survive real API process restarts.

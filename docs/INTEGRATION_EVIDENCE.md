@@ -211,3 +211,16 @@ Celsius, at the explicit cost of 591 s downtime and nearly all production. These
 are synthetic model outcomes, not real economics or GPU/plant measurements.
 212 Python / 3 CTest / 10 browser / 2 Node tests and actual restart replay pass.
 MI300X, Evolus and Pinecone live acceptance remain BLOCKED. Phase 9 is next.
+
+## Phase 9 actual local authorization — 2026-10-16
+
+244 Python / 3 CTest / 15 Node / 11 Chromium checks passed. Maintained WebAuthn
+verification checks real ES256 browser assertions; fixed Ed25519 capabilities pass
+an independent Node verifier and the private native gateway. The actual Mongo
+sandbox CAS atomically changes version/snapshot/nonce/hash-chained receipt. The
+browser proves durable approval across API restart, tamper/replay/stale refusal
+and one-effect retry. Fourteen additional actual role escalations were denied.
+This uses a labeled Chromium virtual authenticator, not a physical security key or
+hardware attestation. The initial transport failures and final passing full output
+are preserved; no timeout/security rule was relaxed. MI300X/Evolus/Pinecone live
+gates remain BLOCKED. No incident, external enterprise or physical I/O was enabled.

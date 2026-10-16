@@ -5,6 +5,12 @@ import json
 from pathlib import Path
 
 from aegis_api.app import create_app
+from aegis_contracts.authorization import (
+    ExecutionEnvelope,
+    MutationReceipt,
+    ProposedPlan,
+    VerifiedCapability,
+)
 from aegis_contracts.config import Settings
 from aegis_contracts.inference import InferenceResult, MemoryBudget
 from aegis_contracts.investigation import Investigation
@@ -25,8 +31,16 @@ def main() -> None:
         viewer_token=SecretStr("schema-export-only" * 3),
         service_token=SecretStr("schema-service-only" * 3),
     )
+    openapi = create_app(settings).openapi()
+    # Signed internal payloads also have generated TS types even though they travel
+    # as opaque, exact JSON bytes inside the execution envelope.
+    for model in (ProposedPlan, VerifiedCapability):
+        schema = model.model_json_schema(ref_template="#/components/schemas/{model}")
+        for name, definition in schema.pop("$defs", {}).items():
+            openapi["components"]["schemas"].setdefault(name, definition)
+        openapi["components"]["schemas"][model.__name__] = schema
     outputs = {
-        "openapi.json": create_app(settings).openapi(),
+        "openapi.json": openapi,
         "plant-telemetry.schema.json": PlantTelemetry.model_json_schema(),
         "twin-measurement.schema.json": TwinMeasurement.model_json_schema(),
         "settings.schema.json": Settings.model_json_schema(),
@@ -41,6 +55,10 @@ def main() -> None:
         "investigation.schema.json": Investigation.model_json_schema(),
         "recovery-assessment.schema.json": RecoveryAssessment.model_json_schema(),
         "sim-rollout.schema.json": SimRollout.model_json_schema(),
+        "proposed-plan.schema.json": ProposedPlan.model_json_schema(),
+        "verified-capability.schema.json": VerifiedCapability.model_json_schema(),
+        "execution-envelope.schema.json": ExecutionEnvelope.model_json_schema(),
+        "mutation-receipt.schema.json": MutationReceipt.model_json_schema(),
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name

@@ -36,8 +36,8 @@ running while the HTTPS receiver is unreachable.
 
 `python tools/dev.py status` lists the six services. Public web liveness is
 `GET /healthz`. API health internally depends on fresh authenticated edge data;
-edge health depends on a live child and a recent valid frame. Node health explicitly
-reports that mutations are disabled. Never dump `docker compose config` or full
+edge health depends on a live child and a recent valid frame. Node health reports
+the restricted authorization-sandbox scope. Never dump `docker compose config` or full
 container inspection into chat because resolved configuration contains secrets.
 
 Safe diagnostics:
@@ -61,6 +61,30 @@ Follow README development setup, then `uv run --locked python tools/dev.py check
 Tests include real C++ subprocess execution and browser reads from the running
 Docker stack. The API outage/malformed-data unit tests use explicitly named local
 test doubles. No mocked hardware/passkey/provider success is reported.
+
+## Phase 9 local Ask First proof
+
+Open the command center at **http://localhost:PORT**, using the actual printed
+port. The approval RP is localhost; 127.0.0.1 remains usable for read-only views.
+Connect with the viewer token. In your own terminal run
+`python tools/dev.py owner-token`, then enter that separate secret into the owner
+form. Never share/capture either token. Enroll a passkey with user verification,
+prepare a sandbox stop, inspect the exact diff/digest, approve that action with the
+passkey, then execute. The Node verifier and native gateway recheck everything.
+The receipt reports the actual atomic sandbox snapshot/database change.
+
+This explicitly changes only `authorization-sandbox-01`, created once by admin
+startup. It does not resolve the incident's contradictory bulletin or change the
+running edge. There is no public reset for it. Its 256-receipt quota is deliberate;
+an administrator must review further testing when exhausted. Do not delete volumes
+to work around state, evidence or approval failures.
+
+`pnpm exec playwright test tests/e2e/approval.spec.ts` uses a clearly labeled
+Chromium virtual authenticator and the actual server verification, Node gateway,
+Mongo CAS and C++ kernel. Its ignored `.run/webauthn-ci.json` is sensitive generated
+CI test material; do not print, commit or distribute it. It is not evidence of
+Windows Hello/physical-key acceptance. The exact same browser flow is available
+to the user with their own real authenticator, but that hardware gate is unverified.
 
 ## Select a deterministic fault scenario
 

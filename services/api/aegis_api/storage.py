@@ -27,6 +27,7 @@ MONITORING = ("events", "incidents", "snapshots", "fanout_receipts")
 ALL_COLLECTIONS = (*MONITORING, "plans", "actions", "audit", "migrations")
 GRAPH_COLLECTIONS = ("graph_checkpoints", "graph_writes")
 ANALYSIS_COLLECTIONS = ("analysis_artifacts",)
+AUTH_COLLECTIONS = ("auth_sessions", "auth_credentials", "auth_ceremonies", "auth_proposals")
 
 
 class StorageUnavailable(RuntimeError):
@@ -304,7 +305,13 @@ async def migrate() -> None:
     try:
         database = admin[DB_NAME]
         existing = await database.list_collection_names()
-        for name in (*ALL_COLLECTIONS, *GRAPH_COLLECTIONS, *ANALYSIS_COLLECTIONS):
+        for name in (
+            *ALL_COLLECTIONS,
+            *GRAPH_COLLECTIONS,
+            *ANALYSIS_COLLECTIONS,
+            *AUTH_COLLECTIONS,
+            "sandbox_resources",
+        ):
             if name not in existing:
                 await database.create_collection(name)
         await database.graph_checkpoints.create_index(
@@ -323,6 +330,17 @@ async def migrate() -> None:
         for name in GRAPH_COLLECTIONS:
             await database[name].create_index("created_at", expireAfterSeconds=30 * 86400)
         await database.analysis_artifacts.create_index("expires_at", expireAfterSeconds=0)
+        for name in ("auth_sessions", "auth_ceremonies", "auth_proposals"):
+            await database[name].create_index("expires_at", expireAfterSeconds=0)
+        # Administrative bootstrap only. No public endpoint can create/reset it.
+        from pathlib import Path
+
+        from aegis_api.gateway import genesis
+
+        resource = genesis(Path("/usr/local/lib/libaegis_twin.so"))
+        await database.sandbox_resources.update_one(
+            {"_id": resource["_id"]}, {"$setOnInsert": resource}, upsert=True
+        )
         for name in (*MONITORING, "plans", "actions", "audit"):
             await database[name].create_index([("tenant_id", 1), ("event_id", 1)], unique=True)
             await database[name].create_index("expires_at", expireAfterSeconds=0)
@@ -384,6 +402,29 @@ async def migrate() -> None:
                     }
                 ],
             ),
+            (
+                "local_approver",
+                [
+                    {
+                        "resource": {"db": DB_NAME, "collection": name},
+                        "actions": ["find", "insert", "update", "remove"],
+                    }
+                    for name in AUTH_COLLECTIONS
+                ],
+            ),
+            (
+                "simulator_gateway",
+                [
+                    {
+                        "resource": {"db": DB_NAME, "collection": "sandbox_resources"},
+                        "actions": ["find", "update"],
+                    },
+                    {
+                        "resource": {"db": DB_NAME, "collection": "auth_proposals"},
+                        "actions": ["find"],
+                    },
+                ],
+            ),
         ]:
             found = await database.command("rolesInfo", role)
             await database.command(
@@ -396,6 +437,8 @@ async def migrate() -> None:
             ("aegis_ingestor", "monitoring_append", "AEGIS_MONGO_WRITER_PASSWORD"),
             ("aegis_reader", "monitoring_read", "AEGIS_MONGO_READER_PASSWORD"),
             ("aegis_graph", "graph_checkpoint", "AEGIS_GRAPH_PASSWORD"),
+            ("aegis_approver", "local_approver", "AEGIS_APPROVER_PASSWORD"),
+            ("aegis_gateway", "simulator_gateway", "AEGIS_GATEWAY_PASSWORD"),
         ]:
             found = await database.command("usersInfo", user)
             await database.command(

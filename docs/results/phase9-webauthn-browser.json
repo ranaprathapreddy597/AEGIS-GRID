@@ -1,0 +1,26 @@
+{
+  "mode": "actual_Chromium_WebAuthn_virtual_authenticator_NOT_physical_key",
+  "proof": "real server cryptographic verification; persistent approval interrupt; real Node gateway and Mongo CAS",
+  "receipt": {
+    "receipt_sha256": "d2bf742f2158f83e5d6739d466a0e1f961126af50eaeee6455fcf105d0dd20ae",
+    "previous_receipt_sha256": "d9da9c437d0e2abfc8bc8916b7460ac89096d5e7194d18ec1f3c16a4d256ae66",
+    "action_id": "526020da-53c2-4e34-938a-545ac01e477a",
+    "nonce": "f2aba08b-7850-4402-81f9-f305434d1fff",
+    "plan_sha256": "3b0e2169af39394583b953e460769859e705d7790fbee3b0c5ac4ad95c6bde58",
+    "resource_id": "authorization-sandbox-01",
+    "database_version_before": 4,
+    "database_version_after": 5,
+    "native_version_before": 210,
+    "native_version_after": 270,
+    "snapshot_sha256_after": "3c9487af65fd8c5adf76e8c1e52d241ab13a3e6ae983bd7b9c2ad37e5dd0cf51",
+    "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+    "outcome": "applied_to_isolated_sandbox",
+    "authorized_user": "local-owner",
+    "authorization": "WebAuthn_user_verified"
+  },
+  "no_approval": "denied",
+  "changed_digest": "denied",
+  "assertion_replay": "denied",
+  "stale_approved_state": "denied",
+  "retry": "same receipt, no second mutation"
+}

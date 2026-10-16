@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:20496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Browser transport refusal: GET /api/v1/telemetry/stream net::ERR_INCOMPLETE_CHUNKED_ENCODING
+  x  1 [chromium] › tests\e2e\approval.spec.ts:9:5 › real WebAuthn virtual authenticator binds approval and independent execution (1.0m)
+
+
+  1) [chromium] › tests\e2e\approval.spec.ts:9:5 › real WebAuthn virtual authenticator binds approval and independent execution
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 502
+
+    Call Log:
+    - Timeout 20000ms exceeded while waiting on the predicate
+
+      81 |     await expect.poll(async () => {
+      82 |       try { return (await client.get(path)).status(); } catch { return 0; }
+    > 83 |     }, { timeout: 20000, intervals: [1000] }).toBe(200);
+         |                                               ^
+      84 |     await page.getByRole("button", { name: "Execute approved sandbox stop" }).click();
+      85 |     await expect(page.getByTestId("approval-receipt")).toContainText("WebAuthn_user_verified", { timeout: 15000 });
+      86 |     const executed = await (await client.get(path)).json();
+        at D:\AEGIS GRID\tests\e2e\approval.spec.ts:83:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\approval-real-WebAuthn-vir-c0ca2-l-and-independent-execution-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\approval-real-WebAuthn-vir-c0ca2-l-and-independent-execution-chromium\error-context.md
+
+  1 failed
+    [chromium] › tests\e2e\approval.spec.ts:9:5 › real WebAuthn virtual authenticator binds approval and independent execution

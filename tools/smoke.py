@@ -42,7 +42,7 @@ def main() -> None:
                     "sse_frames": len(frames),
                     "temperature_changed": True,
                     "unauthorized_reads": "denied",
-                    "mutations": "unavailable",
+                    "mutations": "general writes unavailable; passkey sandbox checked separately",
                 }
             )
         )

@@ -40,6 +40,9 @@ from pydantic import ValidationError
 from pymongo.errors import PyMongoError
 from redis.exceptions import RedisError
 
+from aegis_api.approval_routes import install_approval_routes
+from aegis_api.authorization import AuthorizationService
+from aegis_api.gateway import SimulatorGateway
 from aegis_api.storage import EventConflict, StorageUnavailable, TelemetryStore
 
 logger = logging.getLogger("aegis.api")
@@ -71,6 +74,36 @@ def create_app(
     investigation_busy = asyncio.Lock()
     optimizations: OptimizationService | None = None
     optimization_busy = asyncio.Lock()
+    authorizations: AuthorizationService | None = None
+    protected_gateway: SimulatorGateway | None = None
+
+    def gateway_service() -> SimulatorGateway:
+        nonlocal protected_gateway
+        if (
+            config.gateway_password is None
+            or not config.capability_public_key
+            or not config.storage_enabled
+        ):
+            raise StorageUnavailable("Protected simulator gateway disabled")
+        if protected_gateway is None:
+            protected_gateway = SimulatorGateway(
+                config.gateway_password.get_secret_value(),
+                config.twin_library,
+                config.capability_public_key,
+            )
+        return protected_gateway
+
+    def authorization_service() -> AuthorizationService:
+        nonlocal authorizations
+        if (
+            config.approver_password is None
+            or config.signing_seed is None
+            or not config.storage_enabled
+        ):
+            raise StorageUnavailable("Durable authorization disabled")
+        if authorizations is None:
+            authorizations = AuthorizationService(config, gateway_service(), graph_service())
+        return authorizations
 
     def optimization_service() -> OptimizationService:
         nonlocal optimizations
@@ -131,6 +164,10 @@ def create_app(
                     await asyncio.to_thread(investigations.close)
                 if optimizations is not None:
                     await asyncio.to_thread(optimizations.close)
+                if authorizations is not None:
+                    await asyncio.to_thread(authorizations.close)
+                if protected_gateway is not None:
+                    await asyncio.to_thread(protected_gateway.close)
 
     app = FastAPI(
         title="AEGIS GRID API",
@@ -144,6 +181,7 @@ def create_app(
     install_http_boundary(app)
     auth = Depends(RequireToken(config.viewer_token.get_secret_value()))
     limit = Depends(RateLimit())
+    install_approval_routes(app, config, authorization_service, gateway_service, limit)
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
@@ -400,6 +438,8 @@ def create_app(
     )
     async def capabilities() -> Capabilities:
         return Capabilities(
+            guarded_authorization_sandbox=config.storage_enabled
+            and config.gateway_password is not None,
             capabilities=[
                 Capability(
                     name="C++ coupled factory twin",
@@ -422,9 +462,9 @@ def create_app(
                     detail="Read adapters and synthetic corpus; live provider reads unverified",
                 ),
                 Capability(
-                    name="Passkeys / operational mutations",
-                    status="not_implemented",
-                    detail="No mutation routes; implemented in later phases",
+                    name="WebAuthn authorization sandbox",
+                    status="verified_local" if config.gateway_password else "not_implemented",
+                    detail="Guarded test sandbox; incident and external writes closed",
                 ),
                 Capability(
                     name="Local edge safety / FAISS",
@@ -436,7 +476,7 @@ def create_app(
                     status="verified_local" if config.storage_enabled else "not_implemented",
                     detail="Append-only Mongo journal and bounded Redis fanout; read-only replay",
                 ),
-            ]
+            ],
         )
 
     @app.get(

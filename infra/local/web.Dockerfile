@@ -9,10 +9,14 @@ COPY apps/web apps/web
 COPY services/executor services/executor
 COPY packages/contracts/generated packages/contracts/generated
 RUN pnpm build && pnpm test
+RUN pnpm --filter @aegis/executor deploy --prod --legacy /executor-runtime
 
 FROM node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20 AS executor
 WORKDIR /app
 COPY --from=node-build /app/services/executor/dist ./dist
+COPY --from=node-build /executor-runtime/node_modules ./node_modules
+COPY packages/contracts/generated ./packages/contracts/generated
+ENV AEGIS_CONTRACT_DIR=/app/packages/contracts/generated
 COPY services/executor/package.json ./package.json
 USER node
 CMD ["node", "dist/services/executor/src/index.js"]

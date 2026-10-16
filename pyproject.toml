@@ -16,6 +16,8 @@ dependencies = [
   "jsonschema==4.26.0",
   "langgraph==1.2.15",
   "langgraph-checkpoint-mongodb==0.5.1",
+  "webauthn==3.0.1",
+  "cryptography==50.0.2",
 ]
 
 [dependency-groups]

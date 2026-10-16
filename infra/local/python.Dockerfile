@@ -41,4 +41,4 @@ COPY --from=build-tools /build/aegis-twin /usr/local/bin/aegis-twin
 COPY --from=build-tools /build/libaegis_twin.so /usr/local/lib/libaegis_twin.so
 RUN useradd --uid 10001 --no-create-home aegis
 USER 10001:10001
-CMD ["uvicorn", "aegis_api.app:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+CMD ["uvicorn", "aegis_api.app:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000", "--no-access-log", "--timeout-graceful-shutdown", "2"]

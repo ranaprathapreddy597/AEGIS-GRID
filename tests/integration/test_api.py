@@ -164,3 +164,28 @@ def test_optimization_requires_auth_and_real_persistence(settings):
         assert client.post(route, headers=headers).status_code == 503
         assert client.get("/api/v1/optimizations/" + "a" * 64, headers=headers).status_code == 503
         assert client.get("/api/v1/optimizations/not-a-hash", headers=headers).status_code == 422
+
+
+def test_approval_routes_never_accept_viewer_credentials_or_unsigned_gateway_calls(settings):
+    origin = {"Origin": settings.approval_origin}
+    with TestClient(create_app(settings)) as client:
+        assert client.post("/api/v1/approval/proposals", headers=origin).status_code == 401
+        assert client.get("/api/v1/approval/session").status_code == 401
+        assert client.post("/api/v1/approval/proposals").status_code == 403
+        headers = {"Authorization": f"Bearer {settings.viewer_token.get_secret_value()}"}
+        assert (
+            client.post(
+                "/internal/v1/sandbox/execute",
+                headers=headers,
+                json={"action_json": "{}", "capability": "unsigned"},
+            ).status_code
+            == 401
+        )
+        assert (
+            client.post(
+                "/api/v1/approval/proposals/00000000-0000-0000-0000-000000000001/execute",
+                headers=origin,
+                json={"plan_sha256": "a" * 64},
+            ).status_code
+            == 401
+        )

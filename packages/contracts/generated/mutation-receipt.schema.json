@@ -1,0 +1,95 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "authorization": {
+      "const": "WebAuthn_user_verified",
+      "default": "WebAuthn_user_verified",
+      "title": "Authorization",
+      "type": "string"
+    },
+    "authorized_user": {
+      "const": "local-owner",
+      "default": "local-owner",
+      "title": "Authorized User",
+      "type": "string"
+    },
+    "database_version_after": {
+      "title": "Database Version After",
+      "type": "integer"
+    },
+    "database_version_before": {
+      "title": "Database Version Before",
+      "type": "integer"
+    },
+    "native_binary_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Native Binary Sha256",
+      "type": "string"
+    },
+    "native_version_after": {
+      "title": "Native Version After",
+      "type": "integer"
+    },
+    "native_version_before": {
+      "title": "Native Version Before",
+      "type": "integer"
+    },
+    "nonce": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Nonce",
+      "type": "string"
+    },
+    "outcome": {
+      "const": "applied_to_isolated_sandbox",
+      "default": "applied_to_isolated_sandbox",
+      "title": "Outcome",
+      "type": "string"
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "previous_receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Previous Receipt Sha256",
+      "type": "string"
+    },
+    "receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Receipt Sha256",
+      "type": "string"
+    },
+    "resource_id": {
+      "const": "authorization-sandbox-01",
+      "default": "authorization-sandbox-01",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "snapshot_sha256_after": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256 After",
+      "type": "string"
+    }
+  },
+  "required": [
+    "receipt_sha256",
+    "previous_receipt_sha256",
+    "action_id",
+    "nonce",
+    "plan_sha256",
+    "database_version_before",
+    "database_version_after",
+    "native_version_before",
+    "native_version_after",
+    "snapshot_sha256_after",
+    "native_binary_sha256"
+  ],
+  "title": "MutationReceipt",
+  "type": "object"
+}

@@ -18,3 +18,12 @@
 .recovery-table caption { text-align:left; margin-bottom:10px; font-weight:700; }
 .recovery-table th, .recovery-table td { text-align:left; padding:10px; border-bottom:1px solid #2a3b4a; }
 .fingerprint { overflow-wrap:anywhere; font-family:monospace; font-size:11px; }
+.approval-panel { margin:24px 0; }
+.approval-panel h2 { font-size:22px; }
+.approval-panel h3 { font-size:16px; text-transform:capitalize; }
+.approval-panel form input { display:block; margin:12px 0; width:min(100%,480px); padding:12px; color:#eef5f8; background:#0b141b; border:1px solid #3d5261; border-radius:4px; }
+.approval-panel pre { max-height:360px; overflow:auto; padding:16px; background:#091218; color:#a9cebf; font-size:12px; }
+.approval-panel dl { display:grid; grid-template-columns:minmax(100px,1fr) 2fr; gap:12px; font-size:13px; }
+.approval-panel dd { margin:0; overflow-wrap:anywhere; }
+.approval-panel .actions { flex-wrap:wrap; margin:20px 0; }
+.approval-panel a { text-decoration:underline; color:#77dfc4; }

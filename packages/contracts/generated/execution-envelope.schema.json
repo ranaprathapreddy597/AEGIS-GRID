@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_json": {
+      "maxLength": 16384,
+      "title": "Action Json",
+      "type": "string"
+    },
+    "capability": {
+      "maxLength": 8192,
+      "title": "Capability",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_json",
+    "capability"
+  ],
+  "title": "ExecutionEnvelope",
+  "type": "object"
+}

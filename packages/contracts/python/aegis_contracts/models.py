@@ -143,9 +143,10 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[8] = 8
+    phase: Literal[9] = 9
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
+    guarded_authorization_sandbox: bool = False
     capabilities: list[Capability]
 
 

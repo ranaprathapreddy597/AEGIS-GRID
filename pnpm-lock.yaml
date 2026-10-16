@@ -58,7 +58,11 @@ importers:
         specifier: 8.3.4
         version: 8.3.4(@types/node@26.6.5)
 
-  services/executor: {}
+  services/executor:
+    dependencies:
+      ajv:
+        specifier: 8.20.0
+        version: 8.20.0
 
 packages:
 
