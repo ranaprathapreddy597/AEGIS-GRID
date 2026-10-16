@@ -59,3 +59,31 @@ def test_explicit_observe_only_mode_preserves_phase_two_unmitigated_challenge():
         assert max(c.temperature_c for c in frame.cells) < 80
     finally:
         supervisor.close()
+
+
+def test_detection_snapshot_replays_native_state_before_local_policy():
+    import json
+
+    from aegis_edge.twin import NativeTwin
+
+    scenario = scenario_from_file(Path("data/scenarios"), "scenario-090")
+    supervisor = SupervisedTwin(scenario, LIBRARY)
+    try:
+        for _ in range(200):
+            frame, status = supervisor.step(1.0)
+            if status is not None and status.latched:
+                break
+        snapshot = supervisor.incident_snapshot
+        assert snapshot is not None
+        assert snapshot.state_version == frame.state_version
+        envelope = json.dumps(
+            {"payload": snapshot.payload_json, "sha256": snapshot.sha256}
+        ).encode()
+        with NativeTwin(scenario, LIBRARY) as replay:
+            replay.restore(envelope)
+            first = [replay.step().model_dump_json() for _ in range(50)]
+            replay.restore(envelope)
+            assert [replay.step().model_dump_json() for _ in range(50)] == first
+            assert max(c.load_fraction for c in replay.step().cells) > 0.5
+    finally:
+        supervisor.close()

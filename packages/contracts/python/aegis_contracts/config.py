@@ -23,6 +23,11 @@ class Settings(BaseModel):
     memory_capacity: int = Field(default=256, ge=32, le=4096)
     cloud_events_url: str | None = None
     cloud_token: SecretStr | None = None
+    storage_enabled: bool = False
+    mongo_writer_password: SecretStr | None = None
+    mongo_reader_password: SecretStr | None = None
+    redis_writer_password: SecretStr | None = None
+    ingest_token: SecretStr | None = None
 
     @field_validator("cloud_events_url")
     @classmethod
@@ -76,5 +81,18 @@ class Settings(BaseModel):
             cloud_events_url=os.environ.get("AEGIS_CLOUD_EVENTS_URL") or None,
             cloud_token=SecretStr(os.environ["AEGIS_CLOUD_EVENTS_TOKEN"])
             if os.environ.get("AEGIS_CLOUD_EVENTS_TOKEN")
+            else None,
+            storage_enabled=os.environ.get("AEGIS_STORAGE_ENABLED", "false").lower() == "true",
+            mongo_writer_password=SecretStr(os.environ["AEGIS_MONGO_WRITER_PASSWORD"])
+            if os.environ.get("AEGIS_MONGO_WRITER_PASSWORD")
+            else None,
+            mongo_reader_password=SecretStr(os.environ["AEGIS_MONGO_READER_PASSWORD"])
+            if os.environ.get("AEGIS_MONGO_READER_PASSWORD")
+            else None,
+            redis_writer_password=SecretStr(os.environ["AEGIS_REDIS_WRITER_PASSWORD"])
+            if os.environ.get("AEGIS_REDIS_WRITER_PASSWORD")
+            else None,
+            ingest_token=SecretStr(os.environ["AEGIS_INGEST_TOKEN"])
+            if os.environ.get("AEGIS_INGEST_TOKEN")
             else None,
         )

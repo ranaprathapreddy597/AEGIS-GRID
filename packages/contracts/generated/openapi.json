@@ -72,8 +72,8 @@
             "type": "boolean"
           },
           "phase": {
-            "const": 3,
-            "default": 3,
+            "const": 4,
+            "default": 4,
             "title": "Phase",
             "type": "integer"
           }
@@ -171,6 +171,49 @@
         "title": "CellMeasurement",
         "type": "object"
       },
+      "EdgeBatch": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EdgeIncident"
+            },
+            "maxItems": 32,
+            "minItems": 1,
+            "title": "Events",
+            "type": "array"
+          },
+          "protocol_version": {
+            "const": "aegis-edge-v1",
+            "default": "aegis-edge-v1",
+            "title": "Protocol Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "title": "EdgeBatch",
+        "type": "object"
+      },
+      "EdgeBatchAck": {
+        "additionalProperties": false,
+        "properties": {
+          "accepted_event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 32,
+            "title": "Accepted Event Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "accepted_event_ids"
+        ],
+        "title": "EdgeBatchAck",
+        "type": "object"
+      },
       "EdgeIncident": {
         "additionalProperties": false,
         "properties": {
@@ -195,6 +238,15 @@
             "title": "Kind",
             "type": "string"
           },
+          "origin": {
+            "default": "edge_observer",
+            "enum": [
+              "edge_observer",
+              "storage_contract_fixture"
+            ],
+            "title": "Origin",
+            "type": "string"
+          },
           "policy_revision": {
             "const": "synthetic-shield-v1",
             "default": "synthetic-shield-v1",
@@ -210,6 +262,16 @@
             "minimum": 0.0,
             "title": "Simulation Time S",
             "type": "number"
+          },
+          "snapshot": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IncidentSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "state_version": {
             "minimum": 1.0,
@@ -305,19 +367,6 @@
         "title": "ErrorResponse",
         "type": "object"
       },
-      "HTTPValidationError": {
-        "properties": {
-          "detail": {
-            "items": {
-              "$ref": "#/components/schemas/ValidationError"
-            },
-            "title": "Detail",
-            "type": "array"
-          }
-        },
-        "title": "HTTPValidationError",
-        "type": "object"
-      },
       "Health": {
         "additionalProperties": false,
         "properties": {
@@ -350,6 +399,143 @@
           "detail"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "IncidentPage": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/IncidentRecord"
+            },
+            "maxItems": 50,
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "IncidentPage",
+        "type": "object"
+      },
+      "IncidentRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/EdgeIncident"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "ingested_at": {
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "payload_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Payload Sha256",
+            "type": "string"
+          },
+          "record_version": {
+            "const": 1,
+            "default": 1,
+            "title": "Record Version",
+            "type": "integer"
+          },
+          "tenant_id": {
+            "const": "local",
+            "default": "local",
+            "title": "Tenant Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "incident_id",
+          "payload_sha256",
+          "ingested_at",
+          "event"
+        ],
+        "title": "IncidentRecord",
+        "type": "object"
+      },
+      "IncidentReplay": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/IncidentRecord"
+            },
+            "maxItems": 100,
+            "title": "Events",
+            "type": "array"
+          },
+          "incident": {
+            "$ref": "#/components/schemas/IncidentRecord"
+          },
+          "reproducibility_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Reproducibility Sha256",
+            "type": "string"
+          },
+          "snapshot_available": {
+            "title": "Snapshot Available",
+            "type": "boolean"
+          },
+          "truncated": {
+            "default": false,
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "incident",
+          "events",
+          "reproducibility_sha256",
+          "snapshot_available"
+        ],
+        "title": "IncidentReplay",
+        "type": "object"
+      },
+      "IncidentSnapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "model_version": {
+            "const": "coupled-factory-v3",
+            "default": "coupled-factory-v3",
+            "title": "Model Version",
+            "type": "string"
+          },
+          "payload_json": {
+            "maxLength": 32768,
+            "title": "Payload Json",
+            "type": "string"
+          },
+          "point": {
+            "const": "before_local_policy",
+            "default": "before_local_policy",
+            "title": "Point",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          },
+          "state_version": {
+            "minimum": 1.0,
+            "title": "State Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state_version",
+          "payload_json",
+          "sha256"
+        ],
+        "title": "IncidentSnapshot",
         "type": "object"
       },
       "MeasurementQuality": {
@@ -705,6 +891,47 @@
         "title": "SentinelStatus",
         "type": "object"
       },
+      "StorageStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "delivery": {
+            "const": "at_least_once_event_id_deduplication",
+            "default": "at_least_once_event_id_deduplication",
+            "title": "Delivery",
+            "type": "string"
+          },
+          "mongo": {
+            "enum": [
+              "disabled",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Mongo",
+            "type": "string"
+          },
+          "redis": {
+            "enum": [
+              "disabled",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Redis",
+            "type": "string"
+          },
+          "retention_days": {
+            "const": 30,
+            "default": 30,
+            "title": "Retention Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "mongo",
+          "redis"
+        ],
+        "title": "StorageStatus",
+        "type": "object"
+      },
       "TruthCell": {
         "additionalProperties": false,
         "properties": {
@@ -746,46 +973,6 @@
           "valve_fraction"
         ],
         "title": "TruthCell",
-        "type": "object"
-      },
-      "ValidationError": {
-        "properties": {
-          "ctx": {
-            "title": "Context",
-            "type": "object"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "loc": {
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "integer"
-                }
-              ]
-            },
-            "title": "Location",
-            "type": "array"
-          },
-          "msg": {
-            "title": "Message",
-            "type": "string"
-          },
-          "type": {
-            "title": "Error Type",
-            "type": "string"
-          }
-        },
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "title": "ValidationError",
         "type": "object"
       }
     }
@@ -842,11 +1029,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             },
-            "description": "Validation Error"
+            "description": "Unprocessable Entity"
           },
           "429": {
             "content": {
@@ -870,6 +1057,108 @@
           }
         },
         "summary": "Capabilities"
+      }
+    },
+    "/api/v1/edge/events": {
+      "post": {
+        "operationId": "ingest_api_v1_edge_events_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EdgeBatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgeBatchAck"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Ingest"
       }
     },
     "/api/v1/edge/status": {
@@ -918,11 +1207,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             },
-            "description": "Validation Error"
+            "description": "Unprocessable Entity"
           },
           "429": {
             "content": {
@@ -946,6 +1235,254 @@
           }
         },
         "summary": "Edge Status"
+      }
+    },
+    "/api/v1/incidents": {
+      "get": {
+        "operationId": "incidents_api_v1_incidents_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Incidents"
+      }
+    },
+    "/api/v1/incidents/{incident_id}/replay": {
+      "get": {
+        "operationId": "replay_api_v1_incidents__incident_id__replay_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "title": "Incident Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReplay"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Replay"
+      }
+    },
+    "/api/v1/storage/status": {
+      "get": {
+        "operationId": "storage_status_api_v1_storage_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Storage Status"
       }
     },
     "/api/v1/telemetry/latest": {
@@ -994,11 +1531,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             },
-            "description": "Validation Error"
+            "description": "Unprocessable Entity"
           },
           "429": {
             "content": {
@@ -1069,11 +1606,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             },
-            "description": "Validation Error"
+            "description": "Unprocessable Entity"
           },
           "429": {
             "content": {
@@ -1112,6 +1649,16 @@
               }
             },
             "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
           }
         },
         "summary": "Health"

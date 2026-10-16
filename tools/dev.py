@@ -23,6 +23,10 @@ SECRET_NAMES = (
     "AEGIS_SERVICE_TOKEN",
     "AEGIS_REDIS_PASSWORD",
     "AEGIS_MONGO_PASSWORD",
+    "AEGIS_MONGO_WRITER_PASSWORD",
+    "AEGIS_MONGO_READER_PASSWORD",
+    "AEGIS_REDIS_WRITER_PASSWORD",
+    "AEGIS_INGEST_TOKEN",
 )
 
 
@@ -76,11 +80,11 @@ def init_env() -> None:
             path.chmod(0o600)
 
 
-def run(command: list[str]) -> None:
+def run(command: list[str], environment: dict[str, str] | None = None) -> None:
     executable = shutil.which(command[0])
     if executable is None:
         raise SystemExit(f"Required command unavailable: {command[0]}")
-    subprocess.run([executable, *command[1:]], cwd=ROOT, check=True)
+    subprocess.run([executable, *command[1:]], cwd=ROOT, check=True, env=environment)
 
 
 def main() -> None:
@@ -94,7 +98,34 @@ def main() -> None:
     if args.command == "init-env":
         print("Local configuration ready; secret values not displayed.")
     elif args.command == "start":
-        run([*COMPOSE, "up", "--build", "--detach", "--wait", "--wait-timeout", "180"])
+        run([*COMPOSE, "build"])
+        run([*COMPOSE, "up", "--detach", "--wait", "--wait-timeout", "180", "mongo", "redis"])
+        bootstrap_names = [
+            "AEGIS_MONGO_PASSWORD",
+            "AEGIS_REDIS_PASSWORD",
+            "AEGIS_MONGO_WRITER_PASSWORD",
+            "AEGIS_MONGO_READER_PASSWORD",
+            "AEGIS_REDIS_WRITER_PASSWORD",
+        ]
+        values = read_env()
+        flags = [item for name in bootstrap_names for item in ("--env", name)]
+        run(
+            [
+                "docker",
+                "run",
+                "--rm",
+                "--network",
+                "aegis-grid_storage",
+                *flags,
+                "aegis-grid-python:phase4",
+                "python",
+                "-m",
+                "aegis_api.storage",
+                "migrate",
+            ],
+            {**os.environ, **{name: values[name] for name in bootstrap_names}},
+        )
+        run([*COMPOSE, "up", "--detach", "--wait", "--wait-timeout", "180"])
         port = os.environ.get("AEGIS_WEB_PORT", read_env().get("AEGIS_WEB_PORT", "8080"))
         print(f"Local simulation ready at http://127.0.0.1:{port}")
         print("In your own terminal, run python tools/dev.py token for the viewer token.")
@@ -127,7 +158,7 @@ def main() -> None:
                 "--target",
                 "qa",
                 "-t",
-                "aegis-grid-qa:phase3",
+                "aegis-grid-qa:phase4",
                 ".",
             ],
             [
@@ -136,22 +167,24 @@ def main() -> None:
                 "--rm",
                 "--network",
                 "none",
-                "aegis-grid-qa:phase3",
+                "aegis-grid-qa:phase4",
                 "ctest",
                 "--test-dir",
                 "/build",
                 "--output-on-failure",
             ],
-            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase3"],
+            ["docker", "run", "--rm", "--network", "none", "aegis-grid-qa:phase4"],
             [sys.executable, "tools/secret_scan.py"],
             [sys.executable, "-m", "pip_audit", "--skip-editable", "--timeout", "60"],
             ["pnpm", "audit", "--audit-level", "high"],
             [sys.executable, "tools/smoke.py"],
+            [sys.executable, "tools/cross_language_check.py"],
+            [*COMPOSE, "exec", "-T", "api", "python", "-m", "aegis_api.storage_checks"],
             ["pnpm", "exec", "playwright", "test"],
         ]:
             print(f"CHECK: {' '.join(command)}", flush=True)
             run(command)
-        print("Phase 3 checks passed.")
+        print("Phase 4 checks passed.")
 
 
 if __name__ == "__main__":

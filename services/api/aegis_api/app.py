@@ -1,8 +1,10 @@
 import asyncio
+import hashlib
+import logging
 import time
 from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
-from typing import Any, Literal
+from contextlib import asynccontextmanager, suppress
+from typing import Annotated, Any, Literal
 
 import httpx
 from aegis_contracts.config import Settings
@@ -10,15 +12,27 @@ from aegis_contracts.http import install_http_boundary
 from aegis_contracts.models import (
     Capabilities,
     Capability,
+    EdgeBatch,
+    EdgeBatchAck,
     EdgeStatus,
     ErrorResponse,
     Health,
+    IncidentPage,
+    IncidentReplay,
     PlantTelemetry,
+    StorageStatus,
 )
 from aegis_contracts.security import RequireToken
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi import Path as ApiPath
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import ValidationError
+from pymongo.errors import PyMongoError
+from redis.exceptions import RedisError
+
+from aegis_api.storage import EventConflict, StorageUnavailable, TelemetryStore
+
+logger = logging.getLogger("aegis.api")
 
 
 class RateLimit:
@@ -42,6 +56,21 @@ def create_app(
 ) -> FastAPI:
     config = settings or Settings.from_env()
     active_streams = 0
+    store = TelemetryStore(config)
+
+    async def collect(client: httpx.AsyncClient) -> None:
+        while True:
+            try:
+                await store.probe()
+                response = await client.get("/v1/edge/status")
+                response.raise_for_status()
+                status = EdgeStatus.model_validate_json(response.content)
+                for event in status.recent_events:
+                    await store.append(event)
+                await store.publish_pending()
+            except (httpx.HTTPError, PyMongoError, RedisError, ValueError, StorageUnavailable):
+                logger.warning("Monitoring collection unavailable; journal retained")
+            await asyncio.sleep(1)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -54,10 +83,20 @@ def create_app(
             trust_env=False,
         ) as client:
             app.state.edge = client
-            yield
+            app.state.store = store
+            worker = asyncio.create_task(collect(client)) if config.storage_enabled else None
+            try:
+                yield
+            finally:
+                if worker is not None:
+                    worker.cancel()
+                    with suppress(asyncio.CancelledError):
+                        await worker
+                await store.close()
 
     app = FastAPI(
         title="AEGIS GRID API",
+        responses={422: {"model": ErrorResponse}},
         version="0.2.0",
         lifespan=lifespan,
         docs_url=None,
@@ -70,6 +109,72 @@ def create_app(
     errors: dict[int | str, dict[str, Any]] = {
         code: {"model": ErrorResponse} for code in (401, 429, 503)
     }
+
+    async def ingest_auth(authorization: Annotated[str | None, Header()] = None) -> None:
+        if config.ingest_token is None:
+            raise HTTPException(503, "Monitoring receiver is not configured")
+        RequireToken(config.ingest_token.get_secret_value())(authorization)
+
+    @app.post(
+        "/api/v1/edge/events",
+        response_model=EdgeBatchAck,
+        dependencies=[Depends(ingest_auth), limit],
+        responses=errors,
+    )
+    async def ingest(
+        batch: EdgeBatch, idempotency_key: Annotated[str | None, Header()] = None
+    ) -> EdgeBatchAck:
+        digest = hashlib.sha256(batch.model_dump_json().encode()).hexdigest()
+        if idempotency_key != digest:
+            raise HTTPException(400, "Canonical batch digest mismatch")
+        try:
+            for event in batch.events:
+                await store.append(event)
+            return EdgeBatchAck(accepted_event_ids=[event.event_id for event in batch.events])
+        except EventConflict as exc:
+            raise HTTPException(409, "Event ID conflicts with immutable journal") from exc
+        except (PyMongoError, StorageUnavailable) as exc:
+            raise HTTPException(
+                503, "Durable journal unavailable; retry without changing events"
+            ) from exc
+
+    @app.get(
+        "/api/v1/storage/status",
+        response_model=StorageStatus,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def storage_status() -> StorageStatus:
+        return await store.probe()
+
+    @app.get(
+        "/api/v1/incidents",
+        response_model=IncidentPage,
+        dependencies=[auth, limit],
+        responses=errors,
+    )
+    async def incidents() -> IncidentPage:
+        try:
+            return await store.incidents()
+        except (PyMongoError, StorageUnavailable) as exc:
+            raise HTTPException(503, "Incident journal unavailable") from exc
+
+    @app.get(
+        "/api/v1/incidents/{incident_id}/replay",
+        response_model=IncidentReplay,
+        dependencies=[auth, limit],
+        responses={**errors, 404: {"model": ErrorResponse}},
+    )
+    async def replay(
+        incident_id: Annotated[str, ApiPath(pattern=r"^[0-9a-f]{64}$")],
+    ) -> IncidentReplay:
+        try:
+            result = await store.replay(incident_id)
+        except (PyMongoError, StorageUnavailable) as exc:
+            raise HTTPException(503, "Incident replay unavailable") from exc
+        if result is None:
+            raise HTTPException(404, "Incident not found")
+        return result
 
     async def read_edge() -> PlantTelemetry:
         try:
@@ -98,6 +203,8 @@ def create_app(
         status: Literal["ok", "degraded"]
         try:
             await read_edge()
+            if config.storage_enabled and store.mongo_state != "ready":
+                raise HTTPException(503, "Persistent monitoring journal unavailable")
             status, detail = "ok", "Edge telemetry reachable"
         except HTTPException:
             status, detail = "degraded", "Edge telemetry unavailable"
@@ -145,8 +252,8 @@ def create_app(
                 ),
                 Capability(
                     name="Redis / MongoDB persistence",
-                    status="not_implemented",
-                    detail="Local infrastructure only; telemetry persistence is Phase 4",
+                    status="verified_local" if config.storage_enabled else "not_implemented",
+                    detail="Append-only Mongo journal and bounded Redis fanout; read-only replay",
                 ),
             ]
         )

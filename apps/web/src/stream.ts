@@ -1,5 +1,8 @@
 import type { components } from "../../../packages/contracts/generated/api";
 export type Telemetry = components["schemas"]["PlantTelemetry"];
+export type IncidentPage = components["schemas"]["IncidentPage"];
+export type IncidentReplay = components["schemas"]["IncidentReplay"];
+export type StorageStatus = components["schemas"]["StorageStatus"];
 export type EdgeStatus = components["schemas"]["EdgeStatus"];
 export type Capabilities = components["schemas"]["Capabilities"];
 

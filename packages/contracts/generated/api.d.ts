@@ -21,6 +21,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/edge/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Ingest */
+        post: operations["ingest_api_v1_edge_events_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/edge/status": {
         parameters: {
             query?: never;
@@ -30,6 +47,57 @@ export interface paths {
         };
         /** Edge Status */
         get: operations["edge_status_api_v1_edge_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/incidents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Incidents */
+        get: operations["incidents_api_v1_incidents_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/incidents/{incident_id}/replay": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Replay */
+        get: operations["replay_api_v1_incidents__incident_id__replay_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/storage/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Storage Status */
+        get: operations["storage_status_api_v1_storage_status_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -130,10 +198,10 @@ export interface components {
             mutations_enabled: false;
             /**
              * Phase
-             * @default 3
+             * @default 4
              * @constant
              */
-            phase: 3;
+            phase: 4;
         };
         /** Capability */
         Capability: {
@@ -165,6 +233,22 @@ export interface components {
             /** Temperature C */
             temperature_c: number;
         };
+        /** EdgeBatch */
+        EdgeBatch: {
+            /** Events */
+            events: components["schemas"]["EdgeIncident"][];
+            /**
+             * Protocol Version
+             * @default aegis-edge-v1
+             * @constant
+             */
+            protocol_version: "aegis-edge-v1";
+        };
+        /** EdgeBatchAck */
+        EdgeBatchAck: {
+            /** Accepted Event Ids */
+            accepted_event_ids: string[];
+        };
         /** EdgeIncident */
         EdgeIncident: {
             /** Event Id */
@@ -177,6 +261,12 @@ export interface components {
              */
             kind: "anomaly" | "local_stop";
             /**
+             * Origin
+             * @default edge_observer
+             * @enum {string}
+             */
+            origin: "edge_observer" | "storage_contract_fixture";
+            /**
              * Policy Revision
              * @default synthetic-shield-v1
              * @constant
@@ -186,6 +276,7 @@ export interface components {
             run_id: string;
             /** Simulation Time S */
             simulation_time_s: number;
+            snapshot?: components["schemas"]["IncidentSnapshot"] | null;
             /** State Version */
             state_version: number;
         };
@@ -224,11 +315,6 @@ export interface components {
             /** Message */
             message: string;
         };
-        /** HTTPValidationError */
-        HTTPValidationError: {
-            /** Detail */
-            detail?: components["schemas"]["ValidationError"][];
-        };
         /** Health */
         Health: {
             /** Detail */
@@ -246,6 +332,69 @@ export interface components {
              * @enum {string}
              */
             status: "ok" | "degraded";
+        };
+        /** IncidentPage */
+        IncidentPage: {
+            /** Items */
+            items: components["schemas"]["IncidentRecord"][];
+        };
+        /** IncidentRecord */
+        IncidentRecord: {
+            event: components["schemas"]["EdgeIncident"];
+            /** Incident Id */
+            incident_id: string;
+            /** Ingested At */
+            ingested_at: string;
+            /** Payload Sha256 */
+            payload_sha256: string;
+            /**
+             * Record Version
+             * @default 1
+             * @constant
+             */
+            record_version: 1;
+            /**
+             * Tenant Id
+             * @default local
+             * @constant
+             */
+            tenant_id: "local";
+        };
+        /** IncidentReplay */
+        IncidentReplay: {
+            /** Events */
+            events: components["schemas"]["IncidentRecord"][];
+            incident: components["schemas"]["IncidentRecord"];
+            /** Reproducibility Sha256 */
+            reproducibility_sha256: string;
+            /** Snapshot Available */
+            snapshot_available: boolean;
+            /**
+             * Truncated
+             * @default false
+             */
+            truncated: boolean;
+        };
+        /** IncidentSnapshot */
+        IncidentSnapshot: {
+            /**
+             * Model Version
+             * @default coupled-factory-v3
+             * @constant
+             */
+            model_version: "coupled-factory-v3";
+            /** Payload Json */
+            payload_json: string;
+            /**
+             * Point
+             * @default before_local_policy
+             * @constant
+             */
+            point: "before_local_policy";
+            /** Sha256 */
+            sha256: string;
+            /** State Version */
+            state_version: number;
         };
         /** MeasurementQuality */
         MeasurementQuality: {
@@ -384,6 +533,31 @@ export interface components {
              */
             state: "warming" | "nominal" | "anomaly" | "latched_stop";
         };
+        /** StorageStatus */
+        StorageStatus: {
+            /**
+             * Delivery
+             * @default at_least_once_event_id_deduplication
+             * @constant
+             */
+            delivery: "at_least_once_event_id_deduplication";
+            /**
+             * Mongo
+             * @enum {string}
+             */
+            mongo: "disabled" | "ready" | "unavailable";
+            /**
+             * Redis
+             * @enum {string}
+             */
+            redis: "disabled" | "ready" | "unavailable";
+            /**
+             * Retention Days
+             * @default 30
+             * @constant
+             */
+            retention_days: 30;
+        };
         /** TruthCell */
         TruthCell: {
             /**
@@ -397,19 +571,6 @@ export interface components {
             temperature_c: number;
             /** Valve Fraction */
             valve_fraction: number;
-        };
-        /** ValidationError */
-        ValidationError: {
-            /** Context */
-            ctx?: Record<string, never>;
-            /** Input */
-            input?: unknown;
-            /** Location */
-            loc: (string | number)[];
-            /** Message */
-            msg: string;
-            /** Error Type */
-            type: string;
         };
     };
     responses: never;
@@ -449,13 +610,76 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Entity */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    ingest_api_v1_edge_events_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "idempotency-key"?: string | null;
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EdgeBatch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EdgeBatchAck"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Too Many Requests */
@@ -507,13 +731,198 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Entity */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    incidents_api_v1_incidents_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncidentPage"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    replay_api_v1_incidents__incident_id__replay_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                incident_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncidentReplay"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    storage_status_api_v1_storage_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StorageStatus"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Too Many Requests */
@@ -565,13 +974,13 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Entity */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Too Many Requests */
@@ -624,13 +1033,13 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Entity */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Too Many Requests */
@@ -669,6 +1078,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

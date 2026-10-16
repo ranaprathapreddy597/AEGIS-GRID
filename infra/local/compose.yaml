@@ -1,6 +1,6 @@
 name: aegis-grid
 x-python: &python
-  image: aegis-grid-python:phase3
+  image: aegis-grid-python:phase4
   build:
     context: ../..
     dockerfile: infra/local/python.Dockerfile
@@ -37,7 +37,13 @@ services:
       start_period: 10s
   api:
     <<: *python
+    networks: [app, storage]
     environment:
+      AEGIS_STORAGE_ENABLED: "true"
+      AEGIS_MONGO_WRITER_PASSWORD: ${AEGIS_MONGO_WRITER_PASSWORD:?Run python tools/dev.py start}
+      AEGIS_MONGO_READER_PASSWORD: ${AEGIS_MONGO_READER_PASSWORD:?Run python tools/dev.py start}
+      AEGIS_REDIS_WRITER_PASSWORD: ${AEGIS_REDIS_WRITER_PASSWORD:?Run python tools/dev.py start}
+      AEGIS_INGEST_TOKEN: ${AEGIS_INGEST_TOKEN:?Run python tools/dev.py start}
       AEGIS_VIEWER_TOKEN: ${AEGIS_VIEWER_TOKEN:?Run python tools/dev.py start}
       AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
     depends_on:
@@ -48,7 +54,7 @@ services:
       timeout: 3s
       retries: 10
   executor:
-    image: aegis-grid-executor:phase3
+    image: aegis-grid-executor:phase4
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: executor}
     environment:
       AEGIS_SERVICE_TOKEN: ${AEGIS_SERVICE_TOKEN:?Run python tools/dev.py start}
@@ -66,7 +72,7 @@ services:
       timeout: 3s
       retries: 10
   web:
-    image: aegis-grid-web:phase3
+    image: aegis-grid-web:phase4
     build: {context: ../.., dockerfile: infra/local/web.Dockerfile, target: web}
     ports: ["127.0.0.1:${AEGIS_WEB_PORT:-8080}:8080"]
     depends_on:
@@ -86,7 +92,10 @@ services:
       retries: 10
   redis:
     image: redis:8-alpine@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
-    command: [sh, -c, 'exec redis-server --requirepass "$$REDISCLI_AUTH" --maxmemory 64mb --maxmemory-policy noeviction --appendonly yes']
+    command:
+      - sh
+      - -c
+      - 'if [ ! -f /data/users.acl ]; then umask 077; printf "user default on >%s ~* &* +@all\n" "$$REDISCLI_AUTH" > /data/users.acl; fi; exec redis-server --aclfile /data/users.acl --maxmemory 64mb --maxmemory-policy noeviction --appendonly yes'
     environment:
       REDISCLI_AUTH: ${AEGIS_REDIS_PASSWORD:?Run python tools/dev.py start}
     volumes: [redis-data:/data]

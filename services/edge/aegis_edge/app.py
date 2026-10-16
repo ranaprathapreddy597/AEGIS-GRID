@@ -73,7 +73,7 @@ class TwinReader:
             *options,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.DEVNULL,
-            limit=16384,
+            limit=65536,
         )
         self.running = True
         try:
@@ -126,6 +126,7 @@ class TwinReader:
                                     "simulation_time_s": raw.simulation_time_s,
                                     "kind": kind,
                                     "evidence": envelope.sentinel.evidence,
+                                    "snapshot": envelope.snapshot,
                                 }
                             )
                         )

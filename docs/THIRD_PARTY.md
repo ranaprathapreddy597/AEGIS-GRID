@@ -25,3 +25,8 @@ and Debian copyright notices remain applicable.
 Phase 3 adds faiss-cpu 1.15.1 (FAISS, MIT) and NumPy 2.4.6 (BSD-3-Clause,
 with bundled-library notices). Exact wheel hashes are in uv.lock. The runtime
 installs pinned Debian libgomp1 for CPU OpenMP; no GPU/NPU SDK is used.
+
+
+Phase 4 adds PyMongo 4.19.0 (Apache-2.0), redis-py 8.1.0 (MIT), and AJV 8.20.0
+(MIT) for actual storage and generated JSON Schema/Node contract verification.
+Exact package hashes are in the Python and pnpm lockfiles.

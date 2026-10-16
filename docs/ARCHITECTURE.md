@@ -1,6 +1,6 @@
 # Architecture and current boundary
 
-Phase 3 implements the read-only local path below. The master constitution
+Phase 4 implements the read-only local path below. The master constitution
 remains the target architecture for later phases.
 
 ```mermaid
@@ -9,9 +9,12 @@ flowchart LR
   E -->|service bearer token / validated JSON| A[FastAPI]
   A -->|viewer bearer token / SSE| N[loopback nginx]
   N --> R[React]
+  E -->|monitoring events| A
+  A -->|scoped append/read| M
+  A -->|event fanout| D
   X[Node executor: deny all mutations]
-  M[(Mongo: isolated infrastructure)]
-  D[(Redis: isolated infrastructure)]
+  M[(Mongo: append-only monitoring journal)]
+  D[(Redis: bounded event stream)]
 ```
 
 ## Process and trust boundaries
@@ -29,8 +32,9 @@ flowchart LR
 - The browser talks only to nginx on the selected loopback port (saved in `.env`).
   Nginx joins an ingress bridge plus the internal app network; API/edge/executor have no
   published host ports. Backend tokens are absent from the JavaScript bundle.
-- Redis/Mongo are on a separate internal network, without app connections or host
-  ports. Their admin bootstrap credentials are never passed to API/edge/executor.
+- Redis/Mongo are on the internal storage network, without published host ports.
+  API joins that network with scoped monitoring append/read credentials. Admin
+  bootstrap credentials are used only by a disposable migration container.
 - The executor is a typed Node process with a health endpoint and explicit denials.
   It has no database, GitHub, physical-device or cloud clients.
 
@@ -58,3 +62,16 @@ Phase 4 adds Redis streams, Mongo events, replay, retention and tenant boundarie
 Phases 5–10 add evidence, MI300X inference, LangGraph, robust planning, WebAuthn and
 independent capability-checked execution. Phase 11 extends this dashboard; Phase 12
 audits the entire product and measured demo. These are planned, not implemented.
+
+
+## Phase 4 persistence
+
+ADR 0007 defines canonical Mongo events, recoverable immutable views and durable
+Redis fanout receipts. The local collector runs independently of browser reads.
+The AEGIS HTTPS protocol receiver is implemented with a distinct ingest token;
+no operational command is accepted. Replays include exact pre-policy native state,
+payload hashes and a deterministic event-page fingerprint. Reads are bounded;
+`truncated` explicitly indicates replay pages larger than 100 events. Current
+native incidents contain the anomaly and local-stop events for one run.
+The actual C++/Python HTTP frame is also validated by Node/AJV against generated
+JSON Schema; the live React path is verified separately by Playwright.

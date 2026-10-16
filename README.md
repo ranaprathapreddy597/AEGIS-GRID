@@ -2,7 +2,7 @@
 
 An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
-**Current scope: Phase 3 — independent edge sentinel and local safety.**
+**Current scope: Phase 4 — event journal and restart replay (passed).**
 
 C++20 C ABI + independent CPU sentinel → Python edge → authenticated FastAPI SSE → React.
 Six cells share a finite coolant loop, bounded pump/valves and an electrical feeder.
@@ -74,7 +74,7 @@ workflow is Docker. See the [runbook](docs/DEMO_RUNBOOK.md) for debugging/reset.
 | C++ thermal kernel | Real compiled C++20 code; synthetic coupled physics; 100 seeded fault fixtures; C ABI snapshots; independent local emergency policy |
 | Edge, API, React | Real processes, authenticated requests, live SSE, no fixture readings |
 | Node executor | Running health service; every mutation is denied |
-| Redis / Mongo | Local authenticated infrastructure; isolated from application credentials, not yet used for telemetry persistence |
+| Redis / Mongo | Append-only monitoring journal, immutable snapshots/incidents and bounded fanout; scoped credentials, operational collections closed |
 | MI300X / ROCm / vLLM | No provisioned cloud endpoint; no performance claims |
 | Evolus / Pinecone / GitHub | No live connector implemented or called |
 | Edge sentinel / FAISS / local emergency shield | Real sensor-only CPU observer and bounded feature memory; synthetic limits, isolated simulator only |
@@ -84,10 +84,10 @@ See [architecture](docs/ARCHITECTURE.md), [progress](docs/PROGRESS.md),
 [integration evidence](docs/INTEGRATION_EVIDENCE.md),
 [open issues](docs/OPEN_ISSUES.md), and [security baseline](docs/security/THREAT_MODEL.md).
 
-The full master prompt is not finished. Phases 4–12 remain.
+The full master prompt is not finished. Phases 5–12 remain.
 
 See [physics equations and fault semantics](docs/PHYSICS.md) and the
-[Phase 3 evidence](docs/results/PHASE3.md). Toggle **Simulation ground truth**
+[phase reports](docs/results/PHASE3.md). Toggle **Simulation ground truth**
 to inspect hidden temperatures and flow alongside the observed sensor traces.
 
 
@@ -97,3 +97,11 @@ The dashboard shows detector state, policy, FAISS count and cloud queue status.
 `AEGIS_SAFETY_MODE=observe_only` is an explicit local comparison mode; it is shown
 in telemetry and cannot be enabled by an API or model response. See the runbook
 for controlled versus unmitigated demonstrations and the [design ADR](docs/ADR/0006-independent-edge-sentinel.md).
+
+
+Phase 4 startup provisions scoped local Mongo/Redis identities through a disposable
+migration container. API never receives the bootstrap administrator passwords.
+The command center reads the persistent incident journal, replays immutable events
+and downloads the captured native snapshot/evidence. Monitoring append permission
+uses a separate ingest token; it cannot write operational plans/actions/audit data.
+See [storage design](docs/ADR/0007-event-journal-and-scoped-storage.md).

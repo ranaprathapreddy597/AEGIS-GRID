@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "actual_services": [
+    "MongoDB",
+    "Redis"
+  ],
+  "forbidden_operations_denied": 6,
+  "idempotency": "identical retry / changed payload denied",
+  "load_test": {
+    "events": 128,
+    "concurrency": 8,
+    "wall_s": 0.26831623799989757,
+    "append_median_ms": 10.6809075,
+    "append_p95_ms": 21.074756
+  },
+  "redis_delivery_verified": true,
+  "fixture_origin": "storage_contract_fixture",
+  "note": "App credentials only; fixture records excluded from default incident listing"
+}

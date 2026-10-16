@@ -32,12 +32,68 @@
       "title": "Edge Url",
       "type": "string"
     },
+    "ingest_token": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ingest Token"
+    },
     "memory_capacity": {
       "default": 256,
       "maximum": 4096,
       "minimum": 32,
       "title": "Memory Capacity",
       "type": "integer"
+    },
+    "mongo_reader_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Mongo Reader Password"
+    },
+    "mongo_writer_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Mongo Writer Password"
+    },
+    "redis_writer_password": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Redis Writer Password"
     },
     "safety_mode": {
       "default": "enforce",
@@ -72,6 +128,11 @@
       "title": "Service Token",
       "type": "string",
       "writeOnly": true
+    },
+    "storage_enabled": {
+      "default": false,
+      "title": "Storage Enabled",
+      "type": "boolean"
     },
     "time_scale": {
       "default": 1.0,

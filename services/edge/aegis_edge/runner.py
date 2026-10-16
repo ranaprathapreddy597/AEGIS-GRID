@@ -1,11 +1,19 @@
 """Isolated CPU process: C++ library + sensor-only sentinel + independent local shield."""
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
 
-from aegis_contracts.models import Scenario, SensorFrame, SentinelStatus, TwinMeasurement
+from aegis_contracts.models import (
+    IncidentSnapshot,
+    Scenario,
+    SensorFrame,
+    SentinelStatus,
+    SupervisorFrame,
+    TwinMeasurement,
+)
 
 from aegis_edge.sentinel import SafetyShield, Sentinel
 from aegis_edge.twin import NativeTwin
@@ -22,6 +30,7 @@ class SupervisedTwin:
         self.twin = NativeTwin(scenario, library)
         self.sentinel = Sentinel(memory_capacity, observe_only)
         self.last_status: SentinelStatus | None = None
+        self.incident_snapshot: IncidentSnapshot | None = None
 
     def step(self, dt: float = 0.5) -> tuple[TwinMeasurement, SentinelStatus | None]:
         frame = self.twin.step(dt)
@@ -29,6 +38,13 @@ class SupervisedTwin:
             return frame, self.last_status
         sensors = SensorFrame.from_twin(frame)
         status = self.sentinel.update(sensors)
+        if status.latched and self.incident_snapshot is None:
+            envelope = json.loads(self.twin.snapshot())
+            self.incident_snapshot = IncidentSnapshot(
+                state_version=sensors.state_version,
+                payload_json=envelope["payload"],
+                sha256=envelope["sha256"],
+            )
         if status.latched and not self.sentinel.observe_only:
             controls = SafetyShield.emergency_controls()
             if not SafetyShield.authorize(
@@ -60,17 +76,18 @@ def main() -> None:
         args.memory_capacity,
     )
     try:
+        emitted_snapshot = False
         while True:
             frame, status = supervisor.step()
             if frame.measurement.packet_available and status is not None:
+                snapshot = supervisor.incident_snapshot if not emitted_snapshot else None
                 print(
-                    '{"frame":'
-                    + frame.model_dump_json()
-                    + ',"sentinel":'
-                    + status.model_dump_json()
-                    + "}",
+                    SupervisorFrame(
+                        frame=frame, sentinel=status, snapshot=snapshot
+                    ).model_dump_json(),
                     flush=True,
                 )
+                emitted_snapshot = emitted_snapshot or snapshot is not None
             time.sleep(0.5 / args.speed)
     finally:
         supervisor.close()

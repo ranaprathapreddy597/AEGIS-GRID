@@ -141,3 +141,18 @@ Successful remote cloud TLS and MI300X remain unverified. Reconnect ack tests
 use explicit local HTTP doubles; unreachability uses actual connection refusal.
 Queues are bounded and volatile; durable persistence is Phase 4. The user supplied
 an Evolus OpenAPI file for Phase 5; no provider call or credential use occurred.
+
+## Phase 4 execution — 2026-10-16
+
+Actual local Mongo and Redis now store monitoring events with separate scoped
+identities. The full gate passed 155 Python / 3 CTest / 6 Chromium checks, both
+dependency audits, secret scan and live cross-language/HTTP checks. Six actual
+forbidden Mongo/Redis operations were refused. Mongo writer acknowledgement is
+verified as journaled w=1. The 128-event concurrency-eight check measured median
+24.112 ms and p95 93.970 ms, 0.9034 s wall. This is one local sample, not an SLA.
+A Chromium test restarted the actual API and verified unchanged native incident
+snapshot, events and replay digest. Separate Redis restart verified persistent
+ACL authentication and subsequent delivery. See results/PHASE4.md and raw logs.
+No external provider call, hardware inference or operational enterprise write
+was performed. Raw Evolus specification was supplied; application scope and live
+extraction verification remain pending. MI300X provisioning will follow later.

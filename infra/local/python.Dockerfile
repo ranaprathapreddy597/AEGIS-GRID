@@ -4,6 +4,7 @@ WORKDIR /app
 RUN pip install --no-cache-dir uv==0.13.1
 RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
 COPY pyproject.toml uv.lock ./
+RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
 COPY packages/contracts/python packages/contracts/python
 COPY services/api services/api
 COPY services/edge services/edge

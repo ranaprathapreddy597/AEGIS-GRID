@@ -1,3 +1,5 @@
+import hashlib
+import json
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -141,7 +143,7 @@ class Capability(Contract):
 
 
 class Capabilities(Contract):
-    phase: Literal[3] = 3
+    phase: Literal[4] = 4
     mode: Literal["local_simulation"] = "local_simulation"
     mutations_enabled: Literal[False] = False
     capabilities: list[Capability]
@@ -205,6 +207,14 @@ class EdgeIncident(Contract):
     kind: Literal["anomaly", "local_stop"]
     evidence: Annotated[list[AnomalyEvidence], Field(max_length=12)]
     policy_revision: Literal["synthetic-shield-v1"] = "synthetic-shield-v1"
+    snapshot: "IncidentSnapshot | None" = None
+    origin: Literal["edge_observer", "storage_contract_fixture"] = "edge_observer"
+
+    @model_validator(mode="after")
+    def snapshot_version_matches(self) -> "EdgeIncident":
+        if self.snapshot is not None and self.snapshot.state_version != self.state_version:
+            raise ValueError("Incident and native snapshot versions differ")
+        return self
 
 
 class EdgeStatus(Contract):
@@ -228,6 +238,66 @@ class EdgeBatchAck(Contract):
 class SupervisorFrame(Contract):
     frame: TwinMeasurement
     sentinel: SentinelStatus
+    snapshot: "IncidentSnapshot | None" = None
+
+    @model_validator(mode="after")
+    def snapshot_version_matches(self) -> "SupervisorFrame":
+        if self.snapshot is not None and self.snapshot.state_version != self.frame.state_version:
+            raise ValueError("Supervisor frame and native snapshot versions differ")
+        return self
+
+
+class IncidentSnapshot(Contract):
+    model_version: Literal["coupled-factory-v3"] = "coupled-factory-v3"
+    state_version: Annotated[int, Field(ge=1)]
+    point: Literal["before_local_policy"] = "before_local_policy"
+    payload_json: Annotated[str, Field(max_length=32768)]
+    sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+
+    @model_validator(mode="after")
+    def consistent(self) -> "IncidentSnapshot":
+        if hashlib.sha256(self.payload_json.encode()).hexdigest() != self.sha256:
+            raise ValueError("Snapshot integrity mismatch")
+        data = json.loads(self.payload_json)
+        if (
+            not isinstance(data, dict)
+            or data.get("format") != "aegis-snapshot-v3"
+            or data.get("version") != self.state_version
+        ):
+            raise ValueError("Snapshot revision/version mismatch")
+        return self
+
+
+class IncidentRecord(Contract):
+    tenant_id: Literal["local"] = "local"
+    incident_id: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+    record_version: Literal[1] = 1
+    payload_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+    ingested_at: str
+    event: EdgeIncident
+
+
+class IncidentPage(Contract):
+    items: Annotated[list[IncidentRecord], Field(max_length=50)]
+
+
+class IncidentReplay(Contract):
+    incident: IncidentRecord
+    events: Annotated[list[IncidentRecord], Field(max_length=100)]
+    reproducibility_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+    snapshot_available: bool
+    truncated: bool = False
+
+
+class StorageStatus(Contract):
+    mongo: Literal["disabled", "ready", "unavailable"]
+    redis: Literal["disabled", "ready", "unavailable"]
+    delivery: Literal["at_least_once_event_id_deduplication"] = (
+        "at_least_once_event_id_deduplication"
+    )
+    retention_days: Literal[30] = 30
 
 
 PlantTelemetry.model_rebuild()
+EdgeIncident.model_rebuild()
+SupervisorFrame.model_rebuild()

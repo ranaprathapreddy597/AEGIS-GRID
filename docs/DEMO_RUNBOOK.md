@@ -119,3 +119,34 @@ receiver with a separate token should an operator configure AEGIS_CLOUD_EVENTS_U
 and AEGIS_CLOUD_EVENTS_TOKEN and opt into `infra/local/cloud-egress.yaml`.
 The route is this application's protocol, not an assumed Evolus/MI300X route.
 Never put tokens in URLs, CLI arguments, screenshots or Git.
+
+
+## Phase 4 persistent journal and restart replay
+
+Startup now builds images, starts storage, applies an idempotent local migration,
+and starts the app. Existing Mongo/Redis volumes are preserved. It creates
+separate Mongo append/read identities, a one-stream Redis identity and a dedicated
+monitoring ingest token. Keep the generated `.env` with its existing volumes.
+Administrator credentials never enter API/edge/executor environments.
+
+Run the enforced fault scenario above. After detection, the persistent journal
+shows the actual incident. Choose **Replay incident**, then **Download replay**.
+The artifact contains immutable event evidence and a native snapshot captured
+before emergency targets were applied. Replaying evidence never mutates the live
+plant. A process restart preserves the journal and replay fingerprint.
+
+```powershell
+docker compose --env-file .env -f infra/local/compose.yaml exec -T api python -m aegis_api.storage_checks
+```
+
+This explicit local verification uses application credentials, inserts clearly
+labeled contract-test monitoring records, checks idempotency/conflict rejection,
+verifies Redis delivery, tests six harmless scoped permission refusals and measures
+128 appends at concurrency eight. Fixture records do not appear in the ordinary
+incident list. They expire under the same 30-day monitoring retention policy.
+No destructive Redis flush command is executed by this test.
+
+Monitoring data uses one local tenant; this is not production tenancy. Mongo TTL
+expiration is asynchronous, Redis retains at most 10,000 stream entries, and API
+list/replay responses are bounded. A crash between Redis delivery and receipt can
+duplicate a stream item; use event ID for deduplication. See ADR 0007 for limits.

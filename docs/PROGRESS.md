@@ -1,6 +1,8 @@
 # Execution status
 
-Current assigned phase: **3 — independent edge sentinel, FAISS and cloud-outage survival**.
+Current assigned phase: **5 — verified document adapter and manual corpus**.
+Phase 4 passed on 2026-10-16; its completion commit precedes Phase 5 work.
+Phase 3 passed at `b9985f6`.
 Remaining phases authorized in order on 2026-10-15. Phase 2 passed at `57010e1`.
 User authorized continuation on 2026-10-15. Phase 1 commit: `f024ab5`.
 Phase 1 acceptance gate: **PASS**, completed 2026-10-15 (Asia/Calcutta).
@@ -67,3 +69,20 @@ Five healthy and ten deceptive development profile cases pass; these are not a
 held-out benchmark. CPU profile p95 0.971 ms, peak process RSS 101.87 MiB.
 Phase 4 is next. User authorized remaining phases in order; external gates remain
 explicitly unverified until supported by actual access and evidence.
+
+
+## Phase 4 gate — PASS, 2026-10-16
+
+- [x] Local Mongo/Redis migration and scoped application identities provisioned.
+- [x] Append-only canonical journal, immutable incident/snapshot views, Redis outbox receipts.
+- [x] Typed monitoring ingest/read/replay contracts and independent collector.
+- [x] Actual ACL/idempotency/load tests and incident/snapshot restart replay.
+- [x] Live persistent incident UI, complete checks, evidence and phase commit.
+
+The original user-supplied Evolus `api-1.json` remains untracked and unchanged for
+Phase 5. No provided API key is included in source or logs. MI300X is pending.
+
+Final gate: 155 Python / 3 CTest / 6 Chromium; types, lints, contracts, audits,
+actual HTTP/SSE and Node validation passed. Six forbidden storage operations
+were refused. Journaled 128-event append p95 93.970 ms. API restart retained
+identical incident events and snapshot/replay fingerprints. See results/PHASE4.md.

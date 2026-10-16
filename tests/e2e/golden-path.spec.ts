@@ -38,13 +38,13 @@ test("actual C++ telemetry reaches React, exports provenance, and remains access
   expect(data.scenario_sha256).toMatch(/^[0-9a-f]{64}$/);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(accessibility.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target) }))).toEqual([]);
-  await page.screenshot({ path: "docs/results/phase3-dashboard.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase4-dashboard.png", fullPage: true });
   await page.getByRole("tab", { name: /Signal log/ }).click();
   await expect(page.getByRole("table")).toBeVisible();
   await page.getByRole("tab", { name: "Live overview" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.screenshot({ path: "docs/results/phase3-mobile.png", fullPage: true });
+  await page.screenshot({ path: "docs/results/phase4-mobile.png", fullPage: true });
   await page.getByRole("button", { name: "Disconnect" }).click();
   await expect(page.getByLabel("Local viewer token")).toHaveValue("");
   expect(errors).toEqual([]);
@@ -96,7 +96,7 @@ test("actual injected fault hides overheat from observed sensors", async ({ page
     expect(data.ground_truth.cells[0].temperature_c).toBeGreaterThan(80);
     expect(Math.max(...data.cells.map((cell: { temperature_c: number }) => cell.temperature_c))).toBeLessThan(80);
     await expect(page.getByTestId("temperature-0")).toContainText(/3[78]\./);
-    await page.screenshot({ path: "docs/results/phase3-observe-only-overheat.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase4-observe-only-overheat.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
@@ -120,8 +120,52 @@ test("local safety stops deceptive fault while cloud is disabled", async ({ page
       return Math.max(...data.cells.map((cell: { load_fraction: number }) => cell.load_fraction));
     }, { timeout: 10000, intervals: [1000] }).toBeLessThan(0.001);
     await page.getByRole("button", { name: "Simulation ground truth" }).click();
-    await page.screenshot({ path: "docs/results/phase3-local-stop.png", fullPage: true });
+    await page.screenshot({ path: "docs/results/phase4-local-stop.png", fullPage: true });
   } finally {
     execFileSync("docker", compose, { stdio: "pipe", timeout: 20000 });
   }
+});
+
+
+test("native incident snapshot and journal survive an API restart", async ({ page, request }) => {
+  test.setTimeout(60000);
+  const headers = { Authorization: `Bearer ${token}` };
+  let incidentId = "";
+  await expect.poll(async () => {
+    const response = await request.get("/api/v1/incidents", { headers });
+    const data = await response.json();
+    incidentId = data.items?.[0]?.incident_id ?? "";
+    return incidentId.length;
+  }, { timeout: 15000, intervals: [1000] }).toBe(64);
+  await expect.poll(async () => {
+    const response = await request.get(`/api/v1/incidents/${incidentId}/replay`, { headers });
+    const data = await response.json();
+    return data.events.length;
+  }, { timeout: 10000, intervals: [1000] }).toBeGreaterThanOrEqual(2);
+  const before = await (await request.get(`/api/v1/incidents/${incidentId}/replay`, { headers })).json();
+  expect(before.snapshot_available).toBe(true);
+  const snapshot = before.incident.event.snapshot;
+  expect(JSON.parse(snapshot.payload_json).version).toBe(snapshot.state_version);
+  expect(before.incident.event.origin).toBe("edge_observer");
+  execFileSync("docker", ["compose", "--env-file", ".env", "-f", "infra/local/compose.yaml", "restart", "api"], { stdio: "pipe", timeout: 20000 });
+  await expect.poll(async () => {
+    try {
+      const response = await request.get(`/api/v1/incidents/${incidentId}/replay`, { headers });
+      return response.status();
+    } catch { return 0; }
+  }, { timeout: 20000, intervals: [1000] }).toBe(200);
+  const after = await (await request.get(`/api/v1/incidents/${incidentId}/replay`, { headers })).json();
+  expect(after.reproducibility_sha256).toBe(before.reproducibility_sha256);
+  expect(after.incident.event.snapshot.sha256).toBe(snapshot.sha256);
+  expect(after.events).toEqual(before.events);
+  await page.goto("/");
+  await page.getByLabel("Local viewer token").fill(token);
+  await page.getByRole("button", { name: "Connect to live stream" }).click();
+  await page.getByTestId(`incident-${incidentId}`).getByRole("button", { name: "Replay incident" }).click();
+  await expect(page.getByTestId("incident-replay")).toContainText(before.reproducibility_sha256);
+  const downloadWait = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Download replay" }).click();
+  expect((await downloadWait).suggestedFilename()).toMatch(/^aegis-incident-/);
+  await page.getByRole("heading", { name: "Factory signal room." }).click();
+  await page.screenshot({ path: "docs/results/phase4-restart-replay.png", fullPage: true });
 });
