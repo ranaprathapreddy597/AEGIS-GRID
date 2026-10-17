@@ -16,7 +16,7 @@ try {
   await page.getByLabel("Local viewer token").fill(env.AEGIS_VIEWER_TOKEN);
   await page.getByRole("button", {name: "Connect to live stream"}).click();
   await page.getByText("configured mode: amd_hosted", {exact: false}).waitFor();
-  const button = page.getByRole("button", {name: "Investigate latest incident"});
+  const button = page.getByRole("button", {name: "Investigate selected incident"});
   await button.waitFor();
   const stream = page.waitForResponse(r => /\/investigations\/[^/]+\/events$/.test(new URL(r.url()).pathname));
   const final = page.waitForResponse(r => r.request().method() === "POST" && r.url().endsWith("/investigate"), {timeout: 230000});

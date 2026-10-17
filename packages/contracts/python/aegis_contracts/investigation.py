@@ -5,6 +5,7 @@ from typing import Annotated, Literal
 from pydantic import Field
 
 from aegis_contracts.inference import ModelOpinion, PlanningOpinion
+from aegis_contracts.manuals import ManualDecision
 from aegis_contracts.models import Contract, FiniteFloat, SimulatorControls
 from aegis_contracts.optimization import RecoveryAssessment
 
@@ -66,6 +67,31 @@ class ModelAttempt(Contract):
     http_status: Annotated[int, Field(ge=100, le=599)] | None = None
     rejection_class: Annotated[str, Field(max_length=60)] = ""
     schema_errors: Annotated[list[str], Field(max_length=10)] = []
+
+
+RecoveryBlocker = Literal[
+    "incident_gateway_scope_unavailable",
+    "unresolved_manual_evidence",
+    "missing_or_abstaining_diagnosis",
+    "missing_or_ungrounded_planning",
+    "native_candidate_not_verified",
+]
+
+
+class RecoveryEligibility(Contract):
+    investigation_id: Annotated[str, Field(pattern=r"^[0-9a-f-]{36}$")]
+    incident_id: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
+    status: Literal["BLOCKED"] = "BLOCKED"
+    eligible: Literal[False] = False
+    blockers: list[RecoveryBlocker]
+    manual_corpus_sha256: str
+    manual_decision: ManualDecision
+    meaningful_hosted_diagnosis: bool
+    grounded_hosted_planning: bool
+    native_candidate_checked: bool
+    challenge_issued: Literal[False] = False
+    capability_issued: Literal[False] = False
+    execution_scope: Literal["incident_recovery_unavailable"] = "incident_recovery_unavailable"
 
 
 class Investigation(Contract):

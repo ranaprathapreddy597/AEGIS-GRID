@@ -1,5 +1,15 @@
 # Open issues
 
+2026-10-17 final recovery: Scenario A BLOCKED on simultaneous 70/95 C shared
+plant limits without verified supersession, unavailable incident-bound gateway
+scope and hosted diagnosis abstention. Existing sandbox rejects active faults;
+its CTAP2/signature/receipt proof cannot authorize these incidents. Scenario B
+PARTIAL: unsafe challenger rejected and zero new capabilities/writes, but fresh
+AMD planning abstained, so its action-recommendation condition is unproved.
+Do not remove manuals or widen capability scopes to force this demonstration.
+Full source/audit details: results/RECOVERY_DEMONSTRATION.md. Dedicated
+hardware/external/production gates remain blocked.
+
 2026-10-17 unified application: the explicit hosted API/React path now verifies
 dual Pinecone retrieval and real AMD opinions through persistent LangGraph/SSE.
 Automatic service egress is replaced by an explicit hosted override; default

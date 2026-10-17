@@ -1,0 +1,133 @@
+{
+  "status": "PASS",
+  "mode": "actual persisted hosted incident replay",
+  "additional_provider_requests": 0,
+  "passkey_ceremony_performed": false,
+  "rows": [
+    {
+      "scenario": "A",
+      "incident_id": "2720eb4fd744eb02459294d2de5e6e7994f9c7bdede6c819a220898c04d0bc0a",
+      "investigation_id": "3ccf5118-0944-44be-87cc-1fc896c10600",
+      "eligibility_http": 200,
+      "mutation_http": 405,
+      "sse_http": 200,
+      "sse_report_frame": true,
+      "sse_complete": true,
+      "api_post_http": 200,
+      "identical_report": true,
+      "eligibility": {
+        "investigation_id": "3ccf5118-0944-44be-87cc-1fc896c10600",
+        "incident_id": "2720eb4fd744eb02459294d2de5e6e7994f9c7bdede6c819a220898c04d0bc0a",
+        "status": "BLOCKED",
+        "eligible": false,
+        "blockers": [
+          "incident_gateway_scope_unavailable",
+          "unresolved_manual_evidence",
+          "missing_or_abstaining_diagnosis"
+        ],
+        "manual_corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+        "manual_decision": {
+          "status": "no_action",
+          "operational_write_allowed": false,
+          "flags": [
+            {
+              "reason": "contradiction",
+              "citations": [
+                {
+                  "document_id": "SIM-MANUAL",
+                  "revision": "R1",
+                  "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                  "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                  "page": 985,
+                  "quote": "LIMIT CELL-01 temperature degC 0 70",
+                  "table_row": 8
+                },
+                {
+                  "document_id": "SIM-BULLETIN",
+                  "revision": "R2",
+                  "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                  "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                  "page": 1,
+                  "quote": "LIMIT CELL-01 temperature degC 0 95",
+                  "table_row": 8
+                }
+              ]
+            }
+          ],
+          "checked_constraints": 1000
+        },
+        "meaningful_hosted_diagnosis": false,
+        "grounded_hosted_planning": true,
+        "native_candidate_checked": true,
+        "challenge_issued": false,
+        "capability_issued": false,
+        "execution_scope": "incident_recovery_unavailable"
+      },
+      "ui_gate": "Incident recovery BLOCKED\n\nMeaningful hosted diagnosis: no · Grounded hosted plan: yes\n\nincident_gateway_scope_unavailable; unresolved_manual_evidence; missing_or_abstaining_diagnosis\n\nIncident 2720eb4fd744eb02459294d2de5e6e7994f9c7bdede6c819a220898c04d0bc0a · manual corpus c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01 · no incident challenge or capability issued.",
+      "status": "PASS"
+    },
+    {
+      "scenario": "B",
+      "incident_id": "010e2b1d259c4ac778fafbc9eaf9da364fdd434a744d4f0516067acf7247b11d",
+      "investigation_id": "eadb690c-795d-4872-9ff5-814430bc457a",
+      "eligibility_http": 200,
+      "mutation_http": 405,
+      "sse_http": 200,
+      "sse_report_frame": true,
+      "sse_complete": true,
+      "api_post_http": 200,
+      "identical_report": true,
+      "eligibility": {
+        "investigation_id": "eadb690c-795d-4872-9ff5-814430bc457a",
+        "incident_id": "010e2b1d259c4ac778fafbc9eaf9da364fdd434a744d4f0516067acf7247b11d",
+        "status": "BLOCKED",
+        "eligible": false,
+        "blockers": [
+          "incident_gateway_scope_unavailable",
+          "unresolved_manual_evidence",
+          "missing_or_abstaining_diagnosis",
+          "missing_or_ungrounded_planning"
+        ],
+        "manual_corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+        "manual_decision": {
+          "status": "no_action",
+          "operational_write_allowed": false,
+          "flags": [
+            {
+              "reason": "contradiction",
+              "citations": [
+                {
+                  "document_id": "SIM-MANUAL",
+                  "revision": "R1",
+                  "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                  "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                  "page": 985,
+                  "quote": "LIMIT CELL-01 temperature degC 0 70",
+                  "table_row": 8
+                },
+                {
+                  "document_id": "SIM-BULLETIN",
+                  "revision": "R2",
+                  "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                  "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                  "page": 1,
+                  "quote": "LIMIT CELL-01 temperature degC 0 95",
+                  "table_row": 8
+                }
+              ]
+            }
+          ],
+          "checked_constraints": 1000
+        },
+        "meaningful_hosted_diagnosis": false,
+        "grounded_hosted_planning": false,
+        "native_candidate_checked": true,
+        "challenge_issued": false,
+        "capability_issued": false,
+        "execution_scope": "incident_recovery_unavailable"
+      },
+      "ui_gate": "Incident recovery BLOCKED\n\nMeaningful hosted diagnosis: no · Grounded hosted plan: no\n\nincident_gateway_scope_unavailable; unresolved_manual_evidence; missing_or_abstaining_diagnosis; missing_or_ungrounded_planning\n\nIncident 010e2b1d259c4ac778fafbc9eaf9da364fdd434a744d4f0516067acf7247b11d · manual corpus c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01 · no incident challenge or capability issued.",
+      "status": "PASS"
+    }
+  ]
+}

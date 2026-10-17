@@ -431,6 +431,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/investigations/{identifier}/recovery-eligibility": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Incident Recovery Eligibility */
+        get: operations["incident_recovery_eligibility_api_v1_investigations__identifier__recovery_eligibility_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/manuals/evidence": {
         parameters: {
             query?: never;
@@ -1860,6 +1877,54 @@ export interface components {
             status: "checked_non_executable" | "abstained";
             /** Total Rollouts */
             total_rollouts: number;
+        };
+        /** RecoveryEligibility */
+        RecoveryEligibility: {
+            /** Blockers */
+            blockers: ("incident_gateway_scope_unavailable" | "unresolved_manual_evidence" | "missing_or_abstaining_diagnosis" | "missing_or_ungrounded_planning" | "native_candidate_not_verified")[];
+            /**
+             * Capability Issued
+             * @default false
+             * @constant
+             */
+            capability_issued: false;
+            /**
+             * Challenge Issued
+             * @default false
+             * @constant
+             */
+            challenge_issued: false;
+            /**
+             * Eligible
+             * @default false
+             * @constant
+             */
+            eligible: false;
+            /**
+             * Execution Scope
+             * @default incident_recovery_unavailable
+             * @constant
+             */
+            execution_scope: "incident_recovery_unavailable";
+            /** Grounded Hosted Planning */
+            grounded_hosted_planning: boolean;
+            /** Incident Id */
+            incident_id: string;
+            /** Investigation Id */
+            investigation_id: string;
+            /** Manual Corpus Sha256 */
+            manual_corpus_sha256: string;
+            manual_decision: components["schemas"]["ManualDecision"];
+            /** Meaningful Hosted Diagnosis */
+            meaningful_hosted_diagnosis: boolean;
+            /** Native Candidate Checked */
+            native_candidate_checked: boolean;
+            /**
+             * Status
+             * @default BLOCKED
+             * @constant
+             */
+            status: "BLOCKED";
         };
         /** RepairBundle */
         RepairBundle: {
@@ -3912,6 +3977,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    incident_recovery_eligibility_api_v1_investigations__identifier__recovery_eligibility_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecoveryEligibility"];
                 };
             };
             /** @description Unprocessable Entity */

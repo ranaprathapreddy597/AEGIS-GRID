@@ -239,10 +239,12 @@ test("LangGraph cycles, interrupts and survives restart without gateway writes",
   await page.goto("/");
   await page.getByLabel("Local viewer token").fill(token);
   await page.getByRole("button", { name: "Connect to live stream" }).click();
-  await page.getByRole("button", { name: "Investigate latest incident" }).click();
+  await page.getByRole("button", { name: "Investigate selected incident" }).click();
   await expect(page.getByText("Live graph checkpoints received", { exact: true })).toBeVisible();
   await expect(page.getByTestId("investigation-report")).toContainText("PAUSED");
   await expect(page.getByTestId("investigation-report")).toContainText("rejected by Red/Shield");
+  await expect(page.getByTestId("incident-recovery-eligibility")).toContainText("Incident recovery BLOCKED");
+  await expect(page.getByTestId("incident-recovery-eligibility")).toContainText("incident_gateway_scope_unavailable");
   await page.locator(".investigation-panel").screenshot({ path: "docs/results/phase12-investigation.png" });
 });
 

@@ -13,12 +13,13 @@ import httpx
 from aegis_agents.laboratory import analysis_incident, load_ensemble, preview
 from aegis_agents.optimization_service import OptimizationService
 from aegis_agents.optimizer import digest
+from aegis_agents.recovery_gate import recovery_eligibility
 from aegis_agents.service import InvestigationService
 from aegis_contracts.config import Settings
 from aegis_contracts.http import install_http_boundary
 from aegis_contracts.inference import InferenceStatus, MemoryBudget
 from aegis_contracts.integrations import IntegrationGate, IntegrationStatus, RepairBundle
-from aegis_contracts.investigation import Investigation
+from aegis_contracts.investigation import Investigation, RecoveryEligibility
 from aegis_contracts.laboratory import FuturesEnsemble, PreviewRequest, ScenarioPreview
 from aegis_contracts.manuals import ManualEvidence
 from aegis_contracts.models import (
@@ -347,6 +348,15 @@ def create_app(
         if report is None:
             raise HTTPException(404, "Investigation not found")
         return report
+
+    @app.get(
+        "/api/v1/investigations/{identifier}/recovery-eligibility",
+        response_model=RecoveryEligibility,
+        dependencies=[auth, limit],
+    )
+    async def incident_recovery_eligibility(identifier: UUID) -> RecoveryEligibility:
+        report = await read_investigation(identifier)
+        return await asyncio.to_thread(recovery_eligibility, report)
 
     @app.get("/api/v1/investigations/{identifier}/events", dependencies=[auth, limit])
     async def investigation_events(identifier: UUID, request: Request) -> StreamingResponse:

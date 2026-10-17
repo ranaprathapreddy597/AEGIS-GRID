@@ -1,0 +1,851 @@
+Using CPython 3.12.7 interpreter at: D:\AEGIS GRID\.venv\Scripts\python.exe
+Creating virtual environment at: .venv
+Resolved 119 packages in 4ms
+   Building aegis-grid @ file:///D:/AEGIS%20GRID/.run/aegis-proof-a42608d5/source
+      Built aegis-grid @ file:///D:/AEGIS%20GRID/.run/aegis-proof-a42608d5/source
+Prepared 1 package in 3.19s
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 117 packages in 10.37s
+ + aegis-grid==0.1.0 (from file:///D:/AEGIS%20GRID/.run/aegis-proof-a42608d5/source)
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + anyio==4.15.1
+ + ast-serialize==0.13.0
+ + attrs==26.1.0
+ + boolean-py==5.0
+ + cachecontrol==0.14.4
+ + cbor2==6.1.5
+ + certifi==2026.7.22
+ + cffi==2.1.1
+ + charset-normalizer==3.5.2
+ + click==8.5.0
+ + cloudpickle==3.1.2
+ + colorama==0.4.6
+ + cryptography==50.0.2
+ + cyclonedx-python-lib==11.12.0
+ + defusedxml==0.7.1
+ + distro==1.9.0
+ + dnspython==2.9.0
+ + faiss-cpu==1.15.1
+ + fastapi==0.143.1
+ + filelock==4.1.2
+ + fsspec==2026.9.0
+ + h11==0.16.0
+ + hf-xet==1.7.0
+ + httpcore==1.0.9
+ + httpcore2==2.13.1
+ + httpx==0.28.1
+ + httpx2==2.13.1
+ + huggingface-hub==2.2.0
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jinja2==3.1.6
+ + joblib==1.6.0
+ + jsonpatch==1.35
+ + jsonpointer==3.2.1
+ + jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + langchain==1.4.6
+ + langchain-classic==1.0.8
+ + langchain-core==1.6.11
+ + langchain-mongodb==0.12.1
+ + langchain-protocol==0.0.19
+ + langchain-text-splitters==1.1.3
+ + langgraph==1.2.15
+ + langgraph-checkpoint==4.3.0
+ + langgraph-checkpoint-mongodb==0.5.1
+ + langgraph-prebuilt==1.1.1
+ + langgraph-sdk==0.4.7
+ + langsmith==0.14.11
+ + lark==1.3.1
+ + librt==0.16.0
+ + license-expression==30.4.4
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.4
+ + mdurl==0.1.2
+ + model2vec==0.10.0
+ + msgpack==1.2.3
+ + mypy==2.4.0
+ + mypy-extensions==1.1.0
+ + numpy==2.4.6
+ + opentelemetry-api==1.45.1
+ + orjson==3.13.0
+ + ormsgpack==1.13.0
+ + packageurl-python==0.17.6
+ + packaging==26.3
+ + pathspec==1.1.1
+ + pillow==12.3.0
+ + pip==26.2.1
+ + pip-api==0.0.35
+ + pip-audit==2.10.1
+ + pip-requirements-parser==32.0.1
+ + platformdirs==4.13.0
+ + pluggy==1.6.0
+ + py-serializable==2.1.0
+ + pyasn1==0.6.4
+ + pyasn1-modules==0.4.2
+ + pycparser==3.11
+ + pydantic==2.14.1
+ + pydantic-core==2.50.1
+ + pygments==2.21.0
+ + pymongo==4.19.0
+ + pymongo-search-utils==0.3.1
+ + pyopenssl==26.4.0
+ + pyparsing==3.3.3
+ + pypdf==6.20.1
+ + pytest==9.1.1
+ + pyyaml==6.0.3
+ + redis==8.1.0
+ + referencing==0.37.0
+ + reportlab==5.0.1
+ + requests==2.34.2
+ + requests-toolbelt==1.0.0
+ + rich==15.0.0
+ + rpds-py==2026.9.1
+ + ruff==0.17.0
+ + safetensors==0.8.0
+ + sniffio==1.3.1
+ + sortedcontainers==2.4.0
+ + sqlalchemy==2.1.4
+ + starlette==1.8.0
+ + tenacity==9.2.1
+ + tokenizers==0.23.3
+ + tomli==2.5.0
+ + tomli-w==1.2.0
+ + tqdm==4.70.1
+ + truststore==0.10.5
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + urllib3==2.8.0
+ + uuid-utils==0.17.1
+ + uvicorn==0.54.0
+ + webauthn==3.0.1
+ + websockets==16.1.1
+ + xxhash==4.0.1
+ + zstandard==0.25.0
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 21h ago)
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +152
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: D:\.pnpm-store\v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 152, reused 152, downloaded 0, added 81
+Progress: resolved 152, reused 152, downloaded 0, added 151
+Progress: resolved 152, reused 152, downloaded 0, added 152, done
+
+devDependencies:
++ @axe-core/playwright 4.13.0
++ @eslint/js 10.0.1
++ @playwright/test 1.64.0
++ @types/node 26.6.5
++ ajv 8.20.0
++ eslint 10.12.0
++ openapi-typescript 7.13.0
++ typescript 5.9.3
++ typescript-eslint 8.71.2
+
+Done in 3.9s using pnpm v11.25.0
+ Image aegis-grid-python:phase12 Building 
+ Image aegis-grid-executor:phase12 Building 
+ Image aegis-grid-web:phase12 Building 
+ Image aegis-grid-python:phase12 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.21kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from python.Dockerfile
+#2 transferring dockerfile: 2.89kB 0.0s done
+#2 DONE 0.0s
+
+#3 [web internal] load build definition from web.Dockerfile
+#3 transferring dockerfile: 1.51kB 0.0s done
+#3 DONE 0.0s
+
+#4 [edge internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#4 ...
+
+#5 [auth] library/python:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [auth] library/nginx:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#7 [auth] library/node:pull token for registry-1.docker.io
+#7 DONE 0.0s
+
+#8 [executor internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#8 ...
+
+#9 [web internal] load metadata for docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94
+#9 DONE 2.0s
+
+#8 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#8 DONE 2.1s
+
+#4 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#4 DONE 2.1s
+
+#10 [executor internal] load .dockerignore
+#10 transferring context: 203B 0.0s done
+#10 DONE 0.0s
+
+#11 [api internal] load build context
+#11 DONE 0.0s
+
+#12 [web internal] load build context
+#12 DONE 0.0s
+
+#13 [executor node-build  1/12] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#13 resolve docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#13 resolve docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20 0.1s done
+#13 DONE 0.1s
+
+#14 [executor internal] load build context
+#14 transferring context: 3.10kB 0.0s done
+#14 DONE 0.0s
+
+#15 [edge build-tools 1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#15 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#15 DONE 0.1s
+
+#16 [web web 1/3] FROM docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94
+#16 resolve docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94 0.1s done
+#16 DONE 0.1s
+
+#17 [executor node-build 12/12] RUN pnpm --filter @aegis/executor deploy --prod --legacy /executor-runtime
+#17 CACHED
+
+#18 [executor executor 5/6] COPY packages/contracts/generated ./packages/contracts/generated
+#18 CACHED
+
+#19 [executor executor 4/6] COPY --from=node-build /executor-runtime/node_modules ./node_modules
+#19 CACHED
+
+#20 [executor node-build 11/12] RUN pnpm build && pnpm test
+#20 CACHED
+
+#21 [executor node-build  5/12] COPY apps/web/package.json apps/web/package.json
+#21 CACHED
+
+#22 [executor node-build  8/12] COPY apps/web apps/web
+#22 CACHED
+
+#23 [executor node-build  2/12] WORKDIR /app
+#23 CACHED
+
+#24 [executor node-build  9/12] COPY services/executor services/executor
+#24 CACHED
+
+#25 [executor node-build  7/12] RUN --mount=type=cache,id=aegis-pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
+#25 CACHED
+
+#26 [executor node-build 10/12] COPY packages/contracts/generated packages/contracts/generated
+#26 CACHED
+
+#27 [executor node-build  4/12] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.base.json ./
+#27 CACHED
+
+#28 [executor executor 3/6] COPY --from=node-build /app/services/executor/dist ./dist
+#28 CACHED
+
+#29 [executor node-build  6/12] COPY services/executor/package.json services/executor/package.json
+#29 CACHED
+
+#30 [executor node-build  3/12] RUN npm install --global pnpm@11.25.0
+#30 CACHED
+
+#31 [executor executor 6/6] COPY services/executor/package.json ./package.json
+#31 CACHED
+
+#11 [api internal] load build context
+#11 ...
+
+#12 [web internal] load build context
+#12 transferring context: 594.69kB 0.3s done
+#12 DONE 0.3s
+
+#32 [web web 2/3] COPY infra/local/nginx.conf /etc/nginx/nginx.conf
+#32 CACHED
+
+#33 [web node-build  5/12] COPY apps/web/package.json apps/web/package.json
+#33 CACHED
+
+#23 [web node-build  2/12] WORKDIR /app
+#23 CACHED
+
+#34 [web node-build  6/12] COPY services/executor/package.json services/executor/package.json
+#34 CACHED
+
+#35 [web node-build  7/12] RUN --mount=type=cache,id=aegis-pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
+#35 CACHED
+
+#36 [web node-build 12/12] RUN pnpm --filter @aegis/executor deploy --prod --legacy /executor-runtime
+#36 CACHED
+
+#30 [web node-build  3/12] RUN npm install --global pnpm@11.25.0
+#30 CACHED
+
+#37 [web node-build  4/12] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.base.json ./
+#37 CACHED
+
+#38 [web node-build 10/12] COPY packages/contracts/generated packages/contracts/generated
+#38 CACHED
+
+#39 [web node-build 11/12] RUN pnpm build && pnpm test
+#39 CACHED
+
+#40 [web node-build  8/12] COPY apps/web apps/web
+#40 CACHED
+
+#41 [web node-build  9/12] COPY services/executor services/executor
+#41 CACHED
+
+#42 [web web 3/3] COPY --from=node-build /app/apps/web/dist /usr/share/nginx/html
+#42 CACHED
+
+#43 [executor] exporting to image
+#43 exporting layers 0.0s done
+#43 exporting manifest sha256:4a29684220f3d5938dcd3b02165d5fe0d1165e069194c3ec0512c1bac824e57e done
+#43 exporting config sha256:69e087886ff333e28071a6afade11c013c1274fd191cac0bee42580cc18edc79 done
+#43 exporting attestation manifest sha256:12e7b3e7de708229fb22e9f26e0a9dd27a9ddf6fb43df4751f130e8eb524dd96 0.0s done
+#43 exporting manifest list sha256:fe067048d8ae9c8dc4a7ec02be676cbdd430c67c09ee9544896729b56c3bb128 0.0s done
+#43 naming to docker.io/library/aegis-grid-executor:phase12 done
+#43 unpacking to docker.io/library/aegis-grid-executor:phase12 0.0s done
+#43 DONE 0.4s
+
+#11 [api internal] load build context
+#11 transferring context: 3.84MB 0.9s done
+#11 DONE 0.9s
+
+#44 [executor] resolving provenance for metadata file
+#44 DONE 0.0s
+
+#45 [web] exporting to image
+#45 exporting layers 0.0s done
+#45 exporting manifest sha256:1c994108e9f81f380a4c12f48058e7ba04a59dff68d8a914d4e0bdc8678f10d8 0.0s done
+#45 exporting config sha256:43be3ccb1711b99f0a57087001734483f88101644347124b6fbae30abcf90850 done
+#45 exporting attestation manifest sha256:edffe74cc48a70ba622bca8649e68a2cb4aeaef9be1e15e1520140e438c602ec 0.1s done
+#45 exporting manifest list sha256:61d93f1566c74574881f4e969151f51403c2e0ff1e31376e0a972841e7dd4bd6 0.1s done
+#45 naming to docker.io/library/aegis-grid-web:phase12 0.0s done
+#45 unpacking to docker.io/library/aegis-grid-web:phase12 0.1s done
+#45 DONE 0.6s
+
+#46 [api base  4/22] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#46 CACHED
+
+#47 [api base  5/22] COPY pyproject.toml uv.lock ./
+#47 CACHED
+
+#48 [api build-tools 2/5] WORKDIR /app
+#48 CACHED
+
+#49 [api base  9/22] COPY services/edge services/edge
+#49 CACHED
+
+#50 [api base  3/22] RUN pip install --no-cache-dir uv==0.13.1
+#50 CACHED
+
+#51 [api base 13/22] COPY data/scenarios data/scenarios
+#51 CACHED
+
+#52 [api base 15/22] COPY data/repairs data/repairs
+#52 CACHED
+
+#53 [api base 19/22] COPY data/cloud-embedding-manifest.json data/cloud-embedding-manifest.json
+#53 CACHED
+
+#54 [api base 21/22] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#54 CACHED
+
+#55 [api base 12/22] COPY services/agents services/agents
+#55 CACHED
+
+#56 [api build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#56 CACHED
+
+#57 [api base 18/22] COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
+#57 CACHED
+
+#58 [api build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#58 CACHED
+
+#59 [api base  7/22] COPY packages/contracts/python packages/contracts/python
+#59 CACHED
+
+#60 [api base  8/22] COPY services/api services/api
+#60 CACHED
+
+#61 [api base 22/22] RUN uv sync --locked --no-dev --no-editable
+#61 CACHED
+
+#62 [api base 11/22] COPY services/inference services/inference
+#62 CACHED
+
+#63 [api runtime 1/3] COPY --from=build-tools /build/aegis-twin /usr/local/bin/aegis-twin
+#63 CACHED
+
+#64 [api runtime 2/3] COPY --from=build-tools /build/libaegis_twin.so /usr/local/lib/libaegis_twin.so
+#64 CACHED
+
+#65 [api base 17/22] COPY data/real-world-sources.json data/real-world-sources.json
+#65 CACHED
+
+#66 [api base 14/22] COPY data/manuals data/manuals
+#66 CACHED
+
+#67 [api base 10/22] COPY services/ingestion services/ingestion
+#67 CACHED
+
+#68 [api base 20/22] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#68 CACHED
+
+#69 [api build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#69 CACHED
+
+#70 [api base  6/22] RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
+#70 CACHED
+
+#71 [api base 16/22] COPY data/futures data/futures
+#71 CACHED
+
+#72 [api runtime 3/3] RUN useradd --uid 10001 --no-create-home aegis
+#72 CACHED
+
+#73 [api] exporting to image
+#73 exporting layers 0.0s done
+#73 exporting manifest sha256:f36c152ee71375bfa4bc004b8b24f6fb18010ea532a5144db38034a226d2a032 done
+#73 exporting config sha256:96be204aa2823acdf81ffe25fa7385a3dcd97686b4e9590aa4537d08bd7d6d9b 0.0s done
+#73 exporting attestation manifest sha256:8cad2b32bf164d7f65dd19106b7f5720ee7a6eeacff46e68d9143b84cc60367f 0.1s done
+#73 exporting manifest list sha256:d39b0ee5ff3c35a439ac9515e80e7a3d6fec53a41ff84278afc1232da0865a19
+#73 exporting manifest list sha256:d39b0ee5ff3c35a439ac9515e80e7a3d6fec53a41ff84278afc1232da0865a19 0.1s done
+#73 naming to docker.io/library/aegis-grid-python:phase12 0.0s done
+#73 unpacking to docker.io/library/aegis-grid-python:phase12 0.1s done
+#73 DONE 0.4s
+
+#74 [web] resolving provenance for metadata file
+#74 DONE 0.0s
+
+#75 [edge] exporting to image
+#75 exporting layers 0.0s done
+#75 exporting manifest sha256:ff30d58bd4b63891ef4cb2e0ace410266d2cdc1665a880a471884aa6dc373263 0.0s done
+#75 exporting config sha256:be2ac687434f06e1475a03804748adeb529a382573d2c7e626277a665e764d86 0.1s done
+#75 exporting attestation manifest sha256:9c99b93880826eb174969a66996d031125be2b224e8a66044fdeeb04250e442a 0.1s done
+#75 exporting manifest list sha256:60a86a2b984ea59d57c4b113476ebd90dbfdf5bdfd28571c2caac86a0507aa57 0.0s done
+#75 naming to docker.io/library/aegis-grid-python:phase12 done
+#75 unpacking to docker.io/library/aegis-grid-python:phase12 0.0s done
+#75 DONE 0.4s
+
+#76 [api] resolving provenance for metadata file
+#76 DONE 0.1s
+
+#77 [edge] resolving provenance for metadata file
+#77 DONE 0.0s
+ Image aegis-grid-web:phase12 Built 
+ Image aegis-grid-python:phase12 Built 
+ Image aegis-grid-python:phase12 Built 
+ Image aegis-grid-executor:phase12 Built 
+ Network aegis-proof-a42608d5_storage Creating 
+ Network aegis-proof-a42608d5_storage Creating 
+ Network aegis-proof-a42608d5_storage Created 
+ Network aegis-proof-a42608d5_storage Created 
+ Container aegis-proof-a42608d5-redis-1 Creating 
+ Container aegis-proof-a42608d5-mongo-1 Creating 
+ Container aegis-proof-a42608d5-mongo-1 Created 
+ Container aegis-proof-a42608d5-redis-1 Created 
+ Container aegis-proof-a42608d5-mongo-1 Starting 
+ Container aegis-proof-a42608d5-redis-1 Starting 
+ Container aegis-proof-a42608d5-mongo-1 Started 
+ Container aegis-proof-a42608d5-redis-1 Started 
+ Container aegis-proof-a42608d5-redis-1 Waiting 
+ Container aegis-proof-a42608d5-mongo-1 Waiting 
+ Container aegis-proof-a42608d5-redis-1 Healthy 
+ Container aegis-proof-a42608d5-mongo-1 Healthy 
+{"migration": "phase4-v1", "result": "PASS", "runtime_privileges": "append-only monitoring; no update/delete/admin"}
+ Container aegis-proof-a42608d5-redis-1 Running 
+ Container aegis-proof-a42608d5-mongo-1 Running 
+ Network aegis-proof-a42608d5_ingress Creating 
+ Network aegis-proof-a42608d5_app Creating 
+ Network aegis-proof-a42608d5_ingress Creating 
+ Network aegis-proof-a42608d5_app Creating 
+ Network aegis-proof-a42608d5_ingress Created 
+ Network aegis-proof-a42608d5_ingress Created 
+ Network aegis-proof-a42608d5_app Created 
+ Network aegis-proof-a42608d5_app Created 
+ Container aegis-proof-a42608d5-edge-1 Creating 
+ Container aegis-proof-a42608d5-executor-1 Creating 
+ Container aegis-proof-a42608d5-executor-1 Created 
+ Container aegis-proof-a42608d5-edge-1 Created 
+ Container aegis-proof-a42608d5-api-1 Creating 
+ Container aegis-proof-a42608d5-api-1 Created 
+ Container aegis-proof-a42608d5-web-1 Creating 
+ Container aegis-proof-a42608d5-web-1 Created 
+ Container aegis-proof-a42608d5-executor-1 Starting 
+ Container aegis-proof-a42608d5-edge-1 Starting 
+ Container aegis-proof-a42608d5-executor-1 Started 
+ Container aegis-proof-a42608d5-edge-1 Started 
+ Container aegis-proof-a42608d5-edge-1 Waiting 
+ Container aegis-proof-a42608d5-edge-1 Healthy 
+ Container aegis-proof-a42608d5-api-1 Starting 
+ Container aegis-proof-a42608d5-api-1 Started 
+ Container aegis-proof-a42608d5-api-1 Waiting 
+ Container aegis-proof-a42608d5-api-1 Healthy 
+ Container aegis-proof-a42608d5-web-1 Starting 
+ Container aegis-proof-a42608d5-web-1 Started 
+ Container aegis-proof-a42608d5-web-1 Waiting 
+ Container aegis-proof-a42608d5-redis-1 Waiting 
+ Container aegis-proof-a42608d5-mongo-1 Waiting 
+ Container aegis-proof-a42608d5-edge-1 Waiting 
+ Container aegis-proof-a42608d5-api-1 Waiting 
+ Container aegis-proof-a42608d5-executor-1 Waiting 
+ Container aegis-proof-a42608d5-edge-1 Healthy 
+ Container aegis-proof-a42608d5-api-1 Healthy 
+ Container aegis-proof-a42608d5-executor-1 Healthy 
+ Container aegis-proof-a42608d5-mongo-1 Healthy 
+ Container aegis-proof-a42608d5-redis-1 Healthy 
+ Container aegis-proof-a42608d5-web-1 Healthy 
+Local simulation ready at http://localhost:56431
+In your own terminal, run python tools/dev.py token for the viewer token.
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe -m ruff check .
+All checks passed!
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe -m ruff format --check .
+183 files already formatted
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe -m mypy
+Success: no issues found in 56 source files
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/export_contracts.py --check
+Contract schemas match
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/generate_scenarios.py --check
+100 deterministic scenario fixtures checked
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/generate_manual_corpus.py --check
+{"pages": 1000, "source": "synthetic_fixture", "corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01", "baseline": "simulator_evidence_only", "bulletin": {"status": "no_action", "operational_write_allowed": false, "flags": [{"reason": "contradiction", "citations": [{"document_id": "SIM-MANUAL", "revision": "R1", "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e", "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d", "page": 985, "quote": "LIMIT CELL-01 temperature degC 0 70", "table_row": 8}, {"document_id": "SIM-BULLETIN", "revision": "R2", "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a", "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8", "page": 1, "quote": "LIMIT CELL-01 temperature degC 0 95", "table_row": 8}]}], "checked_constraints": 1000}}
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/check_ts_contracts.py
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/generated/openapi.json → C:\Users\ranap\AppData\Local\Temp\aegis-contract-2z81yb1i\api.d.ts [337.3ms]
+TypeScript contracts match
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/check_cloud_manifest.py
+{"result": "PASS", "scope": "Compose render and policy only", "image_pulled": false, "device_verified": false, "deployed": false}
+CHECK: pnpm lint
+$ eslint apps/web/src services/executor/src tests/e2e
+CHECK: pnpm typecheck
+$ pnpm -r typecheck
+Scope: 2 of 3 workspace projects
+services/executor typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+services/executor typecheck: Done
+apps/web typecheck: Done
+CHECK: pnpm build
+$ pnpm -r build
+Scope: 2 of 3 workspace projects
+apps/web build$ tsc --noEmit && vite build
+services/executor build$ tsc
+services/executor build: Done
+apps/web build: vite v8.3.4 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 24 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.42 kB │ gzip:  0.30 kB
+apps/web build: dist/assets/index-BBzRRsar.css   21.67 kB │ gzip:  5.41 kB
+apps/web build: dist/assets/index-7E5-ZxgL.js   278.02 kB │ gzip: 84.34 kB
+apps/web build: ✓ built in 358ms
+apps/web build: Done
+CHECK: pnpm test
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js
+✔ executor fails closed without a token (3.5208ms)
+✔ authenticated and unauthenticated mutations both fail closed (208.1956ms)
+✔ independent verifier accepts only a fixed signed simulator scope (33.0217ms)
+✔ independent verifier refuses signed violation {"sub":"wrong-user"} (2.392ms)
+✔ independent verifier refuses signed violation {"aud":"github"} (1.9119ms)
+✔ independent verifier refuses signed violation {"iss":"model"} (1.6182ms)
+✔ independent verifier refuses signed violation {"exp":1} (1.7971ms)
+✔ independent verifier refuses signed violation {"iat":1} (2.4041ms)
+✔ independent verifier refuses signed violation {"user_verification":false} (2.3326ms)
+✔ independent verifier refuses signed violation {"expected_database_version":99} (2.1203ms)
+✔ independent verifier refuses signed violation {"expected_state_version":999} (1.9348ms)
+✔ independent verifier refuses signed violation {"plan_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"} (1.5679ms)
+✔ independent verifier refuses signed violation {"resource_id":"live-edge"} (1.7003ms)
+✔ independent verifier refuses signed violation {"extra":true} (1.8207ms)
+✔ a valid issuer signature never overrides the independent actuator interlock (4.5973ms)
+✔ an operational Mongo diff must be explicit, fixed and schema-valid (5.4342ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 884.0002
+CHECK: docker build -f infra/local/python.Dockerfile --target qa -t aegis-grid-qa:phase12 .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from python.Dockerfile
+#1 transferring dockerfile: 2.89kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 203B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 ...
+
+#5 [base  1/22] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 4.20MB 0.5s done
+#4 DONE 0.5s
+
+#6 [base  7/22] COPY packages/contracts/python packages/contracts/python
+#6 CACHED
+
+#7 [base 14/22] COPY data/manuals data/manuals
+#7 CACHED
+
+#8 [base 18/22] COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
+#8 CACHED
+
+#9 [base  8/22] COPY services/api services/api
+#9 CACHED
+
+#10 [base 12/22] COPY services/agents services/agents
+#10 CACHED
+
+#11 [base  3/22] RUN pip install --no-cache-dir uv==0.13.1
+#11 CACHED
+
+#12 [base  9/22] COPY services/edge services/edge
+#12 CACHED
+
+#13 [base 19/22] COPY data/cloud-embedding-manifest.json data/cloud-embedding-manifest.json
+#13 CACHED
+
+#14 [base 20/22] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#14 CACHED
+
+#15 [base  5/22] COPY pyproject.toml uv.lock ./
+#15 CACHED
+
+#16 [base  4/22] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [base 21/22] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#17 CACHED
+
+#18 [base 10/22] COPY services/ingestion services/ingestion
+#18 CACHED
+
+#19 [base  6/22] RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
+#19 CACHED
+
+#20 [base 13/22] COPY data/scenarios data/scenarios
+#20 CACHED
+
+#21 [base 11/22] COPY services/inference services/inference
+#21 CACHED
+
+#22 [base  2/22] WORKDIR /app
+#22 CACHED
+
+#23 [base 17/22] COPY data/real-world-sources.json data/real-world-sources.json
+#23 CACHED
+
+#24 [base 16/22] COPY data/futures data/futures
+#24 CACHED
+
+#25 [base 15/22] COPY data/repairs data/repairs
+#25 CACHED
+
+#26 [base 22/22] RUN uv sync --locked --no-dev --no-editable
+#26 CACHED
+
+#27 [build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#27 CACHED
+
+#28 [build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#28 CACHED
+
+#29 [build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#29 CACHED
+
+#30 [qa 1/7] COPY --from=base /app /app
+#30 DONE 4.8s
+
+#31 [qa 2/7] COPY --from=base /usr/local/bin/uv /usr/local/bin/uv
+#31 DONE 0.3s
+
+#32 [qa 3/7] RUN uv sync --locked
+#32 0.833 Resolved 119 packages in 2ms
+#32 0.948    Building aegis-grid @ file:///app
+#32 1.246 Downloading pillow (6.6MiB)
+#32 1.249 Downloading pip (1.7MiB)
+#32 1.257 Downloading pygments (1.2MiB)
+#32 1.262 Downloading ast-serialize (1.3MiB)
+#32 1.264 Downloading ruff (9.9MiB)
+#32 1.268 Downloading mypy (14.8MiB)
+#32 1.270 Downloading reportlab (1.9MiB)
+#32 6.276  Downloaded pygments
+#32 6.432  Downloaded ast-serialize
+#32 6.644       Built aegis-grid @ file:///app
+#32 7.405  Downloaded pip
+#32 7.671  Downloaded reportlab
+#32 12.04  Downloaded pillow
+#32 13.73  Downloaded ruff
+#32 14.88  Downloaded mypy
+#32 14.88 Prepared 33 packages in 14.02s
+#32 14.91 Uninstalled 1 package in 27ms
+#32 15.91 Installed 33 packages in 1.00s
+#32 15.91  ~ aegis-grid==0.1.0 (from file:///app)
+#32 15.91  + ast-serialize==0.13.0
+#32 15.91  + boolean-py==5.0
+#32 15.91  + cachecontrol==0.14.4
+#32 15.91  + cyclonedx-python-lib==11.12.0
+#32 15.91  + defusedxml==0.7.1
+#32 15.91  + iniconfig==2.3.1
+#32 15.91  + librt==0.16.0
+#32 15.91  + license-expression==30.4.4
+#32 15.91  + markdown-it-py==4.2.0
+#32 15.91  + mdurl==0.1.2
+#32 15.91  + msgpack==1.2.3
+#32 15.91  + mypy==2.4.0
+#32 15.91  + mypy-extensions==1.1.0
+#32 15.91  + packageurl-python==0.17.6
+#32 15.91  + pathspec==1.1.1
+#32 15.91  + pillow==12.3.0
+#32 15.91  + pip==26.2.1
+#32 15.91  + pip-api==0.0.35
+#32 15.91  + pip-audit==2.10.1
+#32 15.91  + pip-requirements-parser==32.0.1
+#32 15.91  + platformdirs==4.13.0
+#32 15.91  + pluggy==1.6.0
+#32 15.91  + py-serializable==2.1.0
+#32 15.91  + pygments==2.21.0
+#32 15.91  + pyparsing==3.3.3
+#32 15.91  + pytest==9.1.1
+#32 15.91  + reportlab==5.0.1
+#32 15.91  + rich==15.0.0
+#32 15.91  + ruff==0.17.0
+#32 15.91  + sortedcontainers==2.4.0
+#32 15.91  + tomli==2.5.0
+#32 15.91  + tomli-w==1.2.0
+#32 DONE 16.3s
+
+#33 [qa 4/7] COPY tests tests
+#33 DONE 0.2s
+
+#34 [qa 5/7] COPY tools tools
+#34 DONE 0.1s
+
+#35 [qa 6/7] COPY infra/cloud infra/cloud
+#35 DONE 0.1s
+
+#36 [qa 7/7] COPY packages/contracts/generated packages/contracts/generated
+#36 DONE 0.1s
+
+#37 exporting to image
+#37 exporting layers
+#37 exporting layers 17.7s done
+#37 exporting manifest sha256:ba7d260903ea29c12a5ac3b9501ec0f5fdec364bc9722b93a79637061d29b99f 0.0s done
+#37 exporting config sha256:3a5e698d747f5ec274ffe810908fbcca9ee069c196f21c700f89b5f732eeb8b1 0.0s done
+#37 exporting attestation manifest sha256:54eeb6a15f6821fdb9f53434df6f7a436d173271fc3dc425523bc5b774196975 0.0s done
+#37 exporting manifest list sha256:2b9f10e49b2645ed899cf72d53c457fa431c477c4b4fa34bfe97a0decdbd871e
+#37 exporting manifest list sha256:2b9f10e49b2645ed899cf72d53c457fa431c477c4b4fa34bfe97a0decdbd871e 0.0s done
+#37 naming to docker.io/library/aegis-grid-qa:phase12 done
+#37 unpacking to docker.io/library/aegis-grid-qa:phase12
+#37 unpacking to docker.io/library/aegis-grid-qa:phase12 11.9s done
+#37 DONE 29.8s
+CHECK: docker run --rm --network none aegis-grid-qa:phase12 ctest --test-dir /build --output-on-failure
+Internal ctest changing into directory: /build
+Test project /build
+    Start 1: thermal_kernel
+1/3 Test #1: thermal_kernel ...................   Passed   10.33 sec
+    Start 2: cli_rejects_bad_seed
+2/3 Test #2: cli_rejects_bad_seed .............   Passed    0.01 sec
+    Start 3: cli_rejects_zero_dt
+3/3 Test #3: cli_rejects_zero_dt ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =  10.35 sec
+CHECK: docker run --rm --network none aegis-grid-qa:phase12
+........................................................................ [ 21%]
+........................................................................ [ 43%]
+........................................................................ [ 65%]
+........................................................................ [ 86%]
+............................................                             [100%]
+332 passed in 70.15s (0:01:10)
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/secret_scan.py
+PASS: scanned 677 repository files; no local tokens/private keys found
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe -m pip_audit --skip-editable --timeout 60
+No known vulnerabilities found
+Name       Skip Reason
+---------- -------------------------------
+aegis-grid distribution marked as editable
+CHECK: pnpm audit --audit-level high
+No known vulnerabilities found
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/smoke.py
+{"result": "PASS", "source": "local_cpp_simulator", "sse_frames": 3, "temperature_changed": true, "unauthorized_reads": "denied", "mutations": "general writes unavailable; passkey sandbox checked separately"}
+CHECK: D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.venv\Scripts\python.exe tools/cross_language_check.py
+{"result": "PASS", "actual_frame": true, "boundaries": ["C++", "Python/Pydantic", "HTTP", "Node/AJV", "generated TypeScript"], "invalid_frames_rejected": 4, "react_actual_frame_test": "Playwright gate"}
+CHECK: docker compose --env-file D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.env -f D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\infra\local\compose.yaml exec -T api python -m aegis_api.storage_checks
+{
+  "result": "PASS",
+  "actual_services": [
+    "MongoDB",
+    "Redis"
+  ],
+  "forbidden_operations_denied": 6,
+  "mongo_write_concern": {
+    "j": true,
+    "w": 1
+  },
+  "idempotency": "identical retry / changed payload denied",
+  "load_test": {
+    "events": 128,
+    "concurrency": 8,
+    "wall_s": 0.816255362999982,
+    "append_median_ms": 27.972189999999998,
+    "append_p95_ms": 77.325318
+  },
+  "redis_delivery_verified": true,
+  "fixture_origin": "storage_contract_fixture",
+  "note": "App credentials; fixtures excluded from default incident listing"
+}
+CHECK: docker compose --env-file D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.env -f D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\infra\local\compose.yaml exec -T api python -m aegis_agents.checks
+{"result": "PASS", "actual_mongo_denials": 3, "graph_identity": "checkpoints and append-only analysis; no protected writes"}
+CHECK: docker compose --env-file D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\.env -f D:\AEGIS GRID\.run\aegis-proof-a42608d5\source\infra\local\compose.yaml exec -T api python -m aegis_api.authorization_checks
+{"result": "PASS", "actual_mongo_privilege_denials": 14, "successful_operational_writes": 0}
+CHECK: pnpm exec playwright test
+
+Running 14 tests using 1 worker
+
+(node:9232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Browser transport refusal: GET /api/v1/telemetry/stream net::ERR_INCOMPLETE_CHUNKED_ENCODING
+  ok  1 [chromium] › tests\e2e\approval.spec.ts:10:5 › real WebAuthn virtual authenticator binds approval and independent execution (simulator) (22.6s)
+Browser transport refusal: GET /api/v1/telemetry/stream net::ERR_INCOMPLETE_CHUNKED_ENCODING
+  ok  2 [chromium] › tests\e2e\approval.spec.ts:10:5 › real WebAuthn virtual authenticator binds approval and independent execution (Mongo maintenance) (22.6s)
+  ok  3 [chromium] › tests\e2e\golden-path.spec.ts:10:5 › actual C++ telemetry reaches React, exports provenance, and remains accessible (5.1s)
+  ok  4 [chromium] › tests\e2e\golden-path.spec.ts:54:5 › wrong viewer token fails visibly without telemetry (553ms)
+  ok  5 [chromium] › tests\e2e\golden-path.spec.ts:62:5 › memory calculator reports projected fit and blocked hardware honestly (1.0s)
+  ok  6 [chromium] › tests\e2e\golden-path.spec.ts:76:5 › actual manual citations and contradictory bulletin block actions (4.8s)
+  ok  7 [chromium] › tests\e2e\golden-path.spec.ts:104:5 › real edge outage becomes visible and reconnects to a new simulator run (8.7s)
+  ok  8 [chromium] › tests\e2e\golden-path.spec.ts:122:5 › actual injected fault hides overheat from observed sensors (37.7s)
+  ok  9 [chromium] › tests\e2e\golden-path.spec.ts:149:5 › local safety stops deceptive fault while cloud is disabled (17.0s)
+  ok 10 [chromium] › tests\e2e\golden-path.spec.ts:173:5 › native incident snapshot and journal survive an API restart (16.4s)
+  ok 11 [chromium] › tests\e2e\golden-path.spec.ts:216:5 › LangGraph cycles, interrupts and survives restart without gateway writes (24.7s)
+  ok 12 [chromium] › tests\e2e\golden-path.spec.ts:251:5 › real minimax futures persist and reject unsafe candidates in the command center (23.5s)
+  ok 13 [chromium] › tests\e2e\golden-path.spec.ts:284:5 › verified local repair is reviewable while external connector gates stay blocked (1.7s)
+  ok 14 [chromium] › tests\e2e\golden-path.spec.ts:301:5 › isolated seeded fault replay and measured ten thousand futures work without operational mutation (12.9s)
+
+  14 passed (3.4m)
+Phase 12 checks passed.

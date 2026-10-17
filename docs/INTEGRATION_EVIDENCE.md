@@ -1,5 +1,24 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Final recovery qualification — 2026-10-17
+
+Actual scenario-010 and scenario-090 records, source/snapshot hashes, observed
+history, hosted opinions and native adversary outputs are retained in
+results/recovery-scenarios-live.json. Aggregate six AMD POST attempts/four catalog
+reads; three accepted opinions (4,124 acknowledged tokens), one reference
+rejection, one GLM timeout and one unfinished Qwen response. Sixteen Pinecone
+queries/four stats reads returned 200; retained counts 1,235/103, zero writes.
+Protected before/after proposal/capability/ceremony/executor/receipt state is
+identical. Both paused_no_action, no incident-specific approval or recovery.
+A BLOCKED; B PARTIAL (AMD abstained rather than recommending an action there).
+Browser/API/SSE replays of exact persisted UUIDs pass without new inference.
+Read-only eligibility exposes full contradictory citations and unsupported
+incident execution scope. See results/RECOVERY_DEMONSTRATION.md. Separate
+stationary sandbox WebAuthn regression is not faulty-incident recovery evidence.
+Main and frozen separate clean gates each pass 332 Python / 3 CTest / 16 Node /
+14 browser plus configured scans/audits. Clean demo passed at 180.0182 seconds;
+source tree d056438ff740f79f6dabb6db4010a212d008ba11 matches executable sources.
+
 ## Unified cloud application — 2026-10-17, Asia/Calcutta
 
 `results/cloud-ui-live.json` records actual dashboard POST/SSE/read-back HTTP 200,

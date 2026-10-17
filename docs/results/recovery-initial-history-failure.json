@@ -1,0 +1,237 @@
+{
+  "status": "BLOCKED",
+  "utc": "2026-10-17T06:33:58.419689+00:00",
+  "physical_io": false,
+  "pinecone_writes": 0,
+  "scenarios": {},
+  "source_base_revision": "49cb3b30353a1957c11daed8db59997e42b2744c",
+  "worker_sha256": "f5d169b61207b14c80631117b20442e2b8147bcc6882e325967c08bc1d183d91",
+  "graph_sha256": "8bf47baeb9b9a75b9c74c3591f8cdc93179f17c8f5bb0e1a37f6171f49f47e50",
+  "observation_horizon_s": 600,
+  "eligibility_gate_sha256": "900537ca1cbfbefade968d3ac4298b6db04351266d616600a554fc1faf244563",
+  "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+  "applicability_audit": {
+    "scope": "Static registry eligibility for shared six-cell stop; no manuals excluded",
+    "registered_scenarios": 100,
+    "registered_fault_scenarios": 90,
+    "manual_corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+    "plant_decisions": {
+      "CELL-01": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      },
+      "CELL-02": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      },
+      "CELL-03": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      },
+      "CELL-04": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      },
+      "CELL-05": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      },
+      "CELL-06": {
+        "status": "no_action",
+        "operational_write_allowed": false,
+        "flags": [
+          {
+            "reason": "contradiction",
+            "citations": [
+              {
+                "document_id": "SIM-MANUAL",
+                "revision": "R1",
+                "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+                "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+                "page": 985,
+                "quote": "LIMIT CELL-01 temperature degC 0 70",
+                "table_row": 8
+              },
+              {
+                "document_id": "SIM-BULLETIN",
+                "revision": "R2",
+                "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+                "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+                "page": 1,
+                "quote": "LIMIT CELL-01 temperature degC 0 95",
+                "table_row": 8
+              }
+            ]
+          }
+        ],
+        "checked_constraints": 1000
+      }
+    },
+    "noncontradictory_shared_plant_candidates": 0,
+    "gateway_policy": "Fault-free stationary sandbox only; incident scope unavailable"
+  },
+  "protected_before": {
+    "proposal_count": 45,
+    "capability_record_count": 42,
+    "ceremony_count": 0,
+    "resource_version": 21,
+    "snapshot_sha256": "030d7fe37cbcbaa45d18c9c46f1b12168d3953645cdf97fc3395427699eff60d",
+    "receipt_count": 20,
+    "last_receipt_sha256": "9e7fd321b67de2f974665ad7d46718b235e15b1f1ea7b08baab0b8f3ba5090fc"
+  },
+  "counts_before": [
+    1235,
+    103
+  ],
+  "elapsed_s": 3.009523265000098,
+  "amd_model_attempts": 0,
+  "amd_catalog_attempts": 0,
+  "reserved_tokens": 0,
+  "amd_diagnostics": [],
+  "pinecone_operations": [
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1228.0644109996501
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1376.8170150005972
+    }
+  ]
+}

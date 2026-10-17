@@ -1,0 +1,22 @@
+ Container aegis-grid-api-run-d61152d1847e Creating 
+ Container aegis-grid-api-run-d61152d1847e Created 
+Traceback (most recent call last):
+  File "/app/tools/recovery_scenarios.py", line 265, in <module>
+    main()
+  File "/app/tools/recovery_scenarios.py", line 229, in main
+    worker()
+  File "/app/tools/recovery_scenarios.py", line 144, in worker
+    event = native_event(identifier, library)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/tools/recovery_scenarios.py", line 54, in native_event
+    raise ValueError("Actual supervised anomaly required")
+ValueError: Actual supervised anomaly required
+
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\tools\recovery_scenarios.py", line 265, in <module>
+    main()
+  File "D:\AEGIS GRID\tools\recovery_scenarios.py", line 237, in main
+    subprocess.run(
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'compose', '--env-file', 'D:\\AEGIS GRID\\.env', '-f', 'D:\\AEGIS GRID\\infra\\local\\compose.yaml', '-f', 'D:\\AEGIS GRID\\infra\\local\\compose.hosted.yaml', 'run', '--rm', '--no-deps', '-T', '--env', 'AEGIS_PROOF_REVISION', '--volume', 'D:\\AEGIS GRID\\tools:/app/tools:ro', '--volume', 'D:\\AEGIS GRID\\docs\\results:/app/docs/results', 'api', 'python', 'tools/recovery_scenarios.py', '--worker']' returned non-zero exit status 1.

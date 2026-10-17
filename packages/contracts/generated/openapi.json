@@ -2904,6 +2904,96 @@
         "title": "RecoveryAssessment",
         "type": "object"
       },
+      "RecoveryEligibility": {
+        "additionalProperties": false,
+        "properties": {
+          "blockers": {
+            "items": {
+              "enum": [
+                "incident_gateway_scope_unavailable",
+                "unresolved_manual_evidence",
+                "missing_or_abstaining_diagnosis",
+                "missing_or_ungrounded_planning",
+                "native_candidate_not_verified"
+              ],
+              "type": "string"
+            },
+            "title": "Blockers",
+            "type": "array"
+          },
+          "capability_issued": {
+            "const": false,
+            "default": false,
+            "title": "Capability Issued",
+            "type": "boolean"
+          },
+          "challenge_issued": {
+            "const": false,
+            "default": false,
+            "title": "Challenge Issued",
+            "type": "boolean"
+          },
+          "eligible": {
+            "const": false,
+            "default": false,
+            "title": "Eligible",
+            "type": "boolean"
+          },
+          "execution_scope": {
+            "const": "incident_recovery_unavailable",
+            "default": "incident_recovery_unavailable",
+            "title": "Execution Scope",
+            "type": "string"
+          },
+          "grounded_hosted_planning": {
+            "title": "Grounded Hosted Planning",
+            "type": "boolean"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "investigation_id": {
+            "pattern": "^[0-9a-f-]{36}$",
+            "title": "Investigation Id",
+            "type": "string"
+          },
+          "manual_corpus_sha256": {
+            "title": "Manual Corpus Sha256",
+            "type": "string"
+          },
+          "manual_decision": {
+            "$ref": "#/components/schemas/ManualDecision"
+          },
+          "meaningful_hosted_diagnosis": {
+            "title": "Meaningful Hosted Diagnosis",
+            "type": "boolean"
+          },
+          "native_candidate_checked": {
+            "title": "Native Candidate Checked",
+            "type": "boolean"
+          },
+          "status": {
+            "const": "BLOCKED",
+            "default": "BLOCKED",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "investigation_id",
+          "incident_id",
+          "blockers",
+          "manual_corpus_sha256",
+          "manual_decision",
+          "meaningful_hosted_diagnosis",
+          "grounded_hosted_planning",
+          "native_candidate_checked"
+        ],
+        "title": "RecoveryEligibility",
+        "type": "object"
+      },
       "RepairBundle": {
         "additionalProperties": false,
         "properties": {
@@ -5982,6 +6072,62 @@
           }
         },
         "summary": "Investigation Events"
+      }
+    },
+    "/api/v1/investigations/{identifier}/recovery-eligibility": {
+      "get": {
+        "operationId": "incident_recovery_eligibility_api_v1_investigations__identifier__recovery_eligibility_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveryEligibility"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Incident Recovery Eligibility"
       }
     },
     "/api/v1/manuals/evidence": {

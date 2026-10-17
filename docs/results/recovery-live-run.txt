@@ -1,0 +1,3 @@
+ Container aegis-grid-api-run-ba51d87e2062 Creating 
+ Container aegis-grid-api-run-ba51d87e2062 Created 
+{'status': 'BLOCKED', 'scenarios': {'A': 'BLOCKED', 'B': 'PARTIAL'}, 'amd_attempts': 6, 'protected_state_unchanged': True}

@@ -1,0 +1,89 @@
+ Container aegis-grid-api-run-0ac63b3dd6f9 Creating 
+ Container aegis-grid-api-run-0ac63b3dd6f9 Created 
+Traceback (most recent call last):
+  File "/app/tools/recovery_scenarios.py", line 268, in <module>
+    main()
+  File "/app/tools/recovery_scenarios.py", line 232, in main
+    worker()
+  File "/app/tools/recovery_scenarios.py", line 147, in worker
+    event = native_event(identifier, library)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/tools/recovery_scenarios.py", line 57, in native_event
+    return EdgeIncident(
+           ^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/pydantic/main.py", line 280, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 21 validation errors for EdgeIncident
+observed_history.0
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.1
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.2
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.3
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.4
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.5
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.6
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.7
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.8
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.9
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.10
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.11
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.12
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.13
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.14
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.15
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.16
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.17
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.18
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.19
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+observed_history.20
+  Input should be a valid dictionary or instance of ObservedSample [type=model_type, input_value=SensorFrame(state_version...rue, dropped_packets=0)), input_type=SensorFrame]
+    For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\tools\recovery_scenarios.py", line 268, in <module>
+    main()
+  File "D:\AEGIS GRID\tools\recovery_scenarios.py", line 240, in main
+    subprocess.run(
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'compose', '--env-file', 'D:\\AEGIS GRID\\.env', '-f', 'D:\\AEGIS GRID\\infra\\local\\compose.yaml', '-f', 'D:\\AEGIS GRID\\infra\\local\\compose.hosted.yaml', 'run', '--rm', '--no-deps', '-T', '--env', 'AEGIS_PROOF_REVISION', '--volume', 'D:\\AEGIS GRID\\tools:/app/tools:ro', '--volume', 'D:\\AEGIS GRID\\docs\\results:/app/docs/results', 'api', 'python', 'tools/recovery_scenarios.py', '--worker']' returned non-zero exit status 1.

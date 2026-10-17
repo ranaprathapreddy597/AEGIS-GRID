@@ -243,6 +243,8 @@ def build_graph(
                     if record.event.observed
                     else [],
                     "residuals": [e.model_dump() for e in record.event.evidence][:2],
+                    "trends": data["observed_temperature_slopes_c_s"],
+                    "correlations": data["observed_neighbor_correlations"],
                     "retrieved_sources": sources,
                 },
                 False,

@@ -6,6 +6,17 @@ authoritative project instructions. Preserve them unchanged.
 
 ## Current execution state
 
+- Final recovery follow-up 2026-10-17: Scenario A BLOCKED; Scenario B PARTIAL.
+  Two real native faults and hosted AMD/dual-Pinecone investigations persist;
+  vectors remain 1,235 + 103, zero reingestion. Whole shared plant corpus conflicts
+  (70/95 C); existing signed executor only permits a fault-free stationary sandbox.
+  No incident challenge/capability/protected write was issued. A diagnosis abstained;
+  B diagnosis route failed and planning abstained. Do not exclude the bulletin or
+  substitute sandbox CTAP2 approval for incident recovery. Read
+  docs/results/RECOVERY_DEMONSTRATION.md for actual calls, failures and gates.
+  Main and separate frozen-source gates each pass 332 Python / 3 CTest / 16 Node /
+  14 browser checks; 180.0182-second clean demo passes its stationary sandbox only.
+
 - Unified cloud follow-up authorized on 2026-10-17: both existing Pinecone
   namespaces now feed the persistent application LangGraph through an explicit
   hosted Compose override; default mode stays offline. Guarded live UI/API/SSE,

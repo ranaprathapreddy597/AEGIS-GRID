@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "configured_mode": "hosted",
+  "scope": "Final persisted incident eligibility reads only; no investigate/approval/execute request",
+  "rows": [
+    {
+      "scenario": "A",
+      "http": 200,
+      "investigation_id": "3ccf5118-0944-44be-87cc-1fc896c10600",
+      "incident_id": "2720eb4fd744eb02459294d2de5e6e7994f9c7bdede6c819a220898c04d0bc0a",
+      "eligible": false,
+      "challenge_issued": false,
+      "capability_issued": false
+    },
+    {
+      "scenario": "B",
+      "http": 200,
+      "investigation_id": "eadb690c-795d-4872-9ff5-814430bc457a",
+      "incident_id": "010e2b1d259c4ac778fafbc9eaf9da364fdd434a744d4f0516067acf7247b11d",
+      "eligible": false,
+      "challenge_issued": false,
+      "capability_issued": false
+    }
+  ]
+}

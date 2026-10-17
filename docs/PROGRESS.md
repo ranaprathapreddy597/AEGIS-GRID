@@ -1,5 +1,21 @@
 # Execution status
 
+## Final incident recovery demonstration — 2026-10-17
+
+Scenario A BLOCKED; Scenario B PARTIAL; complete cloud recovery remains BLOCKED.
+Two distinct supervised native faults reached real AMD/dual-Pinecone LangGraph
+and persistent dashboard/API/SSE replay. A diagnosis abstained while planning
+recommended minimax; B diagnosis routing failed and planning abstained. Both
+refused execution; full shared corpus conflicts for all six cells and existing
+signed execution scope only supports a fault-free stationary sandbox. No source
+was excluded and no incident challenge/capability/protected write was created.
+Counts remain 1,235 + 103 with zero Pinecone writes. Added read-only incident
+eligibility evidence and exact selected-incident UI binding. Main full gate passes
+332 Python / 3 CTest / 16 Node / 14 browser checks in both main and separate
+clean-source full gates; separate clean-source demo
+passes at 180.0182 seconds. Neither sandbox proof authorizes faulty incidents. See
+results/RECOVERY_DEMONSTRATION.md for retained failures, actual calls and gates.
+
 ## Unified cloud application — 2026-10-17
 
 PASS guarded live workflow: existing synthetic (1,235) and real-world (103)
