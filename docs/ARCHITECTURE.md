@@ -1,5 +1,37 @@
 # Architecture and current boundary
 
+## Current sprint architecture — 2026-10-17
+
+```mermaid
+flowchart LR
+  Twin[Native six-cell simulator] --> Shield[Independent local shield]
+  Shield --> Edge[Observed telemetry and captured incident]
+  Edge --> API[Authenticated API and SSE]
+  API --> UI[React command center]
+  Edge --> Ground[Observed-only diagnostic grounding]
+  Ground --> Graph[Persistent cyclic LangGraph]
+  Sources[Dual Pinecone context / local manuals] --> Graph
+  AMD[Opt-in quota-aware AMD opinions] --> Ground
+  Graph --> Copies[Private native counterfactual copies]
+  UI --> Trend[Observed-only trend forecast / no authority]
+  Copies --> UI
+  Approval[Exact digest / WebAuthn UV] --> Executor[Independent Node and Python policy]
+  Executor --> Sandbox[Separately scoped simulator / atomic receipt]
+  Experiments[Recorded held-out evaluations and attacks] --> UI
+```
+
+The sprint adds only authenticated analysis routes: POST
+`/api/v1/analysis/forecast` accepts strict SensorFrame history without hidden
+truth/labels; GET `/api/v1/analysis/sprint-evidence` returns typed recorded
+measurements, limitations and artifact hashes. Neither route issues approval,
+capabilities or writes. Forecasting uses fixed observed linear trends; native
+strategy comparison continues to use the existing C++ search/certificates.
+No physical isolation model is added. A low native temperature is not an approval.
+Original signed policies, receipts and one-shot commissioned resource are unchanged.
+
+Sections below retain the phased design history; later ADRs and the current
+commissioned/cloud evidence supersede early unimplemented/blocked descriptions.
+
 Phase 4 implements the read-only local path below. The master constitution
 remains the target architecture for later phases.
 

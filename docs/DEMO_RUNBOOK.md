@@ -1,7 +1,18 @@
 # Actual local three-minute demonstration
 
-This is a synthetic CPU demonstration. MI300X/Evolus/Pinecone/GitHub live gates
-remain BLOCKED; no physical I/O exists. The offline language template abstains.
+Current sprint overlay: the existing reliable 180-second runner remains the
+automated acceptance route. The command center additionally shows measured
+temperature/flow trends, observed-only +60-second advisory predictions, recorded
+seed-held-out metrics and six reproduced attack families. Inspect these during
+the initial live telemetry and tournament cues. Use [sprint delivery](SPRINT_DELIVERY.md)
+for the latest feature matrix and honest narration. Default demo remains offline;
+historical real AMD/dual-Pinecone/commissioned evidence can be shown separately
+without spending provider quota or repeating its completed one-shot action.
+
+This is a synthetic CPU demonstration. MI300X/Evolus/GitHub production gates
+remain BLOCKED; no physical I/O exists. Pinecone and AMD have separately preserved
+hosted acceptance evidence, with diagnostic reliability PARTIAL. The offline
+language template abstains.
 
 ## Install and start
 

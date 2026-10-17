@@ -1,60 +1,88 @@
-# Demonstration and submission material
+# AEGIS//GRID submission — 2026-10-17
+
+AEGIS//GRID is a working simulator incident-response system: six coupled native
+factory cells, an independent edge shield, grounded reasoning, cited retrieval,
+adversarial native recovery search, exact human approval and persistent receipts.
+It is an isolated synthetic demonstrator, with no physical I/O or production claim.
 
 ## One-minute pitch
 
-A sensor can look normal while a process becomes unsafe. AEGIS//GRID combines a
-sensor-only physics observer with a deterministic synthetic factory and bounded
-memory. Its persistent LangGraph gathers evidence, checks cited manual revisions,
-compares Blue recovery plans against Red counterexamples, and asks native C++
-rollouts to decide feasibility before cost. A contradictory bulletin means no
-action. A separate stationary local sandbox demonstrates a real WebAuthn-approved
-Mongo maintenance update and simulator stop: an independent Node gateway checks
-the exact digest, signature and state before one atomic receipt. The UI shows
-actual telemetry, replay and 10,000 measured CPU futures. This is a local synthetic
-demonstrator. MI300X, Evolus and Pinecone live acceptance are blocked; we do not
-claim industrial validation or autonomous production control.
+A temperature sensor can look normal while a process heats up. AEGIS//GRID checks
+observed sensors against an independent energy observer, gathers cited evidence,
+compares recovery controls in actual C++ copies and refuses conflicting or unsafe
+plans. The live command center separates measurements, hidden simulator truth,
+experimental forecasts and approved writes. Real AMD hosted opinions and both
+existing Pinecone namespaces have retained integration evidence. The separate
+commissioned fixture completed an incident-bound virtual CTAP2 approval and one
+native safe-stop receipt. Our new grounding rejects unsupported model causes;
+we publish its lower held-out recall as well as its improved resistance to
+operating confounders. Human approval never overrides the independent shield.
+MI300X, Evolus, physical plant and production acceptance remain blocked.
 
-## Three-minute narration / actual runner cues
+## Three-minute demonstration
 
-- 0–15 s: native telemetry, six shared-loop cells, frame/source provenance.
-- 15–30 s: observed versus simulator truth, explicit CPU/local mode.
-- 30–50 s: seed 42 deceptive fault in private copies; actual recorded replay.
-- 50–75 s: real cyclic LangGraph and 409-rollout tournament; incident pauses.
-- 75–95 s: exact cited contradiction and no-action decision.
-- 95–115 s: 10,000 precomputed CPU futures, failure cases and production cost.
-- 115–140 s: separately scoped local maintenance diff, CI virtual passkey,
-  independent Node/native verification and actual Mongo receipt; unapproved call
-  denied and retry has one effect. This is not incident approval or a physical key.
-- 140–160 s: reviewable tested repair diff; external connector gates blocked.
-- 160–180 s: export reproducible analysis and state the remaining release blockers.
+Use tools/run_demo.mjs through the clean-source workflow in DEMO_RUNBOOK.md.
+
+| Time | Actual demonstration |
+|---|---|
+| 0–30s | Live native six-cell telemetry, observed versus truth, six observed-only forecast outputs and explicit heuristic error bands |
+| 30–75s | Seeded private-copy deceptive fault; real cyclic LangGraph and 409-rollout adversarial tournament; offline language backend abstention |
+| 75–115s | Original cited manual conflict refuses action; measured native futures expose production/energy tradeoffs |
+| 115–150s | Separate stationary sandbox: exact immutable diff, Chromium virtual CTAP2, actual server verification, independent Node/Python execution and Mongo/native receipt |
+| 150–180s | Tested repair diff and closed external connectors; replay export; recorded quality/forecast baselines and attack boundaries with limitations |
+
+The preserved commissioned hosted run is historical evidence, not rerun by this
+local demo. Never reset its completed resource. Physical-key acceptance is not
+established by a virtual authenticator.
+
+## Measured benchmark table
+
+| Experiment | Actual result | Qualification |
+|---|---|---|
+| Native diagnosis, 100 new-seed cases | Precision 100%, recall 48%, top-cause/no-cause accuracy 65%, abstention 65% | Familiar synthetic families; not hosted or real-world accuracy |
+| Legacy diagnosis on same cases | Precision 100%, recall 70%, accuracy 75%, abstention 55% | New rules are more conservative; no accuracy improvement claimed |
+| 30 targeted healthy operating confounders | Legacy 30 unsupported cause assertions; new grounding zero | Development counterexamples, not held-out accuracy |
+| Thermal forecasting, 30 new-seed episodes | 2 TP, 2 FP, 18 FN, 94.64% coverage, 50% precision, 10% recall | 1,566 correlated pre-hazard windows; low sensitivity |
+| Warning lead time | Median 60s over two TP windows | Not independent incident detection or pre-onset prediction |
+| Forecast baseline, 65 C operating guard | 2 TP, 16 FP, 18 FN | Same simulated windows; different method coverage disclosed |
+| Adversarial boundary demonstration | Six named families, 13 passing assertions | Native/crypto tests; storage doubles explicitly labeled |
+
+Raw rows, protocols, source/native hashes and rejected development results are
+retained in results/SPRINT_AI.md, SPRINT_FORECAST.md and results/SPRINT_ADVERSARY.md.
+Final regression and clean-source evidence are linked from SPRINT_DELIVERY.md.
 
 ## Judge FAQ
 
-**Is this live AMD cloud inference?** No. Actual AMD Ryzen CPU execution is
-measured locally. NPU workload and MI300X connection/long context remain unverified.
-The offline language backend abstains; numerical reasoners and simulations are real.
+**What is actually AMD hosted?** Retained AMD Token Factory diagnosis/planning
+POSTs reached persistent LangGraph alongside dual Pinecone retrieval. Hardware
+identity and dedicated MI300X/HBM/long-context acceptance remain unverified.
+Default operation and all new evaluations are offline; no new paid requests.
 
-**Did Evolus execute a tool?** No. The supplied OpenAPI supports verified read
-contracts and metadata discovery. MCP invocation transport/tool schemas and live
-credentials are missing. Configuration names do not authorize a tool. Pinecone
-and remote GitHub writes are likewise blocked, without fabricated receipts.
+**What is actually Pinecone?** Existing 1,235 synthetic and 103 licensed external
+references have retained live ingestion/retrieval proof. This sprint performs
+no ingestion, reupload, overwrite or deletion. External references are context,
+not equipment-specific safety authority.
 
-**What is learned AI here?** The final benchmark trains and executes an actual
-small NumPy logistic/centroid CPU baseline. LangGraph orchestrates real numerical
-reasoning and native search. No unavailable LLM benchmark or token cost is invented.
+**Did Evolus or GitHub execute a remote tool?** No. Verified read contracts and
+reviewable local diffs exist; live extraction, MCP invocation, remote publication
+and enterprise acceptance remain blocked.
 
-**Does Sentinel beat every baseline?** No. Original fault recall is 46/90 versus
-62/90 for the simple learned baseline and 5/90 for the threshold. Five late thermal
-trips were found and repaired with a conservative operating guard; all original
-misses and post-evaluation status are published. No held-out/industrial claim.
+**What does approval authorize?** Exact scoped simulator actions only. The original
+contradictory plant remains blocked. The commissioned signed package is locally
+authored engineering evidence, not OEM approval; its sole action completed once.
+No fault clear, production restart or physical I/O is enabled.
 
-**What can approval change?** Only the explicitly identified stationary local
-simulator and its local Mongo maintenance record. Manual conflict blocks the
-incident. Real ES256 verification, signed capability and atomic CAS are exercised
-using a labeled virtual authenticator; physical passkey acceptance is outstanding.
+**Are forecasts trustworthy for safety?** No. They are clearly labeled advisory
+linear extrapolations with weak measured recall and heuristic error bands.
+Spoofing and nonlinear faults can defeat them. Safety remains independent.
 
-**What are the economics?** Synthetic production, energy, downtime and assumed
-weights show tradeoffs. Stopping protects modeled constraints but loses production.
-There are no measured customer savings, market prices, dollars or ROI claims.
-A future product would need OEM calibration, identity/isolation, deployment
-operations, provider acceptance and an independently assessed safety case.
+**What is the economic claim?** Native modeled energy, downtime and production
+show tradeoffs under assumed dimensionless costs. No customer savings, ROI or
+calibrated real-world risk probability was measured.
+
+## Criteria and eligibility
+
+The supplied build constitution names AMD ACT III Track 1 Intelligent Industry.
+No authoritative scoring rubric or official eligibility artifact was present
+in the repository. Verification remains BLOCKED; no invented criteria weights,
+competition outcome or guaranteed placing is asserted.

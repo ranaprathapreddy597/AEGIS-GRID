@@ -49,6 +49,8 @@ try {
     await page.getByRole("button",{name:"Simulation ground truth"}).click();
     await expect(page.getByTestId("truth-0")).toBeVisible();
     await capture("02-observed-truth",page.locator(".topology"));
+    await expect(page.locator(".forecast-grid article")).toHaveCount(6,{timeout:10000});
+    await capture("02b-observed-forecast",page.locator(".intelligence-panel"));
   });
   await cue(30,"seeded isolated deceptive fault", async()=>{
     await page.getByLabel("Replay seed").fill("42");
@@ -108,9 +110,12 @@ try {
     await page.getByRole("button",{name:"Download analysis replay"}).click();
     await (await waiting).saveAs(join(output,"analysis-replay.json"));
     await capture("09-provenance",page.getByTestId("laboratory-replay"));
+    await expect(page.getByTestId("sprint-evidence")).toContainText("targeted operating confounders");
+    await expect(page.getByTestId("sprint-evidence")).toContainText("Stale approved state");
+    await capture("10-measured-quality-and-attacks",page.getByTestId("sprint-evidence"));
   });
   await cue(180,"local demonstration complete; release blocked", async()=>{});
-  writeFileSync(join(output,"proof.json"),JSON.stringify({result:"PASS",mode:"actual_180_second_local_browser_demo",passkey:"Chromium virtual CTAP2; real server ES256 verification; NOT physical key",duration_s:(performance.now()-started)/1000,cues,receipt:result.receipt,external_live_gates:"MI300X/Evolus/Pinecone/GitHub BLOCKED",incident_authorization:"BLOCKED by manual; demonstrated action only stationary local sandbox"},null,2)+"\n");
+  writeFileSync(join(output,"proof.json"),JSON.stringify({result:"PASS",mode:"actual_180_second_local_browser_demo",passkey:"Chromium virtual CTAP2; real server ES256 verification; NOT physical key",duration_s:(performance.now()-started)/1000,cues,receipt:result.receipt,external_live_gates:"MI300X/Evolus/GitHub BLOCKED; AMD/Pinecone separately recorded, no live call in offline demo",sprint_features:"Observed-only six-cell forecast and recorded diagnosis/forecast/adversarial evidence verified",incident_authorization:"BLOCKED by manual; demonstrated action only stationary local sandbox"},null,2)+"\n");
 } catch {
   writeFileSync(join(output,"failure.json"),JSON.stringify({result:"FAIL",stage:current,elapsed_s:(performance.now()-started)/1000,detail:"Inspect running stack and rerun; credentials and browser assertion data intentionally omitted."},null,2)+"\n");
   console.error(`Demo failed at stage: ${current}`);
