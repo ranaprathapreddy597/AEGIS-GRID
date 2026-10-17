@@ -52,6 +52,7 @@ select = ["E", "F", "I", "UP", "B", "S"]
 "tests/**" = ["S101", "S105", "S106"]
 "tools/**" = ["S603", "S607"]
 "services/edge/aegis_edge/app.py" = ["S603"]
+"submission/**" = ["E501"]
 
 [tool.mypy]
 python_version = "3.11"

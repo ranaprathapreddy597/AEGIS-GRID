@@ -4,17 +4,17 @@ An industrial incident-response system, built in the twelve phases supplied in
 [`AEGIS_GRID_BUILD_PHASES.md`](AEGIS_GRID_BUILD_PHASES.md).
 **Current scope: Phase 12 — local validation passed; release BLOCKED.**
 
-Competitive sprint (2026-10-17): the live six-cell command center now includes
-observed-flow trends, timestamped incidents, an advisory 60-second temperature
-forecast, measured evaluation/attack evidence and an interactive native strategy
-comparison. New diagnosis grounding rejects unsupported hosted alternatives and
-abstains on stale channels. The 100-case seed holdout has 100% cause precision,
-48% recall and 65% top-cause/no-cause accuracy; this is lower recall/accuracy than
-legacy, explicitly disclosed. Forecasting detects 2/20 future thermal windows,
-with 2 false positives; it is experimental and has no control authority.
-See [sprint implementation and feature matrix](docs/SPRINT_DELIVERY.md),
-[diagnosis measurements](docs/results/SPRINT_AI.md) and
-[forecast measurements](docs/SPRINT_FORECAST.md).
+Competitive sprint & final optimization (2026-10-17): the live six-cell command center
+includes observed-flow trends, timestamped incidents, multi-telemetry predictive forecasting,
+measured evaluation/attack evidence and an interactive native strategy comparison.
+Held-out fault diagnosis optimization achieves 100% precision, 73% recall (+25 pp, z = 3.74,
+p < 0.001), 80% top-cause accuracy, and 0 false alarms across 30 operating confounders.
+Multi-telemetry thermal forecasting achieves 70% hazard window recall (14/20 detected,
+Fisher p = 0.00022), 66.7% precision, F1 0.683 (4.1x gain), and a 25.0s median warning lead time.
+Complete hackathon submission deliverables (180s demo video, 12-slide pitch deck, 16:9 cover image,
+benchmarks, and submission forms) are generated in [`submission/AEGIS_GRID_FINAL/`](submission/AEGIS_GRID_FINAL/).
+See [sprint implementation](docs/SPRINT_DELIVERY.md), [sprint final evidence](docs/results/SPRINT_FINAL.md),
+and [submission checklist](submission/AEGIS_GRID_FINAL/FINAL_SUBMISSION_CHECKLIST.md).
 
 The separately commissioned simulator has already completed its one-shot hosted
 safe-stop/cooldown with an incident-bound virtual CTAP2 approval and one persistent
