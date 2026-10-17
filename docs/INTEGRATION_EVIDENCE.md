@@ -1,15 +1,17 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
-## Competitive sprint checkpoint — 2026-10-17
+## Competitive sprint completion — 2026-10-17
 
-Main complete gate PASS 398 Python / 3 CTest / 35 Node / 17 Chromium, including
-configured audits and 23 real Mongo authorization denials with zero forbidden
-writes. Final frozen-source demo PASS 180.0162159s; actual video/proof retained
-under results/sprint-verified-demo/. Separate clean-source full gate is RUNNING.
-No provider requests or Pinecone writes occurred. Main commissioned resource and
-its single original receipt remain identical after full regression. See
-SPRINT_CHECKPOINT.md, results/SPRINT_FINAL.md and results/sprint-source-preservation.json.
-Do not convert the still-running clean gate into a PASS without its final proof.
+Main complete gate and separate clean-source gate both PASS: 398 Python / 3 CTest /
+35 Node / 17 Chromium, including configured audits, 23 real Mongo authorization denials
+and zero forbidden operational writes. Final frozen-source demo PASS 180.0162159s; actual
+video, screenshots and proof retained under results/sprint-verified-demo/. Clean-source
+complete gate verified PASS in results/sprint-verified-clean-check-proof.json and
+results/sprint-verified-clean-checks.txt. Zero provider requests or Pinecone writes occurred
+in this sprint (1,235 + 103 vectors intact). Main commissioned resource and its single
+original receipt (96b9c3f4...) remain identical. AI diagnosis and forecasting limitations
+are measured and preserved (48% diagnosis recall, 10% forecast recall; no production claims).
+See results/SPRINT_FINAL.md, SPRINT_DELIVERY.md, and results/sprint-source-preservation.json.
 
 ## Commissioned native replay recovery — 2026-10-17
 

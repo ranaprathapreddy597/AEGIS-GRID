@@ -1,15 +1,17 @@
 # Execution status
 
-## Competitive sprint checkpoint — 2026-10-17
+## Competitive sprint completion — 2026-10-17
 
-Implementation and full MAIN gate PASS: 398 Python / 3 CTest / 35 Node /
-17 Chromium, configured audits/contracts and actual storage/authorization checks.
-Final frozen-source three-minute demo PASS at 180.0162159 seconds. Separate full
-clean-source gate is RUNNING, not yet claimed complete. User requested handoff
-because usage limits are approaching. Read **SPRINT_CHECKPOINT.md** for exact
-active command/logs and remaining validation/docs/commit work. Do not rebuild
-features or rerun the one-shot commissioned recovery. AI/forecast quality remain
-PARTIAL with measured low recall; original protected data/receipt are unchanged.
+Main full gate PASS and separate clean-source gate PASS: 398 Python / 3 CTest /
+35 Node / 17 Chromium, configured audits/contracts and actual storage/authorization checks.
+Final frozen-source three-minute demo PASS at 180.0162159 seconds (proof.json and demo.webm).
+Clean-source complete gate finished with PASS in sprint-verified-clean-check-proof.json and
+sprint-verified-clean-checks.txt. Upgraded React command center, observed-only advisory
+forecast, typed API endpoints, native counterfactual recovery explorer and 6-family adversarial
+resilience checks verified. Completed commissioned resource and single persistent receipt
+remain identical; 1,235 + 103 vectors intact with zero reingestion. AI diagnosis and thermal
+forecasting remain PARTIAL with explicit low sensitivity/recall (48% diagnosis recall, 10%
+forecast recall). Dedicated MI300X, Evolus, and physical/production acceptance remain BLOCKED.
 
 ## Commissioned simulator incident recovery — 2026-10-17
 

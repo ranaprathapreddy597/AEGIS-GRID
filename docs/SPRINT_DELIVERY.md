@@ -10,7 +10,7 @@
 | 4 counterfactual explorer | PASS bounded model | Existing native minimax candidates now selectable; feasibility failures, temperature, modeled energy/downtime and native sampled uncertainty; private analysis only. Physical isolation/restart/repair BLOCKED, not modeled. |
 | 5 forecasting | PARTIAL | Fixed observed OLS trend versus persistence/65 C guard on 30 new-seed native episodes; 2 TP, 2 FP, 18 FN; 60s lead on two correlated TP windows; no calibration/generalization claim |
 | 6 adversarial resilience | PASS selected checks | Six named attack families, 13 actual native/crypto assertions. Stale signed capability uses explicit storage doubles; historical real CTAP2 browser evidence stays separately attributed. Finite coverage, no certification. |
-| 7 integration/demo/submission | Gate pending | New typed read-only APIs, generated contracts, recorded experiment panel, existing actual 180s browser demo; final regression/clean-source evidence appended after execution |
+| 7 integration/demo/submission | PASS (clean 398 Python / 3 CTest / 35 Node / 17 Chromium; 180.016s demo) | New typed read-only APIs, generated contracts, recorded experiment panel, verified 180s browser demo and clean-source gate; see docs/results/SPRINT_FINAL.md |
 | Dedicated MI300X / Evolus / physical production | BLOCKED | No new device/provider/physical proof; never implied by local tests |
 
 The 30-case targeted fault-free native operating-confounder demonstration reduces

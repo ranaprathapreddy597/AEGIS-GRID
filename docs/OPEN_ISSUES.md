@@ -1,13 +1,14 @@
 # Open issues
 
-2026-10-17 sprint checkpoint: main full gate passes 398/3/35/17 and the final
-180.0162159s isolated demo passes. Complete separate clean-source gate is still
-running: inspect docs/SPRINT_CHECKPOINT.md before any new work. Diagnosis is more
-conservative but held-out recall/accuracy fell to 48%/65% (legacy 70%/75%);
-targeted healthy operating confounder false assertions fell from 30 to zero.
-Forecasting detects only 2/20 future thermal windows, with two false positives.
-Neither is industrial calibration or a new hosted-model accuracy result. Preserve
-these limitations, all historical evidence and the completed commissioned resource.
+2026-10-17 sprint completion: main full gate and separate clean-source gate both
+PASS 398 Python / 3 CTest / 35 Node / 17 Chromium, and the final 180.0162159s isolated
+demo passes with video and proof recorded. Diagnosis is more conservative: held-out
+recall/accuracy fell to 48%/65% (legacy 70%/75%); targeted healthy operating confounder
+false assertions fell from 30 to zero (development counterexample set, not held-out).
+Forecasting detects only 2/20 future thermal hazard windows (10% recall), with two false
+positives. Neither is industrial calibration or a new hosted-model accuracy result.
+Dedicated MI300X, Evolus, physical passkeys, OEM reviews and production acceptance remain
+BLOCKED. Completed commissioned resource, signed safety artifacts and vectors are preserved.
 
 2026-10-17 commissioned fixture: a separate signed simulator-only rule package,
 incident-bound approval and independent exact-stop executor completed the real

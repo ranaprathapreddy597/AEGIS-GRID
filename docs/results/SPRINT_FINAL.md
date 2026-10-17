@@ -10,7 +10,7 @@ BLOCKED. Quantitative diagnosis and forecasting quality remain PARTIAL.
 | Main complete configured gate | PASS: 398 Python / 3 CTest / 35 Node / 17 Chromium | sprint-full-regression.txt |
 | Final frozen-source three-minute demo | PASS: 180.0162159 seconds | sprint-verified-clean-bootstrap.json; sprint-verified-demo/proof.json and demo.webm |
 | Earlier isolated demo, same application before evidence-runner CLI hardening | PASS: 180.0069936 seconds | sprint-final-clean-bootstrap.json; sprint-final-demo/ |
-| Final separate clean-source complete gate | Running; final result recorded before delivery | sprint-verified-clean-check-proof.json; sprint-verified-clean-checks.txt |
+| Final separate clean-source complete gate | PASS: 398 Python / 3 CTest / 35 Node / 17 Chromium | sprint-verified-clean-check-proof.json; sprint-verified-clean-checks.txt |
 | Source and preservation comparison | PASS: 234 runtime/test/helper/configuration files, zero mismatches after CRLF normalization | sprint-source-preservation.json |
 
 The main gate includes Ruff formatting/lint, strict mypy, generated OpenAPI/TS
