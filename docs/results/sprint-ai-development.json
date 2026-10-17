@@ -1,0 +1,1920 @@
+{
+  "status": "measured_synthetic_seed_holdout",
+  "protocol": {
+    "version": "sprint-ai-seed-holdout-v1",
+    "seeds": [
+      734001,
+      741920,
+      749839,
+      757758,
+      765677,
+      773596,
+      781515,
+      789434,
+      797353,
+      805272
+    ],
+    "scenario_families": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "cutoff": "90 + (seed % 181) seconds, one prediction per case",
+    "targets": "seed % 6; no hidden truth supplied to diagnosis",
+    "expected_causes": {
+      "0": [],
+      "1": [
+        "sensor_bias"
+      ],
+      "2": [
+        "sensor_bias"
+      ],
+      "3": [
+        "restricted_flow"
+      ],
+      "4": [
+        "weak_pump"
+      ],
+      "5": [
+        "overload"
+      ],
+      "6": [],
+      "7": [],
+      "8": [
+        "overload"
+      ],
+      "9": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ]
+    },
+    "training": "none; physical heuristics fixed before first run",
+    "split": "new seeds/target/cutoff; existing equation families are NOT held out"
+  },
+  "protocol_sha256": "a0193724a5cfd8f45f7c10e69d4e8bce6069c95e7dab70bbc91daaa178a07ea3",
+  "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+  "quality_source_sha256": "997d4291e1426a3e2d2b0d6645ee2e6bbd70ed5defcbecb14a06ef2b4b4f5be8",
+  "elapsed_s": 2.0251860409989604,
+  "legacy": {
+    "cases": 100,
+    "true_positive_causes": 67,
+    "false_positive_causes": 0,
+    "false_negative_causes": 33,
+    "precision": 1.0,
+    "recall": 0.67,
+    "accuracy": 0.75,
+    "top1_fault_recall": 0.6428571428571429,
+    "selective_top1_accuracy": 1.0,
+    "abstention_coverage": 0.55,
+    "prediction_coverage": 0.45,
+    "abstained_cases": 55
+  },
+  "grounded": {
+    "cases": 100,
+    "true_positive_causes": 26,
+    "false_positive_causes": 0,
+    "false_negative_causes": 74,
+    "precision": 1.0,
+    "recall": 0.26,
+    "accuracy": 0.47,
+    "top1_fault_recall": 0.24285714285714285,
+    "selective_top1_accuracy": 1.0,
+    "abstention_coverage": 0.83,
+    "prediction_coverage": 0.17,
+    "abstained_cases": 83
+  },
+  "per_family": {
+    "0": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "1": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "2": {
+      "cases": 10,
+      "true_positive_causes": 10,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "top1_fault_recall": 1.0,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.0,
+      "prediction_coverage": 1.0,
+      "abstained_cases": 0
+    },
+    "3": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "4": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "5": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "6": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "7": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "8": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "9": {
+      "cases": 10,
+      "true_positive_causes": 16,
+      "false_positive_causes": 0,
+      "false_negative_causes": 24,
+      "precision": 1.0,
+      "recall": 0.4,
+      "accuracy": 0.7,
+      "top1_fault_recall": 0.7,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.3,
+      "prediction_coverage": 0.7,
+      "abstained_cases": 3
+    }
+  },
+  "definitions": {
+    "precision_recall": "micro cause-set precision/recall, thermal symptom counts unsupported",
+    "accuracy": "top cause belongs to injected set; correct abstention for no modeled cause",
+    "abstention_coverage": "fraction with no hypothesis, NOT an accuracy",
+    "transport": "delay/drop families lack a representable cause; expected to abstain"
+  },
+  "limitations": [
+    "Same synthetic equations and fault families used during original development",
+    "Seed holdout does not establish unseen-fault or real-world generalization",
+    "Weak pump and load bursts cannot be uniquely identified without command/history inputs",
+    "High precision may be traded for lower recall/coverage; all false negatives retained",
+    "No AMD/Pinecone/MI300X call or hosted diagnostic performance evaluated"
+  ],
+  "rows": [
+    {
+      "family": 0,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5000a155623678d2a5ca56645bcdaca48a0734a91e8737b15e056ccf6bff4b5e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "4d7ddc6736e4543e52ae898f25e74754020306a63d445378a91c7c0c80f1e400",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f12bd42c29f65baa65a73da28ea2a7018c4dd8161dfd951cb6db2e7233740e25",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f002aa5fe1790017721ba72de1340f8ac0f1b47b5682aafb60f623635f4409ff",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "224a3026d3692b29809f6fbeec34a08660c6924a91b1021858f7d35569b3bc15",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b96e8ef446322385b4596390cabb2f64e3d5c46037f3f0f1e1aea912e664308b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "87fe9f58d80f6a9be5f88984ff3e69191b9ff5f5096211380423e8b586d4c19e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1d674760e549ad11f09c7156f7279c188c2946c174c962c3e012ebd686aef2d8",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "7eb0331639342c2ff76b3de4a4c4333d48ac7db4fde5d7d4ab83717dee30f3e3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "42798a53f1a83aefb57260564625cc6cb97f981d5105d0bfd10ee6f888396814",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5000a155623678d2a5ca56645bcdaca48a0734a91e8737b15e056ccf6bff4b5e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "4d7ddc6736e4543e52ae898f25e74754020306a63d445378a91c7c0c80f1e400",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f12bd42c29f65baa65a73da28ea2a7018c4dd8161dfd951cb6db2e7233740e25",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f002aa5fe1790017721ba72de1340f8ac0f1b47b5682aafb60f623635f4409ff",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "224a3026d3692b29809f6fbeec34a08660c6924a91b1021858f7d35569b3bc15",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b96e8ef446322385b4596390cabb2f64e3d5c46037f3f0f1e1aea912e664308b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "28cf9d541a2c3ce343fa327d0c5cc5914e533b8d35f704ed67586f273ff2946a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1d674760e549ad11f09c7156f7279c188c2946c174c962c3e012ebd686aef2d8",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "7eb0331639342c2ff76b3de4a4c4333d48ac7db4fde5d7d4ab83717dee30f3e3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "42798a53f1a83aefb57260564625cc6cb97f981d5105d0bfd10ee6f888396814",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "aa85a43cf748d286f943d1e542c6040e8ce060564dbb901f27d8f4d8e5a8805f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "2c38b83e89d84e099bae01dce79e3a66eff3c06ec1033807ca48d9929ef78544",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "b18991b5a5434e1c755179ed8298e6eb8d9ba56c6d838f361a5956e641192f8b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "9de1f53cdd7d32aba84a0da8ded33a6db1d887835da9d750fb3f78ec5b22dd8d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "327c60c6854d31378e2a0bbbb4d46b546f30c441655707e1e88fc8295a164c31",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "df2dd0be4f3e0c60ec326e2b01f5e835fd5781d9afc40ffabd5bfe822ad791ec",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "763080d9d9137380d3437bedaa657eba14eab5ed6737868cfbc3dd78b11bbe0e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "d4c3c69066252beed9dce9d423eb710a9a5d8dae10b0d68b017a3d4ba1a9ab3f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "509537e424061f92b361c00522c1982816d399bcc4dde460a10e2bfb817fbeb0",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "8bd8823d902fccc4b6dc7e4cdf2531e3736d806995539eb3e6b8974dec3ebd9b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "719270ea2cb1cf93c5663db259d133f452000c3ce3091327706ef42921b83ccf",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "281f7354d21ddc67ad515103fb08b0c50519248e6193f67f0fe1e8d0edbf275a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "8fad3c82bb59338453df20ac15bce9695a9bb5c75aa1c3102b0316a9a1b19e95",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "a2a283cccc39e1ff53be2807c44f369a98bb1d66705cf30d28995bcc4eacccd5",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "61a9d551017e575ac131fea5c526f4098291a8246de0ceea6beab0f9bb27d8e3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "0273539a9a669f4bd0a97e38f7dc25b75e7451349ed83187f1deca1cb49d4b08",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "600a45080f9a8e563f88e40487ae1b0f7faf35c3a9b77089b8fbf8d90804e47d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "698e8ac4940d2fb7fb2d24365b50941eb22acb19c27441cc7353eb2cb7d27454",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2d917b2b2fba517e431aa2e11faa46298778f8620afc7f4230970f6d3335d21b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1e84d60f0dae9bd46875ea8e297c1cb248798c7596ccaf9f9387d2bb7c5ba4b3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9dd34e6cc2c180b45fcf393e6ed2c19bd7120338d8c6598ea2955fc7314da7bc",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "04367c2dac15ecedfa83a7d48e7187a5564dbc9dc8d3a383de0b471e048c76c9",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e20b7b0ff2d01cddcd3963127a9c04d922bd944b5544d9a171523eff688c8358",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "ca42463e417fb65489a44dd696fde4005e65c9a3556fe18b5b4a40466034ca78",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "88c812c5e5b1161949f54f93fa11f118cc8e6fb39829e062e8a07e05d5ad59a7",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1ed471e37f7ff82b43a91edf78825f42eb59656a8f61ec7b44ca756d7b2fd12a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2ca6a7dfa548a268156a2fc0014544cf4086e860db72becdd1e6d94172059087",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "457ccc4a5d77711df83782fc752af462b80e81c6e45bff958b8bc73ac049167b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "fd34a3bf05edddf107a6bd299287dd45a9f469c8d8107f00634364db48e50712",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "15243501c679e58f9de0f6b98ab3815e5263395b542b13ea4a3356b8001ad72e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "6bb6928d7a4cd43a1c7ebcbe66795517629aac497f1e6f0477a9eb69f2e15deb",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5d03da9198cd9cc0d8d6cdb0cffc8afae9d72dd25f9f7a260bd166f099963f42",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "75e213a94fdf227d6ad8856ed864b087e760aea05e9b1ceca11ec9028e3f3813",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b3a59a247b1ce4524b7f2a6b9b1c4e924b94bca9fec148f1d34f74897993fffd",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "66486a5423aaa7e3e60079187bd3f9008aa986251369d26420d90b9ce9a24c82",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1511199624df2016586c3835903c49f032c5e24c05630d5d537cbcc699bd2faf",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "776576ed8f39944d083edb1ca667f3511bd0bc05d98a49f781878425ad8dcf66",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "cadc09b4d7a2dd56229107752b3572fdd4e52c034438db3ee722fcaccefb89ee",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2b72bd9442fdcafc95ae71f2adff5af89b1a24ad487944c48a2f5a28713accbc",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "c96479112d2de2d64ce75c0916ce8a385a77fb282aeb3e9005e2e40717654e9b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f52236cf64d6bc5cdfd468aee2c58e06d7b1e44a3c8f96135ada81fadaa6e58e",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5000509065d7b5eee0e8b28c29bbc3b9ac452e8b5bc12743e7e9b8d51c7ee71a",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1eba0fe7b126a27da758bae948fb59424c589e987caf01a17b256625b449547c",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "aa1cfe22a825e18320f22adf7da1060a1306204eb41179a31cac3fcf87c2863d",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "7862cb3e7b45b62069d24d53f344e4647f02966f2ce8787c094cdb55522ae1f4",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "ead262d9c2929c9e9403e697572fa4d3b17c46018b57fe28c6b57a1eaf53986e",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b98592820e0d0e58c46318dfaf15a5ce6f1b85d4e35aeb8aafc1bb10d11c2464",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9e1dbd02cdf6bbe3f63491e8bab0f67a3a2ff95347f6c428da4a2e31a09d6cdc",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "8d500185040458aeb969e5d8400e332e71d10c422e18d7268fbc7fb01c996e3d",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "66781dbe1c98c5d210975d378b26c34896b07b6169dead6b6fb627e89eae83e7",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "eae6f05043e08197516da890a9b96dc7be39950c125139ec2156afa37e6c62da",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "ead8b9c5b85fe021e84b42e8ce996735efcb35eb56723a278298f08cbfef93e1",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "4675e30860a1580685d3cfac8815bd5c589a022f103752970eb58df438e3cf33",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "35a5377a52ba7bcf029a7c162d679c6eeadbfc2d5f7383f4611a877844b1f6f4",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "d3fb76e34c79cf074d70a79dbc88c3448e27e18ed2066ca844db6b59613c9f62",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "6cafce60c89821ce200cd997f24b26ebebfda110b1b74530d9017dfcf3506c20",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "4add446198006b2380b4829fda4800a3fff1342678b14612743ac0055d6740dc",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 7,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b78d48ef63865889fb3bc2fc403f98e68fcf18317974edfd46db73e85a5964b3",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 7,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b58b1ca883071839356b294d62cd43c37d20b42d734cf63e7e62d3c3b767a800",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 7,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f34b4fddacd349ea628901c382ce9f3162227fb119a6179cf0ba298547fd38c5",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 8,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "be7a0c874547f96bc02c8c02999d953283d1241b5fdee0ee848484f2cad25629",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "83274c1cfb1c7f53233125d43f9804e898710ab56fa78c40735c46b233958c2b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2fd5a527941ae4f0ed533900ed429fa6193138ee393e35c7ca0d920f9136522d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "db7d799c614f8eb6794c94d743f9a94a5650b7f2af76e0737f2b5339b413c336",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "eca07305aa0ac95b7d4b6af1362f53cbb47a2a38ee9e57b9a7191442ac6550c5",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5ab2811abec6dda61494787fabc641e95cb57b5caaf7b2164b3b68912a79eb53",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2998188c29813b02e9227a6a68213db63738f92954dc325dfff99db08af5f512",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "295755a8f677cef0f4620b3685bfea01caa074fd0463b3e669b186c6cd5d3542",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "c222a4934b28e9d1562c7935a03f7e0c4ea6fdd50a0158eafff240ae3165148e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "401ba3f6e736050104fe2c3257121773ca658e3ec071d6dd19347be88adca304",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 734001,
+      "target": 3,
+      "cutoff_s": 136,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "0bcd626839a8420b61f102dfe55a61331523dc8e7bcd54c22f8446cd1e2a51fa",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 741920,
+      "target": 2,
+      "cutoff_s": 91,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "006cfdb4e6de3a95b875bdcf6e752abe86d38e1f0778bb6db0fc289300b813f5",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 749839,
+      "target": 1,
+      "cutoff_s": 227,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "78b7f39a41acd4719c74a58951c8f3a4b9879bb1ded60f3e1de23c7181f9b6f4",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 757758,
+      "target": 0,
+      "cutoff_s": 182,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat exceeds load-conditioned synthetic nominal envelope by >10%"
+      ],
+      "observed_trajectory_sha256": "fb93a79b1d5d98fbe6b1d054d990a952bf0ebd612352152f056f937ee61f77da",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 765677,
+      "target": 5,
+      "cutoff_s": 137,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "9d417b3158e293677bdb30158017f3a0f7a3bdee3a0265675dbefeab1265325b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 773596,
+      "target": 4,
+      "cutoff_s": 92,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "c40706094b4b816aad7c6ba6a7a22c3af311268db56b968c20e0694ba26be181",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 781515,
+      "target": 3,
+      "cutoff_s": 228,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "418c7deb506db50b370e11c415695a324f0f1d939a2624fcfd553faf0ae2c35a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 789434,
+      "target": 2,
+      "cutoff_s": 183,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat exceeds load-conditioned synthetic nominal envelope by >10%"
+      ],
+      "observed_trajectory_sha256": "3cad1c942c14d1eeba1490e6909689adde095e94e6d891fdad09a2d373c9396d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 797353,
+      "target": 1,
+      "cutoff_s": 138,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "7c46f5b60bc0a30bf631faf3130eaf491a08177f81c2b403b8caffa917bbee39",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 805272,
+      "target": 0,
+      "cutoff_s": 93,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5b1fc66b96806fbfd07d6712068e6b26e38d7407d04cfc053a0a743075e27983",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    }
+  ]
+}

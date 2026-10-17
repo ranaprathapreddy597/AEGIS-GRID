@@ -26,6 +26,7 @@ from langgraph.types import interrupt
 
 from aegis_agents.history import observed_window, summarize
 from aegis_agents.optimizer import optimize
+from aegis_agents.quality import ground_hosted_opinion, grounded_diagnose
 
 
 class State(TypedDict):
@@ -36,26 +37,7 @@ def diagnose(
     sensor: SensorFrame | None, evidence: list[AnomalyEvidence]
 ) -> list[DiagnosticHypothesis]:
     """Only observed channels/residuals. Scenario labels/snapshot truth cannot enter."""
-    scores: dict[str, tuple[float, str]] = {}
-    if any(abs(item.residual_c) > 2 for item in evidence):
-        scores["sensor_bias"] = (0.9, "Independent physics estimate disagrees with sensor")
-    if any(item.observed_temperature_c >= 70 and abs(item.residual_c) <= 2 for item in evidence):
-        scores["true_thermal"] = (0.9, "High sensor reading agrees with independent estimate")
-    if sensor:
-        if any(cell.flow_kg_s < 0.02 for cell in sensor.cells):
-            scores["restricted_flow"] = (0.6, "Observed branch flow below synthetic envelope")
-        if sensor.loop_pressure_kpa < 20:
-            scores["weak_pump"] = (0.5, "Observed common pressure is low")
-        if any(cell.load_fraction > 0.9 for cell in sensor.cells):
-            scores["overload"] = (0.5, "High observed load adds heat demand")
-    return [
-        DiagnosticHypothesis.model_validate(
-            {"cause": cause, "support_score": score, "explanation": explanation}
-        )
-        for cause, (score, explanation) in sorted(
-            scores.items(), key=lambda item: (-item[1][0], item[0])
-        )
-    ]
+    return grounded_diagnose(sensor, evidence)
 
 
 def forecast(record: IncidentRecord, controls: SimulatorControls | None, library: Path) -> float:
@@ -154,7 +136,14 @@ def build_graph(
             expected = PlanningOpinion if planning else ModelOpinion
             if not isinstance(result.opinion, expected):
                 raise InferenceUnavailable("Unexpected hosted schema")
-            data[field] = result.opinion.model_dump()
+            accepted = result.opinion
+            rejected = 0
+            if isinstance(accepted, ModelOpinion):
+                accepted, rejected = ground_hosted_opinion(
+                    accepted,
+                    diagnose(record.event.observed, record.event.evidence),
+                )
+            data[field] = accepted.model_dump()
             data["model_attributions"].append(
                 {
                     "role": "planning" if planning else "diagnosis",
@@ -167,7 +156,8 @@ def build_graph(
                 }
             )
             return (
-                "Validated AMD opinion recorded; independent numerical safety remains authoritative"
+                f"Validated AMD opinion; {rejected} unsupported/duplicate causes rejected; "
+                "independent numerical safety remains authoritative"
             )
         except InferenceUnavailable:
             data["provider_failures"].append("AMD unavailable/refused; local fallback/abstention")

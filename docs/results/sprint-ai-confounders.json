@@ -1,0 +1,336 @@
+{
+  "status": "measured_synthetic_native_confounders",
+  "protocol": "fault-free native controls, 60s settling, ten seeds per command fixture",
+  "authority": "private native clones; command context never supplied to diagnosis",
+  "legacy": {
+    "cases": 30,
+    "true_positive_causes": 0,
+    "false_positive_causes": 30,
+    "false_negative_causes": 0,
+    "precision": 0.0,
+    "recall": null,
+    "accuracy": 0.0,
+    "top1_fault_recall": null,
+    "selective_top1_accuracy": 0.0,
+    "abstention_coverage": 0.0,
+    "prediction_coverage": 1.0,
+    "abstained_cases": 0
+  },
+  "grounded": {
+    "cases": 30,
+    "true_positive_causes": 0,
+    "false_positive_causes": 0,
+    "false_negative_causes": 0,
+    "precision": null,
+    "recall": null,
+    "accuracy": 1.0,
+    "top1_fault_recall": null,
+    "selective_top1_accuracy": null,
+    "abstention_coverage": 1.0,
+    "prediction_coverage": 0.0,
+    "abstained_cases": 30
+  },
+  "limitations": "Targeted post-development confounders, not independent fault holdout",
+  "rows": [
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2734001,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "49eb906c3d3ac11366c6b97308a9dd042c72fc5fd9c417d00fa8fe6f86d065ce"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2741920,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "e4cddd1aca20d4b0cab609bc0e0f831f41da9f3e8af71ba749ea881a6d9a8cb7"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2749839,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "352c2760bbb9a447c6933386fb0a325317e0092f236f92d8dda1e4cd6e56efd0"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2757758,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "4bd3f81114478f4e2d16fbf0e44e4710f850118a53116cfa4db209a4ed3ebc74"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2765677,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "b512c1b7fe033034ad225078b7aa09d9da52b46759d12d129e2ba32f20d2912a"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2773596,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "fd84deef90610ad5fe8d01b516b7b6418cec48314ccea1fa2a148b6bc6ece397"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2781515,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "1601ef7517ae36991cd0242c5e3248ee8875789b144a817a7390652f9920bb09"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2789434,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "30702d37e9a7b7ee5cd2f506630d0a357d59456f2a301c6e993f8d49bad811cb"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2797353,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "f0dcd0c13e3e4d673730f298f1a2aef01773876607b77f580da116aaedb8f392"
+    },
+    {
+      "fixture": "commanded_low_pump",
+      "seed": 2805272,
+      "expected_causes": [],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "d1642a0e77220bbe53ac7aa7d2fc4d819a1b7e41af61c7866ddd7c686f7675a3"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2734001,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "3e04a92175c64bd303bdc7300526711b2573517c9f9c0c5ca64b80f988e5f5bd"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2741920,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "34c8a004ae6b5e3132797b05751d64458a9fdbf1cd979e0396ea4168e76af01e"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2749839,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "db91df0427dfb1dd14f9928debfd2471777360e02189c146f093be62657b4746"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2757758,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "0bd32e4a17d6cbe9783ed37ceafde4fb4bf7749886bc31d9183159c896dd7237"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2765677,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "586c188c5d6466599217d8335301506a88c2689daa333e33dab5d5af4ddb1e1f"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2773596,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "752970744300843a04b12727c9fb4fdeab372f45bd78f998529697dddcc307b9"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2781515,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "4a284bc16b76480c3903a6aaa626c460439ad66ee29c350caf9f7a4dbcfc5790"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2789434,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "02fbba5ce0e6fe6ff7354c38c0112b93349047e5fe27fd0c94b6b675979ad28c"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2797353,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "242cbc1062fde3f3d962a7e80f9001b93450ce90060c09b255aea822deff98a0"
+    },
+    {
+      "fixture": "commanded_high_load",
+      "seed": 2805272,
+      "expected_causes": [],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "87572f73ac47cf523df747407cfcc707a5eabf839cd5bd4f8cae8f9e939f2807"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2734001,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "7d1f0003cfb0e32eab210d328ae9fefa3150e1192d5514ca517f8ac39d64b15c"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2741920,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "d4cb7cf830db440c5cae26e1b99df5ee24c6a4e10100ff4a1023d60eadd7b8eb"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2749839,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "a4eb008461b0ce3f1a21cdc918f6cfcc7a193ef12c59bd1639db0d2705283e95"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2757758,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "3ff17de46852d80afa0c1f0bca9ac7e03f6f4ec781f8bed6e0284785a35d76eb"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2765677,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "757230ce16e5bf6b934ce3d3fd9c5857e07ed00cb13f0fbefd45f23364601516"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2773596,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "3230635a09fc9113b715699803186f2b8b01ba83496705d058731bd91750e4ee"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2781515,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "d1403a8289b592109b4a3c9438044bb120bc17626a8ea599b5c3c50a79aa1efa"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2789434,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "dce790705a37a6bc2075602a575454dd46122106d2b5a96d3a9d71a1ad4cfa4b"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2797353,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "fda76b1d6efeb0fa7e1224b957149a01e7ce7be4f835c6d19e0520471db13401"
+    },
+    {
+      "fixture": "commanded_closed_idle_branches",
+      "seed": 2805272,
+      "expected_causes": [],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [],
+      "observed_sha256": "3b160d7cf31cefebb325af30952a1cfb1bebc302cab44b64d52326aebe5b56c5"
+    }
+  ]
+}
