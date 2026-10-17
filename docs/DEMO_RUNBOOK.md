@@ -51,7 +51,7 @@ required for this local route and its absence does not mean a live gate passed.
 ## Reproducible captured CI demonstration
 
 ```powershell
-pnpm exec node tools/run_demo.mjs
+pnpm exec node tools/run_demo.mjs --output docs/results/demo-new
 ```
 
 The script actually waits for 180 seconds and follows docs/SUBMISSION.md cues.
@@ -59,15 +59,15 @@ It uses an explicitly labeled Chromium virtual CTAP2 authenticator with real
 server cryptography, independent executor and actual local Mongo/native writes.
 It is not a physical key, human user verification claim or provider execution.
 The action is confined to the stationary test sandbox; manual conflict is never
-waived. Output: docs/results/phase12-demo/proof.json, screenshots, analysis replay
+waived. Output: docs/results/demo-new/proof.json, screenshots, analysis replay
 and demo.webm. Never print/share ignored .run/webauthn-ci.json or .env.
 A failed run writes failure.json with only a stage/class, without secret values.
 
 For a clean-source proof, from a reviewed staged tree/clean commit:
 
 ```powershell
-python tools/clean_demo.py
-python tools/check_clean_source.py
+python tools/clean_demo.py --evidence-prefix demo-new
+python tools/check_clean_source.py --evidence-prefix demo-new
 ```
 
 This exports `git write-tree`, starts a unique Compose project with new credentials
@@ -77,6 +77,7 @@ not a fresh-machine/cold-download benchmark. Only the proof stack is stopped;
 main containers and all database volumes are retained. Ignored .run contains
 that separate project's private configuration; do not publish it. The source tree,
 startup timing and actual demo receipt are recorded in phase12-clean-bootstrap.json.
+Choose a fresh output/prefix each run to preserve historical proof.
 The second command installs its own frozen host venv/node_modules and runs the
 complete gate against the same isolated project, with a tracked exported-path
 manifest for the secret scanner. Its proof/log are recorded separately.

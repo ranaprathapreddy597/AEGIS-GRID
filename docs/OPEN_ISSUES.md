@@ -1,5 +1,14 @@
 # Open issues
 
+2026-10-17 sprint checkpoint: main full gate passes 398/3/35/17 and the final
+180.0162159s isolated demo passes. Complete separate clean-source gate is still
+running: inspect docs/SPRINT_CHECKPOINT.md before any new work. Diagnosis is more
+conservative but held-out recall/accuracy fell to 48%/65% (legacy 70%/75%);
+targeted healthy operating confounder false assertions fell from 30 to zero.
+Forecasting detects only 2/20 future thermal windows, with two false positives.
+Neither is industrial calibration or a new hosted-model accuracy result. Preserve
+these limitations, all historical evidence and the completed commissioned resource.
+
 2026-10-17 commissioned fixture: a separate signed simulator-only rule package,
 incident-bound approval and independent exact-stop executor completed the real
 hosted/CTAP2/native cooldown path. This does not resolve the original plant's

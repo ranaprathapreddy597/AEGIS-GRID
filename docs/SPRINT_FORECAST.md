@@ -58,7 +58,7 @@ mounted at `/workspace`, working directory `/workspace`, network disabled and
 `PYTHONPATH=/workspace/services/agents:/workspace/services/edge:/workspace/packages/contracts/python`:
 
 ```text
-python tools/evaluate_forecasting.py --library /usr/local/lib/libaegis_twin.so --output docs/results/SPRINT_FORECAST.json
+python tools/evaluate_forecasting.py --library /usr/local/lib/libaegis_twin.so --output docs/results/sprint-forecast-reproduction.json
 ```
 
 Host focused tests: `.venv/Scripts/python.exe -m pytest tests/unit/test_forecasting.py -q`.

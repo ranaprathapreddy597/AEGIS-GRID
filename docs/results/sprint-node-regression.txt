@@ -1,0 +1,45 @@
+$ pnpm --filter @aegis/executor test
+$ node --test dist/services/executor/src/server.test.js dist/services/executor/src/commissioned.test.js
+✔ commissioned signature policy accepts exact unit scope and original scope rejects it (5.7404ms)
+✔ commissioned independent policy rejects plant (0.8257ms)
+✔ commissioned independent policy rejects scope (0.6214ms)
+✔ commissioned independent policy rejects action (0.621ms)
+✔ commissioned independent policy rejects rules (0.6944ms)
+✔ commissioned independent policy rejects nonce (0.5065ms)
+✔ commissioned independent policy rejects incident (0.4709ms)
+✔ commissioned independent policy rejects state (0.4877ms)
+✔ commissioned independent policy rejects expiry (0.6515ms)
+✔ commissioned independent policy rejects future (0.6501ms)
+✔ commissioned independent policy rejects lifetime (0.4928ms)
+✔ commissioned independent policy rejects signature (0.2882ms)
+✔ commissioned independent policy rejects cell-0 (0.5646ms)
+✔ commissioned independent policy rejects cell-1 (0.3963ms)
+✔ commissioned independent policy rejects cell-2 (0.4157ms)
+✔ commissioned independent policy rejects cell-3 (0.4969ms)
+✔ commissioned independent policy rejects cell-4 (0.3987ms)
+✔ commissioned independent policy rejects cell-5 (0.3609ms)
+✔ commissioned receipt binds state, all six measurements and exact action (15.2596ms)
+✔ executor fails closed without a token (0.8312ms)
+✔ authenticated and unauthenticated mutations both fail closed (105.8511ms)
+✔ independent verifier accepts only a fixed signed simulator scope (5.248ms)
+✔ independent verifier refuses signed violation {"sub":"wrong-user"} (0.5945ms)
+✔ independent verifier refuses signed violation {"aud":"github"} (0.4362ms)
+✔ independent verifier refuses signed violation {"iss":"model"} (0.4035ms)
+✔ independent verifier refuses signed violation {"exp":1} (0.3745ms)
+✔ independent verifier refuses signed violation {"iat":1} (0.3617ms)
+✔ independent verifier refuses signed violation {"user_verification":false} (0.3439ms)
+✔ independent verifier refuses signed violation {"expected_database_version":99} (0.7784ms)
+✔ independent verifier refuses signed violation {"expected_state_version":999} (0.4078ms)
+✔ independent verifier refuses signed violation {"plan_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"} (0.3462ms)
+✔ independent verifier refuses signed violation {"resource_id":"live-edge"} (0.306ms)
+✔ independent verifier refuses signed violation {"extra":true} (0.2777ms)
+✔ a valid issuer signature never overrides the independent actuator interlock (0.8544ms)
+✔ an operational Mongo diff must be explicit, fixed and schema-valid (0.977ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1039.4967

@@ -1,5 +1,16 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Competitive sprint checkpoint — 2026-10-17
+
+Main complete gate PASS 398 Python / 3 CTest / 35 Node / 17 Chromium, including
+configured audits and 23 real Mongo authorization denials with zero forbidden
+writes. Final frozen-source demo PASS 180.0162159s; actual video/proof retained
+under results/sprint-verified-demo/. Separate clean-source full gate is RUNNING.
+No provider requests or Pinecone writes occurred. Main commissioned resource and
+its single original receipt remain identical after full regression. See
+SPRINT_CHECKPOINT.md, results/SPRINT_FINAL.md and results/sprint-source-preservation.json.
+Do not convert the still-running clean gate into a PASS without its final proof.
+
 ## Commissioned native replay recovery — 2026-10-17
 
 Actual hosted investigation 727bf9ff-c886-42e0-a360-e1e99b587d9c completed with

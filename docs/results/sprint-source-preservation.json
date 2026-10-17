@@ -1,0 +1,16 @@
+{
+  "source_tree": "9cfd5b67660d41f81be8f7859f7c3b982ac2815d",
+  "source_export": "aegis-proof-9e0a8d11",
+  "checked_source_files": 234,
+  "comparison": "tracked runtime/test/helper/configuration content, CRLF normalized to LF",
+  "mismatches": [],
+  "protected_changed_paths": [],
+  "historical_evidence_changed_paths": [],
+  "commissioned_resource_identical_after_full_gate": true,
+  "commissioned_receipts": 1,
+  "commissioned_receipt_sha256": "96b9c3f4338f75c56e452205fcfa446ee714a45303ab4c27a3775faea822ed2e",
+  "provider_requests_in_sprint": 0,
+  "pinecone_writes_in_sprint": 0,
+  "pinecone_current_counts": "not queried this sprint; last verified historical counts 1235 + 103",
+  "result": "PASS"
+}

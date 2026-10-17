@@ -1,0 +1,81 @@
+{
+  "result": "PASS",
+  "mode": "actual_180_second_local_browser_demo",
+  "passkey": "Chromium virtual CTAP2; real server ES256 verification; NOT physical key",
+  "duration_s": 180.00699360000002,
+  "cues": [
+    {
+      "target_s": 0,
+      "completed_s": 1.5476637,
+      "name": "live native telemetry"
+    },
+    {
+      "target_s": 15,
+      "completed_s": 16.5558816,
+      "name": "observed and truth overlay"
+    },
+    {
+      "target_s": 30,
+      "completed_s": 34.1112981,
+      "name": "seeded isolated deceptive fault"
+    },
+    {
+      "target_s": 50,
+      "completed_s": 56.4200302,
+      "name": "real persistent cyclic reasoning and adversarial search"
+    },
+    {
+      "target_s": 75,
+      "completed_s": 75.3007387,
+      "name": "cited contradiction blocks incident action"
+    },
+    {
+      "target_s": 95,
+      "completed_s": 95.4724105,
+      "name": "measured ten thousand CPU futures"
+    },
+    {
+      "target_s": 115,
+      "completed_s": 117.56919400000001,
+      "name": "virtual passkey approved local Mongo and native stop"
+    },
+    {
+      "target_s": 140,
+      "completed_s": 140.3893129,
+      "name": "verified repair diff and honest blocked connectors"
+    },
+    {
+      "target_s": 160,
+      "completed_s": 161.3719582,
+      "name": "reproducible analysis export"
+    },
+    {
+      "target_s": 180,
+      "completed_s": 180.0064709,
+      "name": "local demonstration complete; release blocked"
+    }
+  ],
+  "receipt": {
+    "receipt_format": "sandbox-receipt-v2",
+    "maintenance_record_sha256": "043e19ad9a30bf49a58f689139f6683669ab94fd7b57f242e050ae09eab72560",
+    "tool": "local_mongo_and_simulator",
+    "receipt_sha256": "b9ed3d582126077446892d02cd33ab1203bcf43e5b6c2e6aed1342707cb35052",
+    "previous_receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "action_id": "9659823b-e972-4d26-b22c-74409505436d",
+    "nonce": "286c7f95-ef4c-436d-9bb5-cb5411cff045",
+    "plan_sha256": "9f9bb44b830b9082a1e57dc53ed9cfbde692dd693c97cc73a8a2d3b3f9c9a08c",
+    "resource_id": "authorization-sandbox-01",
+    "database_version_before": 1,
+    "database_version_after": 2,
+    "native_version_before": 30,
+    "native_version_after": 90,
+    "snapshot_sha256_after": "3bda3fd064cebc841b7cd09660746b07aef07c6010aea53422d740d557ce4519",
+    "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+    "outcome": "applied_to_isolated_sandbox",
+    "authorized_user": "local-owner",
+    "authorization": "WebAuthn_user_verified"
+  },
+  "external_live_gates": "MI300X/Evolus/GitHub BLOCKED; AMD/Pinecone separately recorded, no live call in offline demo",
+  "sprint_features": "Observed-only six-cell forecast and recorded diagnosis/forecast/adversarial evidence verified",
+  "incident_authorization": "BLOCKED by manual; demonstrated action only stationary local sandbox"
+}

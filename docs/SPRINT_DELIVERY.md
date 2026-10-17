@@ -36,9 +36,10 @@ when preserving an already-delivered measurement. Native evaluators are
 `tools/evaluate_sprint_ai.py`, `tools/evaluate_sprint_ai_confounders.py` and
 `tools/evaluate_forecasting.py`; see their result documents for exact protocols.
 Run `python tools/dev.py check` for the complete configured regression gate.
-Run `python tools/clean_demo.py --evidence-prefix sprint-final` then
-`python tools/check_clean_source.py --evidence-prefix sprint-final` for isolated
+Run `python tools/clean_demo.py --evidence-prefix sprint-new` then
+`python tools/check_clean_source.py --evidence-prefix sprint-new` for isolated
 source export, fresh credentials/storage and the complete clean gate.
+Choose a fresh prefix each time; delivered `sprint-verified` evidence is preserved.
 
 ## Judge narration
 

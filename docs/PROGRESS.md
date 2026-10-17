@@ -1,5 +1,16 @@
 # Execution status
 
+## Competitive sprint checkpoint — 2026-10-17
+
+Implementation and full MAIN gate PASS: 398 Python / 3 CTest / 35 Node /
+17 Chromium, configured audits/contracts and actual storage/authorization checks.
+Final frozen-source three-minute demo PASS at 180.0162159 seconds. Separate full
+clean-source gate is RUNNING, not yet claimed complete. User requested handoff
+because usage limits are approaching. Read **SPRINT_CHECKPOINT.md** for exact
+active command/logs and remaining validation/docs/commit work. Do not rebuild
+features or rerun the one-shot commissioned recovery. AI/forecast quality remain
+PARTIAL with measured low recall; original protected data/receipt are unchanged.
+
 ## Commissioned simulator incident recovery — 2026-10-17
 
 PASS actual safe-stop authorization/cooldown for the separate commissioned plant;
