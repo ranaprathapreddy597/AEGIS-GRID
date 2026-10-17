@@ -1,0 +1,2150 @@
+{
+  "status": "PASS",
+  "physical_io": false,
+  "provider_writes": 0,
+  "sse_http_status": 200,
+  "api_http_status": 200,
+  "investigation": {
+    "investigation_id": "fdfde53a-f768-41c1-a6ad-8cfe8c168949",
+    "incident_id": "995e357a70b081c6005d31242c28ec856ffbe4e9f7529c12e7278e6a01ccc117",
+    "phase": 7,
+    "status": "paused_no_action",
+    "backend": "amd_token_factory",
+    "hosted_diagnosis": {
+      "assessment": "insufficient_evidence",
+      "hypotheses": [],
+      "evidence_ids": []
+    },
+    "hosted_planning": {
+      "recommendation": "minimax_candidate",
+      "evidence_ids": [
+        "candidate_evaluations",
+        "retrieved_sources"
+      ]
+    },
+    "configured_mode": "amd_hosted",
+    "source_citations": [
+      {
+        "reference_id": "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "docs/results/phase8-profile.json",
+        "source": "docs/results/phase8-profile.json",
+        "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "docs/results/phase8-profile.json",
+        "source": "docs/results/phase8-profile.json",
+        "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-bf43c2ebf4b3033d903fa9c47f5e7a5b87a1af465457d597365458d1adcafedc",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "data/manuals/pages.jsonl",
+        "source": "data/manuals/pages.jsonl",
+        "revision": "R1",
+        "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-fba65986673e25e48491986df016944e49a132c919cc73f60647fa4e5fedadb5",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "data/manuals/pages.jsonl",
+        "source": "data/manuals/pages.jsonl",
+        "revision": "R1",
+        "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+        "namespace": "real-world-v1",
+        "title": "Condition monitoring of hydraulic systems",
+        "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "revision": "UCI-447-2018-04-25",
+        "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+        "license": "CC-BY-4.0",
+        "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-4ece7543debeda7af0080c79d3f97505089388fa7659662c872dd33b5c2ca025",
+        "namespace": "real-world-v1",
+        "title": "Raspberry Pi Compute Module introduction",
+        "source": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+        "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+        "source_sha256": "6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff",
+        "license": "CC-BY-SA-4.0",
+        "attribution": "Raspberry Pi Ltd and documentation contributors",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+        "namespace": "real-world-v1",
+        "title": "Condition monitoring of hydraulic systems",
+        "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "revision": "UCI-447-2018-04-25",
+        "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+        "license": "CC-BY-4.0",
+        "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+        "namespace": "real-world-v1",
+        "title": "Arduino Opta industrial controller datasheet source",
+        "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+        "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+        "license": "CC-BY-SA-4.0",
+        "attribution": "Arduino and documentation contributors",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      }
+    ],
+    "model_attributions": [
+      {
+        "role": "diagnosis",
+        "requested_model": "DeepSeek-V4-Flash",
+        "served_model": "self-dploy/DeepSeek-V4-Flash",
+        "attempted_models": [
+          "DeepSeek-V4-Flash"
+        ],
+        "latency_ms": 3059.538033,
+        "prompt_tokens": 1251,
+        "completion_tokens": 22,
+        "hardware_verified": false
+      },
+      {
+        "role": "planning",
+        "requested_model": "DeepSeek-V4-Flash",
+        "served_model": "self-dploy/DeepSeek-V4-Flash",
+        "attempted_models": [
+          "DeepSeek-V4-Flash"
+        ],
+        "latency_ms": 2864.577529,
+        "prompt_tokens": 1332,
+        "completion_tokens": 34,
+        "hardware_verified": false
+      }
+    ],
+    "model_attempts": [
+      {
+        "role": "diagnosis",
+        "model": "DeepSeek-V4-Flash",
+        "stage": "validated",
+        "http_status": 200,
+        "rejection_class": "",
+        "schema_errors": []
+      },
+      {
+        "role": "planning",
+        "model": "DeepSeek-V4-Flash",
+        "stage": "validated",
+        "http_status": 200,
+        "rejection_class": "",
+        "schema_errors": []
+      }
+    ],
+    "amd_request_attempts": 2,
+    "amd_catalog_requests": 2,
+    "pinecone_query_attempts": 8,
+    "retrieved_source_ids": [
+      "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+      "agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30",
+      "agk1-bf43c2ebf4b3033d903fa9c47f5e7a5b87a1af465457d597365458d1adcafedc",
+      "agk1-fba65986673e25e48491986df016944e49a132c919cc73f60647fa4e5fedadb5",
+      "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+      "agrw1-4ece7543debeda7af0080c79d3f97505089388fa7659662c872dd33b5c2ca025",
+      "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+      "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6"
+    ],
+    "retrieval_backend": "pinecone_semantic",
+    "provider_failures": [],
+    "hypotheses": [
+      {
+        "cause": "sensor_bias",
+        "support_score": 0.9,
+        "explanation": "Independent physics estimate disagrees with sensor",
+        "score_method": "physics_heuristic_not_probability"
+      },
+      {
+        "cause": "restricted_flow",
+        "support_score": 0.6,
+        "explanation": "Observed branch flow below synthetic envelope",
+        "score_method": "physics_heuristic_not_probability"
+      },
+      {
+        "cause": "overload",
+        "support_score": 0.5,
+        "explanation": "High observed load adds heat demand",
+        "score_method": "physics_heuristic_not_probability"
+      },
+      {
+        "cause": "weak_pump",
+        "support_score": 0.5,
+        "explanation": "Observed common pressure is low",
+        "score_method": "physics_heuristic_not_probability"
+      }
+    ],
+    "candidates": [
+      {
+        "candidate_id": "blue-1",
+        "controls": {
+          "pump": 0,
+          "loads": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "valves": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "rationale": "Deliberately flawed productivity candidate for Red challenge",
+        "red_accepted": false,
+        "simulation_checked": true,
+        "maximum_temperature_c": 60.95062061523108,
+        "executable": false
+      },
+      {
+        "candidate_id": "blue-2",
+        "controls": {
+          "pump": 0.7,
+          "loads": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "valves": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "rationale": "Minimax optimum; still subject to independent latched-stop policy",
+        "red_accepted": false,
+        "simulation_checked": true,
+        "maximum_temperature_c": 40.98153978129264,
+        "executable": false
+      },
+      {
+        "candidate_id": "blue-3",
+        "controls": {
+          "pump": 1,
+          "loads": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "valves": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "rationale": "Preserve independent emergency stop after adversarial feedback",
+        "red_accepted": true,
+        "simulation_checked": true,
+        "maximum_temperature_c": 40.952462509599016,
+        "executable": false
+      }
+    ],
+    "recovery_assessment": {
+      "artifact_sha256": "cfd8d2d09d491413ed3ff2dcd2a819b6e6e469d16f4aa2a83c6c95ca33cf86c0",
+      "incident_id": "995e357a70b081c6005d31242c28ec856ffbe4e9f7529c12e7278e6a01ccc117",
+      "source_snapshot_sha256": "8cb0b9e70988f859aba7c1b05dfabe426844a96c4557cecca2b54471c21c5d87",
+      "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+      "model_version": "coupled-factory-v3",
+      "algorithm": "enumerative-minimax-v1",
+      "status": "checked_non_executable",
+      "reason": "Finite robust search passed; authorization and manual gate remain closed",
+      "policy": {
+        "temperature_lt_c": 70,
+        "productive_flow_min_kg_s": 0.02,
+        "pressure_max_kpa": 180,
+        "feeder_max_w": 14500,
+        "flow_grace_s": 10,
+        "pump_ramp_s": 0.12,
+        "load_ramp_s": 0.1,
+        "valve_ramp_s": 0.2
+      },
+      "objective_weights": {
+        "lost_production_units": 5,
+        "downtime_s": 0.05,
+        "energy_kwh": 0.25,
+        "actuator_travel": 0.1,
+        "thermal_risk": 10
+      },
+      "assumptions": [
+        "Synthetic uncalibrated model; fixed 600-second open-loop control horizon, dt=1s/20 substeps.",
+        "Full-state counterfactual referee, not observed-only prediction or inferred fault truth.",
+        "Nominal plus 36 priors: six targets, severity .5/.8/1, temperature offset -2/+2C.",
+        "Priors combine blockage, weak pump, demand burst and power spike, onset immediately.",
+        "Finite coverage only; no statistical/industrial safety guarantee outside the enumerated set.",
+        "Productive flow floor has ten seconds settling; thermal bound always applies.",
+        "Costs are assumed dimensionless weights, not dollars, prices or measured business savings.",
+        "Main edge emergency latch remains untouched. Contradictory manual blocks all execution."
+      ],
+      "cases": [
+        {
+          "case_id": "snapshot",
+          "seed": 42,
+          "snapshot_sha256": "8cb0b9e70988f859aba7c1b05dfabe426844a96c4557cecca2b54471c21c5d87",
+          "fault_mask": 157,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": 0
+        },
+        {
+          "case_id": "red-01",
+          "seed": 43,
+          "snapshot_sha256": "e4642b236caed95d48fddd7be92aabbc5d2b18f3b0b7ed0bada38fbceddcefd3",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-02",
+          "seed": 44,
+          "snapshot_sha256": "a90b5ba117c1ca6653c21316d90da1a24caa9a1701cc0511b9566a49f8822af6",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-03",
+          "seed": 45,
+          "snapshot_sha256": "99bc968244c60079e067274cf1e7e52e552b5636767184c2c52c3482049c339a",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-04",
+          "seed": 46,
+          "snapshot_sha256": "439eb284cd8cc817c7660c8495d48fe8e9d7b19a7d473ede6627bdd372b957ee",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-05",
+          "seed": 47,
+          "snapshot_sha256": "e7ddc7a2767b758d653f02e19b8d64ccba308836672b56eb9a0e4c11715c2529",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-06",
+          "seed": 48,
+          "snapshot_sha256": "d23fa48af4fcee0742b792ec40a36e6fb10421e634ee03963fc39309a57970ce",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-07",
+          "seed": 49,
+          "snapshot_sha256": "7d3e04335d5ce0fbe1540005e463371cc910272d69614776d67c4a6f44ef242e",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-08",
+          "seed": 50,
+          "snapshot_sha256": "61f1fe2816b3514e9437720078866b3e7c5083ae07531f9304c692711f5ded40",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-09",
+          "seed": 51,
+          "snapshot_sha256": "f6b823ce35f5e93f985e8dcca9af9e2185264565eb601b6e1b2eec33e7970d94",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-10",
+          "seed": 52,
+          "snapshot_sha256": "a058ede85785e46fdb92f645825ce668705372126ed37f232611d60317d83a4f",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-11",
+          "seed": 53,
+          "snapshot_sha256": "df164da54bdb7e7a02d0bebbc8e3630f0e498b3e66c0cca145a8a48e176827af",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-12",
+          "seed": 54,
+          "snapshot_sha256": "a3a83d5cf83d50fcc203d57f307df60fe68a4ae07e52d28bcddd721da40c0c16",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-13",
+          "seed": 55,
+          "snapshot_sha256": "390f4e132a9216b9c0296a12d2b4dabd9279fd619b4182b1f7742a0c1098a080",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-14",
+          "seed": 56,
+          "snapshot_sha256": "f767d493ac64b8a57f51e4ef60c540ef3b9d7400c0da267748c3b62fb23c6caf",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-15",
+          "seed": 57,
+          "snapshot_sha256": "29ff4e08ba0e7b72c397c6edae5c5690012ea170a2e42bde624fd231f4f2e81a",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-16",
+          "seed": 58,
+          "snapshot_sha256": "a0850cd22932859fa40485084099fbc760cbdc19c22144ab453707adf779a4b2",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-17",
+          "seed": 59,
+          "snapshot_sha256": "3d10035cdca3f43d6bb7f043bc13e8bbe3d219a38ff42a18ea8347c80ddfcdf8",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-18",
+          "seed": 60,
+          "snapshot_sha256": "a4c54c3fc1abd5a729713d4dc7d859b3b79bf4524035932aad07f81309df1373",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-19",
+          "seed": 61,
+          "snapshot_sha256": "4ed328be38f776e959836285d3319315f370d681c133abeb100333638d8afe38",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-20",
+          "seed": 62,
+          "snapshot_sha256": "ddd3424b71b630b4a01f9d99c811e722a06537da0e50f915f48ac16b97e28057",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-21",
+          "seed": 63,
+          "snapshot_sha256": "6d839db6cc22a5abbc4afbc482a0b2d1fc7b4ade765ebbfeec7821772607ffa5",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-22",
+          "seed": 64,
+          "snapshot_sha256": "cba4715a68d348c05482749882d17d0cc711124bbc3b980a2abf509629ff58de",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-23",
+          "seed": 65,
+          "snapshot_sha256": "89a93fa37144921d93ab6e13a635ec5aed6f08136ffda2a9f5724208b5453f86",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-24",
+          "seed": 66,
+          "snapshot_sha256": "becfe6c09d6e3d6f11c2b0152968b1f23a598e9caefec8a496e1c2affe636b73",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-25",
+          "seed": 67,
+          "snapshot_sha256": "49de61872f1c28df95f6d619af8913a6bc76e458b6df025ed0ab8c9b12e4ad4f",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-26",
+          "seed": 68,
+          "snapshot_sha256": "9c841177da306a1399d8d2efc041d080af205767357e5586b870c4f4b6a0e9ef",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-27",
+          "seed": 69,
+          "snapshot_sha256": "5c11aff126269cac388fdf245e4ac75ec7127423ecd86fbce68e91c2faee4e4e",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-28",
+          "seed": 70,
+          "snapshot_sha256": "a8a038c15b11a6b03d44bf4f9a110c3645b8e990f9a28030528ad5f58d91efe0",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-29",
+          "seed": 71,
+          "snapshot_sha256": "c19b01f628b4996c99b3b44999b30023dc584f171d973eeac8ba361f356695f5",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-30",
+          "seed": 72,
+          "snapshot_sha256": "0267556cbfe35766f84391e6d4486fbffb4dbdb5c5908312aea9aab7a158b75c",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-31",
+          "seed": 73,
+          "snapshot_sha256": "a99b65afea1ec6ba05bc30c9a74154f120b77d2936ab625b1b17c4b00bb6033c",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-32",
+          "seed": 74,
+          "snapshot_sha256": "f323031be6b74bee357b7e19421ab4ee4a491dffda7842d39b2fd79b3ee32a48",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-33",
+          "seed": 75,
+          "snapshot_sha256": "9e555187f00a4f0eb9523c1cd0a4bd6db68444b900c50ac9fb98707fc8e11c1b",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-34",
+          "seed": 76,
+          "snapshot_sha256": "8551976ec3a662a612125490d889437ae40a14bd80850a4c693aba4dc7944558",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-35",
+          "seed": 77,
+          "snapshot_sha256": "0e198945643ccc6dd54fad047537e9f02a6f9b7ee0e1130d8d8663618607e4b6",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-36",
+          "seed": 78,
+          "snapshot_sha256": "99d2aa75be142cfb8e1cc9c71f3b8047f3b8706b59a3f77dd9c59ca90b2a431f",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 1,
+          "temperature_offset_c": 2
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "blue-load-0-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": true,
+          "checked_cases": 37,
+          "failed_cases": 0,
+          "worst_temperature_c": 42.955917271571856,
+          "worst_objective": 327.9762378635615,
+          "mean_energy_kwh": 0.28530745477213987,
+          "minimum_production_units": 0.46874166666668593,
+          "maximum_downtime_s": 591,
+          "maximum_actuator_travel": 5.969999999999995,
+          "counterexamples": []
+        },
+        {
+          "candidate_id": "blue-load-0-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": true,
+          "checked_cases": 37,
+          "failed_cases": 0,
+          "worst_temperature_c": 42.926456551972215,
+          "worst_objective": 327.99558258074717,
+          "mean_energy_kwh": 0.3545016450775808,
+          "minimum_production_units": 0.46874166666668593,
+          "maximum_downtime_s": 591,
+          "maximum_actuator_travel": 5.969999999999995,
+          "counterexamples": []
+        },
+        {
+          "candidate_id": "blue-load-25-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 13,
+          "worst_temperature_c": 69.58092281019567,
+          "worst_objective": 207.21250002481963,
+          "mean_energy_kwh": 1.0898476484658934,
+          "minimum_production_units": 19.008741666650558,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 34.470000000000184,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 2,
+              "maximum_temperature_c": 68.58475345010311
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 2,
+              "maximum_temperature_c": 67.76405110453815
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 2,
+              "maximum_temperature_c": 69.58092281019567
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-25-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 13,
+          "worst_temperature_c": 67.76362897840686,
+          "worst_objective": 207.2171662207327,
+          "mean_energy_kwh": 1.1590418387713668,
+          "minimum_production_units": 19.008741666650558,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 34.470000000000184,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 2,
+              "maximum_temperature_c": 66.81958983097448
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 2,
+              "maximum_temperature_c": 66.06779664117109
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 2,
+              "maximum_temperature_c": 67.76362897840686
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-50-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 13,
+          "worst_temperature_c": 87.98850089519462,
+          "worst_objective": 146.36154975678434,
+          "mean_energy_kwh": 1.644105008221568,
+          "minimum_production_units": 33.860616666637405,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 32.97000000000016,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 87.07379234792946
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 86.17866639428756
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 3,
+              "maximum_temperature_c": 87.98850089519462
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-50-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 13,
+          "worst_temperature_c": 85.01637684637215,
+          "worst_objective": 144.48619480730676,
+          "mean_energy_kwh": 1.7049510909403263,
+          "minimum_production_units": 33.860616666637405,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 32.97000000000016,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 84.12122442139822
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 83.32054450913574
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 3,
+              "maximum_temperature_c": 85.01637684637215
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-75-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 25,
+          "worst_temperature_c": 101.25650757747988,
+          "worst_objective": 105.84205273262124,
+          "mean_energy_kwh": 2.085803865499132,
+          "minimum_production_units": 47.88071819863564,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.47000000000014,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 100.32310139992866
+            },
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 77.67140745340302
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 78.7567653594296
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-75-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 25,
+          "worst_temperature_c": 97.30303805487573,
+          "worst_objective": 102.96065156024403,
+          "mean_energy_kwh": 2.134646421031766,
+          "minimum_production_units": 47.41823649642401,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.47000000000014,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 96.4303790576957
+            },
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 71.71814072341469
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 72.6133186063344
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-100-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 25,
+          "worst_temperature_c": 106.90947038444199,
+          "worst_objective": 85.00703949634273,
+          "mean_energy_kwh": 2.2963195484753065,
+          "minimum_production_units": 53.068901191194726,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 0.32999999999999996,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 106.01555698296312
+            },
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 82.67161206431393
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 83.72967583828972
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-100-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 25,
+          "worst_temperature_c": 102.74339630740164,
+          "worst_objective": 81.36580784495723,
+          "mean_energy_kwh": 2.342425797390758,
+          "minimum_production_units": 52.59966335830212,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 0.32999999999999996,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 101.91014103500274
+            },
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 76.17644711652791
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 77.04598378098964
+            }
+          ]
+        },
+        {
+          "candidate_id": "planted-unsafe",
+          "controls": {
+            "pump": 0,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 37,
+          "worst_temperature_c": 132.58476529594154,
+          "worst_objective": 129.94548745689661,
+          "mean_energy_kwh": 2.2723742291926183,
+          "minimum_production_units": 53.31387619374595,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 7.029999999999999,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 131.18955685202334
+            },
+            {
+              "case_id": "red-01",
+              "violation_mask": 3,
+              "maximum_temperature_c": 129.71446322320566
+            },
+            {
+              "case_id": "red-02",
+              "violation_mask": 3,
+              "maximum_temperature_c": 132.50457224630657
+            }
+          ]
+        }
+      ],
+      "selected_candidate_id": "blue-load-0-pump-70",
+      "total_rollouts": 409,
+      "native_substeps": 4908000,
+      "horizon_s": 600,
+      "baseline": {
+        "horizon_s": 600,
+        "steps": 600,
+        "maximum_temperature_c": 92.75843856430293,
+        "maximum_pressure_kpa": 19.11103797806395,
+        "maximum_feeder_power_w": 14500.000000000002,
+        "minimum_flow_kg_s": 0.0030912002505551132,
+        "energy_kwh": 2.138628086419132,
+        "production_units": 47.07195402523608,
+        "downtime_s": 0,
+        "actuator_travel": 26.400000000000045,
+        "maximum_ramp_excess": 8.326672684688674e-17,
+        "violation_mask": 3,
+        "samples": [
+          {
+            "elapsed_s": 0,
+            "maximum_temperature_c": 40.22949320065204,
+            "production_units": 0,
+            "energy_kwh": 0
+          },
+          {
+            "elapsed_s": 9.999999999999432,
+            "maximum_temperature_c": 41.73581091774553,
+            "production_units": 0.9699999999995157,
+            "energy_kwh": 0.03699347993827218
+          },
+          {
+            "elapsed_s": 19.999999999999133,
+            "maximum_temperature_c": 43.286209620028664,
+            "production_units": 1.6331722013576826,
+            "energy_kwh": 0.07692640644290187
+          },
+          {
+            "elapsed_s": 30.000000000001407,
+            "maximum_temperature_c": 44.37647184237882,
+            "production_units": 2.3700347886274553,
+            "energy_kwh": 0.1077014043209888
+          },
+          {
+            "elapsed_s": 40.00000000000368,
+            "maximum_temperature_c": 45.39916152641251,
+            "production_units": 3.1200347886274837,
+            "energy_kwh": 0.13736155092592764
+          },
+          {
+            "elapsed_s": 50.000000000005954,
+            "maximum_temperature_c": 46.906515557577414,
+            "production_units": 3.7716426554799476,
+            "energy_kwh": 0.17652447743055735
+          },
+          {
+            "elapsed_s": 60.00000000000823,
+            "maximum_temperature_c": 48.32752511526774,
+            "production_units": 4.708843905387763,
+            "energy_kwh": 0.2138463871527801
+          },
+          {
+            "elapsed_s": 70.0000000000105,
+            "maximum_temperature_c": 49.710451810900516,
+            "production_units": 5.678843905387279,
+            "energy_kwh": 0.25083986709105227
+          },
+          {
+            "elapsed_s": 80.00000000001278,
+            "maximum_temperature_c": 51.13759706882273,
+            "production_units": 6.340290515663055,
+            "energy_kwh": 0.2907892150848795
+          },
+          {
+            "elapsed_s": 90.00000000001505,
+            "maximum_temperature_c": 52.10204800366543,
+            "production_units": 7.077778694015221,
+            "energy_kwh": 0.3215111248071022
+          },
+          {
+            "elapsed_s": 100.00000000001732,
+            "maximum_temperature_c": 53.00158011846909,
+            "production_units": 7.827778694015249,
+            "energy_kwh": 0.3511712714120411
+          },
+          {
+            "elapsed_s": 110.0000000000196,
+            "maximum_temperature_c": 54.389082141987906,
+            "production_units": 8.478846623363067,
+            "energy_kwh": 0.3903872860725349
+          },
+          {
+            "elapsed_s": 120.00000000002187,
+            "maximum_temperature_c": 55.68788933212961,
+            "production_units": 9.416047873270882,
+            "energy_kwh": 0.4277091957947577
+          },
+          {
+            "elapsed_s": 130.00000000002416,
+            "maximum_temperature_c": 56.94930050460267,
+            "production_units": 10.386047873270398,
+            "energy_kwh": 0.46470267573302987
+          },
+          {
+            "elapsed_s": 140.00000000002643,
+            "maximum_temperature_c": 58.255725263474226,
+            "production_units": 11.047494483545668,
+            "energy_kwh": 0.5046520237268571
+          },
+          {
+            "elapsed_s": 150.00000000002865,
+            "maximum_temperature_c": 59.100345435746384,
+            "production_units": 11.784982661897763,
+            "energy_kwh": 0.5353739334490798
+          },
+          {
+            "elapsed_s": 160.00000000003092,
+            "maximum_temperature_c": 59.881019405613245,
+            "production_units": 12.534982661897791,
+            "energy_kwh": 0.5650340800540187
+          },
+          {
+            "elapsed_s": 170.0000000000332,
+            "maximum_temperature_c": 61.15070836695424,
+            "production_units": 13.186050591245609,
+            "energy_kwh": 0.6042500947145125
+          },
+          {
+            "elapsed_s": 180.00000000003547,
+            "maximum_temperature_c": 62.33281085252152,
+            "production_units": 14.123251841153424,
+            "energy_kwh": 0.6415720044367353
+          },
+          {
+            "elapsed_s": 190.00000000003774,
+            "maximum_temperature_c": 63.47868082582393,
+            "production_units": 15.09325184115294,
+            "energy_kwh": 0.6785654843750075
+          },
+          {
+            "elapsed_s": 200.00000000004002,
+            "maximum_temperature_c": 64.67077583543227,
+            "production_units": 15.75469845142821,
+            "energy_kwh": 0.7185148323688347
+          },
+          {
+            "elapsed_s": 210.0000000000423,
+            "maximum_temperature_c": 65.40231925349927,
+            "production_units": 16.492186629780306,
+            "energy_kwh": 0.7492367420910574
+          },
+          {
+            "elapsed_s": 220.00000000004457,
+            "maximum_temperature_c": 66.07120531099409,
+            "production_units": 17.242186629780335,
+            "energy_kwh": 0.7788968886959963
+          },
+          {
+            "elapsed_s": 230.00000000004684,
+            "maximum_temperature_c": 67.23042596260574,
+            "production_units": 17.893254559128152,
+            "energy_kwh": 0.8181129033564901
+          },
+          {
+            "elapsed_s": 240.0000000000491,
+            "maximum_temperature_c": 68.30340595209559,
+            "production_units": 18.830455809035968,
+            "energy_kwh": 0.8554348130786896
+          },
+          {
+            "elapsed_s": 250.0000000000514,
+            "maximum_temperature_c": 69.3415213746436,
+            "production_units": 19.800455809035483,
+            "energy_kwh": 0.8924282930169359
+          },
+          {
+            "elapsed_s": 260.00000000005366,
+            "maximum_temperature_c": 70.42724824493943,
+            "production_units": 20.461902419310753,
+            "energy_kwh": 0.9323776410107606
+          },
+          {
+            "elapsed_s": 270.00000000005593,
+            "maximum_temperature_c": 71.05382510054213,
+            "production_units": 21.19939059766285,
+            "energy_kwh": 0.96309955073296
+          },
+          {
+            "elapsed_s": 280.0000000000582,
+            "maximum_temperature_c": 71.61915835962516,
+            "production_units": 21.949390597662877,
+            "energy_kwh": 0.992759697337873
+          },
+          {
+            "elapsed_s": 290.0000000000605,
+            "maximum_temperature_c": 72.67624947173775,
+            "production_units": 22.600458527010694,
+            "energy_kwh": 1.0319757119983644
+          },
+          {
+            "elapsed_s": 300.00000000006276,
+            "maximum_temperature_c": 73.64853023722544,
+            "production_units": 23.537659776918503,
+            "energy_kwh": 1.0692976217205636
+          },
+          {
+            "elapsed_s": 310.00000000006503,
+            "maximum_temperature_c": 74.58738159602811,
+            "production_units": 24.507659776916597,
+            "energy_kwh": 1.10629110165881
+          },
+          {
+            "elapsed_s": 320.0000000000673,
+            "maximum_temperature_c": 75.57528239818687,
+            "production_units": 25.16910638719318,
+            "energy_kwh": 1.1462404496526346
+          },
+          {
+            "elapsed_s": 330.0000000000696,
+            "maximum_temperature_c": 76.10547218866051,
+            "production_units": 25.90659456554485,
+            "energy_kwh": 1.176962359374834
+          },
+          {
+            "elapsed_s": 340.00000000007185,
+            "maximum_temperature_c": 76.57585672821286,
+            "production_units": 26.656594565544168,
+            "energy_kwh": 1.206622505979747
+          },
+          {
+            "elapsed_s": 350.0000000000741,
+            "maximum_temperature_c": 77.53943529127577,
+            "production_units": 27.307662494891957,
+            "energy_kwh": 1.2458385206402383
+          },
+          {
+            "elapsed_s": 360.0000000000764,
+            "maximum_temperature_c": 78.41963611838837,
+            "production_units": 28.244863744798494,
+            "energy_kwh": 1.2831604303624378
+          },
+          {
+            "elapsed_s": 370.00000000007867,
+            "maximum_temperature_c": 79.26783532562148,
+            "production_units": 29.214863744796588,
+            "energy_kwh": 1.320153910300684
+          },
+          {
+            "elapsed_s": 380.00000000008095,
+            "maximum_temperature_c": 80.16650578477271,
+            "production_units": 29.876310355073173,
+            "energy_kwh": 1.3601032582945087
+          },
+          {
+            "elapsed_s": 390.0000000000832,
+            "maximum_temperature_c": 80.60888000819335,
+            "production_units": 30.61379853342484,
+            "energy_kwh": 1.390825168016708
+          },
+          {
+            "elapsed_s": 400.0000000000855,
+            "maximum_temperature_c": 80.99285576109592,
+            "production_units": 31.36379853342416,
+            "energy_kwh": 1.4204853146216212
+          },
+          {
+            "elapsed_s": 410.00000000007975,
+            "maximum_temperature_c": 81.87142344319153,
+            "production_units": 32.01486646277195,
+            "energy_kwh": 1.4597013292821124
+          },
+          {
+            "elapsed_s": 420.00000000007066,
+            "maximum_temperature_c": 82.66800161807734,
+            "production_units": 32.952067712678485,
+            "energy_kwh": 1.497023239004312
+          },
+          {
+            "elapsed_s": 430.00000000006156,
+            "maximum_temperature_c": 83.43395599349316,
+            "production_units": 33.92206771267658,
+            "energy_kwh": 1.5340167189425582
+          },
+          {
+            "elapsed_s": 440.00000000005247,
+            "maximum_temperature_c": 84.25174836685552,
+            "production_units": 34.583514322953164,
+            "energy_kwh": 1.5739660669363829
+          },
+          {
+            "elapsed_s": 450.00000000004337,
+            "maximum_temperature_c": 84.61459957046982,
+            "production_units": 35.32100250130483,
+            "energy_kwh": 1.6046879766585822
+          },
+          {
+            "elapsed_s": 460.0000000000343,
+            "maximum_temperature_c": 84.92039513974508,
+            "production_units": 36.07100250130415,
+            "energy_kwh": 1.6343481232634953
+          },
+          {
+            "elapsed_s": 470.0000000000252,
+            "maximum_temperature_c": 85.72211274667586,
+            "production_units": 36.72207043065194,
+            "energy_kwh": 1.6735641379239865
+          },
+          {
+            "elapsed_s": 480.0000000000161,
+            "maximum_temperature_c": 86.44315777737695,
+            "production_units": 37.659271680558476,
+            "energy_kwh": 1.710886047646186
+          },
+          {
+            "elapsed_s": 490.000000000007,
+            "maximum_temperature_c": 87.13488235711186,
+            "production_units": 38.62927168055657,
+            "energy_kwh": 1.7478795275844323
+          },
+          {
+            "elapsed_s": 499.9999999999979,
+            "maximum_temperature_c": 87.87973433751108,
+            "production_units": 39.290718290833155,
+            "energy_kwh": 1.787828875578257
+          },
+          {
+            "elapsed_s": 509.9999999999888,
+            "maximum_temperature_c": 88.17329502625728,
+            "production_units": 40.02758087810244,
+            "energy_kwh": 1.8186038734563208
+          },
+          {
+            "elapsed_s": 519.9999999999798,
+            "maximum_temperature_c": 88.40866786338374,
+            "production_units": 40.77758087810176,
+            "energy_kwh": 1.8482640200612337
+          },
+          {
+            "elapsed_s": 529.9999999999707,
+            "maximum_temperature_c": 89.13832502306374,
+            "production_units": 41.42918874495413,
+            "energy_kwh": 1.8874269465658606
+          },
+          {
+            "elapsed_s": 539.9999999999616,
+            "maximum_temperature_c": 89.79223092436034,
+            "production_units": 42.36475005735609,
+            "energy_kwh": 1.9247652777772577
+          },
+          {
+            "elapsed_s": 549.9999999999525,
+            "maximum_temperature_c": 90.41724771834882,
+            "production_units": 43.334750057354185,
+            "energy_kwh": 1.961758757715504
+          },
+          {
+            "elapsed_s": 559.9999999999434,
+            "maximum_temperature_c": 91.09632128236099,
+            "production_units": 43.997922258713146,
+            "energy_kwh": 2.001691684220131
+          },
+          {
+            "elapsed_s": 569.9999999999343,
+            "maximum_temperature_c": 91.3255486558534,
+            "production_units": 44.73478484598243,
+            "energy_kwh": 2.0324666820981947
+          },
+          {
+            "elapsed_s": 579.9999999999252,
+            "maximum_temperature_c": 91.49775772583789,
+            "production_units": 45.48478484598175,
+            "energy_kwh": 2.062126828703108
+          },
+          {
+            "elapsed_s": 589.9999999999161,
+            "maximum_temperature_c": 92.16540484893926,
+            "production_units": 46.13639271283412,
+            "energy_kwh": 2.101289755207735
+          },
+          {
+            "elapsed_s": 599.999999999907,
+            "maximum_temperature_c": 92.75843856430293,
+            "production_units": 47.07195402523608,
+            "energy_kwh": 2.138628086419132
+          }
+        ]
+      },
+      "intervention": {
+        "horizon_s": 600,
+        "steps": 600,
+        "maximum_temperature_c": 40.981941305961634,
+        "maximum_pressure_kpa": 19.11103797806395,
+        "maximum_feeder_power_w": 13317.652777777777,
+        "minimum_flow_kg_s": 0.0025456943239865635,
+        "energy_kwh": 0.30345381351845285,
+        "production_units": 0.46874166666668593,
+        "downtime_s": 591,
+        "actuator_travel": 5.969999999999995,
+        "maximum_ramp_excess": 1.1102230246251565e-16,
+        "violation_mask": 0,
+        "samples": [
+          {
+            "elapsed_s": 0,
+            "maximum_temperature_c": 40.22949320065204,
+            "production_units": 0,
+            "energy_kwh": 0
+          },
+          {
+            "elapsed_s": 9.999999999999432,
+            "maximum_temperature_c": 40.89922711167148,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.01973189993827455
+          },
+          {
+            "elapsed_s": 19.999999999999133,
+            "maximum_temperature_c": 40.97346238384017,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.025745449320993763
+          },
+          {
+            "elapsed_s": 30.000000000001407,
+            "maximum_temperature_c": 40.951792618116905,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.030047332037046307
+          },
+          {
+            "elapsed_s": 40.00000000000368,
+            "maximum_temperature_c": 40.91122728868813,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.03412171475309885
+          },
+          {
+            "elapsed_s": 50.000000000005954,
+            "maximum_temperature_c": 40.962610214034164,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.04013526413581806
+          },
+          {
+            "elapsed_s": 60.00000000000823,
+            "maximum_temperature_c": 40.919616722582646,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.04442631351853727
+          },
+          {
+            "elapsed_s": 70.0000000000105,
+            "maximum_temperature_c": 40.86016145409077,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.048500696234589816
+          },
+          {
+            "elapsed_s": 80.00000000001278,
+            "maximum_temperature_c": 40.8949089250277,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.05452507895064236
+          },
+          {
+            "elapsed_s": 90.00000000001505,
+            "maximum_temperature_c": 40.83627755100437,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.05881612833336158
+          },
+          {
+            "elapsed_s": 100.00000000001732,
+            "maximum_temperature_c": 40.76259646987306,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.06289051104941412
+          },
+          {
+            "elapsed_s": 110.0000000000196,
+            "maximum_temperature_c": 40.78440647509185,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.06891489376546667
+          },
+          {
+            "elapsed_s": 120.00000000002187,
+            "maximum_temperature_c": 40.714015228965785,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.07320594314818588
+          },
+          {
+            "elapsed_s": 130.00000000002416,
+            "maximum_temperature_c": 40.62965252571436,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.07728032586423841
+          },
+          {
+            "elapsed_s": 140.00000000002643,
+            "maximum_temperature_c": 40.64176986506757,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.08330470858029096
+          },
+          {
+            "elapsed_s": 150.00000000002865,
+            "maximum_temperature_c": 40.56259447963307,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.08759575796301017
+          },
+          {
+            "elapsed_s": 160.00000000003092,
+            "maximum_temperature_c": 40.47028356311911,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.09167014067906272
+          },
+          {
+            "elapsed_s": 170.0000000000332,
+            "maximum_temperature_c": 40.47522294028877,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.09769452339511527
+          },
+          {
+            "elapsed_s": 180.00000000003547,
+            "maximum_temperature_c": 40.3895803046942,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.10198557277783447
+          },
+          {
+            "elapsed_s": 190.00000000003774,
+            "maximum_temperature_c": 40.29145875636182,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.10605995549388703
+          },
+          {
+            "elapsed_s": 200.00000000004002,
+            "maximum_temperature_c": 40.291194867369974,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.11208433820993957
+          },
+          {
+            "elapsed_s": 210.0000000000423,
+            "maximum_temperature_c": 40.20091139014368,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.11637538759265878
+          },
+          {
+            "elapsed_s": 220.00000000004457,
+            "maximum_temperature_c": 40.0986703309034,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.12044977030871132
+          },
+          {
+            "elapsed_s": 230.00000000004684,
+            "maximum_temperature_c": 40.09477060775845,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.12647415302476386
+          },
+          {
+            "elapsed_s": 240.0000000000491,
+            "maximum_temperature_c": 40.00130040093839,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.13076520240748307
+          },
+          {
+            "elapsed_s": 250.0000000000514,
+            "maximum_temperature_c": 39.89628991123378,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.1348395851235356
+          },
+          {
+            "elapsed_s": 260.00000000005366,
+            "maximum_temperature_c": 39.89000874061099,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.14086396783958816
+          },
+          {
+            "elapsed_s": 270.00000000005593,
+            "maximum_temperature_c": 39.79451799769501,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.14515501722230736
+          },
+          {
+            "elapsed_s": 280.0000000000582,
+            "maximum_temperature_c": 39.68782284002456,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.14922939993835993
+          },
+          {
+            "elapsed_s": 290.0000000000605,
+            "maximum_temperature_c": 39.68016966342241,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.15525378265441248
+          },
+          {
+            "elapsed_s": 300.00000000006276,
+            "maximum_temperature_c": 39.58359803802874,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.15954483203713168
+          },
+          {
+            "elapsed_s": 310.00000000006503,
+            "maximum_temperature_c": 39.47609310016579,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.16361921475318422
+          },
+          {
+            "elapsed_s": 320.0000000000673,
+            "maximum_temperature_c": 39.467882607998945,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.16964359746923677
+          },
+          {
+            "elapsed_s": 330.0000000000696,
+            "maximum_temperature_c": 39.37098875847386,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.17393464685195598
+          },
+          {
+            "elapsed_s": 340.00000000007185,
+            "maximum_temperature_c": 39.2633804728963,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.17800902956800851
+          },
+          {
+            "elapsed_s": 350.0000000000741,
+            "maximum_temperature_c": 39.255270357554956,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.18403341228406106
+          },
+          {
+            "elapsed_s": 360.0000000000764,
+            "maximum_temperature_c": 39.15866643550049,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.18832446166678027
+          },
+          {
+            "elapsed_s": 370.00000000007867,
+            "maximum_temperature_c": 39.051524355660604,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.19239884438283283
+          },
+          {
+            "elapsed_s": 380.00000000008095,
+            "maximum_temperature_c": 39.044044284653474,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.19842322709888538
+          },
+          {
+            "elapsed_s": 390.0000000000832,
+            "maximum_temperature_c": 38.94822257650998,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2027142764816046
+          },
+          {
+            "elapsed_s": 400.0000000000855,
+            "maximum_temperature_c": 38.84200392569599,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.20678865919765713
+          },
+          {
+            "elapsed_s": 410.00000000007975,
+            "maximum_temperature_c": 38.835578208107215,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2128130419137003
+          },
+          {
+            "elapsed_s": 420.00000000007066,
+            "maximum_temperature_c": 38.740932104647,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.21710409129640657
+          },
+          {
+            "elapsed_s": 430.00000000006156,
+            "maximum_temperature_c": 38.636001212249965,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.22117847401244617
+          },
+          {
+            "elapsed_s": 440.00000000005247,
+            "maximum_temperature_c": 38.63096684656557,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.22720285672848578
+          },
+          {
+            "elapsed_s": 450.00000000004337,
+            "maximum_temperature_c": 38.53780763050649,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.23149390611119205
+          },
+          {
+            "elapsed_s": 460.0000000000343,
+            "maximum_temperature_c": 38.434451573172296,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.23556828882723166
+          },
+          {
+            "elapsed_s": 470.0000000000252,
+            "maximum_temperature_c": 38.43107284305159,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.24159267154327127
+          },
+          {
+            "elapsed_s": 480.0000000000161,
+            "maximum_temperature_c": 38.3396433294347,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.24588372092597754
+          },
+          {
+            "elapsed_s": 490.000000000007,
+            "maximum_temperature_c": 38.23808469630791,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.24995810364201718
+          },
+          {
+            "elapsed_s": 499.9999999999979,
+            "maximum_temperature_c": 38.23656513241977,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.25598248635805676
+          },
+          {
+            "elapsed_s": 509.9999999999888,
+            "maximum_temperature_c": 38.14759911379746,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2602843690740964
+          },
+          {
+            "elapsed_s": 519.9999999999798,
+            "maximum_temperature_c": 38.04800143572218,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.264358751790136
+          },
+          {
+            "elapsed_s": 529.9999999999707,
+            "maximum_temperature_c": 38.04794008868537,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2703723011728423
+          },
+          {
+            "elapsed_s": 539.9999999999616,
+            "maximum_temperature_c": 37.96102643101447,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2746741838888819
+          },
+          {
+            "elapsed_s": 549.9999999999525,
+            "maximum_temperature_c": 37.863517820129445,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2787485666049215
+          },
+          {
+            "elapsed_s": 559.9999999999434,
+            "maximum_temperature_c": 37.8655780488328,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.28476211598762774
+          },
+          {
+            "elapsed_s": 569.9999999999343,
+            "maximum_temperature_c": 37.78081452219147,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.2890639987036674
+          },
+          {
+            "elapsed_s": 579.9999999999252,
+            "maximum_temperature_c": 37.68548087547784,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.293138381419707
+          },
+          {
+            "elapsed_s": 589.9999999999161,
+            "maximum_temperature_c": 37.68973739797351,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.29915193080241326
+          },
+          {
+            "elapsed_s": 599.999999999907,
+            "maximum_temperature_c": 37.6071881981295,
+            "production_units": 0.46874166666668593,
+            "energy_kwh": 0.30345381351845285
+          }
+        ]
+      },
+      "executable": false,
+      "manual_action_gate": "BLOCKED",
+      "live_gates": "MI300X/Evolus/Pinecone BLOCKED"
+    },
+    "traces": [
+      {
+        "node": "sentinel",
+        "iteration": 0,
+        "elapsed_ms": 0.202886,
+        "detail": "Native incident accepted; local emergency policy remains independent"
+      },
+      {
+        "node": "evidence_collector",
+        "iteration": 1,
+        "elapsed_ms": 0.497184,
+        "detail": "Observed history/trends and neighbor Pearson correlations; constant channels undefined"
+      },
+      {
+        "node": "causal_detective",
+        "iteration": 1,
+        "elapsed_ms": 9384.821883,
+        "detail": "Validated AMD opinion recorded; independent numerical safety remains authoritative"
+      },
+      {
+        "node": "manual_expert",
+        "iteration": 1,
+        "elapsed_ms": 523.093152,
+        "detail": "Verified source retrieval; local full-corpus contradiction gate checked"
+      },
+      {
+        "node": "cascade_forecaster",
+        "iteration": 1,
+        "elapsed_ms": 2996.143694,
+        "detail": "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
+      },
+      {
+        "node": "blue_planner",
+        "iteration": 1,
+        "elapsed_ms": 4846.448928,
+        "detail": "Bounded typed controls proposed; no plant/executor write"
+      },
+      {
+        "node": "red_examiner",
+        "iteration": 1,
+        "elapsed_ms": 1.910714,
+        "detail": "Counterexample or independent latched-stop policy rejected candidate"
+      },
+      {
+        "node": "simulation_referee",
+        "iteration": 1,
+        "elapsed_ms": 26.820911,
+        "detail": "Real C++ candidate rollout; synthetic 70 degC hard bound checked"
+      },
+      {
+        "node": "safety_shield",
+        "iteration": 1,
+        "elapsed_ms": 1.476582,
+        "detail": "Adversarial or native rollout refusal"
+      },
+      {
+        "node": "evidence_collector",
+        "iteration": 2,
+        "elapsed_ms": 2.273016,
+        "detail": "Observed history/trends and neighbor Pearson correlations; constant channels undefined"
+      },
+      {
+        "node": "causal_detective",
+        "iteration": 2,
+        "elapsed_ms": 2.66469,
+        "detail": "Hosted opinion already attempted; no repeated quota consumption"
+      },
+      {
+        "node": "manual_expert",
+        "iteration": 2,
+        "elapsed_ms": 5.71799,
+        "detail": "Verified source retrieval; local full-corpus contradiction gate checked"
+      },
+      {
+        "node": "cascade_forecaster",
+        "iteration": 2,
+        "elapsed_ms": 237.881005,
+        "detail": "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
+      },
+      {
+        "node": "blue_planner",
+        "iteration": 2,
+        "elapsed_ms": 4153.095514,
+        "detail": "Bounded typed controls proposed; no plant/executor write"
+      },
+      {
+        "node": "red_examiner",
+        "iteration": 2,
+        "elapsed_ms": 6.80708,
+        "detail": "Counterexample or independent latched-stop policy rejected candidate"
+      },
+      {
+        "node": "simulation_referee",
+        "iteration": 2,
+        "elapsed_ms": 27.2976,
+        "detail": "Real C++ candidate rollout; synthetic 70 degC hard bound checked"
+      },
+      {
+        "node": "safety_shield",
+        "iteration": 2,
+        "elapsed_ms": 1.790308,
+        "detail": "Adversarial or native rollout refusal"
+      },
+      {
+        "node": "evidence_collector",
+        "iteration": 3,
+        "elapsed_ms": 4.18588,
+        "detail": "Observed history/trends and neighbor Pearson correlations; constant channels undefined"
+      },
+      {
+        "node": "causal_detective",
+        "iteration": 3,
+        "elapsed_ms": 3.277188,
+        "detail": "Hosted opinion already attempted; no repeated quota consumption"
+      },
+      {
+        "node": "manual_expert",
+        "iteration": 3,
+        "elapsed_ms": 7.882098,
+        "detail": "Verified source retrieval; local full-corpus contradiction gate checked"
+      },
+      {
+        "node": "cascade_forecaster",
+        "iteration": 3,
+        "elapsed_ms": 9.436372,
+        "detail": "Actual C++ 120-second unmitigated counterfactual, not observed sensor evidence"
+      },
+      {
+        "node": "blue_planner",
+        "iteration": 3,
+        "elapsed_ms": 3.351693,
+        "detail": "Bounded typed controls proposed; no plant/executor write"
+      },
+      {
+        "node": "red_examiner",
+        "iteration": 3,
+        "elapsed_ms": 1.332569,
+        "detail": "All 37 native cases checked; stop preserved"
+      },
+      {
+        "node": "simulation_referee",
+        "iteration": 3,
+        "elapsed_ms": 59.135514,
+        "detail": "Real C++ candidate rollout; synthetic 70 degC hard bound checked"
+      },
+      {
+        "node": "safety_shield",
+        "iteration": 3,
+        "elapsed_ms": 2.338726,
+        "detail": "Unresolved manual evidence; no action"
+      },
+      {
+        "node": "reporter",
+        "iteration": 3,
+        "elapsed_ms": 3.99984,
+        "detail": "Investigation complete through candidates; protected gateway untouched"
+      }
+    ],
+    "iteration": 3,
+    "max_iterations": 3,
+    "model_token_budget": 16384,
+    "model_tokens_used": 2639,
+    "cost_usd": null,
+    "manual_decision": "no_action",
+    "evidence_page_hashes": [
+      "de60415a0d33945081ed87bb446686f8bf122e99b2db3c907ace1e18ed12fdc3",
+      "3a55c572e181abd97391e4c65ad5d75b9d8cc56df8ce275737ead02c01b9e787",
+      "8b3ea43e0b959831a44a5ae593f70c4a632773e3360ea7c68b43ccd76d55745d",
+      "d50742b0161f6cd8b47c7a0550ebb2fb7b7b01f256a85d3b780d167f4a01aee0",
+      "9d5f860517d17f8c346f95a8d032ac2063ecfbd981226f34538ca0ac3172532d"
+    ],
+    "observed_history_samples": 21,
+    "observed_temperature_slopes_c_s": [
+      0.007668527260783701,
+      0.10226051462128266,
+      0.09540980431145032,
+      0.09826103705291292,
+      0.09486918009991967,
+      0.1135038694507046
+    ],
+    "observed_neighbor_correlations": [
+      1,
+      -0.19137496494864473,
+      -0.23897945416175742,
+      -0.17137043439945437,
+      -0.2344428491274833,
+      -0.18029941095515664
+    ],
+    "baseline_maximum_temperature_c": 55.68788933212961,
+    "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+    "refusal": "Unresolved manual evidence; no action",
+    "approval_required": true,
+    "operational_write_allowed": false,
+    "live_gates": "MI300X/Evolus BLOCKED; Pinecone dual references verified"
+  },
+  "ui_stream_received": true,
+  "persisted_report_identical": true,
+  "ui_model_attribution": "Forensic investigation\n\nPersistent LangGraph · physics reasoners + C++ forecasts · configured mode: amd_hosted\n\nInvestigate latest incident\n\nLive graph checkpoints received\n\nPAUSED - NO ACTION · Unresolved manual evidence; no action\n\namd_token_factory · 3 investigation cycles · MI300X/Evolus BLOCKED; Pinecone dual references verified\n\nApproval interrupt · independent WebAuthn and safety checks required. Conflicting manuals prohibit incident authorization.\n\ndiagnosis: AMD self-dploy/DeepSeek-V4-Flash · requested DeepSeek-V4-Flash · 3060 ms · 1273 tokens · hardware unverified\nplanning: AMD self-dploy/DeepSeek-V4-Flash · requested DeepSeek-V4-Flash · 2865 ms · 1366 tokens · hardware unverified\nVerified source citations (8)\ndocs/results/phase8-profile.json · SYNTHETIC · synthetic_simulator_evidence\n\naegis-synthetic-v1-6e4d75051cbcaf1e · agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574\n\ndocs/results/phase8-profile.json · revision 80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b · SHA256 80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b\n\nrepository synthetic fixture · AEGIS GRID synthetic simulator\n\ndocs/results/phase8-profile.json · SYNTHETIC · synthetic_simulator_evidence\n\naegis-synthetic-v1-6e4d75051cbcaf1e · agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30\n\ndocs/results/phase8-profile.json · revision 80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b · SHA256 80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b\n\nrepository synthetic fixture · AEGIS GRID synthetic simulator\n\ndata/manuals/pages.jsonl · SYNTHETIC · synthetic_simulator_evidence\n\naegis-synthetic-v1-6e4d75051cbcaf1e · agk1-bf43c2ebf4b3033d903fa9c47f5e7a5b87a1af465457d597365458d1adcafedc\n\ndata/manuals/pages.jsonl · revision R1 · SHA256 2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e\n\nrepository synthetic fixture · AEGIS GRID synthetic simulator\n\ndata/manuals/pages.jsonl · SYNTHETIC · synthetic_simulator_evidence\n\naegis-synthetic-v1-6e4d75051cbcaf1e · agk1-fba65986673e25e48491986df016944e49a132c919cc73f60647fa4e5fedadb5\n\ndata/manuals/pages.jsonl · revision R1 · SHA256 2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e\n\nrepository synthetic fixture · AEGIS GRID synthetic simulator\n\nCondition monitoring of hydraulic systems · External reference · external_context_only\n\nreal-world-v1 · agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66\n\nhttps://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip · revision UCI-447-2018-04-25 · SHA256 24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2\n\nCC-BY-4.0 · Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21\n\nRaspberry Pi Compute Module introduction · External reference · external_context_only\n\nreal-world-v1 · agrw1-4ece7543debeda7af0080c79d3f97505089388fa7659662c872dd33b5c2ca025\n\nhttps://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc · revision ddea98e98dafe9419feb4fd82710c2fbdef7dc44 · SHA256 6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff\n\nCC-BY-SA-4.0 · Raspberry Pi Ltd and documentation contributors\n\nCondition monitoring of hydraulic systems · External reference · external_context_only\n\nreal-world-v1 · agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac\n\nhttps://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip · revision UCI-447-2018-04-25 · SHA256 24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2\n\nCC-BY-4.0 · Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21\n\nArduino Opta industrial controller datasheet source · External reference · external_context_only\n\nreal-world-v1 · agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6\n\nhttps://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md · revision 404d4b35349e6558974af82a0966a2846dbbb510 · SHA256 a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67\n\nCC-BY-SA-4.0 · Arduino and documentation contributors\n\n0 / 1\nsentinel\n→\n1 / 2\nevidence collector\n→\n1 / 3\ncausal detective\n→\n1 / 4\nmanual expert\n→\n1 / 5\ncascade forecaster\n→\n1 / 6\nblue planner\n→\n1 / 7\nred examiner\n→\n1 / 8\nsimulation referee\n→\n1 / 9\nsafety shield\n→\n2 / 10\nevidence collector\n→\n2 / 11\ncausal detective\n→\n2 / 12\nmanual expert\n→\n2 / 13\ncascade forecaster\n→\n2 / 14\nblue planner\n→\n2 / 15\nred examiner\n→\n2 / 16\nsimulation referee\n→\n2 / 17\nsafety shield\n→\n3 / 18\nevidence collector\nsensor bias\n\nIndependent physics estimate disagrees with sensor\n\nHeuristic support 0.90 · not a probability\nrestricted flow\n\nObserved branch flow below synthetic envelope\n\nHeuristic support 0.60 · not a probability\noverload\n\nHigh observed load adds heat demand\n\nHeuristic support 0.50 · not a probability\nweak pump\n\nObserved common pressure is low\n\nHeuristic support 0.50 · not a probability\n\nActual unmitigated C++ forecast peak: 55.69 °C\n\nblue-1 · load 100% · rejected by Red/Shield · C++ peak 60.95 °C · execution closed\nblue-2 · load 0% · rejected by Red/Shield · C++ peak 40.98 °C · execution closed\nblue-3 · load 0% · retained for review · C++ peak 40.95 °C · execution closed\nInspect causal and adversarial trace (26 steps)\n\nInvestigation fdfde53a-f768-41c1-a6ad-8cfe8c168949 · independent emergency shield remains active.",
+  "remaining_gates": "MI300X/Evolus/physical plant BLOCKED; conflicting manual prohibits incident execution; passkey execution remains an independent stationary sandbox demo",
+  "browser_errors": [],
+  "elapsed_s": 25.0847896
+}

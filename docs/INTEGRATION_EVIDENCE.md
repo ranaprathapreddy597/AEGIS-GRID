@@ -1,5 +1,19 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Unified cloud application — 2026-10-17, Asia/Calcutta
+
+`results/cloud-ui-live.json` records actual dashboard POST/SSE/read-back HTTP 200,
+dual-namespace retrieval, eight verified citations, two HTTP 200 AMD opinions,
+requested/served model attribution, 409 native adversarial rollouts and a durable
+approval interrupt. Elapsed 25.0848 s; 2,639 acknowledged provider tokens. Diagnosis
+abstained and independent manual/emergency policy blocked execution. The earlier
+diagnosis route/UI-label failure is retained, not overwritten as a success.
+`results/cloud-retrieval-live.json` passes six development source-recall@4 checks
+using the final namespace guard. `results/cloud-final-counts.json` verifies 1,235
+and 103 records after the hosted UI run. Snapshot/retrieval/application operations
+are read-only; no dataset was regenerated or reuploaded. See CLOUD_WORKFLOW.md
+and results/CLOUD_INTEGRATION.md for opt-in configuration, proof scope and gates.
+
 ## Public reference pipeline — 2026-10-17, Asia/Calcutta
 
 Actual licensed public acquisition retained 79,208,625 original bytes from five

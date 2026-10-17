@@ -1,0 +1,20 @@
+{
+  "frozen_source_tree": "00707e8482cd2a3c27b2ac599e5f16854607bdfb",
+  "scope": [
+    "services",
+    "apps",
+    "infra",
+    "packages",
+    "tools",
+    "data",
+    "tests",
+    ".env.example",
+    "pyproject.toml",
+    "uv.lock",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "changed_application_or_test_files": [],
+  "same_application_source": true,
+  "note": "Documentation/evidence updated after source freeze; ignored credentials/data caches are excluded from Git export."
+}

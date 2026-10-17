@@ -1,5 +1,9 @@
 # Synthetic AMD / Pinecone integration
 
+Current unified application workflow: see [CLOUD_WORKFLOW.md](CLOUD_WORKFLOW.md).
+The two datasets are already populated. Its acceptance uses reads only; the
+ingestion commands below describe the historical population procedure.
+
 The user authorized live synthetic index population on 2026-10-16. Only the
 dedicated corpus namespace in `aegis-grid-memory` is written. No unrelated records
 are deleted. Physical I/O, Evolus invocation and dedicated MI300X remain blocked.

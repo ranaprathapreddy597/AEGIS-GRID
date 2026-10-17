@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED",
+  "physical_io": false,
+  "provider_writes": 0,
+  "failure_class": "PlaywrightError",
+  "failure": "Live UI/API acceptance failed; provider results are recorded only if actually received",
+  "browser_errors": [],
+  "elapsed_s": 0.030027000000000043
+}

@@ -37,6 +37,11 @@ class Settings(BaseModel):
     signing_seed: SecretStr | None = None
     capability_public_key: str = ""
     approval_origin: str = "http://localhost:8080"
+    investigation_mode: Literal["offline", "amd_hosted"] = "offline"
+    inference_api_key: SecretStr | None = None
+    pinecone_api_key: SecretStr | None = None
+    pinecone_index_host: str = ""
+    knowledge_directory: Path = Path("/knowledge")
 
     @field_validator("approval_origin")
     @classmethod
@@ -91,6 +96,18 @@ class Settings(BaseModel):
     @classmethod
     def from_env(cls) -> "Settings":
         return cls(
+            investigation_mode=cast(
+                Literal["offline", "amd_hosted"],
+                os.environ.get("AEGIS_INVESTIGATION_MODE", "offline"),
+            ),
+            inference_api_key=SecretStr(os.environ["INFERENCE_API_KEY"])
+            if os.environ.get("INFERENCE_API_KEY")
+            else None,
+            pinecone_api_key=SecretStr(os.environ["PINECONE_API_KEY"])
+            if os.environ.get("PINECONE_API_KEY")
+            else None,
+            pinecone_index_host=os.environ.get("PINECONE_INDEX_HOST", ""),
+            knowledge_directory=Path(os.environ.get("AEGIS_KNOWLEDGE_DIRECTORY", "/knowledge")),
             approver_token=SecretStr(os.environ["AEGIS_APPROVER_TOKEN"])
             if os.environ.get("AEGIS_APPROVER_TOKEN")
             else None,

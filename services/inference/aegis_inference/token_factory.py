@@ -56,6 +56,7 @@ class TokenFactoryClient:
         self.diagnostics: list[dict[str, Any]] = []
         self.blocked_until = 0.0
         self.calls = 0
+        self.catalog_calls = 0
         self.token_reservations = 0
         self.client = httpx.AsyncClient(
             base_url=BASE_URL,
@@ -94,6 +95,9 @@ class TokenFactoryClient:
             return json.loads(data)
 
     async def catalog(self) -> dict[str, int]:
+        if self.catalog_calls >= 6 or time.monotonic() < self.blocked_until:
+            raise InferenceUnavailable("AMD catalog session quota/circuit open")
+        self.catalog_calls += 1
         try:
             payload = await self._json("GET", "models")
             rows = payload["data"]
@@ -249,6 +253,20 @@ class TokenFactoryClient:
                     latency_ms=(time.perf_counter_ns() - started) / 1e6,
                     attempted_models=tuple(attempted),
                 )
+            except asyncio.CancelledError:
+                self.diagnostics.append(
+                    {"model": model, "stage": "deadline", "rejection_class": "TimeoutError"}
+                )
+                raise
+            except InferenceUnavailable:
+                self.diagnostics.append(
+                    {
+                        "model": model,
+                        **self.last_diagnostic,
+                        "rejection_class": "InferenceUnavailable",
+                    }
+                )
+                raise
             except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as error:
                 self.last_diagnostic["rejection_class"] = type(error).__name__
                 if isinstance(error, ValidationError):

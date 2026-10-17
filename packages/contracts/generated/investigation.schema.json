@@ -177,6 +177,129 @@
       "title": "GraphTrace",
       "type": "object"
     },
+    "ModelAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "http_status": {
+          "anyOf": [
+            {
+              "maximum": 599,
+              "minimum": 100,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Http Status"
+        },
+        "model": {
+          "enum": [
+            "DeepSeek-V4-Flash",
+            "GLM-5.3-Flash",
+            "Qwen3.8-Flash-Next"
+          ],
+          "title": "Model",
+          "type": "string"
+        },
+        "rejection_class": {
+          "default": "",
+          "maxLength": 60,
+          "title": "Rejection Class",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "diagnosis",
+            "planning"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_errors": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Schema Errors",
+          "type": "array"
+        },
+        "stage": {
+          "maxLength": 40,
+          "title": "Stage",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "model",
+        "stage"
+      ],
+      "title": "ModelAttempt",
+      "type": "object"
+    },
+    "ModelAttribution": {
+      "additionalProperties": false,
+      "properties": {
+        "attempted_models": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Attempted Models",
+          "type": "array"
+        },
+        "completion_tokens": {
+          "minimum": 0,
+          "title": "Completion Tokens",
+          "type": "integer"
+        },
+        "hardware_verified": {
+          "const": false,
+          "default": false,
+          "title": "Hardware Verified",
+          "type": "boolean"
+        },
+        "latency_ms": {
+          "minimum": 0,
+          "title": "Latency Ms",
+          "type": "number"
+        },
+        "prompt_tokens": {
+          "minimum": 0,
+          "title": "Prompt Tokens",
+          "type": "integer"
+        },
+        "requested_model": {
+          "title": "Requested Model",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "diagnosis",
+            "planning"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "served_model": {
+          "title": "Served Model",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "requested_model",
+        "served_model",
+        "attempted_models",
+        "latency_ms",
+        "prompt_tokens",
+        "completion_tokens"
+      ],
+      "title": "ModelAttribution",
+      "type": "object"
+    },
     "ModelOpinion": {
       "additionalProperties": false,
       "properties": {
@@ -624,6 +747,85 @@
       "title": "SimulatorControls",
       "type": "object"
     },
+    "SourceCitation": {
+      "additionalProperties": false,
+      "properties": {
+        "applicability": {
+          "enum": [
+            "synthetic_simulator_evidence",
+            "external_context_only"
+          ],
+          "title": "Applicability",
+          "type": "string"
+        },
+        "attribution": {
+          "title": "Attribution",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "namespace": {
+          "enum": [
+            "aegis-synthetic-v1-6e4d75051cbcaf1e",
+            "real-world-v1"
+          ],
+          "title": "Namespace",
+          "type": "string"
+        },
+        "plant_id": {
+          "const": "isolated-simulator",
+          "default": "isolated-simulator",
+          "title": "Plant Id",
+          "type": "string"
+        },
+        "reference_id": {
+          "title": "Reference Id",
+          "type": "string"
+        },
+        "revision": {
+          "title": "Revision",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "source_sha256": {
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "synthetic": {
+          "title": "Synthetic",
+          "type": "boolean"
+        },
+        "tenant_id": {
+          "const": "local",
+          "default": "local",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reference_id",
+        "namespace",
+        "title",
+        "source",
+        "revision",
+        "source_sha256",
+        "license",
+        "attribution",
+        "synthetic",
+        "applicability"
+      ],
+      "title": "SourceCitation",
+      "type": "object"
+    },
     "UncertaintyCase": {
       "additionalProperties": false,
       "properties": {
@@ -680,6 +882,20 @@
   },
   "additionalProperties": false,
   "properties": {
+    "amd_catalog_requests": {
+      "default": 0,
+      "maximum": 6,
+      "minimum": 0,
+      "title": "Amd Catalog Requests",
+      "type": "integer"
+    },
+    "amd_request_attempts": {
+      "default": 0,
+      "maximum": 6,
+      "minimum": 0,
+      "title": "Amd Request Attempts",
+      "type": "integer"
+    },
     "approval_required": {
       "const": true,
       "default": true,
@@ -716,6 +932,15 @@
       "maxItems": 3,
       "title": "Candidates",
       "type": "array"
+    },
+    "configured_mode": {
+      "default": "offline",
+      "enum": [
+        "offline",
+        "amd_hosted"
+      ],
+      "title": "Configured Mode",
+      "type": "string"
     },
     "cost_usd": {
       "default": null,
@@ -783,7 +1008,8 @@
       "enum": [
         "MI300X/Evolus/Pinecone BLOCKED",
         "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified",
-        "MI300X/Evolus BLOCKED; Pinecone real-world references verified"
+        "MI300X/Evolus BLOCKED; Pinecone real-world references verified",
+        "MI300X/Evolus BLOCKED; Pinecone dual references verified"
       ],
       "title": "Live Gates",
       "type": "string"
@@ -803,6 +1029,24 @@
       "minimum": 1,
       "title": "Max Iterations",
       "type": "integer"
+    },
+    "model_attempts": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ModelAttempt"
+      },
+      "maxItems": 6,
+      "title": "Model Attempts",
+      "type": "array"
+    },
+    "model_attributions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ModelAttribution"
+      },
+      "maxItems": 2,
+      "title": "Model Attributions",
+      "type": "array"
     },
     "model_token_budget": {
       "default": 1024,
@@ -874,6 +1118,13 @@
       "title": "Phase",
       "type": "integer"
     },
+    "pinecone_query_attempts": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Pinecone Query Attempts",
+      "type": "integer"
+    },
     "provider_failures": {
       "default": [],
       "items": {
@@ -915,6 +1166,15 @@
       },
       "maxItems": 15,
       "title": "Retrieved Source Ids",
+      "type": "array"
+    },
+    "source_citations": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SourceCitation"
+      },
+      "maxItems": 15,
+      "title": "Source Citations",
       "type": "array"
     },
     "status": {

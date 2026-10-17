@@ -87,6 +87,7 @@ class InvestigationService:
             investigation_id=str(UUID(identifier)),
             incident_id=record.incident_id,
             model_token_budget=16384 if self.hosted_backend else 1024,
+            configured_mode="amd_hosted" if self.hosted_backend else "offline",
         )
         try:
             with tracing_context(enabled=False):

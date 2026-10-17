@@ -1,5 +1,17 @@
 # Open issues
 
+2026-10-17 unified application: the explicit hosted API/React path now verifies
+dual Pinecone retrieval and real AMD opinions through persistent LangGraph/SSE.
+Automatic service egress is replaced by an explicit hosted override; default
+Compose remains offline. Only local simulator tenancy is supported. Initial
+diagnosis routing failed; final diagnosis returned a schema-valid abstention,
+so useful hosted diagnosis reliability remains PARTIAL. No acquired OEM document
+has a verified equipment mapping to the fictional plant; external manuals remain
+context only. Contradictory local manuals block incident authorization before any
+passkey ceremony. Actual WebAuthn acceptance remains a separate stationary sandbox.
+See results/CLOUD_INTEGRATION.md; earlier pending application-wiring statements
+below are historical. No dedicated MI300X/Evolus/production gate is waived.
+
 2026-10-17: `real-world-v1` now has 103 verified licensed external references from
 five approved OEM/NIST/UCI/Zenodo sources. NASA PCoE dataset acquisition is BLOCKED
 until its dataset-specific redistribution/license chain is verified. CIRA data

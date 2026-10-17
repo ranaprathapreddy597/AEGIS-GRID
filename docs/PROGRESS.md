@@ -1,5 +1,25 @@
 # Execution status
 
+## Unified cloud application — 2026-10-17
+
+PASS guarded live workflow: existing synthetic (1,235) and real-world (103)
+namespaces feed the same persistent application LangGraph, with real AMD diagnosis
+and planning, streamed React checkpoints, eight licensed/provenance-preserving
+citations, native adversarial evaluation and an approval interrupt. The successful
+browser/API run took 25.0848 s with eight Pinecone queries and two validated AMD
+responses (2,639 acknowledged tokens). Diagnosis abstained; planning proposed a
+minimax candidate and independent rules kept execution closed. Six fixed dual
+retrieval development checks passed; counts remained unchanged. No ingestion,
+overwrite or deletion occurred. The initial failed diagnosis route is retained.
+Provider reliability and incident execution remain PARTIAL/BLOCKED respectively.
+Explicit hosted override and offline mode are documented in CLOUD_WORKFLOW.md;
+results/CLOUD_INTEGRATION.md records actual final regression/clean-source gates.
+Final frozen-source gate passed 326 Python / 3 CTest / 16 Node / 14 browser tests,
+scans/audits/contracts and actual storage/authorization checks. The separate
+180.012692-second clean-source demo passed; application/test sources match its
+frozen export. Dedicated provider/hardware/production claims are not implied.
+MI300X/Evolus, production tenancy and physical acceptance remain BLOCKED.
+
 ## Public real-world reference acquisition — 2026-10-17
 
 PARTIAL overall: five approved sources from official OEM documentation, NIST,

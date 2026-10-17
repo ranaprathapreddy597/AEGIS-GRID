@@ -6,6 +6,29 @@ export type StorageStatus = components["schemas"]["StorageStatus"];
 export type EdgeStatus = components["schemas"]["EdgeStatus"];
 export type Capabilities = components["schemas"]["Capabilities"];
 
+export async function streamInvestigation(token: string, identifier: string, signal: AbortSignal, onData: (value: components["schemas"]["Investigation"]) => void) {
+  const response = await fetch(`/api/v1/investigations/${identifier}/events`, { headers: { Authorization: `Bearer ${token}` }, signal });
+  if (!response.ok || !response.body) throw new Error("Investigation stream unavailable");
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  try {
+    while (!signal.aborted) {
+      const chunk = await reader.read();
+      if (chunk.done) return;
+      buffer += decoder.decode(chunk.value, { stream: true });
+      if (buffer.length > 262144) throw new Error("Investigation frame exceeds bound");
+      let boundary;
+      while ((boundary = buffer.indexOf("\n\n")) >= 0) {
+        const frame = buffer.slice(0, boundary);
+        buffer = buffer.slice(boundary + 2);
+        if (frame.startsWith("event: investigation\n")) onData(JSON.parse(frame.slice(frame.indexOf("data: ") + 6)) as components["schemas"]["Investigation"]);
+        if (frame.startsWith("event: complete\n")) return;
+      }
+    }
+  } finally { reader.releaseLock(); }
+}
+
 export async function streamTelemetry(token: string, signal: AbortSignal, onData: (value: Telemetry) => void, onStatus: (value: string) => void) {
   const response = await fetch("/api/v1/telemetry/stream", { headers: { Authorization: `Bearer ${token}` }, signal });
   if (response.status === 401) throw new Error("Access token rejected. Disconnect and sign in again.");

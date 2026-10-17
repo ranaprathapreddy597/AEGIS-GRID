@@ -6,6 +6,18 @@ authoritative project instructions. Preserve them unchanged.
 
 ## Current execution state
 
+- Unified cloud follow-up authorized on 2026-10-17: both existing Pinecone
+  namespaces now feed the persistent application LangGraph through an explicit
+  hosted Compose override; default mode stays offline. Guarded live UI/API/SSE,
+  AMD diagnosis/planning, eight cited sources and native adversarial evaluation
+  reach the approval interrupt. No dataset was regenerated/reuploaded and no
+  Pinecone record was modified/deleted. Diagnosis reliability remains PARTIAL;
+  contradictory manuals prohibit incident authorization. Actual WebAuthn remains
+  independently tested in the stationary sandbox. Read docs/CLOUD_WORKFLOW.md
+  and docs/results/CLOUD_INTEGRATION.md for measured results, final gates and
+  source-freeze limitations. MI300X/Evolus/production/physical acceptance remain
+  BLOCKED. Never reset application sessions to evade provider quotas.
+
 - Public acquisition follow-up authorized on 2026-10-17: `real-world-v1` now has
   103 verified licensed references from five OEM/NIST/UCI/Zenodo sources. The first
   pilot correctly blocked on 2/10 dense-query failures; query-only repair passed

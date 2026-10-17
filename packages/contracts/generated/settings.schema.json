@@ -126,6 +126,20 @@
       "default": null,
       "title": "Graph Password"
     },
+    "inference_api_key": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Inference Api Key"
+    },
     "ingest_token": {
       "anyOf": [
         {
@@ -139,6 +153,21 @@
       ],
       "default": null,
       "title": "Ingest Token"
+    },
+    "investigation_mode": {
+      "default": "offline",
+      "enum": [
+        "offline",
+        "amd_hosted"
+      ],
+      "title": "Investigation Mode",
+      "type": "string"
+    },
+    "knowledge_directory": {
+      "default": "\\knowledge",
+      "format": "path",
+      "title": "Knowledge Directory",
+      "type": "string"
     },
     "memory_capacity": {
       "default": 256,
@@ -174,6 +203,25 @@
       ],
       "default": null,
       "title": "Mongo Writer Password"
+    },
+    "pinecone_api_key": {
+      "anyOf": [
+        {
+          "format": "password",
+          "type": "string",
+          "writeOnly": true
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pinecone Api Key"
+    },
+    "pinecone_index_host": {
+      "default": "",
+      "title": "Pinecone Index Host",
+      "type": "string"
     },
     "redis_writer_password": {
       "anyOf": [

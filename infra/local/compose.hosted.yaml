@@ -1,0 +1,18 @@
+# Explicit opt-in: use alongside compose.yaml. No ingestion or production execution.
+services:
+  api:
+    networks: [app, storage, hosted-egress]
+    mem_limit: 1g
+    environment:
+      AEGIS_INVESTIGATION_MODE: amd_hosted
+      INFERENCE_API_KEY: ${INFERENCE_API_KEY:?Hosted mode requires AMD credentials}
+      PINECONE_API_KEY: ${PINECONE_API_KEY:?Hosted mode requires Pinecone credentials}
+      PINECONE_INDEX_HOST: ${PINECONE_INDEX_HOST:?Hosted mode requires provisioned host}
+      HF_HUB_OFFLINE: "1"
+      HF_HOME: /models
+      AEGIS_KNOWLEDGE_DIRECTORY: /knowledge
+    volumes:
+      - ${AEGIS_MODEL_CACHE:?Set frozen HuggingFace cache directory}:/models:ro
+      - ../../.run/cloud-knowledge:/knowledge:ro
+networks:
+  hosted-egress: {}

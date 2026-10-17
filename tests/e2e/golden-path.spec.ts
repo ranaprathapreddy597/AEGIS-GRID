@@ -240,6 +240,7 @@ test("LangGraph cycles, interrupts and survives restart without gateway writes",
   await page.getByLabel("Local viewer token").fill(token);
   await page.getByRole("button", { name: "Connect to live stream" }).click();
   await page.getByRole("button", { name: "Investigate latest incident" }).click();
+  await expect(page.getByText("Live graph checkpoints received", { exact: true })).toBeVisible();
   await expect(page.getByTestId("investigation-report")).toContainText("PAUSED");
   await expect(page.getByTestId("investigation-report")).toContainText("rejected by Red/Shield");
   await page.locator(".investigation-panel").screenshot({ path: "docs/results/phase12-investigation.png" });

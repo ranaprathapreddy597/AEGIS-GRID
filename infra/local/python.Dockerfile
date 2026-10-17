@@ -16,6 +16,8 @@ COPY data/manuals data/manuals
 COPY data/repairs data/repairs
 COPY data/futures data/futures
 COPY data/real-world-sources.json data/real-world-sources.json
+COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
+COPY data/cloud-embedding-manifest.json data/cloud-embedding-manifest.json
 COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
 COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
 RUN uv sync --locked --no-dev --no-editable

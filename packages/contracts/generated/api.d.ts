@@ -380,6 +380,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/investigation-mode": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Investigation Mode */
+        get: operations["investigation_mode_api_v1_investigation_mode_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/investigations/{identifier}": {
         parameters: {
             query?: never;
@@ -389,6 +406,23 @@ export interface paths {
         };
         /** Read Investigation */
         get: operations["read_investigation_api_v1_investigations__identifier__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/investigations/{identifier}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Investigation Events */
+        get: operations["investigation_events_api_v1_investigations__identifier__events_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1123,6 +1157,16 @@ export interface components {
         /** Investigation */
         Investigation: {
             /**
+             * Amd Catalog Requests
+             * @default 0
+             */
+            amd_catalog_requests: number;
+            /**
+             * Amd Request Attempts
+             * @default 0
+             */
+            amd_request_attempts: number;
+            /**
              * Approval Required
              * @default true
              * @constant
@@ -1141,6 +1185,12 @@ export interface components {
              * @default []
              */
             candidates: components["schemas"]["CandidatePlan"][];
+            /**
+             * Configured Mode
+             * @default offline
+             * @enum {string}
+             */
+            configured_mode: "offline" | "amd_hosted";
             /** Cost Usd */
             cost_usd?: null;
             /**
@@ -1169,7 +1219,7 @@ export interface components {
              * @default MI300X/Evolus/Pinecone BLOCKED
              * @enum {string}
              */
-            live_gates: "MI300X/Evolus/Pinecone BLOCKED" | "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified" | "MI300X/Evolus BLOCKED; Pinecone real-world references verified";
+            live_gates: "MI300X/Evolus/Pinecone BLOCKED" | "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified" | "MI300X/Evolus BLOCKED; Pinecone real-world references verified" | "MI300X/Evolus BLOCKED; Pinecone dual references verified";
             /**
              * Manual Decision
              * @default no_action
@@ -1181,6 +1231,16 @@ export interface components {
              * @default 3
              */
             max_iterations: number;
+            /**
+             * Model Attempts
+             * @default []
+             */
+            model_attempts: components["schemas"]["ModelAttempt"][];
+            /**
+             * Model Attributions
+             * @default []
+             */
+            model_attributions: components["schemas"]["ModelAttribution"][];
             /**
              * Model Token Budget
              * @default 1024
@@ -1221,6 +1281,11 @@ export interface components {
              */
             phase: 7;
             /**
+             * Pinecone Query Attempts
+             * @default 0
+             */
+            pinecone_query_attempts: number;
+            /**
              * Provider Failures
              * @default []
              */
@@ -1242,6 +1307,11 @@ export interface components {
              * @default []
              */
             retrieved_source_ids: string[];
+            /**
+             * Source Citations
+             * @default []
+             */
+            source_citations: components["schemas"]["SourceCitation"][];
             /**
              * Status
              * @default running
@@ -1395,6 +1465,59 @@ export interface components {
             label: "nominal" | "sensor_anomaly";
             /** State Version */
             state_version: number;
+        };
+        /** ModelAttempt */
+        ModelAttempt: {
+            /** Http Status */
+            http_status?: number | null;
+            /**
+             * Model
+             * @enum {string}
+             */
+            model: "DeepSeek-V4-Flash" | "GLM-5.3-Flash" | "Qwen3.8-Flash-Next";
+            /**
+             * Rejection Class
+             * @default
+             */
+            rejection_class: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "diagnosis" | "planning";
+            /**
+             * Schema Errors
+             * @default []
+             */
+            schema_errors: string[];
+            /** Stage */
+            stage: string;
+        };
+        /** ModelAttribution */
+        ModelAttribution: {
+            /** Attempted Models */
+            attempted_models: string[];
+            /** Completion Tokens */
+            completion_tokens: number;
+            /**
+             * Hardware Verified
+             * @default false
+             * @constant
+             */
+            hardware_verified: false;
+            /** Latency Ms */
+            latency_ms: number;
+            /** Prompt Tokens */
+            prompt_tokens: number;
+            /** Requested Model */
+            requested_model: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "diagnosis" | "planning";
+            /** Served Model */
+            served_model: string;
         };
         /** ModelOpinion */
         ModelOpinion: {
@@ -1932,6 +2055,47 @@ export interface components {
             pump: number;
             /** Valves */
             valves: number[];
+        };
+        /** SourceCitation */
+        SourceCitation: {
+            /**
+             * Applicability
+             * @enum {string}
+             */
+            applicability: "synthetic_simulator_evidence" | "external_context_only";
+            /** Attribution */
+            attribution: string;
+            /** License */
+            license: string;
+            /**
+             * Namespace
+             * @enum {string}
+             */
+            namespace: "aegis-synthetic-v1-6e4d75051cbcaf1e" | "real-world-v1";
+            /**
+             * Plant Id
+             * @default isolated-simulator
+             * @constant
+             */
+            plant_id: "isolated-simulator";
+            /** Reference Id */
+            reference_id: string;
+            /** Revision */
+            revision: string;
+            /** Source */
+            source: string;
+            /** Source Sha256 */
+            source_sha256: string;
+            /** Synthetic */
+            synthetic: boolean;
+            /**
+             * Tenant Id
+             * @default local
+             * @constant
+             */
+            tenant_id: "local";
+            /** Title */
+            title: string;
         };
         /** StorageStatus */
         StorageStatus: {
@@ -3626,6 +3790,39 @@ export interface operations {
             };
         };
     };
+    investigation_mode_api_v1_investigation_mode_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: string;
+                    };
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     read_investigation_api_v1_investigations__identifier__get: {
         parameters: {
             query?: never;
@@ -3686,6 +3883,39 @@ export interface operations {
             };
             /** @description Service Unavailable */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    investigation_events_api_v1_investigations__identifier__events_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };

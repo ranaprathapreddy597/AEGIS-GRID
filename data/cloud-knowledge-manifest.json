@@ -1,0 +1,12 @@
+{
+  "aegis-synthetic-v1-6e4d75051cbcaf1e": {
+    "file": "synthetic.jsonl",
+    "count": 1235,
+    "sha256": "b2edb805920f3c1fa353505c7dae21e3426beef9279c771e88da5da779c1f63d"
+  },
+  "real-world-v1": {
+    "file": "real-world.jsonl",
+    "count": 103,
+    "sha256": "08dcd86e1a377830365ba1438fb715b5f45959d405d74d1a1ec6e1a81f4df494"
+  }
+}

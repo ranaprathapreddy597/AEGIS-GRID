@@ -37,6 +37,9 @@ from aegis_contracts.models import (
 from aegis_contracts.optimization import RecoveryAssessment
 from aegis_contracts.security import RequireToken
 from aegis_inference.budget import calculate, metadata
+from aegis_inference.token_factory import TokenFactoryClient
+from aegis_ingestion.dual_store import DualKnowledgeStore
+from aegis_ingestion.knowledge import SemanticEmbedding
 from aegis_ingestion.library import fixture_library
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi import Path as ApiPath
@@ -74,9 +77,11 @@ def create_app(
 ) -> FastAPI:
     config = settings or Settings.from_env()
     active_streams = 0
+    investigation_streams = 0
     store = TelemetryStore(config)
     investigations: InvestigationService | None = None
     investigation_busy = asyncio.Lock()
+    graph_initialization = threading.Lock()
     optimizations: OptimizationService | None = None
     optimization_busy = asyncio.Lock()
     preview_busy = threading.BoundedSemaphore(1)
@@ -126,10 +131,28 @@ def create_app(
         nonlocal investigations
         if config.graph_password is None or not config.storage_enabled:
             raise StorageUnavailable("Persistent investigation service is not configured")
-        if investigations is None:
-            investigations = InvestigationService(
-                config.graph_password.get_secret_value(), config.twin_library
-            )
+        with graph_initialization:
+            if investigations is None:
+                backend = None
+                knowledge = None
+                if config.investigation_mode == "amd_hosted":
+                    if not config.inference_api_key or not config.pinecone_api_key:
+                        raise StorageUnavailable(
+                            "Hosted mode requires explicit provider configuration"
+                        )
+                    knowledge = DualKnowledgeStore(
+                        config.pinecone_index_host,
+                        config.pinecone_api_key,
+                        SemanticEmbedding(),
+                        config.knowledge_directory,
+                    )
+                    backend = TokenFactoryClient(config.inference_api_key)
+                investigations = InvestigationService(
+                    config.graph_password.get_secret_value(),
+                    config.twin_library,
+                    hosted_backend=backend,
+                    knowledge=knowledge,
+                )
         return investigations
 
     async def collect(client: httpx.AsyncClient) -> None:
@@ -169,6 +192,10 @@ def create_app(
                 await store.close()
                 if investigations is not None:
                     await asyncio.to_thread(investigations.close)
+                    if investigations.hosted_backend is not None:
+                        await investigations.hosted_backend.close()
+                    if investigations.knowledge is not None:
+                        await investigations.knowledge.close()
                 if optimizations is not None:
                     await asyncio.to_thread(optimizations.close)
                 if authorizations is not None:
@@ -320,6 +347,54 @@ def create_app(
         if report is None:
             raise HTTPException(404, "Investigation not found")
         return report
+
+    @app.get("/api/v1/investigations/{identifier}/events", dependencies=[auth, limit])
+    async def investigation_events(identifier: UUID, request: Request) -> StreamingResponse:
+        nonlocal investigation_streams
+        if config.graph_password is None or not config.storage_enabled:
+            raise HTTPException(503, "Persistent investigation unavailable")
+        if investigation_streams >= 4:
+            raise HTTPException(429, "Investigation stream limit exceeded")
+        investigation_streams += 1
+
+        async def events() -> AsyncIterator[str]:
+            nonlocal investigation_streams
+            try:
+                last = ""
+                for _ in range(240):
+                    if await request.is_disconnected():
+                        break
+                    # Only the serialized POST worker may initialize provider clients.
+                    service = investigations
+                    report = (
+                        await asyncio.to_thread(service.read, str(identifier)) if service else None
+                    )
+                    if report is not None:
+                        payload = report.model_dump_json()
+                        if payload != last:
+                            yield "event: investigation\ndata: " + payload + "\n\n"
+                            last = payload
+                        if report.status != "running":
+                            yield "event: complete\ndata: {}\n\n"
+                            break
+                    yield ": heartbeat\n\n"
+                    await asyncio.sleep(1)
+            except (PyMongoError, OSError, ValueError):
+                yield "event: unavailable\ndata: {}\n\n"
+            finally:
+                investigation_streams -= 1
+
+        return StreamingResponse(
+            events(), media_type="text/event-stream", headers={"Cache-Control": "no-store"}
+        )
+
+    @app.get("/api/v1/investigation-mode", dependencies=[auth, limit])
+    async def investigation_mode() -> dict[str, str]:
+        return {
+            "mode": config.investigation_mode,
+            "authority": "isolated_simulator_only",
+            "quota": "6 AMD attempts / 32768 reserved tokens / 12 dual searches per API session",
+        }
 
     @app.get(
         "/api/v1/inference/status",

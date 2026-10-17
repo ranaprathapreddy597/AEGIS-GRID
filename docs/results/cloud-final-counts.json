@@ -1,0 +1,23 @@
+{
+  "http_status": 200,
+  "operation": "/describe_index_stats",
+  "after_cloud_ui": true,
+  "provider_writes": 0,
+  "response": {
+    "namespaces": {
+      "real-world-v1": {
+        "vectorCount": 103
+      },
+      "aegis-synthetic-v1-6e4d75051cbcaf1e": {
+        "vectorCount": 1235
+      }
+    },
+    "indexFullness": 0,
+    "totalVectorCount": 1338,
+    "dimension": 256,
+    "metric": "cosine",
+    "vectorType": "dense",
+    "memoryFullness": 0,
+    "storageFullness": 0
+  }
+}

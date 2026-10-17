@@ -1,0 +1,16 @@
+{
+  "source_tree": "00707e8482cd2a3c27b2ac599e5f16854607bdfb",
+  "project": "aegis-proof-cb93a483",
+  "port": 61722,
+  "source_copy_initially_has_credentials": false,
+  "source_copy_has_venv": false,
+  "source_copy_has_node_modules": false,
+  "limitation": "Same host Docker/layer/download caches and host Playwright tooling reused; not a cold machine or GPU/provider proof.",
+  "startup_wall_s": 77.09033720000025,
+  "frontend_http": 200,
+  "anonymous_read_http": 401,
+  "result": "PASS",
+  "demo_duration_s": 180.01269200000002,
+  "actual_demo_receipt_sha256": "de32b87ab794ecb796a1d8e8c60c3e110495bea82ed6d2f8d36367a565e310f7",
+  "cleanup": "Only new proof project's containers/networks stopped; volumes and main stack retained."
+}

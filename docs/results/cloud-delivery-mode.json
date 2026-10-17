@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-17T05:46:09.890811+00:00",
+  "health_http": 200,
+  "anonymous_mode_http": 401,
+  "mode_http": 200,
+  "configuration": {
+    "mode": "amd_hosted",
+    "authority": "isolated_simulator_only",
+    "quota": "6 AMD attempts / 32768 reserved tokens / 12 dual searches per API session"
+  },
+  "persisted_cloud_report_http": 200,
+  "persisted_report_identical": true,
+  "scope": "Final backend/adapters initialized by persisted-report GET; no new inference or Pinecone request issued",
+  "additional_provider_requests": 0
+}

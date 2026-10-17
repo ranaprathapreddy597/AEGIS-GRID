@@ -33,6 +33,41 @@ class CandidatePlan(Contract):
     executable: Literal[False] = False
 
 
+class SourceCitation(Contract):
+    reference_id: str
+    namespace: Literal["aegis-synthetic-v1-6e4d75051cbcaf1e", "real-world-v1"]
+    title: str
+    source: str
+    revision: str
+    source_sha256: str
+    license: str
+    attribution: str
+    synthetic: bool
+    applicability: Literal["synthetic_simulator_evidence", "external_context_only"]
+    tenant_id: Literal["local"] = "local"
+    plant_id: Literal["isolated-simulator"] = "isolated-simulator"
+
+
+class ModelAttribution(Contract):
+    role: Literal["diagnosis", "planning"]
+    requested_model: str
+    served_model: str
+    attempted_models: list[str]
+    latency_ms: Annotated[FiniteFloat, Field(ge=0)]
+    prompt_tokens: Annotated[int, Field(ge=0)]
+    completion_tokens: Annotated[int, Field(ge=0)]
+    hardware_verified: Literal[False] = False
+
+
+class ModelAttempt(Contract):
+    role: Literal["diagnosis", "planning"]
+    model: Literal["DeepSeek-V4-Flash", "GLM-5.3-Flash", "Qwen3.8-Flash-Next"]
+    stage: Annotated[str, Field(max_length=40)]
+    http_status: Annotated[int, Field(ge=100, le=599)] | None = None
+    rejection_class: Annotated[str, Field(max_length=60)] = ""
+    schema_errors: Annotated[list[str], Field(max_length=10)] = []
+
+
 class Investigation(Contract):
     investigation_id: Annotated[str, Field(pattern=r"^[0-9a-f-]{36}$")]
     incident_id: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
@@ -41,6 +76,13 @@ class Investigation(Contract):
     backend: Literal["offline_template", "remote_vllm", "amd_token_factory"] = "offline_template"
     hosted_diagnosis: ModelOpinion | None = None
     hosted_planning: PlanningOpinion | None = None
+    configured_mode: Literal["offline", "amd_hosted"] = "offline"
+    source_citations: Annotated[list[SourceCitation], Field(max_length=15)] = []
+    model_attributions: Annotated[list[ModelAttribution], Field(max_length=2)] = []
+    model_attempts: Annotated[list[ModelAttempt], Field(max_length=6)] = []
+    amd_request_attempts: Annotated[int, Field(ge=0, le=6)] = 0
+    amd_catalog_requests: Annotated[int, Field(ge=0, le=6)] = 0
+    pinecone_query_attempts: Annotated[int, Field(ge=0, le=100)] = 0
     retrieved_source_ids: Annotated[list[str], Field(max_length=15)] = []
     retrieval_backend: Literal["local_faiss", "pinecone_semantic"] = "local_faiss"
     provider_failures: Annotated[list[str], Field(max_length=10)] = []
@@ -67,4 +109,5 @@ class Investigation(Contract):
         "MI300X/Evolus/Pinecone BLOCKED",
         "MI300X/Evolus BLOCKED; Pinecone synthetic retrieval verified",
         "MI300X/Evolus BLOCKED; Pinecone real-world references verified",
+        "MI300X/Evolus BLOCKED; Pinecone dual references verified",
     ] = "MI300X/Evolus/Pinecone BLOCKED"

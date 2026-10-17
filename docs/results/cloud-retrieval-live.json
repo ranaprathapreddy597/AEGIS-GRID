@@ -1,0 +1,610 @@
+{
+  "status": "PASS",
+  "writes": 0,
+  "rows": [
+    {
+      "query": "maximum temperature in Celsius before a thermal alarm",
+      "kind": "manual",
+      "expected": "temperature",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4516.275400000268,
+      "citations": [
+        {
+          "reference_id": "agk1-bf43c2ebf4b3033d903fa9c47f5e7a5b87a1af465457d597365458d1adcafedc",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-6c6fcf28bb94fca45af7c6b2a270b4d2e545feaa88a57baafad193813a3a3b7c",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-7c01b9bde5b2f5c0334c816f6182fbbd5158a2ed7a9ce316e1afc8fcbd1aeca4",
+          "namespace": "real-world-v1",
+          "title": "Arduino Opta industrial controller datasheet source",
+          "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+          "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+          "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Arduino and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-267c37481d3c0e9f1f4c06e8c9327fb1eeafbd0c3e20ee80e74ec9646b905240",
+          "namespace": "real-world-v1",
+          "title": "Arduino Opta industrial controller datasheet source",
+          "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+          "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+          "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Arduino and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    },
+    {
+      "query": "allowable pressure in kilopascals",
+      "kind": "manual",
+      "expected": "pressure",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4410.626500000035,
+      "citations": [
+        {
+          "reference_id": "agk1-c6e1b75f648a8a93e5facccb472335c3dd76b786b2f9cc635fc2f0e6ed3b709c",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-de04a55ae8f79a25839e7928d1e1925703730d88914e164d5a285c2a847cb588",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-355e0af31d9849ae19e171946a88a27f25027b69f6d45d81b35d7bdf6c1a5c9b",
+          "namespace": "real-world-v1",
+          "title": "Arduino Opta industrial controller datasheet source",
+          "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+          "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+          "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Arduino and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-2cf07ecb4d6e8d4c51238b1c6157fd8afa690fee19418f760376d2600158658c",
+          "namespace": "real-world-v1",
+          "title": "Raspberry Pi Compute Module introduction",
+          "source": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+          "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+          "source_sha256": "6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Raspberry Pi Ltd and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    },
+    {
+      "query": "Opta micro PLC industrial controller Industrial IoT",
+      "kind": "manual",
+      "expected": "arduino-opta-datasheet",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4416.113199999927,
+      "citations": [
+        {
+          "reference_id": "agk1-6ea1a347d72cbf54d889d0d226545abde67ca3445449ecbedb9737e86d125adc",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-6f74f5655c18d8c3f89faab8791adf3ff4ee5aa3fc93027e58297f4a00c16be0",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+          "namespace": "real-world-v1",
+          "title": "Arduino Opta industrial controller datasheet source",
+          "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+          "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+          "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Arduino and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-6ce79f7864931338c247c3cad28322e7be088549158548757eae2b4739851b94",
+          "namespace": "real-world-v1",
+          "title": "Arduino Opta industrial controller datasheet source",
+          "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+          "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+          "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Arduino and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    },
+    {
+      "query": "Raspberry Pi Compute Module embedded industrial carrier board",
+      "kind": "manual",
+      "expected": "raspberrypi-compute-module",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4286.367700000028,
+      "citations": [
+        {
+          "reference_id": "agk1-86f5140e9e3f912a3109ec9975ad987a170aec79cdacb84c85fdaea77023abc3",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-f13735c268fb38a5bf73ec012437187bd13e1f636705275b9745cd0d0105abea",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "data/manuals/pages.jsonl",
+          "source": "data/manuals/pages.jsonl",
+          "revision": "R1",
+          "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-4e732a136077f8c97328cfda871d45f00f9e73fafe05148976a256337b9e9212",
+          "namespace": "real-world-v1",
+          "title": "Raspberry Pi Compute Module introduction",
+          "source": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+          "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+          "source_sha256": "6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Raspberry Pi Ltd and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-e9a77b0ee8acb8e3e2a6535c59dfe9b605353c1c91f9d3a8411baab48b60e320",
+          "namespace": "real-world-v1",
+          "title": "Raspberry Pi Compute Module introduction",
+          "source": "https://raw.githubusercontent.com/raspberrypi/documentation/ddea98e98dafe9419feb4fd82710c2fbdef7dc44/documentation/asciidoc/computers/compute-module/introduction.adoc",
+          "revision": "ddea98e98dafe9419feb4fd82710c2fbdef7dc44",
+          "source_sha256": "6fdec6fa59c5cda8aff00cbf2d5a28cb656c474ad58caf93c8097c1f255966ff",
+          "license": "CC-BY-SA-4.0",
+          "attribution": "Raspberry Pi Ltd and documentation contributors",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    },
+    {
+      "query": "hydraulic system condition monitoring cooler pump valve",
+      "kind": "recovery",
+      "expected": "uci-hydraulic",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4020.1132000001962,
+      "citations": [
+        {
+          "reference_id": "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "docs/results/phase8-profile.json",
+          "source": "docs/results/phase8-profile.json",
+          "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "docs/results/phase8-profile.json",
+          "source": "docs/results/phase8-profile.json",
+          "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-03f339db84235b57e6052647cb1d8c172e123fb40b2754c92b2fdafd3bbada66",
+          "namespace": "real-world-v1",
+          "title": "Condition monitoring of hydraulic systems",
+          "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+          "revision": "UCI-447-2018-04-25",
+          "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+          "license": "CC-BY-4.0",
+          "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-3168366ca3166611fe20ff79e242a759c96548a78d03de634716863daf73d4fb",
+          "namespace": "real-world-v1",
+          "title": "Condition monitoring of hydraulic systems",
+          "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+          "revision": "UCI-447-2018-04-25",
+          "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+          "license": "CC-BY-4.0",
+          "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    },
+    {
+      "query": "centrifugal pump vibration measurements CIRA",
+      "kind": "recovery",
+      "expected": "zenodo-cira-pump",
+      "source_recall_at_4": true,
+      "namespaces_present": true,
+      "elapsed_ms": 4041.397799999686,
+      "citations": [
+        {
+          "reference_id": "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "docs/results/phase8-profile.json",
+          "source": "docs/results/phase8-profile.json",
+          "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agk1-66e47a73a36e5df360520533b71929ae7559caff90a102e21690ecb4ea58da94",
+          "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+          "title": "docs/results/phase8-profile.json",
+          "source": "docs/results/phase8-profile.json",
+          "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+          "license": "repository synthetic fixture",
+          "attribution": "AEGIS GRID synthetic simulator",
+          "synthetic": true,
+          "applicability": "synthetic_simulator_evidence",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-cf75038a4a0901c1b6f3708a44999df423f1a18b36d303615c3e122674996371",
+          "namespace": "real-world-v1",
+          "title": "CIRA centrifugal pump A operational data 2024-04-10",
+          "source": "https://zenodo.org/api/records/18479728/files/A_2024-04-10.csv/content",
+          "revision": "zenodo-18479728-v2",
+          "source_sha256": "d933211d68206cef84c0cfc833bc410dc7933328529cd7be59494b5f353b8a6b",
+          "license": "CC-BY-4.0",
+          "attribution": "Angelo Martone and Gaetano Zazzaro, Italian Aerospace Research Centre (2026), Centrifugal Pump Dataset v2, DOI 10.5281/zenodo.18479728",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        },
+        {
+          "reference_id": "agrw1-d9ee0fb0390ea9fe3d97f2c91ebc179a8ba22557868a59087782aba2e21b7005",
+          "namespace": "real-world-v1",
+          "title": "CIRA centrifugal pump A operational data 2024-04-10",
+          "source": "https://zenodo.org/api/records/18479728/files/A_2024-04-10.csv/content",
+          "revision": "zenodo-18479728-v2",
+          "source_sha256": "d933211d68206cef84c0cfc833bc410dc7933328529cd7be59494b5f353b8a6b",
+          "license": "CC-BY-4.0",
+          "attribution": "Angelo Martone and Gaetano Zazzaro, Italian Aerospace Research Centre (2026), Centrifugal Pump Dataset v2, DOI 10.5281/zenodo.18479728",
+          "synthetic": false,
+          "applicability": "external_context_only",
+          "tenant_id": "local",
+          "plant_id": "isolated-simulator"
+        }
+      ]
+    }
+  ],
+  "scope": "six fixed development queries; source recall@4, not diagnosis accuracy",
+  "before": [
+    1235,
+    103
+  ],
+  "after": [
+    1235,
+    103
+  ],
+  "correct": 6,
+  "operations": [
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1186.2326999998913
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1201.5077999999448
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1071.708800000124
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1064.9626999997963
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1050.1076000000467
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1018.5667999999168
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1040.5993999997918
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+      "elapsed_ms": 1037.893499999882
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1123.4958999998526
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1292.2324999999546
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 991.3035000004129
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 979.6615999998721
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1228.8594000001467
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1025.1336000001174
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1068.330099999912
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1283.694100000048
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 986.4312999998219
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1055.0563000001603
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1204.6832999999424
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1030.9132000002137
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 983.33059999959
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1028.4130000000005
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 902.9746000001069
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1053.7570999999843
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 1015.5131999999867
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 984.5593999998528
+    },
+    {
+      "operation": "/query",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 988.235799999984
+    },
+    {
+      "operation": "/describe_index_stats",
+      "http_status": 200,
+      "attempt": 1,
+      "namespace": "real-world-v1",
+      "elapsed_ms": 936.9627000000946
+    }
+  ]
+}
