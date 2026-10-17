@@ -12,6 +12,7 @@ COPY services/ingestion services/ingestion
 COPY services/inference services/inference
 COPY services/agents services/agents
 COPY data/scenarios data/scenarios
+COPY data/commissioned data/commissioned
 COPY data/manuals data/manuals
 COPY data/repairs data/repairs
 COPY data/futures data/futures

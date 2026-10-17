@@ -55,6 +55,108 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/approval/commissioned/investigate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Investigate */
+        post: operations["investigate_api_v1_approval_commissioned_investigate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/approval/commissioned/investigations/{identifier}/proposal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Propose */
+        post: operations["propose_api_v1_approval_commissioned_investigations__identifier__proposal_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/approval/commissioned/proposals/{identifier}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Proposal */
+        get: operations["read_proposal_api_v1_approval_commissioned_proposals__identifier__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/approval/commissioned/proposals/{identifier}/execute": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Execute */
+        post: operations["execute_api_v1_approval_commissioned_proposals__identifier__execute_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/approval/commissioned/proposals/{identifier}/options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Options */
+        post: operations["options_api_v1_approval_commissioned_proposals__identifier__options_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/approval/commissioned/proposals/{identifier}/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Verify */
+        post: operations["verify_api_v1_approval_commissioned_proposals__identifier__verify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/approval/maintenance-proposals": {
         parameters: {
             query?: never;
@@ -219,6 +321,40 @@ export interface paths {
         };
         /** Capabilities */
         get: operations["capabilities_api_v1_capabilities_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/commissioned/investigations/{identifier}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Report */
+        get: operations["report_api_v1_commissioned_investigations__identifier__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/commissioned/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Status */
+        get: operations["status_api_v1_commissioned_status_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -584,6 +720,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/internal/v1/commissioned/execute": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Protected */
+        post: operations["protected_internal_v1_commissioned_execute_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/internal/v1/sandbox/execute": {
         parameters: {
             query?: never;
@@ -775,6 +928,418 @@ export interface components {
             source_sha256: string;
             /** Table Row */
             table_row?: number | null;
+        };
+        /** CommissionedCapability */
+        CommissionedCapability: {
+            /** Action Id */
+            action_id: string;
+            /**
+             * Aud
+             * @default aegis-commissioned-executor
+             * @constant
+             */
+            aud: "aegis-commissioned-executor";
+            /** Exp */
+            exp: number;
+            /** Expected Database Version */
+            expected_database_version: number;
+            /** Expected State Version */
+            expected_state_version: number;
+            /** Iat */
+            iat: number;
+            /** Incident Id */
+            incident_id: string;
+            /**
+             * Iss
+             * @default aegis-commissioned-approver
+             * @constant
+             */
+            iss: "aegis-commissioned-approver";
+            /** Jti */
+            jti: string;
+            /** Plan Sha256 */
+            plan_sha256: string;
+            /**
+             * Plant Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            plant_id: "commissioned-simulator-01";
+            /**
+             * Resource Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            resource_id: "commissioned-simulator-01";
+            /**
+             * Rules Revision
+             * @default commissioned-stop-v1
+             * @constant
+             */
+            rules_revision: "commissioned-stop-v1";
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /**
+             * Scope
+             * @default commissioned_six_cell_incident
+             * @constant
+             */
+            scope: "commissioned_six_cell_incident";
+            /**
+             * Sub
+             * @default local-owner
+             * @constant
+             */
+            sub: "local-owner";
+            /**
+             * User Verification
+             * @default true
+             * @constant
+             */
+            user_verification: true;
+        };
+        /** CommissionedPlan */
+        CommissionedPlan: {
+            /**
+             * Action
+             * @default simulator.commissioned_stop
+             * @constant
+             */
+            action: "simulator.commissioned_stop";
+            /** Action Id */
+            action_id: string;
+            controls: components["schemas"]["SimulatorControls"];
+            /**
+             * Duration S
+             * @default 120
+             * @constant
+             */
+            duration_s: 120;
+            /** Expected Database Version */
+            expected_database_version: number;
+            /** Expected State Version */
+            expected_state_version: number;
+            /** Expires At */
+            expires_at: number;
+            /** Incident Id */
+            incident_id: string;
+            /** Investigation Id */
+            investigation_id: string;
+            /** Investigation Sha256 */
+            investigation_sha256: string;
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /** Nonce */
+            nonce: string;
+            /**
+             * Plant Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            plant_id: "commissioned-simulator-01";
+            /**
+             * Resource Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            resource_id: "commissioned-simulator-01";
+            /**
+             * Rules Revision
+             * @default commissioned-stop-v1
+             * @constant
+             */
+            rules_revision: "commissioned-stop-v1";
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /** Safety Rollout Sha256 */
+            safety_rollout_sha256: string;
+            /**
+             * Scope
+             * @default commissioned_six_cell_incident
+             * @constant
+             */
+            scope: "commissioned_six_cell_incident";
+            /** Source Snapshot Sha256 */
+            source_snapshot_sha256: string;
+            /**
+             * Tenant Id
+             * @default local
+             * @constant
+             */
+            tenant_id: "local";
+        };
+        /** CommissionedReceipt */
+        CommissionedReceipt: {
+            /** Action Id */
+            action_id: string;
+            /**
+             * Authorization
+             * @default WebAuthn_user_verified
+             * @constant
+             */
+            authorization: "WebAuthn_user_verified";
+            /** Database Version After */
+            database_version_after: number;
+            /** Database Version Before */
+            database_version_before: number;
+            /**
+             * Duration S
+             * @default 120
+             * @constant
+             */
+            duration_s: 120;
+            /**
+             * Fault Retained
+             * @default true
+             * @constant
+             */
+            fault_retained: true;
+            /** Incident Id */
+            incident_id: string;
+            /** Maximum Temperature C */
+            maximum_temperature_c: number;
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /** Native Version After */
+            native_version_after: number;
+            /** Native Version Before */
+            native_version_before: number;
+            /** Nonce */
+            nonce: string;
+            /**
+             * Outcome
+             * @default simulated_safe_stop_cooldown
+             * @constant
+             */
+            outcome: "simulated_safe_stop_cooldown";
+            /**
+             * Physical Io
+             * @default false
+             * @constant
+             */
+            physical_io: false;
+            /** Plan Sha256 */
+            plan_sha256: string;
+            /**
+             * Plant Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            plant_id: "commissioned-simulator-01";
+            /** Previous Receipt Sha256 */
+            previous_receipt_sha256: string;
+            /**
+             * Receipt Format
+             * @default commissioned-receipt-v1
+             * @constant
+             */
+            receipt_format: "commissioned-receipt-v1";
+            /** Receipt Sha256 */
+            receipt_sha256: string;
+            /**
+             * Rules Revision
+             * @default commissioned-stop-v1
+             * @constant
+             */
+            rules_revision: "commissioned-stop-v1";
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /** Snapshot Sha256 After */
+            snapshot_sha256_after: string;
+            /** Snapshot Sha256 Before */
+            snapshot_sha256_before: string;
+            /** Temperatures After C */
+            temperatures_after_c: number[];
+            /** Temperatures Before C */
+            temperatures_before_c: number[];
+        };
+        /** CommissionedReport */
+        CommissionedReport: {
+            /**
+             * Amd Catalog Requests
+             * @default 0
+             */
+            amd_catalog_requests: number;
+            /**
+             * Amd Request Attempts
+             * @default 0
+             */
+            amd_request_attempts: number;
+            assessment?: components["schemas"]["RecoveryAssessment"] | null;
+            /**
+             * Blockers
+             * @default []
+             */
+            blockers: string[];
+            /**
+             * Candidate Round
+             * @default 0
+             */
+            candidate_round: number;
+            certificate?: components["schemas"]["StopCertificate"] | null;
+            diagnosis?: components["schemas"]["ModelOpinion"] | null;
+            /**
+             * Diagnosis Evidence
+             * @default {}
+             */
+            diagnosis_evidence: {
+                [key: string]: unknown;
+            };
+            /**
+             * Grounded Planning
+             * @default false
+             */
+            grounded_planning: boolean;
+            /** Incident Id */
+            incident_id: string;
+            /** Investigation Id */
+            investigation_id: string;
+            /**
+             * Meaningful Diagnosis
+             * @default false
+             */
+            meaningful_diagnosis: boolean;
+            /**
+             * Model Attributions
+             * @default []
+             */
+            model_attributions: components["schemas"]["ModelAttribution"][];
+            /**
+             * Physical Io
+             * @default false
+             * @constant
+             */
+            physical_io: false;
+            /**
+             * Pinecone Operations
+             * @default []
+             */
+            pinecone_operations: {
+                [key: string]: unknown;
+            }[];
+            planning?: components["schemas"]["PlanningOpinion"] | null;
+            /**
+             * Planning Evidence
+             * @default {}
+             */
+            planning_evidence: {
+                [key: string]: unknown;
+            };
+            /**
+             * Plant Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            plant_id: "commissioned-simulator-01";
+            proposed_controls?: components["schemas"]["SimulatorControls"] | null;
+            /**
+             * Provider Diagnostics
+             * @default []
+             */
+            provider_diagnostics: {
+                [key: string]: unknown;
+            }[];
+            /**
+             * Recovery Scope
+             * @default frozen_native_replay_safe_stop_cooldown
+             * @constant
+             */
+            recovery_scope: "frozen_native_replay_safe_stop_cooldown";
+            /** Report Sha256 */
+            report_sha256: string;
+            /**
+             * Reserved Tokens
+             * @default 0
+             */
+            reserved_tokens: number;
+            /**
+             * Rules Revision
+             * @default commissioned-stop-v1
+             * @constant
+             */
+            rules_revision: "commissioned-stop-v1";
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /**
+             * Source Citations
+             * @default []
+             */
+            source_citations: components["schemas"]["SourceCitation"][];
+            /**
+             * Status
+             * @default blocked
+             * @enum {string}
+             */
+            status: "blocked" | "awaiting_approval";
+            /**
+             * Traces
+             * @default []
+             */
+            traces: string[];
+            /**
+             * Unsafe Challenger Rejected
+             * @default false
+             */
+            unsafe_challenger_rejected: boolean;
+        };
+        /** CommissionedStatus */
+        CommissionedStatus: {
+            /** Database Version */
+            database_version: number;
+            /**
+             * Enabled
+             * @default false
+             */
+            enabled: boolean;
+            /** Incident Id */
+            incident_id: string;
+            /**
+             * Mode
+             * @default frozen_native_replay_simulator_only
+             * @constant
+             */
+            mode: "frozen_native_replay_simulator_only";
+            /** Native State Version */
+            native_state_version: number;
+            /**
+             * Plant Id
+             * @default commissioned-simulator-01
+             * @constant
+             */
+            plant_id: "commissioned-simulator-01";
+            /** Receipts */
+            receipts: components["schemas"]["CommissionedReceipt"][];
+            /** Rule Package */
+            rule_package: {
+                [key: string]: unknown;
+            };
+            /**
+             * Rules Revision
+             * @default commissioned-stop-v1
+             * @constant
+             */
+            rules_revision: "commissioned-stop-v1";
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /** Snapshot Sha256 */
+            snapshot_sha256: string;
+            /** Temperatures C */
+            temperatures_c: number[];
+        };
+        /** CommissionedView */
+        CommissionedView: {
+            /** Action Id */
+            action_id: string;
+            /** Action Json */
+            action_json: string;
+            /** Plan Sha256 */
+            plan_sha256: string;
+            receipt?: components["schemas"]["CommissionedReceipt"] | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "waiting_for_passkey" | "approved" | "executed";
         };
         /** Counterexample */
         Counterexample: {
@@ -2162,6 +2727,35 @@ export interface components {
             /** Title */
             title: string;
         };
+        /** StopCertificate */
+        StopCertificate: {
+            /**
+             * Cells Checked
+             * @default 6
+             * @constant
+             */
+            cells_checked: 6;
+            /**
+             * Duration S
+             * @default 120
+             * @constant
+             */
+            duration_s: 120;
+            /** Maximum Feeder Power W */
+            maximum_feeder_power_w: number;
+            /** Maximum Pressure Kpa */
+            maximum_pressure_kpa: number;
+            /** Maximum Temperature C */
+            maximum_temperature_c: number;
+            /** Native Binary Sha256 */
+            native_binary_sha256: string;
+            /** Rules Sha256 */
+            rules_sha256: string;
+            /** Sha256 */
+            sha256: string;
+            /** Snapshot Sha256 */
+            snapshot_sha256: string;
+        };
         /** StorageStatus */
         StorageStatus: {
             /**
@@ -2496,6 +3090,200 @@ export interface operations {
             };
             /** @description Service Unavailable */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    investigate_api_v1_approval_commissioned_investigate_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "idempotency-key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedReport"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    propose_api_v1_approval_commissioned_investigations__identifier__proposal_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedView"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_proposal_api_v1_approval_commissioned_proposals__identifier__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedView"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    execute_api_v1_approval_commissioned_proposals__identifier__execute_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExecuteRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedView"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    options_api_v1_approval_commissioned_proposals__identifier__options_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalChallenge"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    verify_api_v1_approval_commissioned_proposals__identifier__verify_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CredentialResponse"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedView"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3289,6 +4077,70 @@ export interface operations {
             };
             /** @description Service Unavailable */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    report_api_v1_commissioned_investigations__identifier__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                identifier: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedReport"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    status_api_v1_commissioned_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedStatus"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -4441,6 +5293,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    protected_internal_v1_commissioned_execute_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExecutionEnvelope"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommissionedReceipt"];
                 };
             };
             /** @description Unprocessable Entity */

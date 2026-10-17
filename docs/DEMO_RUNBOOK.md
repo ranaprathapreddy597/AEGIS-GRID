@@ -86,3 +86,13 @@ change credentials to evade evidence, latches, quotas or approval failures.
 The full gate tests real edge outages/reconnection, API/approval/checkpoint restart,
 Mongo/Redis ACLs, native safety and negative cryptography. Scope/limits are in
 results/BENCHMARKS.md, security/THREAT_MODEL.md and RELEASE_CHECKLIST.md.
+
+
+## Commissioned fixture follow-up
+
+The separate real hosted incident-bound recovery proof is documented in
+COMMISSIONED_SIMULATOR.md and results/COMMISSIONED_RECOVERY.md. Its outcome is
+simulated safe-stop cooldown with a retained fault. The original contradictory
+plant demonstration and this runbook's stationary authorization sandbox remain
+separate. Do not describe a stationary-sandbox receipt or the default offline
+clean demo as another hosted commissioned recovery.

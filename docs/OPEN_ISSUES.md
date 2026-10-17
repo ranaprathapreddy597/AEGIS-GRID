@@ -1,5 +1,15 @@
 # Open issues
 
+2026-10-17 commissioned fixture: a separate signed simulator-only rule package,
+incident-bound approval and independent exact-stop executor completed the real
+hosted/CTAP2/native cooldown path. This does not resolve the original plant's
+manual contradictions or widen its stationary sandbox policy. Diagnosis was
+non-abstaining and included independently supported sensor_bias, but also three
+unconfirmed alternatives; specificity remains PARTIAL and representative diagnosis
+quality is unverified. Only safe-stop containment is allowed; fault repair,
+production restart, physical I/O, human industrial/OEM review and production
+security acceptance remain blocked. See results/COMMISSIONED_RECOVERY.md.
+
 2026-10-17 final recovery: Scenario A BLOCKED on simultaneous 70/95 C shared
 plant limits without verified supersession, unavailable incident-bound gateway
 scope and hosted diagnosis abstention. Existing sandbox rejects active faults;

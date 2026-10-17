@@ -35,6 +35,112 @@ def catalog():
     return {"data": [{"id": model, "context_length": 262144} for model in MODEL_ORDER]}
 
 
+@pytest.mark.parametrize("all_abstain", [False, True])
+def test_commissioned_quality_route_retains_real_abstentions_without_counting_success(all_abstain):
+    async def check():
+        calls = []
+
+        def double(request):
+            if request.method == "GET":
+                return httpx.Response(200, json=catalog())
+            model = json.loads(request.content)["model"]
+            calls.append(model)
+            payload = response(model)
+            if all_abstain or len(calls) == 1:
+                payload["choices"][0]["message"]["content"] = json.dumps(
+                    {"assessment": "insufficient_evidence", "hypotheses": [], "evidence_ids": []}
+                )
+            return httpx.Response(200, json=payload)
+
+        client = TokenFactoryClient(
+            SecretStr("http-contract-test-only"), transport=httpx.MockTransport(double)
+        )
+        try:
+            if all_abstain:
+                with pytest.raises(InferenceUnavailable):
+                    await client.investigate_grounded('{"residuals": [3]}')
+                assert calls == list(MODEL_ORDER)
+            else:
+                result = await client.investigate_grounded('{"residuals": [3]}')
+                assert result.model_id == MODEL_ORDER[1]
+                assert calls == list(MODEL_ORDER[:2])
+            assert client.diagnostics[0]["stage"] == "semantic_abstention"
+            assert (
+                client.diagnostics[0]["rejected_opinion"]["assessment"] == "insufficient_evidence"
+            )
+            assert client.diagnostics[0]["prompt_tokens"] == 100
+            assert client.calls <= 3 and client.catalog_calls == 1
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
+@pytest.mark.parametrize("status", [401, 403, 429])
+def test_commissioned_quality_route_never_fans_out_after_auth_or_quota(status):
+    async def check():
+        def double(request):
+            return (
+                httpx.Response(200, json=catalog())
+                if request.method == "GET"
+                else httpx.Response(status)
+            )
+
+        client = TokenFactoryClient(
+            SecretStr("http-contract-test-only"), transport=httpx.MockTransport(double)
+        )
+        try:
+            with pytest.raises(InferenceUnavailable):
+                await client.investigate_grounded('{"residuals": [3]}')
+            assert client.calls == 1
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
+def test_commissioned_planning_rejects_a_recommendation_for_an_infeasible_candidate():
+    async def check():
+        calls = []
+
+        def double(request):
+            if request.method == "GET":
+                return httpx.Response(200, json=catalog())
+            model = json.loads(request.content)["model"]
+            calls.append(model)
+            payload = response(model)
+            payload["choices"][0]["message"]["content"] = json.dumps(
+                {
+                    "recommendation": "minimax_candidate" if len(calls) == 1 else "emergency_stop",
+                    "evidence_ids": ["candidate_evaluations", "retrieved_sources"],
+                }
+            )
+            return httpx.Response(200, json=payload)
+
+        client = TokenFactoryClient(
+            SecretStr("http-contract-test-only"), transport=httpx.MockTransport(double)
+        )
+        try:
+            result = await client.plan_grounded(
+                json.dumps(
+                    {
+                        "candidate_evaluations": {
+                            "minimax_candidate": {"feasible": False},
+                            "emergency_stop": {"feasible": True},
+                        },
+                        "retrieved_sources": [],
+                    }
+                )
+            )
+            assert result.opinion.recommendation == "emergency_stop"
+            assert calls == list(MODEL_ORDER[:2])
+            assert client.diagnostics[0]["stage"] == "semantic_abstention"
+        finally:
+            await client.close()
+
+    asyncio.run(check())
+
+
 def test_ordered_fallback_and_fixed_origin_use_reviewed_schema_only():
     async def check():
         calls = []

@@ -6,6 +6,20 @@ authoritative project instructions. Preserve them unchanged.
 
 ## Current execution state
 
+- Commissioned simulator follow-up authorized 2026-10-17: separate plant
+  commissioned-simulator-01 completed actual hosted dual-Pinecone/AMD, native
+  adversary, incident-bound virtual CTAP2 approval and safe-stop cooldown with one
+  persistent receipt. Rule package commissioned-stop-v1 is locally authored,
+  signed/pinned engineering evidence, not OEM approval; exact six-cell stop only.
+  No fault clear, restart, physical I/O or enterprise mutation. Default is disabled.
+  Original manuals/scenarios/refusals and 1,338 vectors remain unchanged. Original
+  plant stays blocked. Hosted specificity remains PARTIAL: sensor_bias supported,
+  three other model alternatives unconfirmed. Read docs/COMMISSIONED_SIMULATOR.md,
+  docs/COMMISSIONED_POLICY_REVIEW.md and docs/results/COMMISSIONED_RECOVERY.md.
+  Main and frozen separate clean gates each pass 379 Python / 3 CTest / 35 Node /
+  15 browser checks; clean demo 180.006432 seconds. Do not reset the one-shot
+  completed resource, reupload knowledge, or claim full diagnostic specificity.
+
 - Final recovery follow-up 2026-10-17: Scenario A BLOCKED; Scenario B PARTIAL.
   Two real native faults and hosted AMD/dual-Pinecone investigations persist;
   vectors remain 1,235 + 103, zero reingestion. Whole shared plant corpus conflicts

@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "source_tree": "002a7ec731d86ddacc86ff741e676c55ee70512a",
+  "executable_source_diff": false,
+  "scope": "Runtime, tests, helpers, fixtures, generated contracts, dependency and configuration paths",
+  "completion_documentation_and_evidence_only_after_export": true
+}

@@ -2,8 +2,9 @@ import { createServer } from "node:http";
 import { randomUUID, timingSafeEqual } from "node:crypto";
 import type { components } from "../../../packages/contracts/generated/api.js";
 import { verifyEnvelope, verifyReceipt, type Envelope } from "./capability.js";
+import { verifyCommissioned, verifyCommissionedReceipt } from "./commissioned.js";
 
-type ExecutorConfig = { publicKey: string; forward: (envelope: Envelope) => Promise<unknown> };
+type ExecutorConfig = { publicKey: string; forward: (envelope: Envelope) => Promise<unknown>; forwardCommissioned?: (envelope: Envelope) => Promise<unknown> };
 
 export function createExecutor(token: string, config?: ExecutorConfig) {
   if (!/^[\x21-\x7e]{32,}$/.test(token)) throw new Error("Valid service token required");
@@ -24,7 +25,8 @@ export function createExecutor(token: string, config?: ExecutorConfig) {
     }
     const supplied = Buffer.from(req.headers.authorization ?? "");
     const authorized = supplied.length === expected.length && timingSafeEqual(supplied, expected);
-    if (authorized && config && req.method === "POST" && req.url === "/v1/execute") {
+    const commissioned = req.url === "/v1/commissioned/execute";
+    if (authorized && config && req.method === "POST" && (req.url === "/v1/execute" || (commissioned && config.forwardCommissioned))) {
       if (active >= 4) { res.writeHead(429); res.end(JSON.stringify({ code: "BUSY" })); req.resume(); return; }
       active++;
       try {
@@ -36,8 +38,9 @@ export function createExecutor(token: string, config?: ExecutorConfig) {
           if (size > 32768) throw new Error("Request bound exceeded");
           chunks.push(data);
         }
-        const envelope = verifyEnvelope(JSON.parse(Buffer.concat(chunks).toString("utf8")), config.publicKey);
-        const receipt = verifyReceipt(await config.forward(envelope), envelope);
+        const envelope = (commissioned ? verifyCommissioned : verifyEnvelope)(JSON.parse(Buffer.concat(chunks).toString("utf8")), config.publicKey);
+        const forward = commissioned ? config.forwardCommissioned! : config.forward;
+        const receipt = (commissioned ? verifyCommissionedReceipt : verifyReceipt)(await forward(envelope), envelope);
         res.end(JSON.stringify(receipt));
       } catch {
         res.writeHead(403);

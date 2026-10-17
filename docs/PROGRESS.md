@@ -1,5 +1,22 @@
 # Execution status
 
+## Commissioned simulator incident recovery — 2026-10-17
+
+PASS actual safe-stop authorization/cooldown for the separate commissioned plant;
+PARTIAL hosted diagnostic specificity. A frozen enforcing native trigger replay
+used real AMD diagnosis/planning, eight dual-Pinecone references, 409 native
+rollouts, incident-bound virtual CTAP2/server verification, the independent Node
+and Python policies, and one atomic receipt. Hottest cell 42.37481 -> 33.45104 C
+in 120 simulated seconds; fault retained, no production restart. AMD included
+sensor_bias plus three unconfirmed alternatives; no perfect diagnosis claim.
+Original contradictory corpus, scenarios, refusal artifacts and sandbox state
+were preserved; existing vectors remain 1,235 + 103 with zero writes. The new
+signed engineering rule package is disabled by default and is not OEM approval.
+Main and separate frozen clean gates each passed 379 Python / 3 CTest / 35 Node /
+15 browser checks, configured audits and actual ACL/transport checks. Separate
+clean demo passed at 180.006432 seconds; runtime/test sources match its export.
+See results/COMMISSIONED_RECOVERY.md, COMMISSIONED_SIMULATOR.md and ADR 0015.
+
 ## Final incident recovery demonstration — 2026-10-17
 
 Scenario A BLOCKED; Scenario B PARTIAL; complete cloud recovery remains BLOCKED.

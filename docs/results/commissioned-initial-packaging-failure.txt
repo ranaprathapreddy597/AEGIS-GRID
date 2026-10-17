@@ -1,0 +1,522 @@
+ Image aegis-grid-executor:phase12 Building 
+ Image aegis-grid-web:phase12 Building 
+ Image aegis-grid-python:phase12 Building 
+ Image aegis-grid-python:phase12 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.88kB done
+#1 DONE 0.0s
+
+#2 [executor internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 1.51kB 0.0s done
+#2 DONE 0.1s
+
+#3 [edge internal] load build definition from python.Dockerfile
+#3 transferring dockerfile: 2.94kB 0.0s done
+#3 DONE 0.1s
+
+#4 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#4 ...
+
+#5 [auth] library/python:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [auth] library/node:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#7 [auth] library/nginx:pull token for registry-1.docker.io
+#7 DONE 0.0s
+
+#8 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#8 DONE 2.1s
+
+#9 [web internal] load metadata for docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94
+#9 DONE 2.1s
+
+#10 [web internal] load .dockerignore
+#10 transferring context: 203B 0.0s done
+#10 DONE 0.0s
+
+#4 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#4 DONE 2.2s
+
+#11 [edge internal] load build context
+#11 DONE 0.0s
+
+#12 [web internal] load build context
+#12 DONE 0.0s
+
+#13 [web node-build  1/12] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#13 resolve docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20 0.1s done
+#13 resolve docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20 0.1s done
+#13 DONE 0.1s
+
+#14 [edge build-tools 1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#14 resolve docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 0.1s done
+#14 DONE 0.1s
+
+#15 [web web 1/3] FROM docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94
+#15 resolve docker.io/library/nginx:stable-alpine@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94 0.1s done
+#15 DONE 0.1s
+
+#11 [api internal] load build context
+#11 ...
+
+#16 [executor internal] load build context
+#16 transferring context: 678.54kB 0.5s done
+#16 DONE 0.6s
+
+#17 [executor node-build  6/12] COPY services/executor/package.json services/executor/package.json
+#17 CACHED
+
+#18 [executor node-build  3/12] RUN npm install --global pnpm@11.25.0
+#18 CACHED
+
+#19 [executor node-build  4/12] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.base.json ./
+#19 CACHED
+
+#20 [executor node-build  2/12] WORKDIR /app
+#20 CACHED
+
+#21 [executor node-build  5/12] COPY apps/web/package.json apps/web/package.json
+#21 CACHED
+
+#22 [executor node-build  7/12] RUN --mount=type=cache,id=aegis-pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
+#22 CACHED
+
+#11 [api internal] load build context
+#11 ...
+
+#12 [web internal] load build context
+#12 transferring context: 680.12kB 0.5s done
+#12 DONE 0.6s
+
+#11 [api internal] load build context
+#11 ...
+
+#22 [web node-build  7/12] RUN --mount=type=cache,id=aegis-pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
+#22 CACHED
+
+#11 [api internal] load build context
+#11 ...
+
+#23 [executor node-build  8/12] COPY apps/web apps/web
+#23 DONE 0.2s
+
+#11 [api internal] load build context
+#11 transferring context: 3.92MB 1.0s done
+#11 DONE 1.0s
+
+#24 [web node-build  9/12] COPY services/executor services/executor
+#24 DONE 0.2s
+
+#25 [web node-build 10/12] COPY packages/contracts/generated packages/contracts/generated
+#25 DONE 0.2s
+
+#26 [api base  4/22] RUN apt-get update && apt-get install -y --no-install-recommends libgomp1=12.2.0-14+deb12u1 && rm -rf /var/lib/apt/lists/*
+#26 CACHED
+
+#27 [api base  5/22] COPY pyproject.toml uv.lock ./
+#27 CACHED
+
+#28 [api base  3/22] RUN pip install --no-cache-dir uv==0.13.1
+#28 CACHED
+
+#29 [api build-tools 2/5] WORKDIR /app
+#29 CACHED
+
+#30 [api build-tools 3/5] RUN apt-get update && apt-get install -y --no-install-recommends g++=4:12.2.0-3 cmake=3.25.1-1 make=4.3-4.1 nlohmann-json3-dev=3.11.2-2 && rm -rf /var/lib/apt/lists/*
+#30 CACHED
+
+#31 [api build-tools 4/5] COPY cpp/digital-twin cpp/digital-twin
+#31 CACHED
+
+#32 [api build-tools 5/5] RUN cmake -S cpp/digital-twin -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build --parallel 2 && ctest --test-dir /build --output-on-failure
+#32 CACHED
+
+#33 [api base  6/22] RUN --mount=type=cache,id=aegis-uv-cache,target=/root/.cache/uv UV_NO_CACHE=false uv sync --locked --no-dev --no-install-project
+#33 CACHED
+
+#34 [api base  7/22] COPY packages/contracts/python packages/contracts/python
+#34 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#34 [edge base  7/22] COPY packages/contracts/python packages/contracts/python
+#34 DONE 0.1s
+
+#36 [edge base  8/22] COPY services/api services/api
+#36 DONE 0.1s
+
+#36 [api base  8/22] COPY services/api services/api
+#36 DONE 0.1s
+
+#37 [edge base  9/22] COPY services/edge services/edge
+#37 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#37 [api base  9/22] COPY services/edge services/edge
+#37 DONE 0.1s
+
+#38 [api base 10/22] COPY services/ingestion services/ingestion
+#38 DONE 0.1s
+
+#38 [edge base 10/22] COPY services/ingestion services/ingestion
+#38 DONE 0.1s
+
+#39 [api base 11/22] COPY services/inference services/inference
+#39 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#39 [edge base 11/22] COPY services/inference services/inference
+#39 DONE 0.1s
+
+#40 [edge base 12/22] COPY services/agents services/agents
+#40 DONE 0.1s
+
+#40 [api base 12/22] COPY services/agents services/agents
+#40 DONE 0.1s
+
+#41 [api base 13/22] COPY data/scenarios data/scenarios
+#41 DONE 0.2s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#41 [api base 13/22] COPY data/scenarios data/scenarios
+#41 DONE 0.2s
+
+#42 [api base 14/22] COPY data/manuals data/manuals
+#42 DONE 0.2s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#42 [edge base 14/22] COPY data/manuals data/manuals
+#42 DONE 0.2s
+
+#43 [edge base 15/22] COPY data/repairs data/repairs
+#43 DONE 0.1s
+
+#43 [api base 15/22] COPY data/repairs data/repairs
+#43 DONE 0.1s
+
+#44 [api base 16/22] COPY data/futures data/futures
+#44 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#44 [edge base 16/22] COPY data/futures data/futures
+#44 DONE 0.1s
+
+#45 [edge base 17/22] COPY data/real-world-sources.json data/real-world-sources.json
+#45 DONE 0.1s
+
+#45 [api base 17/22] COPY data/real-world-sources.json data/real-world-sources.json
+#45 DONE 0.1s
+
+#46 [api base 18/22] COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
+#46 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#46 [edge base 18/22] COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
+#46 DONE 0.1s
+
+#47 [api base 19/22] COPY data/cloud-embedding-manifest.json data/cloud-embedding-manifest.json
+#47 DONE 0.1s
+
+#48 [edge base 20/22] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#48 DONE 0.1s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#48 [api base 20/22] COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
+#48 DONE 0.1s
+
+#49 [edge base 21/22] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#49 DONE 0.3s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#49 [api base 21/22] COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+#49 DONE 0.3s
+
+#50 [api base 22/22] RUN uv sync --locked --no-dev --no-editable
+#50 1.408 Resolved 119 packages in 36ms
+#50 1.486    Building aegis-grid @ file:///app
+#50 5.257       Built aegis-grid @ file:///app
+#50 5.295 Prepared 1 package in 3.82s
+#50 5.365 Installed 1 package in 69ms
+#50 5.365  + aegis-grid==0.1.0 (from file:///app)
+#50 DONE 5.5s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 2.998 $ pnpm -r build
+#35 4.273 Scope: 2 of 3 workspace projects
+#35 4.368 apps/web build$ tsc --noEmit && vite build
+#35 4.371 services/executor build$ tsc
+#35 ...
+
+#50 [api base 22/22] RUN uv sync --locked --no-dev --no-editable
+#50 DONE 5.5s
+
+#51 [edge runtime 1/3] COPY --from=build-tools /build/aegis-twin /usr/local/bin/aegis-twin
+#51 DONE 0.2s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#51 [api runtime 1/3] COPY --from=build-tools /build/aegis-twin /usr/local/bin/aegis-twin
+#51 DONE 0.2s
+
+#52 [edge runtime 2/3] COPY --from=build-tools /build/libaegis_twin.so /usr/local/lib/libaegis_twin.so
+#52 DONE 0.1s
+
+#52 [api runtime 2/3] COPY --from=build-tools /build/libaegis_twin.so /usr/local/lib/libaegis_twin.so
+#52 DONE 0.1s
+
+#53 [api runtime 3/3] RUN useradd --uid 10001 --no-create-home aegis
+#53 DONE 0.8s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 ...
+
+#53 [edge runtime 3/3] RUN useradd --uid 10001 --no-create-home aegis
+#53 DONE 0.8s
+
+#54 [api] exporting to image
+#54 exporting layers
+#54 exporting layers 2.0s done
+#54 exporting manifest sha256:19add599e5afb2e0b0cf74ef6594cd4ba312fdd5892cd2605c9e75e2944445a4 0.1s done
+#54 exporting config sha256:db408d25a6bf795b443ffd8158ad43c0cf9fd302eab953d5718389fe3cb3fbc8 0.1s done
+#54 exporting attestation manifest sha256:e95e9f6943c42005d7ff1a8bcaa6f8389daff39bee9990460c07ef613bda0302 0.1s done
+#54 exporting manifest list sha256:6ddb0e93f098bfb713cfb32cc763b0797226dae953e5abe2e0a61b3e3734dd58
+#54 exporting manifest list sha256:6ddb0e93f098bfb713cfb32cc763b0797226dae953e5abe2e0a61b3e3734dd58 0.1s done
+#54 naming to docker.io/library/aegis-grid-python:phase12 0.0s done
+#54 unpacking to docker.io/library/aegis-grid-python:phase12
+#54 unpacking to docker.io/library/aegis-grid-python:phase12 1.2s done
+#54 DONE 3.5s
+
+#55 [edge] exporting to image
+#55 exporting layers 2.0s done
+#55 exporting manifest sha256:de0f0a76eb0fa84936728af52aa147b238241fef4d2ebd76a35741960e5c6591 0.1s done
+#55 exporting config sha256:71cc5d1d22b085622caf739d02be68e4e0dad2ee6052e7e226f426bbf5993b56 0.1s done
+#55 exporting attestation manifest sha256:bad0ade459c08018371dc6e255121a0a9fc597906e445147b09e596017a8545b 0.1s done
+#55 exporting manifest list sha256:216b6d63594c13110cc77bda48086c11aa24c9ea23849e937acf4137033afd73 0.1s done
+#55 naming to docker.io/library/aegis-grid-python:phase12 done
+#55 unpacking to docker.io/library/aegis-grid-python:phase12 1.2s done
+#55 DONE 3.7s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 9.722 services/executor build: Done
+#35 ...
+
+#56 [api] resolving provenance for metadata file
+#56 DONE 0.1s
+
+#57 [edge] resolving provenance for metadata file
+#57 DONE 0.0s
+
+#35 [web node-build 11/12] RUN pnpm build && pnpm test
+#35 14.18 apps/web build: vite v8.3.4 building client environment for production...
+#35 14.22 apps/web build: transforming...
+#35 14.42 apps/web build: ✓ 25 modules transformed.
+#35 14.60 apps/web build: rendering chunks...
+#35 14.77 apps/web build: computing gzip size...
+#35 14.78 apps/web build: dist/index.html                   0.42 kB │ gzip:  0.30 kB
+#35 14.78 apps/web build: dist/assets/index-BBzRRsar.css   21.67 kB │ gzip:  5.41 kB
+#35 14.78 apps/web build: dist/assets/index-3eoYZxA5.js   284.75 kB │ gzip: 85.88 kB
+#35 14.78 apps/web build: ✓ built in 600ms
+#35 14.84 apps/web build: Done
+#35 16.07 $ pnpm --filter @aegis/executor test
+#35 17.20 $ node --test dist/services/executor/src/server.test.js
+#35 17.85 ✔ executor fails closed without a token (2.830236ms)
+#35 18.00 ✔ authenticated and unauthenticated mutations both fail closed (112.037859ms)
+#35 18.00 ✔ independent verifier accepts only a fixed signed simulator scope (29.53002ms)
+#35 18.00 ✔ independent verifier refuses signed violation {"sub":"wrong-user"} (1.908694ms)
+#35 18.00 ✔ independent verifier refuses signed violation {"aud":"github"} (1.55076ms)
+#35 18.01 ✔ independent verifier refuses signed violation {"iss":"model"} (4.056407ms)
+#35 18.01 ✔ independent verifier refuses signed violation {"exp":1} (2.341629ms)
+#35 18.02 ✔ independent verifier refuses signed violation {"iat":1} (1.786836ms)
+#35 18.02 ✔ independent verifier refuses signed violation {"user_verification":false} (2.101059ms)
+#35 18.02 ✔ independent verifier refuses signed violation {"expected_database_version":99} (2.27194ms)
+#35 18.02 ✔ independent verifier refuses signed violation {"expected_state_version":999} (8.327212ms)
+#35 18.03 ✔ independent verifier refuses signed violation {"plan_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"} (1.396602ms)
+#35 18.03 ✔ independent verifier refuses signed violation {"resource_id":"live-edge"} (1.012173ms)
+#35 18.03 ✔ independent verifier refuses signed violation {"extra":true} (2.892903ms)
+#35 18.03 ✔ a valid issuer signature never overrides the independent actuator interlock (3.921523ms)
+#35 18.03 ✔ an operational Mongo diff must be explicit, fixed and schema-valid (4.036305ms)
+#35 18.07 ℹ tests 16
+#35 18.07 ℹ suites 0
+#35 18.07 ℹ pass 16
+#35 18.07 ℹ fail 0
+#35 18.07 ℹ cancelled 0
+#35 18.07 ℹ skipped 0
+#35 18.07 ℹ todo 0
+#35 18.07 ℹ duration_ms 766.855797
+#35 DONE 18.3s
+
+#58 [executor node-build 12/12] RUN pnpm --filter @aegis/executor deploy --prod --legacy /executor-runtime
+#58 1.550 [WARN] Shared workspace lockfile detected but configuration forces legacy deploy implementation.
+#58 1.678 Packages are copied from the content-addressable store to the virtual store.
+#58 1.678   Content-addressable store is at: /root/.local/share/pnpm/store/v11
+#58 1.678   Virtual store is at:             ../executor-runtime/node_modules/.pnpm
+#58 1.682 ✓ Lockfile passes supply-chain policies (verified 20h ago)
+#58 1.766 Progress: resolved 1, reused 0, downloaded 0, added 0
+#58 2.799 Progress: resolved 67, reused 0, downloaded 0, added 0
+#58 3.866 Progress: resolved 126, reused 0, downloaded 0, added 0
+#58 4.867 Progress: resolved 163, reused 0, downloaded 0, added 0
+#58 5.586 Progress: resolved 177, reused 0, downloaded 0, added 0, done
+#58 5.671 .                                        |   +5 +
+#58 DONE 6.6s
+
+#59 [web web 2/3] COPY infra/local/nginx.conf /etc/nginx/nginx.conf
+#59 CACHED
+
+#60 [web node-build  9/12] COPY services/executor services/executor
+#60 CACHED
+
+#61 [web node-build 10/12] COPY packages/contracts/generated packages/contracts/generated
+#61 CACHED
+
+#62 [web node-build 11/12] RUN pnpm build && pnpm test
+#62 CACHED
+
+#63 [web node-build  7/12] RUN --mount=type=cache,id=aegis-pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
+#63 CACHED
+
+#18 [web node-build  3/12] RUN npm install --global pnpm@11.25.0
+#18 CACHED
+
+#64 [web node-build 12/12] RUN pnpm --filter @aegis/executor deploy --prod --legacy /executor-runtime
+#64 CACHED
+
+#65 [web node-build  5/12] COPY apps/web/package.json apps/web/package.json
+#65 CACHED
+
+#66 [web node-build  8/12] COPY apps/web apps/web
+#66 CACHED
+
+#67 [web node-build  6/12] COPY services/executor/package.json services/executor/package.json
+#67 CACHED
+
+#68 [web node-build  4/12] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.base.json ./
+#68 CACHED
+
+#20 [web node-build  2/12] WORKDIR /app
+#20 CACHED
+
+#69 [web web 3/3] COPY --from=node-build /app/apps/web/dist /usr/share/nginx/html
+#69 DONE 0.1s
+
+#70 [web] exporting to image
+#70 ...
+
+#20 [executor node-build  2/12] WORKDIR /app
+#20 CACHED
+
+#71 [executor executor 3/6] COPY --from=node-build /app/services/executor/dist ./dist
+#71 DONE 0.1s
+
+#70 [web] exporting to image
+#70 exporting layers
+#70 exporting layers 0.2s done
+#70 exporting manifest sha256:3042c71804582d24063758b3a747635f803b2ff23aaacd09c56b816166ac537c 0.0s done
+#70 exporting config sha256:6aa136f30725634192880e4a1755636b6b859242a5435e5d15b33bf42c8adb07 0.0s done
+#70 exporting attestation manifest sha256:32f423ae6470b440a2af523216d88eab110b4c9258a62cfb07c3b8f971536acc 0.0s done
+#70 exporting manifest list sha256:b2dcb3bd25af8399ae0fac16cd96468a53adbe8a84ceb0fafaacee37f67779e2 0.0s done
+#70 naming to docker.io/library/aegis-grid-web:phase12
+#70 naming to docker.io/library/aegis-grid-web:phase12 done
+#70 unpacking to docker.io/library/aegis-grid-web:phase12 0.1s done
+#70 DONE 0.6s
+
+#72 [executor executor 4/6] COPY --from=node-build /executor-runtime/node_modules ./node_modules
+#72 DONE 0.7s
+
+#73 [web] resolving provenance for metadata file
+#73 DONE 0.0s
+
+#74 [executor executor 5/6] COPY packages/contracts/generated ./packages/contracts/generated
+#74 DONE 0.2s
+
+#75 [executor executor 6/6] COPY services/executor/package.json ./package.json
+#75 DONE 0.1s
+
+#76 [executor] exporting to image
+#76 exporting layers 0.8s done
+#76 exporting manifest sha256:569aa330c970852f14350e0b14e1298dcdbb0dc3d181ebf601d126b20dc0828c 0.1s done
+#76 exporting config sha256:ecea8a9d3308b6620f24f9148ec46e5f78bc510ad5c57d5396f9f69139496ce8 0.1s done
+#76 exporting attestation manifest sha256:0421b239815c48c0046b4303f84e2a637e5d36a7672c6fa0e255b3dfa8976a3c 0.1s done
+#76 exporting manifest list sha256:e96d903799a35ee27bb5218304a3d24e44971cb619113ccc8d02c2afbeee9aca 0.0s done
+#76 naming to docker.io/library/aegis-grid-executor:phase12
+#76 naming to docker.io/library/aegis-grid-executor:phase12 done
+#76 unpacking to docker.io/library/aegis-grid-executor:phase12
+#76 unpacking to docker.io/library/aegis-grid-executor:phase12 0.7s done
+#76 DONE 1.9s
+
+#77 [executor] resolving provenance for metadata file
+#77 DONE 0.0s
+ Image aegis-grid-python:phase12 Built 
+ Image aegis-grid-python:phase12 Built 
+ Image aegis-grid-executor:phase12 Built 
+ Image aegis-grid-web:phase12 Built 
+ Container aegis-grid-redis-1 Running 
+ Container aegis-grid-mongo-1 Running 
+ Container aegis-grid-mongo-1 Waiting 
+ Container aegis-grid-redis-1 Waiting 
+ Container aegis-grid-redis-1 Healthy 
+ Container aegis-grid-mongo-1 Healthy 
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/.venv/lib/python3.12/site-packages/aegis_api/storage.py", line 516, in <module>
+    asyncio.run(migrate())
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/aegis_api/storage.py", line 354, in migrate
+    commissioned_resource = commissioned_genesis(Path("/usr/local/lib/libaegis_twin.so"))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/aegis_edge/commissioning.py", line 151, in genesis
+    record = incident(library)
+             ^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/aegis_edge/commissioning.py", line 74, in incident
+    supervisor = SupervisedTwin(scenario(), library)
+                                ^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/aegis_edge/commissioning.py", line 69, in scenario
+    rules()
+  File "/app/.venv/lib/python3.12/site-packages/aegis_edge/commissioning.py", line 43, in rules
+    raw = (directory / "rules.json").read_bytes()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/commissioned/rules.json'
+Traceback (most recent call last):
+  File "D:\AEGIS GRID\tools\dev.py", line 243, in <module>
+    main()
+  File "D:\AEGIS GRID\tools\dev.py", line 158, in main
+    run(
+  File "D:\AEGIS GRID\tools\dev.py", line 96, in run
+    subprocess.run([executable, *command[1:]], cwd=ROOT, check=True, env=environment)
+  File "C:\Users\ranap\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\ranap\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.EXE', 'run', '--rm', '--network', 'aegis-grid_storage', '--env', 'AEGIS_MONGO_PASSWORD', '--env', 'AEGIS_REDIS_PASSWORD', '--env', 'AEGIS_MONGO_WRITER_PASSWORD', '--env', 'AEGIS_MONGO_READER_PASSWORD', '--env', 'AEGIS_REDIS_WRITER_PASSWORD', '--env', 'AEGIS_GRAPH_PASSWORD', '--env', 'AEGIS_APPROVER_PASSWORD', '--env', 'AEGIS_GATEWAY_PASSWORD', 'aegis-grid-python:phase12', 'python', '-m', 'aegis_api.storage', 'migrate']' returned non-zero exit status 1.

@@ -1,5 +1,27 @@
 # Capability evidence — 2026-10-14, Asia/Calcutta
 
+## Commissioned native replay recovery — 2026-10-17
+
+Actual hosted investigation 727bf9ff-c886-42e0-a360-e1e99b587d9c completed with
+two validated DeepSeek inference responses (3,122 acknowledged tokens), two
+catalog requests and eight HTTP-200 dual-Pinecone queries. Separate read-only
+audits verified 1,235/103 counts unchanged; no ingestion or Pinecone write.
+A signed locally authored engineering package governs a different simulator
+identity, with the unchanged 70 C hard/65 C operating bounds and exact shared
+six-cell stop. It is not approved OEM documentation. The source supervisor
+remains enforcing; its frozen trigger replay received incident-bound virtual
+CTAP2 approval, actual server ES256 verification, independent Ed25519 capability
+checks, native execution and one atomic receipt. Native version 378->498;
+hottest cell 42.37481->33.45104 C; fault retained. Original resources/refusal
+corpus remain unchanged. Replay/digest/origin/stale/old-plant attempts returned
+403. Historical public assertion verification is separately recorded. Diagnosis
+specificity is PARTIAL (sensor_bias supported, three alternatives unconfirmed).
+Main and separate clean gates each pass 379 Python / 3 CTest / 35 Node / 15 browser
+and configured audits; clean demo 180.006432 seconds. Executable/test/config sources
+match frozen tree 002a7ec731d86ddacc86ff741e676c55ee70512a. Persistent report/receipt
+read-back passes after main process restarts, with no further model or action request.
+See results/COMMISSIONED_RECOVERY.md and raw commissioned-*.json evidence.
+
 ## Final recovery qualification — 2026-10-17
 
 Actual scenario-010 and scenario-090 records, source/snapshot hashes, observed

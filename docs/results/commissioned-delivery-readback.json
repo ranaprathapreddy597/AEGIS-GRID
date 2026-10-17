@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "scope": "Read-only report/receipt verification after full main gate and API restarts; hosted override restored, no fresh provider probe",
+  "status_http": 200,
+  "report_http": 200,
+  "enabled": true,
+  "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+  "investigation_id": "727bf9ff-c886-42e0-a360-e1e99b587d9c",
+  "report_sha256": "8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc",
+  "receipt_sha256": "96b9c3f4338f75c56e452205fcfa446ee714a45303ab4c27a3775faea822ed2e",
+  "identical_saved_report": true,
+  "identical_persistent_receipt": true,
+  "independent_report_grounding_and_receipt_digest": "verified",
+  "new_model_calls": 0,
+  "new_approval_or_execution_requests": 0
+}

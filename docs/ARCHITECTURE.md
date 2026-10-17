@@ -134,3 +134,23 @@ approval. Shared read credentials and local HTTP are development boundaries only
 Policy v2 trips at 65 C to reserve sampled/ramp headroom; 70 C remains the hard
 native rollout limit. V1 records remain readable. Fixed 10K futures retain their
 original measured source; they are not current-incident posterior samples.
+
+
+## Separate commissioned simulator replay
+
+ADR 0015 adds a default-disabled, explicitly selected fixture identity without
+changing the original manual library or sandbox contracts. Its signed local
+engineering rules preserve existing bounds and authorize only the shared six-cell
+stop. The new native incident/resource and reports/proposals use separate Mongo
+collections and exact Pydantic/OpenAPI contracts. The source supervisor remains
+active; the authorization resource is a frozen trigger replay, not the main edge.
+
+A cyclic commissioned LangGraph consumes real bounded AMD opinions and the same
+read-only dual knowledge store, evaluates native adversarial futures, and seals
+an immutable pre-approval report. A separate approval graph binds WebAuthn to the
+entire incident action and resumes only after server verification. The Node route
+/v1/commissioned/execute and Python internal gateway each enforce the dedicated
+policy before private native evolution and Mongo CAS of receipt/state/nonce.
+No physical/enterprise route or production restart is added. See
+COMMISSIONED_SIMULATOR.md and results/COMMISSIONED_RECOVERY.md for trust boundaries,
+actual measurements, diagnostic limitations and proof scope.

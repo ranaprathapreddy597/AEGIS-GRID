@@ -1,0 +1,2482 @@
+{
+  "result": "PASS",
+  "mode": "actual_AMD_dual_Pinecone_Chromium_virtual_CTAP2_native_replay",
+  "investigation_id": "727bf9ff-c886-42e0-a360-e1e99b587d9c",
+  "physical_io": false,
+  "checks": {
+    "original_report_not_commissionable": 403,
+    "no_approval": 403,
+    "wrong_origin": 403,
+    "assertion_replay": 403,
+    "changed_digest": 403,
+    "execution_replay": 403,
+    "stale_approved_state": 403
+  },
+  "before": {
+    "enabled": true,
+    "plant_id": "commissioned-simulator-01",
+    "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+    "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+    "rules_revision": "commissioned-stop-v1",
+    "rule_package": {
+      "action": "simulator.commissioned_stop",
+      "applicability": "Only frozen native incident replay of this package scenario; shared six-cell loop; no physical I/O or enterprise mutation",
+      "cells": [
+        "CELL-01",
+        "CELL-02",
+        "CELL-03",
+        "CELL-04",
+        "CELL-05",
+        "CELL-06"
+      ],
+      "controls": {
+        "loads": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pump": 1,
+        "valves": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "duration_s": 120,
+      "fault_clear_allowed": false,
+      "feeder_max_w": 14500,
+      "flow_grace_s": 10,
+      "load_ramp_s": 0.1,
+      "model_version": "coupled-factory-v3",
+      "operating_stop_guard_c": 65,
+      "origin": "AEGIS GRID repository engineering fixture, user-authorized separate simulator commissioning 2026-10-17",
+      "plant_id": "commissioned-simulator-01",
+      "pressure_max_kpa": 180,
+      "production_restart_allowed": false,
+      "productive_flow_min_kg_s": 0.02,
+      "pump_ramp_s": 0.12,
+      "review_status": "Automated adversarial review required; no human industrial assessment or OEM approval",
+      "revision": "commissioned-stop-v1",
+      "scenario_sha256": "a3b0a3607e3b5faccf4a09b2661c91dbeff6fa4da2d073420e102146f777ee13",
+      "scope": "commissioned_six_cell_incident",
+      "temperature_lt_c": 70,
+      "valve_ramp_s": 0.2
+    },
+    "database_version": 1,
+    "native_state_version": 378,
+    "snapshot_sha256": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+    "temperatures_c": [
+      40.062573542824786,
+      40.4365844457354,
+      40.95476902397191,
+      41.4835729183025,
+      42.002137951654774,
+      42.37480994641029
+    ],
+    "receipts": [],
+    "mode": "frozen_native_replay_simulator_only"
+  },
+  "investigation_http": 200,
+  "investigation": {
+    "plant_id": "commissioned-simulator-01",
+    "investigation_id": "727bf9ff-c886-42e0-a360-e1e99b587d9c",
+    "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+    "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+    "rules_revision": "commissioned-stop-v1",
+    "report_sha256": "8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc",
+    "status": "awaiting_approval",
+    "diagnosis": {
+      "assessment": "investigate",
+      "hypotheses": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "evidence_ids": [
+        "observed",
+        "residuals",
+        "trends",
+        "correlations",
+        "retrieved_sources"
+      ]
+    },
+    "planning": {
+      "recommendation": "emergency_stop",
+      "evidence_ids": [
+        "candidate_evaluations",
+        "retrieved_sources"
+      ]
+    },
+    "model_attributions": [
+      {
+        "role": "diagnosis",
+        "requested_model": "DeepSeek-V4-Flash",
+        "served_model": "self-dploy/DeepSeek-V4-Flash",
+        "attempted_models": [
+          "DeepSeek-V4-Flash"
+        ],
+        "latency_ms": 13315.987698,
+        "prompt_tokens": 1575,
+        "completion_tokens": 66,
+        "hardware_verified": false
+      },
+      {
+        "role": "planning",
+        "requested_model": "DeepSeek-V4-Flash",
+        "served_model": "self-dploy/DeepSeek-V4-Flash",
+        "attempted_models": [
+          "DeepSeek-V4-Flash"
+        ],
+        "latency_ms": 9882.942342,
+        "prompt_tokens": 1448,
+        "completion_tokens": 33,
+        "hardware_verified": false
+      }
+    ],
+    "source_citations": [
+      {
+        "reference_id": "agk1-6ea1a347d72cbf54d889d0d226545abde67ca3445449ecbedb9737e86d125adc",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "data/manuals/pages.jsonl",
+        "source": "data/manuals/pages.jsonl",
+        "revision": "R1",
+        "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-6d82b738d0f30b38a05b73a671ec0d96745d8000fcd380e7a193b59103a73da7",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "data/manuals/pages.jsonl",
+        "source": "data/manuals/pages.jsonl",
+        "revision": "R1",
+        "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+        "namespace": "real-world-v1",
+        "title": "Arduino Opta industrial controller datasheet source",
+        "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+        "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+        "license": "CC-BY-SA-4.0",
+        "attribution": "Arduino and documentation contributors",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-c9360d6b17935b16eec719f139ca7660bccf5556b53f40d799cb59647e5ba841",
+        "namespace": "real-world-v1",
+        "title": "Arduino Opta industrial controller datasheet source",
+        "source": "https://raw.githubusercontent.com/arduino/docs-content/404d4b35349e6558974af82a0966a2846dbbb510/content/hardware/opta/opta-family/opta/datasheet/datasheet.md",
+        "revision": "404d4b35349e6558974af82a0966a2846dbbb510",
+        "source_sha256": "a4cce551922097a0a049956e3a1bfa763341864a20fb7e117854d09c620f7d67",
+        "license": "CC-BY-SA-4.0",
+        "attribution": "Arduino and documentation contributors",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "docs/results/phase8-profile.json",
+        "source": "docs/results/phase8-profile.json",
+        "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "title": "docs/results/phase8-profile.json",
+        "source": "docs/results/phase8-profile.json",
+        "revision": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "source_sha256": "80a5cbb3d32efb1d7d8119a8fd6acb3dcddd83f64473f9949e42be6356415b9b",
+        "license": "repository synthetic fixture",
+        "attribution": "AEGIS GRID synthetic simulator",
+        "synthetic": true,
+        "applicability": "synthetic_simulator_evidence",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+        "namespace": "real-world-v1",
+        "title": "Condition monitoring of hydraulic systems",
+        "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "revision": "UCI-447-2018-04-25",
+        "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+        "license": "CC-BY-4.0",
+        "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      },
+      {
+        "reference_id": "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93",
+        "namespace": "real-world-v1",
+        "title": "Condition monitoring of hydraulic systems",
+        "source": "https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip",
+        "revision": "UCI-447-2018-04-25",
+        "source_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+        "license": "CC-BY-4.0",
+        "attribution": "Nikolai Helwig, Eliseo Pignanelli and Andreas Schuetze (2015), UCI Machine Learning Repository, DOI 10.24432/C5CW21",
+        "synthetic": false,
+        "applicability": "external_context_only",
+        "tenant_id": "local",
+        "plant_id": "isolated-simulator"
+      }
+    ],
+    "assessment": {
+      "artifact_sha256": "4e16f89a9dee45f3f3c7abb77258e6f45fb8d62e51dbb0dc3719edb7a6aa3d6e",
+      "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+      "source_snapshot_sha256": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+      "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+      "model_version": "coupled-factory-v3",
+      "algorithm": "enumerative-minimax-v1",
+      "status": "checked_non_executable",
+      "reason": "Finite robust search passed; authorization and manual gate remain closed",
+      "policy": {
+        "temperature_lt_c": 70,
+        "productive_flow_min_kg_s": 0.02,
+        "pressure_max_kpa": 180,
+        "feeder_max_w": 14500,
+        "flow_grace_s": 10,
+        "pump_ramp_s": 0.12,
+        "load_ramp_s": 0.1,
+        "valve_ramp_s": 0.2
+      },
+      "objective_weights": {
+        "lost_production_units": 5,
+        "downtime_s": 0.05,
+        "energy_kwh": 0.25,
+        "actuator_travel": 0.1,
+        "thermal_risk": 10
+      },
+      "assumptions": [
+        "Synthetic uncalibrated model; fixed 600-second open-loop control horizon, dt=1s/20 substeps.",
+        "Full-state counterfactual referee, not observed-only prediction or inferred fault truth.",
+        "Nominal plus 36 priors: six targets, severity .5/.8/1, temperature offset -2/+2C.",
+        "Priors combine blockage, weak pump, demand burst and power spike, onset immediately.",
+        "Finite coverage only; no statistical/industrial safety guarantee outside the enumerated set.",
+        "Productive flow floor has ten seconds settling; thermal bound always applies.",
+        "Costs are assumed dimensionless weights, not dollars, prices or measured business savings.",
+        "Main edge emergency latch remains untouched. Contradictory manual blocks all execution."
+      ],
+      "cases": [
+        {
+          "case_id": "snapshot",
+          "seed": 73,
+          "snapshot_sha256": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+          "fault_mask": 1,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": 0
+        },
+        {
+          "case_id": "red-01",
+          "seed": 74,
+          "snapshot_sha256": "b0499897cd4054c71750b4d015b040c0769bfa078d50f143c856a88a7807bc2d",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-02",
+          "seed": 75,
+          "snapshot_sha256": "e0c473910a07343e22a54c7daf83b1f918259f4b585ec50e863b622bb1461d58",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-03",
+          "seed": 76,
+          "snapshot_sha256": "75a7b55a88ac1e9a0351cfd683a723cfc188814259636499a31152e57807266e",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-04",
+          "seed": 77,
+          "snapshot_sha256": "5287c229fe8d1156dab782307c8d3a7cb4c9edc93cc81c4ae7b876593702a0ed",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-05",
+          "seed": 78,
+          "snapshot_sha256": "e89777fc023ae69773aacbd37bfd922af1be0d474cbd6d0690d67400d6a95eed",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-06",
+          "seed": 79,
+          "snapshot_sha256": "dd2f95cf05ff1710abc4acdc9af91b07de8f1c04cb40a73af9038cd0be950aba",
+          "fault_mask": 156,
+          "target": 0,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-07",
+          "seed": 80,
+          "snapshot_sha256": "471c2bb44ad82612063c8587edeac122842bd1d3d9888ea6353adf9e376a9045",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-08",
+          "seed": 81,
+          "snapshot_sha256": "23bae325a8bc3f2832f3760373f938f700fec62594c1801098472f804520e66f",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-09",
+          "seed": 82,
+          "snapshot_sha256": "66f574f22b1015da15e6582aa9a086304717eae78aface437ca0e8c1087345e3",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-10",
+          "seed": 83,
+          "snapshot_sha256": "c88426dd9d76cbc7217dcc4e7f7ea2b5fe28574509236926f42fff69f6112c42",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-11",
+          "seed": 84,
+          "snapshot_sha256": "e9c453f7db87b59d507bf7752375807afbdb0cc913fa30de83905bf10351abf9",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-12",
+          "seed": 85,
+          "snapshot_sha256": "ea3477dd3273a6189a213bd45eccbf307bc0caa030baef36dff77767044c0d91",
+          "fault_mask": 156,
+          "target": 1,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-13",
+          "seed": 86,
+          "snapshot_sha256": "1926838a41e3295caada45cc65021c04d829a68b160541dabf3ed609ee0e740d",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-14",
+          "seed": 87,
+          "snapshot_sha256": "354105924ef6d009b58e525bbba2b80d6dc34d40f2f6e84de1bc3d87ffad3d51",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-15",
+          "seed": 88,
+          "snapshot_sha256": "355d98ddacbfdbb0c9ad908cfbd0c8b6714a37a9a6da8baefba87778b51b0d31",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-16",
+          "seed": 89,
+          "snapshot_sha256": "fb3af452dea22b0a63638b1e99ac36cf8532d03bacba16fe2e0642816533f135",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-17",
+          "seed": 90,
+          "snapshot_sha256": "18136cf17f935b4a1a554b73c7901636a9d122aaa2b345f28c9e92a25372be47",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-18",
+          "seed": 91,
+          "snapshot_sha256": "46314424295994c62065fcf75bc5a95b4947e90133979c66bd4e360c54c8de16",
+          "fault_mask": 156,
+          "target": 2,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-19",
+          "seed": 92,
+          "snapshot_sha256": "c6a15b1685e5cbde62b3e5384651b08e14ec275b467d08150dbc79b39a77a45b",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-20",
+          "seed": 93,
+          "snapshot_sha256": "1830af6ebd52475a39ad0277a5b4a7c379f0b8c98271c3cbffc3d343dc41fd69",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-21",
+          "seed": 94,
+          "snapshot_sha256": "d9ecba232f6429d6bc0bfa1cc97f5f547bd77301783d04fa744b964553c90b8e",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-22",
+          "seed": 95,
+          "snapshot_sha256": "994c7e75b88c6aae5ce8e4866e20253de363e40dc7ca3bf2592da94e561bbbb6",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-23",
+          "seed": 96,
+          "snapshot_sha256": "00a43cc8dcfa61337518daec380feaeed9e248f29478155fd8c9be156a778548",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-24",
+          "seed": 97,
+          "snapshot_sha256": "5b3ac3d9a5b5cdb6812a6f1f7a27b03991935bd44de0d11780269e3d63867eae",
+          "fault_mask": 156,
+          "target": 3,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-25",
+          "seed": 98,
+          "snapshot_sha256": "973f1e0b2ecb75a170884679fa004de82ded89a2f385c06cb074619f245d8dd8",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-26",
+          "seed": 99,
+          "snapshot_sha256": "e69af4b642548bfa0bffbfb3e6ca2e15efacb1aca1e06bf2f9508c951716f639",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-27",
+          "seed": 100,
+          "snapshot_sha256": "837ef2f8b3fb903fa891f6997e6fb66828d013b34cbce70a952e99d41246e583",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-28",
+          "seed": 101,
+          "snapshot_sha256": "79386c769b25d027f598e1a77c1885b09fffe0aa761e2947c9c57838b3598d33",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-29",
+          "seed": 102,
+          "snapshot_sha256": "da7d88486d823c5e82af31313c2b04d2481a818f587602a37866b0995b23a166",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-30",
+          "seed": 103,
+          "snapshot_sha256": "e1d9e35e5e313d7ac2f58455806f0cc143c016d8428e91c9689274b71999cc2f",
+          "fault_mask": 156,
+          "target": 4,
+          "severity": 1,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-31",
+          "seed": 104,
+          "snapshot_sha256": "6cfb1b1880336baf1e4b3da4fe9c5edca666fe1dbf742a09f2f8d91fe90ec5d1",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.5,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-32",
+          "seed": 105,
+          "snapshot_sha256": "dcb333bc2b8ace4c845abf285e640267f30e6811607822e138fe3898041a4b89",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.5,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-33",
+          "seed": 106,
+          "snapshot_sha256": "c59f292bcc7a24f2823494c7511e8cc3696c59283e8819cc908b059e115e80d7",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.8,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-34",
+          "seed": 107,
+          "snapshot_sha256": "0da1d93a6496882aeac23c4b30f406cc67c9320f5731380084cf4f2a88ad63f8",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 0.8,
+          "temperature_offset_c": 2
+        },
+        {
+          "case_id": "red-35",
+          "seed": 108,
+          "snapshot_sha256": "e8d70e634f75493e75fc826fc170d13f5ff21a6336442b707d6db17209345ebc",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 1,
+          "temperature_offset_c": -2
+        },
+        {
+          "case_id": "red-36",
+          "seed": 109,
+          "snapshot_sha256": "371932e48ccb2eb07541a7d8a453f07370f3a1b9e100d56c3a458ef4061c654c",
+          "fault_mask": 156,
+          "target": 5,
+          "severity": 1,
+          "temperature_offset_c": 2
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "blue-load-0-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": true,
+          "checked_cases": 37,
+          "failed_cases": 0,
+          "worst_temperature_c": 45.02520595870085,
+          "worst_objective": 329.0613513831282,
+          "mean_energy_kwh": 0.2772484968087366,
+          "minimum_production_units": 0.281708333333345,
+          "maximum_downtime_s": 593,
+          "maximum_actuator_travel": 4.649999999999999,
+          "counterexamples": []
+        },
+        {
+          "candidate_id": "blue-load-0-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": true,
+          "checked_cases": 37,
+          "failed_cases": 0,
+          "worst_temperature_c": 45.00364069238369,
+          "worst_objective": 329.0802185916128,
+          "mean_energy_kwh": 0.3451779688778175,
+          "minimum_production_units": 0.281708333333345,
+          "maximum_downtime_s": 593,
+          "maximum_actuator_travel": 4.649999999999999,
+          "counterexamples": []
+        },
+        {
+          "candidate_id": "blue-load-25-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 12,
+          "worst_temperature_c": 70.71821874256892,
+          "worst_objective": 224.92924736348084,
+          "mean_energy_kwh": 1.0701437468087034,
+          "minimum_production_units": 15.126083333319823,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.649999999999995,
+          "counterexamples": [
+            {
+              "case_id": "red-05",
+              "violation_mask": 2,
+              "maximum_temperature_c": 68.35990269952667
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 3,
+              "maximum_temperature_c": 70.14768445135282
+            },
+            {
+              "case_id": "red-11",
+              "violation_mask": 2,
+              "maximum_temperature_c": 68.39730848618548
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-25-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 12,
+          "worst_temperature_c": 68.83179252486686,
+          "worst_objective": 224.93802234398444,
+          "mean_energy_kwh": 1.1380732188777336,
+          "minimum_production_units": 15.126083333319823,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.649999999999995,
+          "counterexamples": [
+            {
+              "case_id": "red-05",
+              "violation_mask": 2,
+              "maximum_temperature_c": 66.6239690998053
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 2,
+              "maximum_temperature_c": 68.29046453425416
+            },
+            {
+              "case_id": "red-11",
+              "violation_mask": 2,
+              "maximum_temperature_c": 66.67072078249512
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-50-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 12,
+          "worst_temperature_c": 89.22513000631554,
+          "worst_objective": 150.3690963294699,
+          "mean_energy_kwh": 1.6265114752247967,
+          "minimum_production_units": 30.03295833330618,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 30.509999999999998,
+          "counterexamples": [
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 86.8830294863609
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 3,
+              "maximum_temperature_c": 88.6708112381873
+            },
+            {
+              "case_id": "red-11",
+              "violation_mask": 3,
+              "maximum_temperature_c": 86.92069166929119
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-50-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 12,
+          "worst_temperature_c": 86.14825920314152,
+          "worst_objective": 150.37787130238598,
+          "mean_energy_kwh": 1.6864909240825319,
+          "minimum_production_units": 30.03295833330618,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 30.509999999999998,
+          "counterexamples": [
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 83.9558304419602
+            },
+            {
+              "case_id": "red-06",
+              "violation_mask": 3,
+              "maximum_temperature_c": 85.62232587640804
+            },
+            {
+              "case_id": "red-11",
+              "violation_mask": 3,
+              "maximum_temperature_c": 84.00246639392088
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-75-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 24,
+          "worst_temperature_c": 102.46456381854276,
+          "worst_objective": 107.81603566239474,
+          "mean_energy_kwh": 2.0731145356430822,
+          "minimum_production_units": 44.999999999959115,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.649999999999995,
+          "counterexamples": [
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 78.24697854783712
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 79.30501981286402
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 100.10624777550083
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-75-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 24,
+          "worst_temperature_c": 98.44728552125315,
+          "worst_objective": 104.74614647871492,
+          "mean_energy_kwh": 2.1214554887417947,
+          "minimum_production_units": 44.999999999959115,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 31.649999999999995,
+          "counterexamples": [
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 72.1990787026847
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 73.06861107926419
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 96.23946209619169
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-100-pump-70",
+          "controls": {
+            "pump": 0.7,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 24,
+          "worst_temperature_c": 108.16601924810325,
+          "worst_objective": 87.19265062607907,
+          "mean_energy_kwh": 2.2930591724350466,
+          "minimum_production_units": 53.03530202277682,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 1.65,
+          "counterexamples": [
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 83.33936669609956
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 84.39740796112692
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 105.80770320506103
+            }
+          ]
+        },
+        {
+          "candidate_id": "blue-load-100-pump-100",
+          "controls": {
+            "pump": 1,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 24,
+          "worst_temperature_c": 103.9365419151266,
+          "worst_objective": 83.34554440196963,
+          "mean_energy_kwh": 2.338662390212154,
+          "minimum_production_units": 52.56594688039188,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 1.65,
+          "counterexamples": [
+            {
+              "case_id": "red-03",
+              "violation_mask": 1,
+              "maximum_temperature_c": 76.79175202029748
+            },
+            {
+              "case_id": "red-04",
+              "violation_mask": 1,
+              "maximum_temperature_c": 77.66128439687648
+            },
+            {
+              "case_id": "red-05",
+              "violation_mask": 3,
+              "maximum_temperature_c": 101.72871849006498
+            }
+          ]
+        },
+        {
+          "candidate_id": "planted-unsafe",
+          "controls": {
+            "pump": 0,
+            "loads": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "valves": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "feasible": false,
+          "checked_cases": 37,
+          "failed_cases": 37,
+          "worst_temperature_c": 134.40920454992718,
+          "worst_objective": 134.03557313717903,
+          "mean_energy_kwh": 2.2693741791223645,
+          "minimum_production_units": 53.2803382690126,
+          "maximum_downtime_s": 0,
+          "maximum_actuator_travel": 8.350000000000001,
+          "counterexamples": [
+            {
+              "case_id": "snapshot",
+              "violation_mask": 3,
+              "maximum_temperature_c": 129.80879641728967
+            },
+            {
+              "case_id": "red-01",
+              "violation_mask": 3,
+              "maximum_temperature_c": 131.53170336058722
+            },
+            {
+              "case_id": "red-02",
+              "violation_mask": 3,
+              "maximum_temperature_c": 134.32159090476821
+            }
+          ]
+        }
+      ],
+      "selected_candidate_id": "blue-load-0-pump-70",
+      "total_rollouts": 409,
+      "native_substeps": 4908000,
+      "horizon_s": 600,
+      "baseline": {
+        "horizon_s": 600,
+        "steps": 600,
+        "maximum_temperature_c": 45.2298473652559,
+        "maximum_pressure_kpa": 84.44805194805194,
+        "maximum_feeder_power_w": 10414.94375,
+        "minimum_flow_kg_s": 0.3249000845414863,
+        "energy_kwh": 1.7358239583338535,
+        "production_units": 44.99999999996254,
+        "downtime_s": 0,
+        "actuator_travel": 0,
+        "maximum_ramp_excess": 0,
+        "violation_mask": 0,
+        "samples": [
+          {
+            "elapsed_s": 0,
+            "maximum_temperature_c": 42.37480994641029,
+            "production_units": 0,
+            "energy_kwh": 0
+          },
+          {
+            "elapsed_s": 10.000000000002274,
+            "maximum_temperature_c": 42.50762271038847,
+            "production_units": 0.7500000000000284,
+            "energy_kwh": 0.028930399305549345
+          },
+          {
+            "elapsed_s": 20.000000000004547,
+            "maximum_temperature_c": 42.63466214242269,
+            "production_units": 1.5000000000000568,
+            "energy_kwh": 0.05786079861109869
+          },
+          {
+            "elapsed_s": 30.00000000000682,
+            "maximum_temperature_c": 42.756184187536945,
+            "production_units": 2.2500000000000853,
+            "energy_kwh": 0.08679119791664804
+          },
+          {
+            "elapsed_s": 40.000000000009095,
+            "maximum_temperature_c": 42.87243267699575,
+            "production_units": 3.0000000000001137,
+            "energy_kwh": 0.11572159722219738
+          },
+          {
+            "elapsed_s": 50.00000000001137,
+            "maximum_temperature_c": 42.983640025461554,
+            "production_units": 3.7500000000000533,
+            "energy_kwh": 0.14465199652774674
+          },
+          {
+            "elapsed_s": 60.00000000001364,
+            "maximum_temperature_c": 43.09002786779451,
+            "production_units": 4.499999999999371,
+            "energy_kwh": 0.17358239583329607
+          },
+          {
+            "elapsed_s": 70.00000000001592,
+            "maximum_temperature_c": 43.191807643711485,
+            "production_units": 5.249999999998689,
+            "energy_kwh": 0.20251279513884543
+          },
+          {
+            "elapsed_s": 80.00000000001819,
+            "maximum_temperature_c": 43.289181137064105,
+            "production_units": 5.999999999998007,
+            "energy_kwh": 0.23144319444439476
+          },
+          {
+            "elapsed_s": 90.00000000002046,
+            "maximum_temperature_c": 43.38234097532692,
+            "production_units": 6.749999999997325,
+            "energy_kwh": 0.2603735937499441
+          },
+          {
+            "elapsed_s": 100.00000000002274,
+            "maximum_temperature_c": 43.471471093948374,
+            "production_units": 7.499999999996643,
+            "energy_kwh": 0.2893039930554935
+          },
+          {
+            "elapsed_s": 110.00000000002501,
+            "maximum_temperature_c": 43.556747169459335,
+            "production_units": 8.24999999999596,
+            "energy_kwh": 0.31823439236104284
+          },
+          {
+            "elapsed_s": 120.00000000002728,
+            "maximum_temperature_c": 43.63833702462232,
+            "production_units": 8.999999999995278,
+            "energy_kwh": 0.34716479166659214
+          },
+          {
+            "elapsed_s": 130.00000000002956,
+            "maximum_temperature_c": 43.71640100840414,
+            "production_units": 9.749999999994596,
+            "energy_kwh": 0.3760951909721415
+          },
+          {
+            "elapsed_s": 140.00000000002495,
+            "maximum_temperature_c": 43.79109235314856,
+            "production_units": 10.499999999993914,
+            "energy_kwh": 0.40502559027769086
+          },
+          {
+            "elapsed_s": 150.00000000001586,
+            "maximum_temperature_c": 43.86255751099172,
+            "production_units": 11.249999999993232,
+            "energy_kwh": 0.4339559895832402
+          },
+          {
+            "elapsed_s": 160.00000000000676,
+            "maximum_temperature_c": 43.93093647128733,
+            "production_units": 11.99999999999255,
+            "energy_kwh": 0.4628863888887895
+          },
+          {
+            "elapsed_s": 169.99999999999767,
+            "maximum_temperature_c": 43.996363060580066,
+            "production_units": 12.749999999991868,
+            "energy_kwh": 0.4918167881943389
+          },
+          {
+            "elapsed_s": 179.99999999998857,
+            "maximum_temperature_c": 44.05896522647714,
+            "production_units": 13.499999999991186,
+            "energy_kwh": 0.5207471874998882
+          },
+          {
+            "elapsed_s": 189.99999999997948,
+            "maximum_temperature_c": 44.11886530660721,
+            "production_units": 14.249999999990504,
+            "energy_kwh": 0.5496775868054375
+          },
+          {
+            "elapsed_s": 199.99999999997038,
+            "maximum_temperature_c": 44.17618028372291,
+            "production_units": 14.999999999989821,
+            "energy_kwh": 0.578607986110987
+          },
+          {
+            "elapsed_s": 209.9999999999613,
+            "maximum_temperature_c": 44.23102202788935,
+            "production_units": 15.74999999998914,
+            "energy_kwh": 0.6075383854165363
+          },
+          {
+            "elapsed_s": 219.9999999999522,
+            "maximum_temperature_c": 44.283497526604975,
+            "production_units": 16.499999999988457,
+            "energy_kwh": 0.6364687847220857
+          },
+          {
+            "elapsed_s": 229.9999999999431,
+            "maximum_temperature_c": 44.33370910361801,
+            "production_units": 17.249999999987775,
+            "energy_kwh": 0.665399184027635
+          },
+          {
+            "elapsed_s": 239.999999999934,
+            "maximum_temperature_c": 44.38175462712982,
+            "production_units": 17.999999999987093,
+            "energy_kwh": 0.6943295833331843
+          },
+          {
+            "elapsed_s": 249.9999999999249,
+            "maximum_temperature_c": 44.427727708016384,
+            "production_units": 18.74999999998641,
+            "energy_kwh": 0.7232599826387337
+          },
+          {
+            "elapsed_s": 259.9999999999158,
+            "maximum_temperature_c": 44.47171788864423,
+            "production_units": 19.49999999998573,
+            "energy_kwh": 0.752190381944283
+          },
+          {
+            "elapsed_s": 269.9999999999067,
+            "maximum_temperature_c": 44.51381082280968,
+            "production_units": 20.249999999985047,
+            "energy_kwh": 0.7811207812498323
+          },
+          {
+            "elapsed_s": 279.9999999998976,
+            "maximum_temperature_c": 44.55408844729036,
+            "production_units": 20.999999999984365,
+            "energy_kwh": 0.8100511805553817
+          },
+          {
+            "elapsed_s": 289.99999999988853,
+            "maximum_temperature_c": 44.59262914545934,
+            "production_units": 21.749999999983682,
+            "energy_kwh": 0.838981579860931
+          },
+          {
+            "elapsed_s": 299.99999999987944,
+            "maximum_temperature_c": 44.62950790338097,
+            "production_units": 22.499999999983,
+            "energy_kwh": 0.8679119791664804
+          },
+          {
+            "elapsed_s": 309.99999999987034,
+            "maximum_temperature_c": 44.664796458777985,
+            "production_units": 23.249999999982318,
+            "energy_kwh": 0.8968423784720297
+          },
+          {
+            "elapsed_s": 319.99999999986125,
+            "maximum_temperature_c": 44.69856344323215,
+            "production_units": 23.999999999981636,
+            "energy_kwh": 0.925772777777579
+          },
+          {
+            "elapsed_s": 329.99999999985215,
+            "maximum_temperature_c": 44.730874517959094,
+            "production_units": 24.749999999980954,
+            "energy_kwh": 0.9547031770831285
+          },
+          {
+            "elapsed_s": 339.99999999984306,
+            "maximum_temperature_c": 44.76179250347408,
+            "production_units": 25.499999999980272,
+            "energy_kwh": 0.9836335763886778
+          },
+          {
+            "elapsed_s": 349.99999999983396,
+            "maximum_temperature_c": 44.79137750344859,
+            "production_units": 26.24999999997959,
+            "energy_kwh": 1.012563975694227
+          },
+          {
+            "elapsed_s": 359.99999999982487,
+            "maximum_temperature_c": 44.81968702303702,
+            "production_units": 26.999999999978908,
+            "energy_kwh": 1.0414943749997765
+          },
+          {
+            "elapsed_s": 369.99999999981577,
+            "maximum_temperature_c": 44.846776081938806,
+            "production_units": 27.749999999978225,
+            "energy_kwh": 1.070424774305326
+          },
+          {
+            "elapsed_s": 379.9999999998067,
+            "maximum_temperature_c": 44.87269732244492,
+            "production_units": 28.499999999977543,
+            "energy_kwh": 1.099355173610875
+          },
+          {
+            "elapsed_s": 389.9999999997976,
+            "maximum_temperature_c": 44.89750111270423,
+            "production_units": 29.24999999997686,
+            "energy_kwh": 1.1282855729164245
+          },
+          {
+            "elapsed_s": 399.9999999997885,
+            "maximum_temperature_c": 44.921235645432446,
+            "production_units": 29.99999999997618,
+            "energy_kwh": 1.157215972221974
+          },
+          {
+            "elapsed_s": 409.9999999997794,
+            "maximum_temperature_c": 44.943947032274494,
+            "production_units": 30.749999999975497,
+            "energy_kwh": 1.1861463715275231
+          },
+          {
+            "elapsed_s": 419.9999999997703,
+            "maximum_temperature_c": 44.96567939402,
+            "production_units": 31.499999999974815,
+            "energy_kwh": 1.2150767708330725
+          },
+          {
+            "elapsed_s": 429.9999999997612,
+            "maximum_temperature_c": 44.986474946861065,
+            "production_units": 32.249999999974136,
+            "energy_kwh": 1.244007170138635
+          },
+          {
+            "elapsed_s": 439.9999999997521,
+            "maximum_temperature_c": 45.006374084873016,
+            "production_units": 32.999999999973454,
+            "energy_kwh": 1.2729375694442362
+          },
+          {
+            "elapsed_s": 449.999999999743,
+            "maximum_temperature_c": 45.02541545888759,
+            "production_units": 33.74999999997277,
+            "energy_kwh": 1.3018679687498373
+          },
+          {
+            "elapsed_s": 459.9999999997339,
+            "maximum_temperature_c": 45.043636051922206,
+            "production_units": 34.49999999997209,
+            "energy_kwh": 1.3307983680554383
+          },
+          {
+            "elapsed_s": 469.9999999997248,
+            "maximum_temperature_c": 45.06107125131922,
+            "production_units": 35.24999999997141,
+            "energy_kwh": 1.3597287673610394
+          },
+          {
+            "elapsed_s": 479.9999999997157,
+            "maximum_temperature_c": 45.07775491774202,
+            "production_units": 35.999999999970726,
+            "energy_kwh": 1.3886591666666406
+          },
+          {
+            "elapsed_s": 489.99999999970663,
+            "maximum_temperature_c": 45.09371945116804,
+            "production_units": 36.74999999997004,
+            "energy_kwh": 1.4175895659722417
+          },
+          {
+            "elapsed_s": 499.99999999969754,
+            "maximum_temperature_c": 45.10899585401225,
+            "production_units": 37.49999999996936,
+            "energy_kwh": 1.4465199652778427
+          },
+          {
+            "elapsed_s": 509.99999999968844,
+            "maximum_temperature_c": 45.12361379150786,
+            "production_units": 38.24999999996868,
+            "energy_kwh": 1.4754503645834438
+          },
+          {
+            "elapsed_s": 519.9999999996794,
+            "maximum_temperature_c": 45.13760164946541,
+            "production_units": 38.999999999968,
+            "energy_kwh": 1.504380763889045
+          },
+          {
+            "elapsed_s": 529.9999999996703,
+            "maximum_temperature_c": 45.150986589525864,
+            "production_units": 39.749999999967315,
+            "energy_kwh": 1.5333111631946459
+          },
+          {
+            "elapsed_s": 539.9999999996612,
+            "maximum_temperature_c": 45.16379460201801,
+            "production_units": 40.49999999996663,
+            "energy_kwh": 1.562241562500247
+          },
+          {
+            "elapsed_s": 549.9999999996521,
+            "maximum_temperature_c": 45.17605055652514,
+            "production_units": 41.24999999996595,
+            "energy_kwh": 1.5911719618058482
+          },
+          {
+            "elapsed_s": 559.999999999643,
+            "maximum_temperature_c": 45.18777825026136,
+            "production_units": 41.99999999996527,
+            "energy_kwh": 1.6201023611114493
+          },
+          {
+            "elapsed_s": 569.9999999996339,
+            "maximum_temperature_c": 45.19900045435339,
+            "production_units": 42.74999999996459,
+            "energy_kwh": 1.6490327604170503
+          },
+          {
+            "elapsed_s": 579.9999999996248,
+            "maximum_temperature_c": 45.2097389581197,
+            "production_units": 43.499999999963904,
+            "energy_kwh": 1.6779631597226514
+          },
+          {
+            "elapsed_s": 589.9999999996157,
+            "maximum_temperature_c": 45.22001461143384,
+            "production_units": 44.24999999996322,
+            "energy_kwh": 1.7068935590282526
+          },
+          {
+            "elapsed_s": 599.9999999996066,
+            "maximum_temperature_c": 45.2298473652559,
+            "production_units": 44.99999999996254,
+            "energy_kwh": 1.7358239583338535
+          }
+        ]
+      },
+      "intervention": {
+        "horizon_s": 600,
+        "steps": 600,
+        "maximum_temperature_c": 42.39263048918856,
+        "maximum_pressure_kpa": 84.44805194805194,
+        "maximum_feeder_power_w": 10414.94375,
+        "minimum_flow_kg_s": 0.26756477550475344,
+        "energy_kwh": 0.22941336886203925,
+        "production_units": 0.281708333333345,
+        "downtime_s": 593,
+        "actuator_travel": 4.649999999999999,
+        "maximum_ramp_excess": 1.1102230246251565e-16,
+        "violation_mask": 0,
+        "samples": [
+          {
+            "elapsed_s": 0,
+            "maximum_temperature_c": 42.37480994641029,
+            "production_units": 0,
+            "energy_kwh": 0
+          },
+          {
+            "elapsed_s": 10.000000000002274,
+            "maximum_temperature_c": 41.8697736849129,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.013071841083330671
+          },
+          {
+            "elapsed_s": 20.000000000004547,
+            "maximum_temperature_c": 40.859613997840015,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.016738646638883123
+          },
+          {
+            "elapsed_s": 30.00000000000682,
+            "maximum_temperature_c": 39.94531445954844,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.020405452194435573
+          },
+          {
+            "elapsed_s": 40.000000000009095,
+            "maximum_temperature_c": 39.112900836654575,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.024072257749988026
+          },
+          {
+            "elapsed_s": 50.00000000001137,
+            "maximum_temperature_c": 38.35089369201482,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.027739063305540476
+          },
+          {
+            "elapsed_s": 60.00000000001364,
+            "maximum_temperature_c": 37.649830335883905,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.03140586886109293
+          },
+          {
+            "elapsed_s": 70.00000000001592,
+            "maximum_temperature_c": 37.00188082801723,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.035072674416645376
+          },
+          {
+            "elapsed_s": 80.00000000001819,
+            "maximum_temperature_c": 36.40053930172401,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.03873947997219783
+          },
+          {
+            "elapsed_s": 90.00000000002046,
+            "maximum_temperature_c": 35.84037563502141,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.04240628552775028
+          },
+          {
+            "elapsed_s": 100.00000000002274,
+            "maximum_temperature_c": 35.31683549278682,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.04607309108330273
+          },
+          {
+            "elapsed_s": 110.00000000002501,
+            "maximum_temperature_c": 34.82607915951089,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.04973989663885518
+          },
+          {
+            "elapsed_s": 120.00000000002728,
+            "maximum_temperature_c": 34.36485149649393,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.053406702194407636
+          },
+          {
+            "elapsed_s": 130.00000000002956,
+            "maximum_temperature_c": 33.93037688713548,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.05707350774996008
+          },
+          {
+            "elapsed_s": 140.00000000002495,
+            "maximum_temperature_c": 33.52027425678469,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.060740313305512536
+          },
+          {
+            "elapsed_s": 150.00000000001586,
+            "maximum_temperature_c": 33.132488231255195,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.06440711886106498
+          },
+          {
+            "elapsed_s": 160.00000000000676,
+            "maximum_temperature_c": 32.76523327991094,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.06807392441661744
+          },
+          {
+            "elapsed_s": 169.99999999999767,
+            "maximum_temperature_c": 32.416948314580104,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.07174072997217144
+          },
+          {
+            "elapsed_s": 179.99999999998857,
+            "maximum_temperature_c": 32.08625971590474,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.07540753552774976
+          },
+          {
+            "elapsed_s": 189.99999999997948,
+            "maximum_temperature_c": 31.771951159192383,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.07907434108332809
+          },
+          {
+            "elapsed_s": 199.99999999997038,
+            "maximum_temperature_c": 31.472938932449754,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.0827411466389064
+          },
+          {
+            "elapsed_s": 209.9999999999613,
+            "maximum_temperature_c": 31.188251696064306,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.08640795219448473
+          },
+          {
+            "elapsed_s": 219.9999999999522,
+            "maximum_temperature_c": 30.917013839344325,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.09007475775006304
+          },
+          {
+            "elapsed_s": 229.9999999999431,
+            "maximum_temperature_c": 30.658431754049474,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.09374156330564137
+          },
+          {
+            "elapsed_s": 239.999999999934,
+            "maximum_temperature_c": 30.41178247730491,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.09740836886121969
+          },
+          {
+            "elapsed_s": 249.9999999999249,
+            "maximum_temperature_c": 30.176404262416302,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.10107517441679802
+          },
+          {
+            "elapsed_s": 259.9999999999158,
+            "maximum_temperature_c": 29.95168872130268,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.10474197997237633
+          },
+          {
+            "elapsed_s": 269.9999999999067,
+            "maximum_temperature_c": 29.737074250707817,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.10840878552795466
+          },
+          {
+            "elapsed_s": 279.9999999998976,
+            "maximum_temperature_c": 29.53204050937122,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.11207559108353297
+          },
+          {
+            "elapsed_s": 289.99999999988853,
+            "maximum_temperature_c": 29.336103757600405,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1157423966391113
+          },
+          {
+            "elapsed_s": 299.99999999987944,
+            "maximum_temperature_c": 29.148929905386904,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.11940920219468962
+          },
+          {
+            "elapsed_s": 309.99999999987034,
+            "maximum_temperature_c": 28.970116224218263,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.12307600775026793
+          },
+          {
+            "elapsed_s": 319.99999999986125,
+            "maximum_temperature_c": 28.79906855126831,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.12674281330584625
+          },
+          {
+            "elapsed_s": 329.99999999985215,
+            "maximum_temperature_c": 28.635426866849553,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.13040961886142458
+          },
+          {
+            "elapsed_s": 339.99999999984306,
+            "maximum_temperature_c": 28.478851073342184,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1340764244170029
+          },
+          {
+            "elapsed_s": 349.99999999983396,
+            "maximum_temperature_c": 28.329019412045263,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.13774322997258123
+          },
+          {
+            "elapsed_s": 359.99999999982487,
+            "maximum_temperature_c": 28.18562707330611,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.14141003552815953
+          },
+          {
+            "elapsed_s": 369.99999999981577,
+            "maximum_temperature_c": 28.04838496872731,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.14507684108373786
+          },
+          {
+            "elapsed_s": 379.9999999998067,
+            "maximum_temperature_c": 27.917018639964724,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1487436466393162
+          },
+          {
+            "elapsed_s": 389.9999999997976,
+            "maximum_temperature_c": 27.791267283237893,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.15241045219489452
+          },
+          {
+            "elapsed_s": 399.9999999997885,
+            "maximum_temperature_c": 27.670882872399787,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.15607725775047282
+          },
+          {
+            "elapsed_s": 409.9999999997794,
+            "maximum_temperature_c": 27.555629366426235,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.15974406330605115
+          },
+          {
+            "elapsed_s": 419.9999999997703,
+            "maximum_temperature_c": 27.445281989628572,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.16341086886162948
+          },
+          {
+            "elapsed_s": 429.9999999997612,
+            "maximum_temperature_c": 27.339626574877915,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1670776744172078
+          },
+          {
+            "elapsed_s": 439.9999999997521,
+            "maximum_temperature_c": 27.23845896174442,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1707444799727861
+          },
+          {
+            "elapsed_s": 449.999999999743,
+            "maximum_temperature_c": 27.141584442772356,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.17441128552836443
+          },
+          {
+            "elapsed_s": 459.9999999997339,
+            "maximum_temperature_c": 27.04881725218898,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.17807809108394276
+          },
+          {
+            "elapsed_s": 469.9999999997248,
+            "maximum_temperature_c": 26.959980092230012,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1817448966395211
+          },
+          {
+            "elapsed_s": 479.9999999997157,
+            "maximum_temperature_c": 26.874903692989413,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.1854117021950994
+          },
+          {
+            "elapsed_s": 489.99999999970663,
+            "maximum_temperature_c": 26.793426402302146,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.18907850775067772
+          },
+          {
+            "elapsed_s": 499.99999999969754,
+            "maximum_temperature_c": 26.715393802664018,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.19274531330625605
+          },
+          {
+            "elapsed_s": 509.99999999968844,
+            "maximum_temperature_c": 26.64065835260522,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.19641211886183435
+          },
+          {
+            "elapsed_s": 519.9999999996794,
+            "maximum_temperature_c": 26.569079050278095,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.20007892441741268
+          },
+          {
+            "elapsed_s": 529.9999999996703,
+            "maximum_temperature_c": 26.50052111730737,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.203745729972991
+          },
+          {
+            "elapsed_s": 539.9999999996612,
+            "maximum_temperature_c": 26.434855701193055,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.20741253552856934
+          },
+          {
+            "elapsed_s": 549.9999999996521,
+            "maximum_temperature_c": 26.3719595947609,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.21107934108414764
+          },
+          {
+            "elapsed_s": 559.999999999643,
+            "maximum_temperature_c": 26.311714971328236,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.21474614663972597
+          },
+          {
+            "elapsed_s": 569.9999999996339,
+            "maximum_temperature_c": 26.254009134401077,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.2184129521953043
+          },
+          {
+            "elapsed_s": 579.9999999996248,
+            "maximum_temperature_c": 26.19873428084451,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.22207975775088262
+          },
+          {
+            "elapsed_s": 589.9999999996157,
+            "maximum_temperature_c": 26.14578727657742,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.22574656330646092
+          },
+          {
+            "elapsed_s": 599.9999999996066,
+            "maximum_temperature_c": 26.095069443936378,
+            "production_units": 0.281708333333345,
+            "energy_kwh": 0.22941336886203925
+          }
+        ]
+      },
+      "executable": false,
+      "manual_action_gate": "BLOCKED",
+      "live_gates": "MI300X/Evolus/Pinecone BLOCKED"
+    },
+    "certificate": {
+      "sha256": "3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1",
+      "snapshot_sha256": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+      "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+      "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+      "maximum_temperature_c": 42.37760032859197,
+      "maximum_pressure_kpa": 116.8831168831169,
+      "maximum_feeder_power_w": 10414.94375,
+      "duration_s": 120,
+      "cells_checked": 6
+    },
+    "unsafe_challenger_rejected": true,
+    "meaningful_diagnosis": true,
+    "grounded_planning": true,
+    "blockers": [],
+    "traces": [
+      "evidence_diagnosis",
+      "native_red_blue_referee",
+      "blue_candidate",
+      "red_challenge",
+      "blue_candidate",
+      "red_challenge",
+      "hosted_planning",
+      "reporter"
+    ],
+    "candidate_round": 2,
+    "proposed_controls": {
+      "pump": 1,
+      "loads": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "valves": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "provider_diagnostics": [
+      {
+        "model": "DeepSeek-V4-Flash",
+        "http_status": 200,
+        "stage": "validated",
+        "model_identity_matches": true,
+        "finished": true,
+        "content_present": true
+      },
+      {
+        "model": "DeepSeek-V4-Flash",
+        "http_status": 200,
+        "stage": "validated",
+        "model_identity_matches": true,
+        "finished": true,
+        "content_present": true
+      }
+    ],
+    "amd_request_attempts": 2,
+    "amd_catalog_requests": 2,
+    "reserved_tokens": 10778,
+    "pinecone_operations": [
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "elapsed_ms": 1588.425959000233
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "aegis-synthetic-v1-6e4d75051cbcaf1e",
+        "elapsed_ms": 2725.953303001006
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 1637.6481629995396
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 1122.2384680004325
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 2261.808954999651
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 1122.7017710007203
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 1267.9342190003808
+      },
+      {
+        "operation": "/query",
+        "http_status": 200,
+        "attempt": 1,
+        "namespace": "real-world-v1",
+        "elapsed_ms": 1072.4549729984574
+      }
+    ],
+    "diagnosis_evidence": {
+      "observed": {
+        "instrument_noise_bound_c": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "cells": [
+          {
+            "cell_id": "CELL-01",
+            "temperature_c": 38.02662852335082,
+            "heat_input_w": 1275,
+            "flow_kg_s": 0.3249000845414863
+          },
+          {
+            "cell_id": "CELL-02",
+            "temperature_c": 40.35387554747713,
+            "heat_input_w": 1343.0000000000002,
+            "flow_kg_s": 0.3249000845414863
+          },
+          {
+            "cell_id": "CELL-03",
+            "temperature_c": 40.96118183410239,
+            "heat_input_w": 1411,
+            "flow_kg_s": 0.3249000845414863
+          },
+          {
+            "cell_id": "CELL-04",
+            "temperature_c": 41.53213485756439,
+            "heat_input_w": 1479,
+            "flow_kg_s": 0.3249000845414863
+          },
+          {
+            "cell_id": "CELL-05",
+            "temperature_c": 42.082220725936146,
+            "heat_input_w": 1547,
+            "flow_kg_s": 0.3249000845414863
+          },
+          {
+            "cell_id": "CELL-06",
+            "temperature_c": 42.37412473635985,
+            "heat_input_w": 1615.0000000000002,
+            "flow_kg_s": 0.3249000845414863
+          }
+        ],
+        "coolant_temperature_c": 31.433989693185204,
+        "loop_pressure_kpa": 84.44805194805194
+      },
+      "residuals": {
+        "measured_physics_observer_evidence": [
+          {
+            "cell_id": "CELL-01",
+            "residual_c": 2.0300587175930715,
+            "estimated_temperature_c": 40.056687240943894,
+            "observed_temperature_c": 38.02662852335082,
+            "reason": "physics_disagreement"
+          }
+        ],
+        "history_samples": 21,
+        "method": "Energy-balance open-loop observer; residual equals estimate minus measured temperature; no injected labels"
+      },
+      "trends": [
+        0.0022054870864005906,
+        0.008863130691455839,
+        0.018975864217230003,
+        0.014384336994245144,
+        0.02101795598419313,
+        0.009855708586202173
+      ],
+      "correlations": [
+        1,
+        -0.30521678518642914,
+        -0.18309852073256122,
+        -0.2570651132551504,
+        -0.10807339527490276,
+        -0.2442158731707051
+      ],
+      "retrieved_sources": [
+        {
+          "reference_id": "agk1-6ea1a347d72cbf54d889d0d226545abde67ca3445449ecbedb9737e86d125adc",
+          "untrusted_text": "AEGIS SYNTHETIC MANUAL\nREVISION R1\nReference sheet 0832 / 0999\nPROJECT-AUTHORED TEST DATA - NOT OEM AUTHORITY\nIsolated simulator only. No physical I/O.\nTable 1. Synthetic engineering envelope\nEquipment / quantity / unit / minimum / maximum\nLIMIT CELL-04 flow kg/s 0.02 0.5\nALARM THERMAL-70 Observer r",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agk1-6d82b738d0f30b38a05b73a671ec0d96745d8000fcd380e7a193b59103a73da7",
+          "untrusted_text": "AEGIS SYNTHETIC MANUAL\nREVISION R1\nReference sheet 0856 / 0999\nPROJECT-AUTHORED TEST DATA - NOT OEM AUTHORITY\nIsolated simulator only. No physical I/O.\nTable 1. Synthetic engineering envelope\nEquipment / quantity / unit / minimum / maximum\nLIMIT CELL-04 flow kg/s 0.02 0.5\nALARM THERMAL-70 Observer r",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agrw1-cdd6770fe973225518af609bc13a591e83d65852efd96d495c772a047c04b4f6",
+          "untrusted_text": "h its high-performing relays.\n\nAll these features, wrapped in a compact form factor, make Arduino Opta® the ideal solution for product flow management in conveyor belts, automated packing or bottling lines.\n\n- **Real-time industrial monitoring:** Get instant access to your factory floor data and to ",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agrw1-c9360d6b17935b16eec719f139ca7660bccf5556b53f40d799cb59647e5ba841",
+          "untrusted_text": "Bluetooth® Low Energy\n4.2 supported by firmware, 5.1 supported by hardware\n\n\n\n\n### Inputs\n\n\n\nCharacteristics\nDetails\n\n\n\n\nNumber of inputs\n8x Analog/Digital inputs\n\n\nInputs overvoltage protection\nYes\n\n\nAntipolarity protection\nYes\n\n\nInput impedance\n8.9 kΩ\n\n\n\n\n#### Analog Inputs\n\n\n\nCharacteristics\nDeta",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        }
+      ]
+    },
+    "planning_evidence": {
+      "candidate_evaluations": {
+        "emergency_stop": {
+          "feasible": true,
+          "all_six_cells": true,
+          "duration_s": 120,
+          "native_certificate": {
+            "sha256": "3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1",
+            "snapshot_sha256": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+            "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+            "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+            "maximum_temperature_c": 42.37760032859197,
+            "maximum_pressure_kpa": 116.8831168831169,
+            "maximum_feeder_power_w": 10414.94375,
+            "duration_s": 120,
+            "cells_checked": 6
+          }
+        },
+        "minimax_candidate": {
+          "feasible": false,
+          "scope": "Must also equal the commissioned exact six-cell stop; no production restart"
+        },
+        "unsafe_challenger_rejected": true,
+        "productive_restart": "not_authorized_by_commissioned_rule_package"
+      },
+      "retrieved_sources": [
+        {
+          "reference_id": "agk1-6680765ddb2d265c297e0027ad8aec7d9f6ecd80e82a7831653f6e30efc60d30",
+          "untrusted_text": "04},{\"case_id\":\"red-06\",\"violation_mask\":3,\"maximum_temperature_c\":88.01705484046622}]},{\"candidate_id\":\"blue-load-50-pump-100\",\"controls\":{\"pump\":1.0,\"loads\":[0.5,0.5,0.5,0.5,0.5,0.5],\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"feasible\":false,\"checked_cases\":37,\"failed_cases\":13,\"worst_temperature_c\":85.",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agk1-3a28158f39b04c32dc11a5597391e4b4b2cfb526db62cd100ec060ff54541574",
+          "untrusted_text": "61,\"mean_energy_kwh\":2.085803865499135,\"minimum_production_units\":47.88071819863564,\"maximum_downtime_s\":0.0,\"maximum_actuator_travel\":31.47000000000014,\"counterexamples\":[{\"case_id\":\"snapshot\",\"violation_mask\":3,\"maximum_temperature_c\":100.38073839682924},{\"case_id\":\"red-03\",\"violation_mask\":1,\"max",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agrw1-b21d38b97ef571c6d18d8d9d4dd4e78e35badd8714b6b8e58ae645386e43e9ac",
+          "untrusted_text": "Measured hydraulic test-rig cooler efficiency, pump internal leakage, temperature and flow. {\"FS1_volume_flow_l_min\":{\"max\":20.479,\"mean\":6.472054405940594,\"min\":0.0},\"TS1_temperature_C\":{\"max\":58.207,\"mean\":53.969622524752474,\"min\":35.156},\"cooler_condition_percent\":3,\"cycle_duration_s\":60,\"cycle_m",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        },
+        {
+          "reference_id": "agrw1-875c2a52b40ec2a50f7aa070412ec40c4f2336cdecd2464c097b82a7c2d1ac93",
+          "untrusted_text": "Measured hydraulic test-rig cooler efficiency, pump internal leakage, temperature and flow. {\"FS1_volume_flow_l_min\":{\"max\":20.479,\"mean\":6.6459554042904285,\"min\":0.0},\"TS1_temperature_C\":{\"max\":55.84,\"mean\":46.07277714521452,\"min\":43.691},\"cooler_condition_percent\":20,\"cycle_duration_s\":60,\"cycle_m",
+          "applicability": "context_only_not_commissioned_plant_rules"
+        }
+      ]
+    },
+    "physical_io": false,
+    "recovery_scope": "frozen_native_replay_safe_stop_cooldown"
+  },
+  "proposal": {
+    "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+    "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+    "action_json": "{\"action\":\"simulator.commissioned_stop\",\"action_id\":\"66bcb08b-b4fd-4b8a-88a8-80d03361092e\",\"controls\":{\"loads\":[0.0,0.0,0.0,0.0,0.0,0.0],\"pump\":1.0,\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"duration_s\":120,\"expected_database_version\":1,\"expected_state_version\":378,\"expires_at\":1792234946,\"incident_id\":\"c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44\",\"investigation_id\":\"727bf9ff-c886-42e0-a360-e1e99b587d9c\",\"investigation_sha256\":\"8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc\",\"native_binary_sha256\":\"29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa\",\"nonce\":\"eed6fe03-80af-4a9b-a405-f47b2fb46fba\",\"plant_id\":\"commissioned-simulator-01\",\"resource_id\":\"commissioned-simulator-01\",\"rules_revision\":\"commissioned-stop-v1\",\"rules_sha256\":\"a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7\",\"safety_rollout_sha256\":\"3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1\",\"scope\":\"commissioned_six_cell_incident\",\"source_snapshot_sha256\":\"e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a\",\"tenant_id\":\"local\"}",
+    "status": "waiting_for_passkey",
+    "receipt": null
+  },
+  "challenge": {
+    "ceremony_id": "161c9462-aa83-42cf-b47b-d313cb354a24",
+    "options": {
+      "challenge": "TwP15L-eIB9IPZtvsXA32NmWfy3b82CdF7Xrq6NYXIa4x4ECuVOyg4kd8sDiqWaSBNYEw7YmL_PscJZZ1X2N2w",
+      "timeout": 60000,
+      "rpId": "localhost",
+      "allowCredentials": [
+        {
+          "id": "GDggU9p-g0VUBIm8T0fsgVI58IfFkN4XOgBWaacpZqc",
+          "type": "public-key"
+        }
+      ],
+      "userVerification": "required"
+    },
+    "bound_plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb"
+  },
+  "public_virtual_authenticator_assertion": {
+    "ceremony_id": "161c9462-aa83-42cf-b47b-d313cb354a24",
+    "credential": {
+      "id": "GDggU9p-g0VUBIm8T0fsgVI58IfFkN4XOgBWaacpZqc",
+      "rawId": "GDggU9p-g0VUBIm8T0fsgVI58IfFkN4XOgBWaacpZqc",
+      "type": "public-key",
+      "clientExtensionResults": {},
+      "response": {
+        "authenticatorData": "SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MFAAAJ9A",
+        "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiVHdQMTVMLWVJQjlJUFp0dnNYQTMyTm1XZnkzYjgyQ2RGN1hycTZOWVhJYTR4NEVDdVZPeWc0a2Q4c0RpcVdhU0JOWUV3N1ltTF9Qc2NKWloxWDJOMnciLCJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgxODAiLCJjcm9zc09yaWdpbiI6ZmFsc2V9",
+        "signature": "MEUCIQC39x6wxgjLEdqn52S37kQYIFK4PkAQ6wRB8C3yztrWMAIgZkNVguI3jQVyXJXgXyU561YFi_AtyghAuxmZh22zYgc",
+        "userHandle": null
+      }
+    }
+  },
+  "verification_http": 200,
+  "approved": {
+    "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+    "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+    "action_json": "{\"action\":\"simulator.commissioned_stop\",\"action_id\":\"66bcb08b-b4fd-4b8a-88a8-80d03361092e\",\"controls\":{\"loads\":[0.0,0.0,0.0,0.0,0.0,0.0],\"pump\":1.0,\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"duration_s\":120,\"expected_database_version\":1,\"expected_state_version\":378,\"expires_at\":1792234946,\"incident_id\":\"c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44\",\"investigation_id\":\"727bf9ff-c886-42e0-a360-e1e99b587d9c\",\"investigation_sha256\":\"8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc\",\"native_binary_sha256\":\"29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa\",\"nonce\":\"eed6fe03-80af-4a9b-a405-f47b2fb46fba\",\"plant_id\":\"commissioned-simulator-01\",\"resource_id\":\"commissioned-simulator-01\",\"rules_revision\":\"commissioned-stop-v1\",\"rules_sha256\":\"a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7\",\"safety_rollout_sha256\":\"3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1\",\"scope\":\"commissioned_six_cell_incident\",\"source_snapshot_sha256\":\"e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a\",\"tenant_id\":\"local\"}",
+    "status": "approved",
+    "receipt": null
+  },
+  "stale_proposal": {
+    "action_id": "f06f5090-035d-450b-9a35-65edc5927d37",
+    "plan_sha256": "48008d5eb0ba148a1f5e0bf411882831665f776f866346a98c3bc0155af7070a"
+  },
+  "execution_http": 200,
+  "execution": {
+    "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+    "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+    "action_json": "{\"action\":\"simulator.commissioned_stop\",\"action_id\":\"66bcb08b-b4fd-4b8a-88a8-80d03361092e\",\"controls\":{\"loads\":[0.0,0.0,0.0,0.0,0.0,0.0],\"pump\":1.0,\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"duration_s\":120,\"expected_database_version\":1,\"expected_state_version\":378,\"expires_at\":1792234946,\"incident_id\":\"c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44\",\"investigation_id\":\"727bf9ff-c886-42e0-a360-e1e99b587d9c\",\"investigation_sha256\":\"8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc\",\"native_binary_sha256\":\"29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa\",\"nonce\":\"eed6fe03-80af-4a9b-a405-f47b2fb46fba\",\"plant_id\":\"commissioned-simulator-01\",\"resource_id\":\"commissioned-simulator-01\",\"rules_revision\":\"commissioned-stop-v1\",\"rules_sha256\":\"a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7\",\"safety_rollout_sha256\":\"3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1\",\"scope\":\"commissioned_six_cell_incident\",\"source_snapshot_sha256\":\"e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a\",\"tenant_id\":\"local\"}",
+    "status": "executed",
+    "receipt": {
+      "receipt_format": "commissioned-receipt-v1",
+      "plant_id": "commissioned-simulator-01",
+      "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+      "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+      "nonce": "eed6fe03-80af-4a9b-a405-f47b2fb46fba",
+      "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+      "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+      "rules_revision": "commissioned-stop-v1",
+      "previous_receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "receipt_sha256": "96b9c3f4338f75c56e452205fcfa446ee714a45303ab4c27a3775faea822ed2e",
+      "database_version_before": 1,
+      "database_version_after": 2,
+      "native_version_before": 378,
+      "native_version_after": 498,
+      "snapshot_sha256_before": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+      "snapshot_sha256_after": "b5f46085c2b42c57d6223f764c45682c00c805e006ffc5a43e37895ad34ef56a",
+      "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+      "temperatures_before_c": [
+        40.062573542824786,
+        40.4365844457354,
+        40.95476902397191,
+        41.4835729183025,
+        42.002137951654774,
+        42.37480994641029
+      ],
+      "temperatures_after_c": [
+        33.08701173219271,
+        33.12127021612342,
+        33.21695003034879,
+        33.31834752416057,
+        33.41511376606414,
+        33.45104292634327
+      ],
+      "maximum_temperature_c": 42.37480994641029,
+      "duration_s": 120,
+      "fault_retained": true,
+      "physical_io": false,
+      "outcome": "simulated_safe_stop_cooldown",
+      "authorization": "WebAuthn_user_verified"
+    }
+  },
+  "persisted": {
+    "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+    "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+    "action_json": "{\"action\":\"simulator.commissioned_stop\",\"action_id\":\"66bcb08b-b4fd-4b8a-88a8-80d03361092e\",\"controls\":{\"loads\":[0.0,0.0,0.0,0.0,0.0,0.0],\"pump\":1.0,\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"duration_s\":120,\"expected_database_version\":1,\"expected_state_version\":378,\"expires_at\":1792234946,\"incident_id\":\"c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44\",\"investigation_id\":\"727bf9ff-c886-42e0-a360-e1e99b587d9c\",\"investigation_sha256\":\"8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc\",\"native_binary_sha256\":\"29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa\",\"nonce\":\"eed6fe03-80af-4a9b-a405-f47b2fb46fba\",\"plant_id\":\"commissioned-simulator-01\",\"resource_id\":\"commissioned-simulator-01\",\"rules_revision\":\"commissioned-stop-v1\",\"rules_sha256\":\"a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7\",\"safety_rollout_sha256\":\"3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1\",\"scope\":\"commissioned_six_cell_incident\",\"source_snapshot_sha256\":\"e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a\",\"tenant_id\":\"local\"}",
+    "status": "executed",
+    "receipt": {
+      "receipt_format": "commissioned-receipt-v1",
+      "plant_id": "commissioned-simulator-01",
+      "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+      "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+      "nonce": "eed6fe03-80af-4a9b-a405-f47b2fb46fba",
+      "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+      "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+      "rules_revision": "commissioned-stop-v1",
+      "previous_receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "receipt_sha256": "96b9c3f4338f75c56e452205fcfa446ee714a45303ab4c27a3775faea822ed2e",
+      "database_version_before": 1,
+      "database_version_after": 2,
+      "native_version_before": 378,
+      "native_version_after": 498,
+      "snapshot_sha256_before": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+      "snapshot_sha256_after": "b5f46085c2b42c57d6223f764c45682c00c805e006ffc5a43e37895ad34ef56a",
+      "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+      "temperatures_before_c": [
+        40.062573542824786,
+        40.4365844457354,
+        40.95476902397191,
+        41.4835729183025,
+        42.002137951654774,
+        42.37480994641029
+      ],
+      "temperatures_after_c": [
+        33.08701173219271,
+        33.12127021612342,
+        33.21695003034879,
+        33.31834752416057,
+        33.41511376606414,
+        33.45104292634327
+      ],
+      "maximum_temperature_c": 42.37480994641029,
+      "duration_s": 120,
+      "fault_retained": true,
+      "physical_io": false,
+      "outcome": "simulated_safe_stop_cooldown",
+      "authorization": "WebAuthn_user_verified"
+    }
+  },
+  "after": {
+    "enabled": true,
+    "plant_id": "commissioned-simulator-01",
+    "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+    "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+    "rules_revision": "commissioned-stop-v1",
+    "rule_package": {
+      "action": "simulator.commissioned_stop",
+      "applicability": "Only frozen native incident replay of this package scenario; shared six-cell loop; no physical I/O or enterprise mutation",
+      "cells": [
+        "CELL-01",
+        "CELL-02",
+        "CELL-03",
+        "CELL-04",
+        "CELL-05",
+        "CELL-06"
+      ],
+      "controls": {
+        "loads": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pump": 1,
+        "valves": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "duration_s": 120,
+      "fault_clear_allowed": false,
+      "feeder_max_w": 14500,
+      "flow_grace_s": 10,
+      "load_ramp_s": 0.1,
+      "model_version": "coupled-factory-v3",
+      "operating_stop_guard_c": 65,
+      "origin": "AEGIS GRID repository engineering fixture, user-authorized separate simulator commissioning 2026-10-17",
+      "plant_id": "commissioned-simulator-01",
+      "pressure_max_kpa": 180,
+      "production_restart_allowed": false,
+      "productive_flow_min_kg_s": 0.02,
+      "pump_ramp_s": 0.12,
+      "review_status": "Automated adversarial review required; no human industrial assessment or OEM approval",
+      "revision": "commissioned-stop-v1",
+      "scenario_sha256": "a3b0a3607e3b5faccf4a09b2661c91dbeff6fa4da2d073420e102146f777ee13",
+      "scope": "commissioned_six_cell_incident",
+      "temperature_lt_c": 70,
+      "valve_ramp_s": 0.2
+    },
+    "database_version": 2,
+    "native_state_version": 498,
+    "snapshot_sha256": "b5f46085c2b42c57d6223f764c45682c00c805e006ffc5a43e37895ad34ef56a",
+    "temperatures_c": [
+      33.08701173219271,
+      33.12127021612342,
+      33.21695003034879,
+      33.31834752416057,
+      33.41511376606414,
+      33.45104292634327
+    ],
+    "receipts": [
+      {
+        "receipt_format": "commissioned-receipt-v1",
+        "plant_id": "commissioned-simulator-01",
+        "incident_id": "c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44",
+        "action_id": "66bcb08b-b4fd-4b8a-88a8-80d03361092e",
+        "nonce": "eed6fe03-80af-4a9b-a405-f47b2fb46fba",
+        "plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+        "rules_sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+        "rules_revision": "commissioned-stop-v1",
+        "previous_receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "receipt_sha256": "96b9c3f4338f75c56e452205fcfa446ee714a45303ab4c27a3775faea822ed2e",
+        "database_version_before": 1,
+        "database_version_after": 2,
+        "native_version_before": 378,
+        "native_version_after": 498,
+        "snapshot_sha256_before": "e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a",
+        "snapshot_sha256_after": "b5f46085c2b42c57d6223f764c45682c00c805e006ffc5a43e37895ad34ef56a",
+        "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+        "temperatures_before_c": [
+          40.062573542824786,
+          40.4365844457354,
+          40.95476902397191,
+          41.4835729183025,
+          42.002137951654774,
+          42.37480994641029
+        ],
+        "temperatures_after_c": [
+          33.08701173219271,
+          33.12127021612342,
+          33.21695003034879,
+          33.31834752416057,
+          33.41511376606414,
+          33.45104292634327
+        ],
+        "maximum_temperature_c": 42.37480994641029,
+        "duration_s": 120,
+        "fault_retained": true,
+        "physical_io": false,
+        "outcome": "simulated_safe_stop_cooldown",
+        "authorization": "WebAuthn_user_verified"
+      }
+    ],
+    "mode": "frozen_native_replay_simulator_only"
+  },
+  "original_refusal": {
+    "investigation_id": "3ccf5118-0944-44be-87cc-1fc896c10600",
+    "incident_id": "2720eb4fd744eb02459294d2de5e6e7994f9c7bdede6c819a220898c04d0bc0a",
+    "status": "BLOCKED",
+    "eligible": false,
+    "blockers": [
+      "incident_gateway_scope_unavailable",
+      "unresolved_manual_evidence",
+      "missing_or_abstaining_diagnosis"
+    ],
+    "manual_corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+    "manual_decision": {
+      "status": "no_action",
+      "operational_write_allowed": false,
+      "flags": [
+        {
+          "reason": "contradiction",
+          "citations": [
+            {
+              "document_id": "SIM-MANUAL",
+              "revision": "R1",
+              "source_sha256": "2c585926788587093ad81e7f99e0cafb6b53895bc73675089f5da4a92652d96e",
+              "page_sha256": "84cd70fce6f01a08b62e861aee59a2d07400b8cd90f6a7b91cfb4695016cb69d",
+              "page": 985,
+              "quote": "LIMIT CELL-01 temperature degC 0 70",
+              "table_row": 8
+            },
+            {
+              "document_id": "SIM-BULLETIN",
+              "revision": "R2",
+              "source_sha256": "969e65a0c7748180112e54b11a592d07e938b4d2210cb1d42db2ccf649e1390a",
+              "page_sha256": "8a75d75af9bd74f0e4030a95abba56c386b1f72f45d11dfbcf4cd13b96ab46a8",
+              "page": 1,
+              "quote": "LIMIT CELL-01 temperature degC 0 95",
+              "table_row": 8
+            }
+          ]
+        }
+      ],
+      "checked_constraints": 1000
+    },
+    "meaningful_hosted_diagnosis": false,
+    "grounded_hosted_planning": true,
+    "native_candidate_checked": true,
+    "challenge_issued": false,
+    "capability_issued": false,
+    "execution_scope": "incident_recovery_unavailable"
+  },
+  "elapsed_s": 48.748315899999994
+}

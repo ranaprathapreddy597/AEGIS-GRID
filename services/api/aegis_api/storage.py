@@ -311,6 +311,9 @@ async def migrate() -> None:
             *ANALYSIS_COLLECTIONS,
             *AUTH_COLLECTIONS,
             "sandbox_resources",
+            "commissioned_resources",
+            "commissioned_reports",
+            "commissioned_proposals",
         ):
             if name not in existing:
                 await database.create_collection(name)
@@ -330,7 +333,12 @@ async def migrate() -> None:
         for name in GRAPH_COLLECTIONS:
             await database[name].create_index("created_at", expireAfterSeconds=30 * 86400)
         await database.analysis_artifacts.create_index("expires_at", expireAfterSeconds=0)
-        for name in ("auth_sessions", "auth_ceremonies", "auth_proposals"):
+        for name in (
+            "auth_sessions",
+            "auth_ceremonies",
+            "auth_proposals",
+            "commissioned_proposals",
+        ):
             await database[name].create_index("expires_at", expireAfterSeconds=0)
         # Administrative bootstrap only. No public endpoint can create/reset it.
         from pathlib import Path
@@ -340,6 +348,14 @@ async def migrate() -> None:
         resource = genesis(Path("/usr/local/lib/libaegis_twin.so"))
         await database.sandbox_resources.update_one(
             {"_id": resource["_id"]}, {"$setOnInsert": resource}, upsert=True
+        )
+        from aegis_edge.commissioning import genesis as commissioned_genesis
+
+        commissioned_resource = commissioned_genesis(Path("/usr/local/lib/libaegis_twin.so"))
+        await database.commissioned_resources.update_one(
+            {"_id": commissioned_resource["_id"]},
+            {"$setOnInsert": commissioned_resource},
+            upsert=True,
         )
         for name in (*MONITORING, "plans", "actions", "audit"):
             await database[name].create_index([("tenant_id", 1), ("event_id", 1)], unique=True)
@@ -399,7 +415,11 @@ async def migrate() -> None:
                     {
                         "resource": {"db": DB_NAME, "collection": "analysis_artifacts"},
                         "actions": ["find", "insert"],
-                    }
+                    },
+                    {
+                        "resource": {"db": DB_NAME, "collection": "commissioned_reports"},
+                        "actions": ["find", "insert"],
+                    },
                 ],
             ),
             (
@@ -409,7 +429,7 @@ async def migrate() -> None:
                         "resource": {"db": DB_NAME, "collection": name},
                         "actions": ["find", "insert", "update", "remove"],
                     }
-                    for name in AUTH_COLLECTIONS
+                    for name in (*AUTH_COLLECTIONS, "commissioned_proposals")
                 ],
             ),
             (
@@ -421,6 +441,18 @@ async def migrate() -> None:
                     },
                     {
                         "resource": {"db": DB_NAME, "collection": "auth_proposals"},
+                        "actions": ["find"],
+                    },
+                    {
+                        "resource": {"db": DB_NAME, "collection": "commissioned_resources"},
+                        "actions": ["find", "update"],
+                    },
+                    {
+                        "resource": {"db": DB_NAME, "collection": "commissioned_proposals"},
+                        "actions": ["find"],
+                    },
+                    {
+                        "resource": {"db": DB_NAME, "collection": "commissioned_reports"},
                         "actions": ["find"],
                     },
                 ],

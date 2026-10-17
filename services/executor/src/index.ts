@@ -6,6 +6,10 @@ const server = createExecutor(process.env.AEGIS_EXECUTOR_TOKEN ?? "", { publicKe
   const response = await fetch("http://api:8000/internal/v1/sandbox/execute", { method: "POST", headers: { Authorization: `Bearer ${gatewayToken}`, "Content-Type": "application/json" }, body: JSON.stringify(envelope), signal: AbortSignal.timeout(5000), redirect: "error" });
   if (!response.ok) throw new Error("Protected gateway refused");
   return await response.json();
+}, forwardCommissioned: async (envelope) => {
+  const response = await fetch("http://api:8000/internal/v1/commissioned/execute", { method: "POST", headers: { Authorization: `Bearer ${gatewayToken}`, "Content-Type": "application/json" }, body: JSON.stringify(envelope), signal: AbortSignal.timeout(10000), redirect: "error" });
+  if (!response.ok) throw new Error("Commissioned protected gateway refused");
+  return await response.json();
 } });
 server.listen(8002, "0.0.0.0", () => console.log("Independent capability verifier on :8002; isolated simulator only"));
 process.on("SIGTERM", () => server.close());

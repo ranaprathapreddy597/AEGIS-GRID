@@ -423,6 +423,752 @@
         "title": "Citation",
         "type": "object"
       },
+      "CommissionedCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "aud": {
+            "const": "aegis-commissioned-executor",
+            "default": "aegis-commissioned-executor",
+            "title": "Aud",
+            "type": "string"
+          },
+          "exp": {
+            "minimum": 1,
+            "title": "Exp",
+            "type": "integer"
+          },
+          "expected_database_version": {
+            "minimum": 1,
+            "title": "Expected Database Version",
+            "type": "integer"
+          },
+          "expected_state_version": {
+            "minimum": 1,
+            "title": "Expected State Version",
+            "type": "integer"
+          },
+          "iat": {
+            "minimum": 1,
+            "title": "Iat",
+            "type": "integer"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "iss": {
+            "const": "aegis-commissioned-approver",
+            "default": "aegis-commissioned-approver",
+            "title": "Iss",
+            "type": "string"
+          },
+          "jti": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Jti",
+            "type": "string"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "plant_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Plant Id",
+            "type": "string"
+          },
+          "resource_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "rules_revision": {
+            "const": "commissioned-stop-v1",
+            "default": "commissioned-stop-v1",
+            "title": "Rules Revision",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "scope": {
+            "const": "commissioned_six_cell_incident",
+            "default": "commissioned_six_cell_incident",
+            "title": "Scope",
+            "type": "string"
+          },
+          "sub": {
+            "const": "local-owner",
+            "default": "local-owner",
+            "title": "Sub",
+            "type": "string"
+          },
+          "user_verification": {
+            "const": true,
+            "default": true,
+            "title": "User Verification",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "jti",
+          "action_id",
+          "plan_sha256",
+          "incident_id",
+          "rules_sha256",
+          "expected_database_version",
+          "expected_state_version",
+          "iat",
+          "exp"
+        ],
+        "title": "CommissionedCapability",
+        "type": "object"
+      },
+      "CommissionedPlan": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "const": "simulator.commissioned_stop",
+            "default": "simulator.commissioned_stop",
+            "title": "Action",
+            "type": "string"
+          },
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "controls": {
+            "$ref": "#/components/schemas/SimulatorControls"
+          },
+          "duration_s": {
+            "const": 120,
+            "default": 120,
+            "title": "Duration S",
+            "type": "integer"
+          },
+          "expected_database_version": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Expected Database Version",
+            "type": "integer"
+          },
+          "expected_state_version": {
+            "minimum": 1,
+            "title": "Expected State Version",
+            "type": "integer"
+          },
+          "expires_at": {
+            "minimum": 1,
+            "title": "Expires At",
+            "type": "integer"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "investigation_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Investigation Id",
+            "type": "string"
+          },
+          "investigation_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Investigation Sha256",
+            "type": "string"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "nonce": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Nonce",
+            "type": "string"
+          },
+          "plant_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Plant Id",
+            "type": "string"
+          },
+          "resource_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "rules_revision": {
+            "const": "commissioned-stop-v1",
+            "default": "commissioned-stop-v1",
+            "title": "Rules Revision",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "safety_rollout_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Safety Rollout Sha256",
+            "type": "string"
+          },
+          "scope": {
+            "const": "commissioned_six_cell_incident",
+            "default": "commissioned_six_cell_incident",
+            "title": "Scope",
+            "type": "string"
+          },
+          "source_snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Source Snapshot Sha256",
+            "type": "string"
+          },
+          "tenant_id": {
+            "const": "local",
+            "default": "local",
+            "title": "Tenant Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id",
+          "rules_sha256",
+          "incident_id",
+          "investigation_id",
+          "investigation_sha256",
+          "nonce",
+          "expected_database_version",
+          "expected_state_version",
+          "source_snapshot_sha256",
+          "native_binary_sha256",
+          "safety_rollout_sha256",
+          "controls",
+          "expires_at"
+        ],
+        "title": "CommissionedPlan",
+        "type": "object"
+      },
+      "CommissionedReceipt": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "authorization": {
+            "const": "WebAuthn_user_verified",
+            "default": "WebAuthn_user_verified",
+            "title": "Authorization",
+            "type": "string"
+          },
+          "database_version_after": {
+            "title": "Database Version After",
+            "type": "integer"
+          },
+          "database_version_before": {
+            "title": "Database Version Before",
+            "type": "integer"
+          },
+          "duration_s": {
+            "const": 120,
+            "default": 120,
+            "title": "Duration S",
+            "type": "integer"
+          },
+          "fault_retained": {
+            "const": true,
+            "default": true,
+            "title": "Fault Retained",
+            "type": "boolean"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "maximum_temperature_c": {
+            "title": "Maximum Temperature C",
+            "type": "number"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "native_version_after": {
+            "title": "Native Version After",
+            "type": "integer"
+          },
+          "native_version_before": {
+            "title": "Native Version Before",
+            "type": "integer"
+          },
+          "nonce": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Nonce",
+            "type": "string"
+          },
+          "outcome": {
+            "const": "simulated_safe_stop_cooldown",
+            "default": "simulated_safe_stop_cooldown",
+            "title": "Outcome",
+            "type": "string"
+          },
+          "physical_io": {
+            "const": false,
+            "default": false,
+            "title": "Physical Io",
+            "type": "boolean"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "plant_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Plant Id",
+            "type": "string"
+          },
+          "previous_receipt_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Previous Receipt Sha256",
+            "type": "string"
+          },
+          "receipt_format": {
+            "const": "commissioned-receipt-v1",
+            "default": "commissioned-receipt-v1",
+            "title": "Receipt Format",
+            "type": "string"
+          },
+          "receipt_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Receipt Sha256",
+            "type": "string"
+          },
+          "rules_revision": {
+            "const": "commissioned-stop-v1",
+            "default": "commissioned-stop-v1",
+            "title": "Rules Revision",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "snapshot_sha256_after": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Snapshot Sha256 After",
+            "type": "string"
+          },
+          "snapshot_sha256_before": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Snapshot Sha256 Before",
+            "type": "string"
+          },
+          "temperatures_after_c": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Temperatures After C",
+            "type": "array"
+          },
+          "temperatures_before_c": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Temperatures Before C",
+            "type": "array"
+          }
+        },
+        "required": [
+          "incident_id",
+          "action_id",
+          "nonce",
+          "plan_sha256",
+          "rules_sha256",
+          "previous_receipt_sha256",
+          "receipt_sha256",
+          "database_version_before",
+          "database_version_after",
+          "native_version_before",
+          "native_version_after",
+          "snapshot_sha256_before",
+          "snapshot_sha256_after",
+          "native_binary_sha256",
+          "temperatures_before_c",
+          "temperatures_after_c",
+          "maximum_temperature_c"
+        ],
+        "title": "CommissionedReceipt",
+        "type": "object"
+      },
+      "CommissionedReport": {
+        "additionalProperties": false,
+        "properties": {
+          "amd_catalog_requests": {
+            "default": 0,
+            "title": "Amd Catalog Requests",
+            "type": "integer"
+          },
+          "amd_request_attempts": {
+            "default": 0,
+            "title": "Amd Request Attempts",
+            "type": "integer"
+          },
+          "assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecoveryAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "blockers": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Blockers",
+            "type": "array"
+          },
+          "candidate_round": {
+            "default": 0,
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "title": "Candidate Round",
+            "type": "integer"
+          },
+          "certificate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StopCertificate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "diagnosis": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelOpinion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "diagnosis_evidence": {
+            "additionalProperties": true,
+            "default": {},
+            "title": "Diagnosis Evidence",
+            "type": "object"
+          },
+          "grounded_planning": {
+            "default": false,
+            "title": "Grounded Planning",
+            "type": "boolean"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "investigation_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Investigation Id",
+            "type": "string"
+          },
+          "meaningful_diagnosis": {
+            "default": false,
+            "title": "Meaningful Diagnosis",
+            "type": "boolean"
+          },
+          "model_attributions": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ModelAttribution"
+            },
+            "title": "Model Attributions",
+            "type": "array"
+          },
+          "physical_io": {
+            "const": false,
+            "default": false,
+            "title": "Physical Io",
+            "type": "boolean"
+          },
+          "pinecone_operations": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Pinecone Operations",
+            "type": "array"
+          },
+          "planning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningOpinion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "planning_evidence": {
+            "additionalProperties": true,
+            "default": {},
+            "title": "Planning Evidence",
+            "type": "object"
+          },
+          "plant_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Plant Id",
+            "type": "string"
+          },
+          "proposed_controls": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SimulatorControls"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provider_diagnostics": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Provider Diagnostics",
+            "type": "array"
+          },
+          "recovery_scope": {
+            "const": "frozen_native_replay_safe_stop_cooldown",
+            "default": "frozen_native_replay_safe_stop_cooldown",
+            "title": "Recovery Scope",
+            "type": "string"
+          },
+          "report_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Report Sha256",
+            "type": "string"
+          },
+          "reserved_tokens": {
+            "default": 0,
+            "title": "Reserved Tokens",
+            "type": "integer"
+          },
+          "rules_revision": {
+            "const": "commissioned-stop-v1",
+            "default": "commissioned-stop-v1",
+            "title": "Rules Revision",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "source_citations": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/SourceCitation"
+            },
+            "title": "Source Citations",
+            "type": "array"
+          },
+          "status": {
+            "default": "blocked",
+            "enum": [
+              "blocked",
+              "awaiting_approval"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "traces": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Traces",
+            "type": "array"
+          },
+          "unsafe_challenger_rejected": {
+            "default": false,
+            "title": "Unsafe Challenger Rejected",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "investigation_id",
+          "incident_id",
+          "rules_sha256",
+          "report_sha256"
+        ],
+        "title": "CommissionedReport",
+        "type": "object"
+      },
+      "CommissionedStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "database_version": {
+            "title": "Database Version",
+            "type": "integer"
+          },
+          "enabled": {
+            "default": false,
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "incident_id": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Incident Id",
+            "type": "string"
+          },
+          "mode": {
+            "const": "frozen_native_replay_simulator_only",
+            "default": "frozen_native_replay_simulator_only",
+            "title": "Mode",
+            "type": "string"
+          },
+          "native_state_version": {
+            "title": "Native State Version",
+            "type": "integer"
+          },
+          "plant_id": {
+            "const": "commissioned-simulator-01",
+            "default": "commissioned-simulator-01",
+            "title": "Plant Id",
+            "type": "string"
+          },
+          "receipts": {
+            "items": {
+              "$ref": "#/components/schemas/CommissionedReceipt"
+            },
+            "title": "Receipts",
+            "type": "array"
+          },
+          "rule_package": {
+            "additionalProperties": true,
+            "title": "Rule Package",
+            "type": "object"
+          },
+          "rules_revision": {
+            "const": "commissioned-stop-v1",
+            "default": "commissioned-stop-v1",
+            "title": "Rules Revision",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Snapshot Sha256",
+            "type": "string"
+          },
+          "temperatures_c": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 6,
+            "minItems": 6,
+            "title": "Temperatures C",
+            "type": "array"
+          }
+        },
+        "required": [
+          "incident_id",
+          "rules_sha256",
+          "rule_package",
+          "database_version",
+          "native_state_version",
+          "snapshot_sha256",
+          "temperatures_c",
+          "receipts"
+        ],
+        "title": "CommissionedStatus",
+        "type": "object"
+      },
+      "CommissionedView": {
+        "additionalProperties": false,
+        "properties": {
+          "action_id": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+            "title": "Action Id",
+            "type": "string"
+          },
+          "action_json": {
+            "title": "Action Json",
+            "type": "string"
+          },
+          "plan_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Plan Sha256",
+            "type": "string"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CommissionedReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "waiting_for_passkey",
+              "approved",
+              "executed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id",
+          "plan_sha256",
+          "action_json",
+          "status"
+        ],
+        "title": "CommissionedView",
+        "type": "object"
+      },
       "Counterexample": {
         "additionalProperties": false,
         "properties": {
@@ -3558,6 +4304,66 @@
         "title": "SourceCitation",
         "type": "object"
       },
+      "StopCertificate": {
+        "additionalProperties": false,
+        "properties": {
+          "cells_checked": {
+            "const": 6,
+            "default": 6,
+            "title": "Cells Checked",
+            "type": "integer"
+          },
+          "duration_s": {
+            "const": 120,
+            "default": 120,
+            "title": "Duration S",
+            "type": "integer"
+          },
+          "maximum_feeder_power_w": {
+            "title": "Maximum Feeder Power W",
+            "type": "number"
+          },
+          "maximum_pressure_kpa": {
+            "title": "Maximum Pressure Kpa",
+            "type": "number"
+          },
+          "maximum_temperature_c": {
+            "title": "Maximum Temperature C",
+            "type": "number"
+          },
+          "native_binary_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Native Binary Sha256",
+            "type": "string"
+          },
+          "rules_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Rules Sha256",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          },
+          "snapshot_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Snapshot Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sha256",
+          "snapshot_sha256",
+          "rules_sha256",
+          "native_binary_sha256",
+          "maximum_temperature_c",
+          "maximum_pressure_kpa",
+          "maximum_feeder_power_w"
+        ],
+        "title": "StopCertificate",
+        "type": "object"
+      },
       "StorageStatus": {
         "additionalProperties": false,
         "properties": {
@@ -4143,6 +4949,266 @@
           }
         },
         "summary": "Scenario Preview"
+      }
+    },
+    "/api/v1/approval/commissioned/investigate": {
+      "post": {
+        "operationId": "investigate_api_v1_approval_commissioned_investigate_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Investigate"
+      }
+    },
+    "/api/v1/approval/commissioned/investigations/{identifier}/proposal": {
+      "post": {
+        "operationId": "propose_api_v1_approval_commissioned_investigations__identifier__proposal_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Propose"
+      }
+    },
+    "/api/v1/approval/commissioned/proposals/{identifier}": {
+      "get": {
+        "operationId": "read_proposal_api_v1_approval_commissioned_proposals__identifier__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Read Proposal"
+      }
+    },
+    "/api/v1/approval/commissioned/proposals/{identifier}/execute": {
+      "post": {
+        "operationId": "execute_api_v1_approval_commissioned_proposals__identifier__execute_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Execute"
+      }
+    },
+    "/api/v1/approval/commissioned/proposals/{identifier}/options": {
+      "post": {
+        "operationId": "options_api_v1_approval_commissioned_proposals__identifier__options_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalChallenge"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Options"
+      }
+    },
+    "/api/v1/approval/commissioned/proposals/{identifier}/verify": {
+      "post": {
+        "operationId": "verify_api_v1_approval_commissioned_proposals__identifier__verify_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Verify"
       }
     },
     "/api/v1/approval/maintenance-proposals": {
@@ -5052,6 +6118,108 @@
           }
         },
         "summary": "Capabilities"
+      }
+    },
+    "/api/v1/commissioned/investigations/{identifier}": {
+      "get": {
+        "operationId": "report_api_v1_commissioned_investigations__identifier__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "identifier",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Identifier",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Report"
+      }
+    },
+    "/api/v1/commissioned/status": {
+      "get": {
+        "operationId": "status_api_v1_commissioned_status_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Status"
       }
     },
     "/api/v1/edge/events": {
@@ -6701,6 +7869,62 @@
           }
         },
         "summary": "Health"
+      }
+    },
+    "/internal/v1/commissioned/execute": {
+      "post": {
+        "operationId": "protected_internal_v1_commissioned_execute_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecutionEnvelope"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommissionedReceipt"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Protected"
       }
     },
     "/internal/v1/sandbox/execute": {

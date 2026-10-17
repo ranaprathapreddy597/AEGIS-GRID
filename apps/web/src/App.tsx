@@ -5,6 +5,7 @@ import { InferencePanel } from "./InferencePanel";
 import { InvestigationPanel } from "./InvestigationPanel";
 import { RecoveryPanel } from "./RecoveryPanel";
 import { ApprovalPanel } from "./ApprovalPanel";
+import { CommissionedPanel } from "./CommissionedPanel";
 import { IntegrationPanel } from "./IntegrationPanel";
 import { ManualEvidencePanel } from "./ManualEvidencePanel";
 import { streamTelemetry } from "./stream";
@@ -139,6 +140,7 @@ export function App() {
           <ManualEvidencePanel token={token}/>
           <div id="recovery" className="section-anchor"><RecoveryPanel token={token} incidentId={replay?.incident.incident_id ?? incidents?.items[0]?.incident_id}/></div>
           <div id="authorization" className="section-anchor"><ApprovalPanel/></div>
+          <CommissionedPanel token={token}/>
           <div id="connectors" className="section-anchor"><IntegrationPanel token={token}/></div>
           <InferencePanel token={token}/>
           <section className="panel pathway"><PanelTitle number="03" title="Signal provenance" detail="LOCAL GOLDEN PATH"/><div className="path-nodes">{["C++ thermal twin", "Python edge", "FastAPI stream", "React control room"].map((name, i) => <div className="path-node" key={name}><span>0{i + 1}</span><strong>{name}</strong><small>{["Deterministic · seed-controlled", "Strict schema validation", "Authenticated · SSE", "Actual streamed values"][i]}</small></div>)}</div><div className="fingerprint">BINARY SHA-256 <code>{latest?.simulator_sha256 ?? "Awaiting first frame"}</code></div><div className="fingerprint">SCENARIO SHA-256 <code>{latest?.scenario_sha256 ?? "Awaiting first frame"}</code></div></section>

@@ -1,0 +1,11 @@
+{
+  "delay_steps": 4,
+  "drop_every": 3,
+  "fault_mask": 1,
+  "noise_c": 0.1,
+  "scenario_id": "scenario-910",
+  "seed": 73,
+  "severity": 1.0,
+  "start_s": 30.0,
+  "target": 0
+}

@@ -1,0 +1,170 @@
+{
+  "$defs": {
+    "SimulatorControls": {
+      "additionalProperties": false,
+      "properties": {
+        "loads": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Loads",
+          "type": "array"
+        },
+        "pump": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Pump",
+          "type": "number"
+        },
+        "valves": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Valves",
+          "type": "array"
+        }
+      },
+      "required": [
+        "pump",
+        "loads",
+        "valves"
+      ],
+      "title": "SimulatorControls",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "const": "simulator.commissioned_stop",
+      "default": "simulator.commissioned_stop",
+      "title": "Action",
+      "type": "string"
+    },
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "controls": {
+      "$ref": "#/$defs/SimulatorControls"
+    },
+    "duration_s": {
+      "const": 120,
+      "default": 120,
+      "title": "Duration S",
+      "type": "integer"
+    },
+    "expected_database_version": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Expected Database Version",
+      "type": "integer"
+    },
+    "expected_state_version": {
+      "minimum": 1,
+      "title": "Expected State Version",
+      "type": "integer"
+    },
+    "expires_at": {
+      "minimum": 1,
+      "title": "Expires At",
+      "type": "integer"
+    },
+    "incident_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Incident Id",
+      "type": "string"
+    },
+    "investigation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Investigation Id",
+      "type": "string"
+    },
+    "investigation_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Investigation Sha256",
+      "type": "string"
+    },
+    "native_binary_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Native Binary Sha256",
+      "type": "string"
+    },
+    "nonce": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Nonce",
+      "type": "string"
+    },
+    "plant_id": {
+      "const": "commissioned-simulator-01",
+      "default": "commissioned-simulator-01",
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "resource_id": {
+      "const": "commissioned-simulator-01",
+      "default": "commissioned-simulator-01",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "rules_revision": {
+      "const": "commissioned-stop-v1",
+      "default": "commissioned-stop-v1",
+      "title": "Rules Revision",
+      "type": "string"
+    },
+    "rules_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Rules Sha256",
+      "type": "string"
+    },
+    "safety_rollout_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Safety Rollout Sha256",
+      "type": "string"
+    },
+    "scope": {
+      "const": "commissioned_six_cell_incident",
+      "default": "commissioned_six_cell_incident",
+      "title": "Scope",
+      "type": "string"
+    },
+    "source_snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Snapshot Sha256",
+      "type": "string"
+    },
+    "tenant_id": {
+      "const": "local",
+      "default": "local",
+      "title": "Tenant Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "rules_sha256",
+    "incident_id",
+    "investigation_id",
+    "investigation_sha256",
+    "nonce",
+    "expected_database_version",
+    "expected_state_version",
+    "source_snapshot_sha256",
+    "native_binary_sha256",
+    "safety_rollout_sha256",
+    "controls",
+    "expires_at"
+  ],
+  "title": "CommissionedPlan",
+  "type": "object"
+}

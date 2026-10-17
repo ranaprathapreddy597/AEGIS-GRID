@@ -7,7 +7,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsc",
-    "test": "node --test dist/services/executor/src/server.test.js",
+    "test": "node --test dist/services/executor/src/server.test.js dist/services/executor/src/commissioned.test.js",
     "start": "node dist/services/executor/src/index.js"
   }
 }

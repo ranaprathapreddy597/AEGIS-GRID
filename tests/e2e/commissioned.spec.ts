@@ -1,0 +1,31 @@
+import { readFileSync } from "node:fs";
+import { test, expect } from "@playwright/test";
+
+const env = Object.fromEntries(readFileSync(".env", "utf8").split(/\r?\n/).filter(l => l && !l.startsWith("#")).map(l => { const i = l.indexOf("="); return [l.slice(0, i), l.slice(i + 1)]; }));
+const origin = `http://localhost:${env.AEGIS_WEB_PORT ?? "8080"}`;
+test("commissioned fixture stays separate, authenticated and closed without incident approval", async ({page, request}) => {
+  const headers = {Authorization: `Bearer ${env.AEGIS_VIEWER_TOKEN}`};
+  expect((await request.get(`${origin}/api/v1/commissioned/status`)).status()).toBe(401);
+  const response = await request.get(`${origin}/api/v1/commissioned/status`, {headers});
+  expect(response.status()).toBe(200);
+  const status = await response.json();
+  expect(status.plant_id).toBe("commissioned-simulator-01");
+  expect(status.rule_package.cells).toHaveLength(6);
+  expect(status.rule_package.temperature_lt_c).toBe(70);
+  expect(status.rule_package.operating_stop_guard_c).toBe(65);
+  expect(status.rule_package.production_restart_allowed).toBe(false);
+  expect(status.rule_package.fault_clear_allowed).toBe(false);
+  expect(status.rules_sha256).toMatch(/^[0-9a-f]{64}$/);
+  expect((await request.post(`${origin}/api/v1/approval/commissioned/investigate`, {headers: {...headers, Origin: origin, "Idempotency-Key": "00000000-0000-0000-0000-000000000009"}})).status()).toBe(401);
+  expect((await request.post(`${origin}/api/v1/approval/commissioned/investigate`, {headers: {Origin: "http://untrusted.invalid", "Idempotency-Key": "00000000-0000-0000-0000-000000000009"}})).status()).toBe(403);
+  expect((await request.post(`${origin}/internal/v1/commissioned/execute`, {data: {}})).status()).toBe(404);
+  const original = await (await request.get(`${origin}/api/v1/manuals/evidence`, {headers})).json();
+  expect(original.decision.status).toBe("no_action");
+  await page.goto(origin);
+  await page.getByLabel("Local viewer token").fill(env.AEGIS_VIEWER_TOKEN!);
+  await page.getByRole("button", {name: "Connect to live stream"}).click();
+  await expect(page.getByTestId("commissioned-identity")).toContainText("commissioned-simulator-01");
+  await expect(page.locator(".commissioned-panel")).toContainText("no OEM approval");
+  await expect(page.locator(".commissioned-panel")).toContainText("all six loads 0.00");
+  if (!status.enabled) await expect(page.getByRole("button", {name: "Investigate commissioned incident"})).toBeDisabled();
+});

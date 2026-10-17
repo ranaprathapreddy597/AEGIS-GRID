@@ -1,0 +1,50 @@
+{
+  "action": "simulator.commissioned_stop",
+  "applicability": "Only frozen native incident replay of this package scenario; shared six-cell loop; no physical I/O or enterprise mutation",
+  "cells": [
+    "CELL-01",
+    "CELL-02",
+    "CELL-03",
+    "CELL-04",
+    "CELL-05",
+    "CELL-06"
+  ],
+  "controls": {
+    "loads": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "pump": 1.0,
+    "valves": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "duration_s": 120,
+  "fault_clear_allowed": false,
+  "feeder_max_w": 14500.0,
+  "flow_grace_s": 10.0,
+  "load_ramp_s": 0.1,
+  "model_version": "coupled-factory-v3",
+  "operating_stop_guard_c": 65.0,
+  "origin": "AEGIS GRID repository engineering fixture, user-authorized separate simulator commissioning 2026-10-17",
+  "plant_id": "commissioned-simulator-01",
+  "pressure_max_kpa": 180.0,
+  "production_restart_allowed": false,
+  "productive_flow_min_kg_s": 0.02,
+  "pump_ramp_s": 0.12,
+  "review_status": "Automated adversarial review required; no human industrial assessment or OEM approval",
+  "revision": "commissioned-stop-v1",
+  "scenario_sha256": "a3b0a3607e3b5faccf4a09b2661c91dbeff6fa4da2d073420e102146f777ee13",
+  "scope": "commissioned_six_cell_incident",
+  "temperature_lt_c": 70.0,
+  "valve_ramp_s": 0.2
+}

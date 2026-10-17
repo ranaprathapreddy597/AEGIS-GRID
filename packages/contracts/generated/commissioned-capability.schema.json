@@ -1,0 +1,111 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "aud": {
+      "const": "aegis-commissioned-executor",
+      "default": "aegis-commissioned-executor",
+      "title": "Aud",
+      "type": "string"
+    },
+    "exp": {
+      "minimum": 1,
+      "title": "Exp",
+      "type": "integer"
+    },
+    "expected_database_version": {
+      "minimum": 1,
+      "title": "Expected Database Version",
+      "type": "integer"
+    },
+    "expected_state_version": {
+      "minimum": 1,
+      "title": "Expected State Version",
+      "type": "integer"
+    },
+    "iat": {
+      "minimum": 1,
+      "title": "Iat",
+      "type": "integer"
+    },
+    "incident_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Incident Id",
+      "type": "string"
+    },
+    "iss": {
+      "const": "aegis-commissioned-approver",
+      "default": "aegis-commissioned-approver",
+      "title": "Iss",
+      "type": "string"
+    },
+    "jti": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Jti",
+      "type": "string"
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "plant_id": {
+      "const": "commissioned-simulator-01",
+      "default": "commissioned-simulator-01",
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "resource_id": {
+      "const": "commissioned-simulator-01",
+      "default": "commissioned-simulator-01",
+      "title": "Resource Id",
+      "type": "string"
+    },
+    "rules_revision": {
+      "const": "commissioned-stop-v1",
+      "default": "commissioned-stop-v1",
+      "title": "Rules Revision",
+      "type": "string"
+    },
+    "rules_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Rules Sha256",
+      "type": "string"
+    },
+    "scope": {
+      "const": "commissioned_six_cell_incident",
+      "default": "commissioned_six_cell_incident",
+      "title": "Scope",
+      "type": "string"
+    },
+    "sub": {
+      "const": "local-owner",
+      "default": "local-owner",
+      "title": "Sub",
+      "type": "string"
+    },
+    "user_verification": {
+      "const": true,
+      "default": true,
+      "title": "User Verification",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "jti",
+    "action_id",
+    "plan_sha256",
+    "incident_id",
+    "rules_sha256",
+    "expected_database_version",
+    "expected_state_version",
+    "iat",
+    "exp"
+  ],
+  "title": "CommissionedCapability",
+  "type": "object"
+}

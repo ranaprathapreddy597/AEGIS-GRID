@@ -1,0 +1,14 @@
+{
+  "_id": "f06f5090-035d-450b-9a35-65edc5927d37",
+  "status": "approved",
+  "plan_sha256": "48008d5eb0ba148a1f5e0bf411882831665f776f866346a98c3bc0155af7070a",
+  "action_json": "{\"action\":\"simulator.commissioned_stop\",\"action_id\":\"f06f5090-035d-450b-9a35-65edc5927d37\",\"controls\":{\"loads\":[0.0,0.0,0.0,0.0,0.0,0.0],\"pump\":1.0,\"valves\":[1.0,1.0,1.0,1.0,1.0,1.0]},\"duration_s\":120,\"expected_database_version\":1,\"expected_state_version\":378,\"expires_at\":1792234946,\"incident_id\":\"c6030cbab0496e16682e53f5d68ee0627dc532823211424f3674f1e5f276db44\",\"investigation_id\":\"727bf9ff-c886-42e0-a360-e1e99b587d9c\",\"investigation_sha256\":\"8c2c63775c0c50ce3bb3f953fd8a6ab4c82b305ccb67ea10abf43cea2e6c37bc\",\"native_binary_sha256\":\"29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa\",\"nonce\":\"21a5441f-ad38-4ea3-90e3-3c4c70dec350\",\"plant_id\":\"commissioned-simulator-01\",\"resource_id\":\"commissioned-simulator-01\",\"rules_revision\":\"commissioned-stop-v1\",\"rules_sha256\":\"a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7\",\"safety_rollout_sha256\":\"3ed7e80df9742c535c632695afa14970eb7899260b8b8fade17a9c989dc96ac1\",\"scope\":\"commissioned_six_cell_incident\",\"source_snapshot_sha256\":\"e195ea793993ab358a4b5b4a2e9ed0ba1ca1a92dd051a53a39da08822f8aed2a\",\"tenant_id\":\"local\"}",
+  "approval_evidence": {
+    "method": "server_verified_ES256_WebAuthn",
+    "ceremony_id": "fb73ba50-bc74-4715-bd0f-86859389f4b0",
+    "challenge_sha256": "b5342d82b73b2eccf332d26971f320ec9e28f46a005ff9acb72ae28ecfd57e0a",
+    "credential_id_sha256": "fdb615c5409d0011faedad7e8d741c13220badbac52eb4a3273daa10a37a3ab1",
+    "new_sign_count": 2549,
+    "user_verified": true
+  }
+}

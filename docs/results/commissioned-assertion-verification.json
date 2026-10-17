@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "scope": "Offline cryptographic verification of the historical public virtual-authenticator assertion; no approval/capability minted, no mutation, no claim of current counter admission",
+  "rp_id": "localhost",
+  "origin": "http://localhost:8180",
+  "public_credential_key_cose_base64url": "pQECAyYgASFYICoGcSEQ9n5a7hShb5FgMKQ5WoI-y3CQEG5KTImD228bIlggPxIxtVzla64sz23u_QuRGlUTQzdNxYxMO2EnXq_XI9Q",
+  "user_verified": true,
+  "assertion_sign_count": 2548,
+  "bound_plan_sha256": "b8c78102b953b283891df2c0e2a9669204d604c3b6262ff3ec709659d57d8ddb",
+  "public_assertion_sha256": "25014291b13933330fb4c024e3090f681d5c3e0ea4b5d99be6ce0fa68c77331b",
+  "physical_authenticator": false
+}

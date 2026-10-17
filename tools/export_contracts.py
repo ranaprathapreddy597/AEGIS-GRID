@@ -11,6 +11,11 @@ from aegis_contracts.authorization import (
     ProposedPlan,
     VerifiedCapability,
 )
+from aegis_contracts.commissioned import (
+    CommissionedCapability,
+    CommissionedPlan,
+    CommissionedReceipt,
+)
 from aegis_contracts.config import Settings
 from aegis_contracts.inference import InferenceResult, MemoryBudget
 from aegis_contracts.integrations import RepairBundle
@@ -35,13 +40,16 @@ def main() -> None:
     openapi = create_app(settings).openapi()
     # Signed internal payloads also have generated TS types even though they travel
     # as opaque, exact JSON bytes inside the execution envelope.
-    for model in (ProposedPlan, VerifiedCapability):
+    for model in (ProposedPlan, VerifiedCapability, CommissionedPlan, CommissionedCapability):
         schema = model.model_json_schema(ref_template="#/components/schemas/{model}")
         for name, definition in schema.pop("$defs", {}).items():
             openapi["components"]["schemas"].setdefault(name, definition)
         openapi["components"]["schemas"][model.__name__] = schema
     outputs = {
         "openapi.json": openapi,
+        "commissioned-plan.schema.json": CommissionedPlan.model_json_schema(),
+        "commissioned-capability.schema.json": CommissionedCapability.model_json_schema(),
+        "commissioned-receipt.schema.json": CommissionedReceipt.model_json_schema(),
         "plant-telemetry.schema.json": PlantTelemetry.model_json_schema(),
         "twin-measurement.schema.json": TwinMeasurement.model_json_schema(),
         "settings.schema.json": Settings.model_json_schema(),

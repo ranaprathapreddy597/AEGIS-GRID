@@ -65,6 +65,11 @@
       "default": null,
       "title": "Cloud Token"
     },
+    "commissioned_simulator_enabled": {
+      "default": false,
+      "title": "Commissioned Simulator Enabled",
+      "type": "boolean"
+    },
     "edge_url": {
       "default": "http://edge:8001",
       "title": "Edge Url",

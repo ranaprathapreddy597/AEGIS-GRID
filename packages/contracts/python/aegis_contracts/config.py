@@ -38,6 +38,7 @@ class Settings(BaseModel):
     capability_public_key: str = ""
     approval_origin: str = "http://localhost:8080"
     investigation_mode: Literal["offline", "amd_hosted"] = "offline"
+    commissioned_simulator_enabled: bool = False
     inference_api_key: SecretStr | None = None
     pinecone_api_key: SecretStr | None = None
     pinecone_index_host: str = ""
@@ -96,6 +97,10 @@ class Settings(BaseModel):
     @classmethod
     def from_env(cls) -> "Settings":
         return cls(
+            commissioned_simulator_enabled=os.environ.get(
+                "AEGIS_COMMISSIONED_SIMULATOR_ENABLED", "false"
+            ).lower()
+            == "true",
             investigation_mode=cast(
                 Literal["offline", "amd_hosted"],
                 os.environ.get("AEGIS_INVESTIGATION_MODE", "offline"),

@@ -51,6 +51,7 @@ from redis.exceptions import RedisError
 
 from aegis_api.approval_routes import install_approval_routes
 from aegis_api.authorization import AuthorizationService
+from aegis_api.commissioned_routes import install_commissioned_routes
 from aegis_api.gateway import SimulatorGateway
 from aegis_api.storage import EventConflict, StorageUnavailable, TelemetryStore
 
@@ -217,6 +218,15 @@ def create_app(
     auth = Depends(RequireToken(config.viewer_token.get_secret_value()))
     limit = Depends(RateLimit())
     install_approval_routes(app, config, authorization_service, gateway_service, limit)
+    install_commissioned_routes(
+        app,
+        config,
+        authorization_service,
+        gateway_service,
+        graph_service,
+        limit,
+        investigation_busy,
+    )
 
     @app.get(
         "/api/v1/integrations/status", response_model=IntegrationStatus, dependencies=[auth, limit]

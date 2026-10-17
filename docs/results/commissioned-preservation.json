@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "source_tree": "002a7ec731d86ddacc86ff741e676c55ee70512a",
+  "original_resource_unchanged": true,
+  "pinecone_counts_before": [
+    1235,
+    103
+  ],
+  "pinecone_counts_after": [
+    1235,
+    103
+  ],
+  "pinecone_writes": 0,
+  "original_manual_corpus_sha256": "c9f9c3a84e59783cfcbc5bb069d57dd011d003b3720a82e99942ed9aab7e3b01",
+  "original_manual_decision": "no_action",
+  "original_source_paths_unchanged": [
+    "data/manuals",
+    "data/scenarios",
+    "data/cloud-knowledge-manifest.json",
+    "data/cloud-embedding-manifest.json",
+    "docs/results/recovery-scenarios-live.json",
+    "docs/results/RECOVERY_DEMONSTRATION.md",
+    "AEGIS_GRID_MASTER_PROMPT.md",
+    "AEGIS_GRID_BUILD_PHASES.md"
+  ],
+  "commissioned_receipts_before": 0,
+  "commissioned_receipts_after": 1,
+  "meaningful_minimum_criterion": "Non-abstaining schema with observed/residual references and overlap with independent physics hypotheses; not exclusive causal proof",
+  "hosted_hypotheses": [
+    "sensor_bias",
+    "restricted_flow",
+    "weak_pump",
+    "overload"
+  ],
+  "independent_physics_hypotheses": [
+    "sensor_bias"
+  ],
+  "supported_overlap": [
+    "sensor_bias"
+  ],
+  "additional_unconfirmed_hypotheses": [
+    "overload",
+    "restricted_flow",
+    "weak_pump"
+  ],
+  "diagnostic_specificity": "PARTIAL",
+  "maximum_temperature_before_c": 42.37480994641029,
+  "maximum_temperature_after_c": 33.45104292634327
+}

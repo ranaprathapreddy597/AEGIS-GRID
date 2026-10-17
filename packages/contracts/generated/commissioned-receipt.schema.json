@@ -1,0 +1,162 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "authorization": {
+      "const": "WebAuthn_user_verified",
+      "default": "WebAuthn_user_verified",
+      "title": "Authorization",
+      "type": "string"
+    },
+    "database_version_after": {
+      "title": "Database Version After",
+      "type": "integer"
+    },
+    "database_version_before": {
+      "title": "Database Version Before",
+      "type": "integer"
+    },
+    "duration_s": {
+      "const": 120,
+      "default": 120,
+      "title": "Duration S",
+      "type": "integer"
+    },
+    "fault_retained": {
+      "const": true,
+      "default": true,
+      "title": "Fault Retained",
+      "type": "boolean"
+    },
+    "incident_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Incident Id",
+      "type": "string"
+    },
+    "maximum_temperature_c": {
+      "title": "Maximum Temperature C",
+      "type": "number"
+    },
+    "native_binary_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Native Binary Sha256",
+      "type": "string"
+    },
+    "native_version_after": {
+      "title": "Native Version After",
+      "type": "integer"
+    },
+    "native_version_before": {
+      "title": "Native Version Before",
+      "type": "integer"
+    },
+    "nonce": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Nonce",
+      "type": "string"
+    },
+    "outcome": {
+      "const": "simulated_safe_stop_cooldown",
+      "default": "simulated_safe_stop_cooldown",
+      "title": "Outcome",
+      "type": "string"
+    },
+    "physical_io": {
+      "const": false,
+      "default": false,
+      "title": "Physical Io",
+      "type": "boolean"
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "plant_id": {
+      "const": "commissioned-simulator-01",
+      "default": "commissioned-simulator-01",
+      "title": "Plant Id",
+      "type": "string"
+    },
+    "previous_receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Previous Receipt Sha256",
+      "type": "string"
+    },
+    "receipt_format": {
+      "const": "commissioned-receipt-v1",
+      "default": "commissioned-receipt-v1",
+      "title": "Receipt Format",
+      "type": "string"
+    },
+    "receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Receipt Sha256",
+      "type": "string"
+    },
+    "rules_revision": {
+      "const": "commissioned-stop-v1",
+      "default": "commissioned-stop-v1",
+      "title": "Rules Revision",
+      "type": "string"
+    },
+    "rules_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Rules Sha256",
+      "type": "string"
+    },
+    "snapshot_sha256_after": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256 After",
+      "type": "string"
+    },
+    "snapshot_sha256_before": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256 Before",
+      "type": "string"
+    },
+    "temperatures_after_c": {
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Temperatures After C",
+      "type": "array"
+    },
+    "temperatures_before_c": {
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Temperatures Before C",
+      "type": "array"
+    }
+  },
+  "required": [
+    "incident_id",
+    "action_id",
+    "nonce",
+    "plan_sha256",
+    "rules_sha256",
+    "previous_receipt_sha256",
+    "receipt_sha256",
+    "database_version_before",
+    "database_version_after",
+    "native_version_before",
+    "native_version_after",
+    "snapshot_sha256_before",
+    "snapshot_sha256_after",
+    "native_binary_sha256",
+    "temperatures_before_c",
+    "temperatures_after_c",
+    "maximum_temperature_c"
+  ],
+  "title": "CommissionedReceipt",
+  "type": "object"
+}

@@ -14,19 +14,50 @@ def main() -> None:
         (
             "aegis_graph",
             config.graph_password,
-            ("sandbox_resources", "auth_credentials", "auth_proposals"),
+            (
+                "sandbox_resources",
+                "auth_credentials",
+                "auth_proposals",
+                "commissioned_resources",
+                "commissioned_proposals",
+            ),
         ),
         (
             "aegis_approver",
             config.approver_password,
-            ("sandbox_resources", "plans", "actions", "audit"),
+            (
+                "sandbox_resources",
+                "plans",
+                "actions",
+                "audit",
+                "commissioned_resources",
+                "commissioned_reports",
+            ),
         ),
         (
             "aegis_gateway",
             config.gateway_password,
-            ("auth_credentials", "auth_proposals", "plans", "actions", "audit"),
+            (
+                "auth_credentials",
+                "auth_proposals",
+                "plans",
+                "actions",
+                "audit",
+                "commissioned_proposals",
+                "commissioned_reports",
+            ),
         ),
-        ("aegis_ingestor", config.mongo_writer_password, ("sandbox_resources", "auth_proposals")),
+        (
+            "aegis_ingestor",
+            config.mongo_writer_password,
+            (
+                "sandbox_resources",
+                "auth_proposals",
+                "commissioned_resources",
+                "commissioned_reports",
+                "commissioned_proposals",
+            ),
+        ),
     ]
     denied = 0
     for username, password, collections in identities:

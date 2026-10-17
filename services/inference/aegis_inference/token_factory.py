@@ -120,7 +120,16 @@ class TokenFactoryClient:
     async def plan(self, evidence: str, max_tokens: int = 256) -> HostedOpinion:
         return await self._bounded(evidence, max_tokens, True)
 
-    async def _bounded(self, evidence: str, max_tokens: int, planning: bool) -> HostedOpinion:
+    async def investigate_grounded(self, evidence: str, max_tokens: int = 256) -> HostedOpinion:
+        """Commissioned admission: retain abstentions and try the next bounded route."""
+        return await self._bounded(evidence, max_tokens, False, require_grounded=True)
+
+    async def plan_grounded(self, evidence: str, max_tokens: int = 256) -> HostedOpinion:
+        return await self._bounded(evidence, max_tokens, True, require_grounded=True)
+
+    async def _bounded(
+        self, evidence: str, max_tokens: int, planning: bool, *, require_grounded: bool = False
+    ) -> HostedOpinion:
         if time.monotonic() < self.blocked_until or self.calls >= 6:
             raise InferenceUnavailable("AMD quota circuit open or session request budget exhausted")
         if (
@@ -130,11 +139,21 @@ class TokenFactoryClient:
         ):
             raise ValueError("Hosted opinion input/output bound exceeded")
         try:
-            return await asyncio.wait_for(self._route(evidence, max_tokens, planning), timeout=60)
+            return await asyncio.wait_for(
+                self._route(evidence, max_tokens, planning, require_grounded=require_grounded),
+                timeout=60,
+            )
         except TimeoutError:
             raise InferenceUnavailable("AMD routing total deadline exceeded") from None
 
-    async def _route(self, evidence: str, max_tokens: int, planning: bool = False) -> HostedOpinion:
+    async def _route(
+        self,
+        evidence: str,
+        max_tokens: int,
+        planning: bool = False,
+        *,
+        require_grounded: bool = False,
+    ) -> HostedOpinion:
         available = await self.catalog()
         schema = PlanningOpinion if planning else ModelOpinion
         attempted = []
@@ -242,6 +261,42 @@ class TokenFactoryClient:
                         and completion <= max_tokens,
                     )
                     raise ValueError("Invalid provider token accounting")
+                if require_grounded:
+                    meaningful = (
+                        opinion.recommendation != "abstain"
+                        and set(opinion.evidence_ids)
+                        == {"candidate_evaluations", "retrieved_sources"}
+                        if isinstance(opinion, PlanningOpinion)
+                        else opinion.assessment == "investigate"
+                        and bool(opinion.hypotheses)
+                        and bool({"observed", "residuals"}.intersection(opinion.evidence_ids))
+                    )
+                    if planning and isinstance(opinion, PlanningOpinion):
+                        candidates = (
+                            supplied.get("candidate_evaluations", {})
+                            if isinstance(supplied, dict)
+                            else {}
+                        )
+                        selected = (
+                            candidates.get(opinion.recommendation)
+                            if isinstance(candidates, dict)
+                            else None
+                        )
+                        meaningful = (
+                            meaningful
+                            and isinstance(selected, dict)
+                            and selected.get("feasible") is True
+                        )
+                    if not meaningful:
+                        self.last_diagnostic.update(
+                            stage="semantic_abstention",
+                            rejected_opinion=opinion.model_dump(),
+                            prompt_tokens=prompt,
+                            completion_tokens=completion,
+                        )
+                        raise ValueError(
+                            "Commissioned admission requires a grounded non-abstaining opinion"
+                        )
                 self.last_diagnostic["stage"] = "validated"
                 self.diagnostics.append({"model": model, **self.last_diagnostic})
                 return HostedOpinion(

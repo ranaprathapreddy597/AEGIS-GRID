@@ -1,0 +1,7 @@
+{
+  "algorithm": "Ed25519",
+  "public_key": "HQOIfkIsaVO0LD89fl7cD7wuZXdYDVdiIcUX+08fX44=",
+  "sha256": "a22dbd91274b67c8fd7f099a5f5a36ede6e8382967d5eca6b699e4b7d0fbe4e7",
+  "signature": "MqFL5rcvooPMK77CVR3BrQcpNtuFPb7u4s0XGqYJoeVgbaX/zVc8dFLtKCrMn2JQG0Y0bjr271IkPsQlP5hXDA==",
+  "signer": "Dedicated one-time local software fixture key; private key not retained; NOT WebAuthn approval"
+}
