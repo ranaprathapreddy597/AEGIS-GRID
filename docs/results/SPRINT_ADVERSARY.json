@@ -1,0 +1,59 @@
+{
+  "scope": "Offline deterministic native/crypto attack regression; no hosted calls or plant writes",
+  "image_id": "sha256:f5d09ee4b6352172f19d65c648bc12c05417aa1810de36d177312efaea21fdd0",
+  "state": "PASS",
+  "checks": [
+    {
+      "name": "Sensor spoofing",
+      "state": "PASS",
+      "passed": 1,
+      "selector": "tests/integration/test_edge_safety.py::test_real_spoof_fault_detected_and_local_stop_latches_without_any_cloud",
+      "reason": "Native hidden heating versus delivered spoofed measurement; local stop latches offline.",
+      "test_source_sha256": "fcb606786004e6b3f26cec010f41506125082bc43851e4cf047b0fb522e2cb33"
+    },
+    {
+      "name": "Conflicting manuals",
+      "state": "PASS",
+      "passed": 1,
+      "selector": "tests/unit/test_manual_evidence.py::test_actual_thousand_page_corpus_has_verifiable_limits_and_contradiction",
+      "reason": "Whole original corpus conflict refuses operational authorization.",
+      "test_source_sha256": "faa98058683bf97121fd44d29964711c280c5b0c991875fe8ea5e0d511459588"
+    },
+    {
+      "name": "Malicious retrieved instructions",
+      "state": "PASS",
+      "passed": 1,
+      "selector": "tests/unit/test_manual_evidence.py::test_injected_pdf_instructions_are_untrusted_data_without_commands",
+      "reason": "Original malicious PDF instruction cannot become command or trusted revision.",
+      "test_source_sha256": "faa98058683bf97121fd44d29964711c280c5b0c991875fe8ea5e0d511459588"
+    },
+    {
+      "name": "Unsafe proposal",
+      "state": "PASS",
+      "passed": 1,
+      "selector": "tests/security/test_capability_authorization.py::test_signed_unsafe_or_modified_action_cannot_override_independent_schema_policy",
+      "reason": "Even a signed unsafe control is rejected by independent typed policy.",
+      "test_source_sha256": "467b21d30111eeb93a008622b7d411782cbc73c2c437f8f285983d812e819ece"
+    },
+    {
+      "name": "Stale approved state",
+      "state": "PASS",
+      "passed": 1,
+      "selector": "tests/integration/test_authorization_gateway.py::test_protected_gateway_refuses_before_any_state_change[stale_database]",
+      "reason": "Real signed capability/native gateway; resource/approval storage uses explicit doubles.",
+      "test_source_sha256": "d4348fe77f6588562b135474cff247e2ab1e9878f6c45b66d1619ab1a58490b0"
+    },
+    {
+      "name": "Invalid WebAuthn proofs",
+      "state": "PASS",
+      "passed": 8,
+      "selector": "tests/security/test_webauthn_proofs.py::test_actual_approval_verifier_refuses_invalid_proofs",
+      "reason": "Real WebAuthn crypto verifies origin, UV, proof and plan binding; storage doubles.",
+      "test_source_sha256": "7a923247c53246e3aa03c3f4f136b68a570425f16dfba231df189c03036bf235"
+    }
+  ],
+  "limitations": [
+    "Finite selected attacks, not a security certification.",
+    "Stale approval uses a signed capability and storage doubles; historical browser proof remains separate."
+  ]
+}

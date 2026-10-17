@@ -21,6 +21,10 @@ COPY data/cloud-knowledge-manifest.json data/cloud-knowledge-manifest.json
 COPY data/cloud-embedding-manifest.json data/cloud-embedding-manifest.json
 COPY docs/results/phase8-profile.json docs/results/phase8-profile.json
 COPY docs/results/phase12-benchmark-after-hardening.json docs/results/phase12-benchmark-after-hardening.json
+COPY docs/results/SPRINT_FORECAST.json docs/results/SPRINT_FORECAST.json
+COPY docs/results/sprint-ai-evaluation.json docs/results/sprint-ai-evaluation.json
+COPY docs/results/sprint-ai-confounders.json docs/results/sprint-ai-confounders.json
+COPY docs/results/SPRINT_ADVERSARY.json docs/results/SPRINT_ADVERSARY.json
 RUN uv sync --locked --no-dev --no-editable
 ENV PATH="/app/.venv/bin:$PATH"
 ENV LANGSMITH_TRACING=false LANGCHAIN_TRACING_V2=false DO_NOT_TRACK=1

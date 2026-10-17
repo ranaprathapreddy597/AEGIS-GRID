@@ -187,6 +187,44 @@
         "title": "ApprovalView",
         "type": "object"
       },
+      "AttackCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "passed": {
+            "title": "Passed",
+            "type": "integer"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "selector": {
+            "title": "Selector",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "state",
+          "passed",
+          "reason",
+          "selector"
+        ],
+        "title": "AttackCheck",
+        "type": "object"
+      },
       "CandidatePlan": {
         "additionalProperties": false,
         "properties": {
@@ -305,6 +343,65 @@
           "detail"
         ],
         "title": "Capability",
+        "type": "object"
+      },
+      "CellForecast": {
+        "additionalProperties": false,
+        "properties": {
+          "cell_id": {
+            "enum": [
+              "CELL-01",
+              "CELL-02",
+              "CELL-03",
+              "CELL-04",
+              "CELL-05",
+              "CELL-06"
+            ],
+            "title": "Cell Id",
+            "type": "string"
+          },
+          "crossing_in_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crossing In S"
+          },
+          "extrapolation_error_c": {
+            "title": "Extrapolation Error C",
+            "type": "number"
+          },
+          "observed_temperature_c": {
+            "title": "Observed Temperature C",
+            "type": "number"
+          },
+          "projected_temperature_c": {
+            "title": "Projected Temperature C",
+            "type": "number"
+          },
+          "slope_c_per_s": {
+            "title": "Slope C Per S",
+            "type": "number"
+          },
+          "warning": {
+            "title": "Warning",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cell_id",
+          "observed_temperature_c",
+          "slope_c_per_s",
+          "projected_temperature_c",
+          "extrapolation_error_c",
+          "crossing_in_s",
+          "warning"
+        ],
+        "title": "CellForecast",
         "type": "object"
       },
       "CellMeasurement": {
@@ -1540,6 +1637,112 @@
           "capability"
         ],
         "title": "ExecutionEnvelope",
+        "type": "object"
+      },
+      "ExperimentMetric": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "unit": {
+            "default": "fraction",
+            "title": "Unit",
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "title": "ExperimentMetric",
+        "type": "object"
+      },
+      "ExperimentSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact": {
+            "title": "Artifact",
+            "type": "string"
+          },
+          "artifact_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Artifact Sha256",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "metrics": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentMetric"
+            },
+            "title": "Metrics",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "PASS",
+              "PARTIAL",
+              "BLOCKED"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "state",
+          "scope",
+          "metrics",
+          "limitations",
+          "artifact",
+          "artifact_sha256"
+        ],
+        "title": "ExperimentSummary",
+        "type": "object"
+      },
+      "ForecastRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/SensorFrame"
+            },
+            "maxItems": 121,
+            "minItems": 1,
+            "title": "History",
+            "type": "array"
+          }
+        },
+        "required": [
+          "history"
+        ],
+        "title": "ForecastRequest",
         "type": "object"
       },
       "FutureFailure": {
@@ -4304,6 +4507,51 @@
         "title": "SourceCitation",
         "type": "object"
       },
+      "SprintEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "attacks": {
+            "items": {
+              "$ref": "#/components/schemas/AttackCheck"
+            },
+            "title": "Attacks",
+            "type": "array"
+          },
+          "execution_authority": {
+            "const": false,
+            "default": false,
+            "title": "Execution Authority",
+            "type": "boolean"
+          },
+          "experiments": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentSummary"
+            },
+            "title": "Experiments",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "mode": {
+            "const": "recorded_offline_experiments",
+            "default": "recorded_offline_experiments",
+            "title": "Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "experiments",
+          "attacks",
+          "limitations"
+        ],
+        "title": "SprintEvidence",
+        "type": "object"
+      },
       "StopCertificate": {
         "additionalProperties": false,
         "properties": {
@@ -4403,6 +4651,76 @@
           "redis"
         ],
         "title": "StorageStatus",
+        "type": "object"
+      },
+      "ThermalForecast": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "$ref": "#/components/schemas/CellForecast"
+            },
+            "title": "Cells",
+            "type": "array"
+          },
+          "execution_authority": {
+            "const": false,
+            "default": false,
+            "title": "Execution Authority",
+            "type": "boolean"
+          },
+          "horizon_s": {
+            "const": 60,
+            "default": 60,
+            "title": "Horizon S",
+            "type": "integer"
+          },
+          "limitation": {
+            "default": "Synthetic simulator advisory only. Linear trend assumes unchanged conditions; sensor spoofing and abrupt faults can defeat it. Error bands are heuristic, not calibrated confidence intervals. No approval or control authority.",
+            "title": "Limitation",
+            "type": "string"
+          },
+          "method": {
+            "const": "observed_linear_trend_v1",
+            "default": "observed_linear_trend_v1",
+            "title": "Method",
+            "type": "string"
+          },
+          "observation_count": {
+            "title": "Observation Count",
+            "type": "integer"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "abstained"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "thermal_limit_c": {
+            "const": 70,
+            "default": 70,
+            "title": "Thermal Limit C",
+            "type": "integer"
+          },
+          "warning": {
+            "title": "Warning",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "reason",
+          "observation_count",
+          "cells",
+          "warning"
+        ],
+        "title": "ThermalForecast",
         "type": "object"
       },
       "TruthCell": {
@@ -4683,6 +5001,62 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/analysis/forecast": {
+      "post": {
+        "operationId": "thermal_forecast_api_v1_analysis_forecast_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForecastRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThermalForecast"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Thermal Forecast"
+      }
+    },
     "/api/v1/analysis/futures": {
       "get": {
         "operationId": "futures_ensemble_api_v1_analysis_futures_get",
@@ -4949,6 +5323,52 @@
           }
         },
         "summary": "Scenario Preview"
+      }
+    },
+    "/api/v1/analysis/sprint-evidence": {
+      "get": {
+        "operationId": "recorded_sprint_evidence_api_v1_analysis_sprint_evidence_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprintEvidence"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        },
+        "summary": "Recorded Sprint Evidence"
       }
     },
     "/api/v1/approval/commissioned/investigate": {

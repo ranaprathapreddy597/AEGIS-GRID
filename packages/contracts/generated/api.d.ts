@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/v1/analysis/forecast": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Thermal Forecast */
+        post: operations["thermal_forecast_api_v1_analysis_forecast_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/analysis/futures": {
         parameters: {
             query?: never;
@@ -49,6 +66,23 @@ export interface paths {
         put?: never;
         /** Scenario Preview */
         post: operations["scenario_preview_api_v1_analysis_scenario_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/analysis/sprint-evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Recorded Sprint Evidence */
+        get: operations["recorded_sprint_evidence_api_v1_analysis_sprint_evidence_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -828,6 +862,22 @@ export interface components {
              */
             status: "waiting_for_passkey" | "approved" | "executed";
         };
+        /** AttackCheck */
+        AttackCheck: {
+            /** Name */
+            name: string;
+            /** Passed */
+            passed: number;
+            /** Reason */
+            reason: string;
+            /** Selector */
+            selector: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "PASS" | "FAIL";
+        };
         /** CandidatePlan */
         CandidatePlan: {
             /** Candidate Id */
@@ -893,6 +943,26 @@ export interface components {
              * @enum {string}
              */
             status: "verified_local" | "simulated" | "blocked" | "not_implemented";
+        };
+        /** CellForecast */
+        CellForecast: {
+            /**
+             * Cell Id
+             * @enum {string}
+             */
+            cell_id: "CELL-01" | "CELL-02" | "CELL-03" | "CELL-04" | "CELL-05" | "CELL-06";
+            /** Crossing In S */
+            crossing_in_s: number | null;
+            /** Extrapolation Error C */
+            extrapolation_error_c: number;
+            /** Observed Temperature C */
+            observed_temperature_c: number;
+            /** Projected Temperature C */
+            projected_temperature_c: number;
+            /** Slope C Per S */
+            slope_c_per_s: number;
+            /** Warning */
+            warning: boolean;
         };
         /** CellMeasurement */
         CellMeasurement: {
@@ -1490,6 +1560,43 @@ export interface components {
             action_json: string;
             /** Capability */
             capability: string;
+        };
+        /** ExperimentMetric */
+        ExperimentMetric: {
+            /** Name */
+            name: string;
+            /**
+             * Unit
+             * @default fraction
+             */
+            unit: string;
+            /** Value */
+            value: number | null;
+        };
+        /** ExperimentSummary */
+        ExperimentSummary: {
+            /** Artifact */
+            artifact: string;
+            /** Artifact Sha256 */
+            artifact_sha256: string;
+            /** Limitations */
+            limitations: string[];
+            /** Metrics */
+            metrics: components["schemas"]["ExperimentMetric"][];
+            /** Name */
+            name: string;
+            /** Scope */
+            scope: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "PASS" | "PARTIAL" | "BLOCKED";
+        };
+        /** ForecastRequest */
+        ForecastRequest: {
+            /** History */
+            history: components["schemas"]["SensorFrame"][];
         };
         /** FutureFailure */
         FutureFailure: {
@@ -2727,6 +2834,27 @@ export interface components {
             /** Title */
             title: string;
         };
+        /** SprintEvidence */
+        SprintEvidence: {
+            /** Attacks */
+            attacks: components["schemas"]["AttackCheck"][];
+            /**
+             * Execution Authority
+             * @default false
+             * @constant
+             */
+            execution_authority: false;
+            /** Experiments */
+            experiments: components["schemas"]["ExperimentSummary"][];
+            /** Limitations */
+            limitations: string[];
+            /**
+             * Mode
+             * @default recorded_offline_experiments
+             * @constant
+             */
+            mode: "recorded_offline_experiments";
+        };
         /** StopCertificate */
         StopCertificate: {
             /**
@@ -2780,6 +2908,51 @@ export interface components {
              * @constant
              */
             retention_days: 30;
+        };
+        /** ThermalForecast */
+        ThermalForecast: {
+            /** Cells */
+            cells: components["schemas"]["CellForecast"][];
+            /**
+             * Execution Authority
+             * @default false
+             * @constant
+             */
+            execution_authority: false;
+            /**
+             * Horizon S
+             * @default 60
+             * @constant
+             */
+            horizon_s: 60;
+            /**
+             * Limitation
+             * @default Synthetic simulator advisory only. Linear trend assumes unchanged conditions; sensor spoofing and abrupt faults can defeat it. Error bands are heuristic, not calibrated confidence intervals. No approval or control authority.
+             */
+            limitation: string;
+            /**
+             * Method
+             * @default observed_linear_trend_v1
+             * @constant
+             */
+            method: "observed_linear_trend_v1";
+            /** Observation Count */
+            observation_count: number;
+            /** Reason */
+            reason: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "available" | "abstained";
+            /**
+             * Thermal Limit C
+             * @default 70
+             * @constant
+             */
+            thermal_limit_c: 70;
+            /** Warning */
+            warning: boolean;
         };
         /** TruthCell */
         TruthCell: {
@@ -2907,6 +3080,41 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    thermal_forecast_api_v1_analysis_forecast_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ForecastRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ThermalForecast"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     futures_ensemble_api_v1_analysis_futures_get: {
         parameters: {
             query?: never;
@@ -3090,6 +3298,37 @@ export interface operations {
             };
             /** @description Service Unavailable */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    recorded_sprint_evidence_api_v1_analysis_sprint_evidence_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SprintEvidence"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -10,12 +10,14 @@ from typing import Annotated, Any, Literal
 from uuid import UUID
 
 import httpx
+from aegis_agents.forecasting import forecast
 from aegis_agents.laboratory import analysis_incident, load_ensemble, preview
 from aegis_agents.optimization_service import OptimizationService
 from aegis_agents.optimizer import digest
 from aegis_agents.recovery_gate import recovery_eligibility
 from aegis_agents.service import InvestigationService
 from aegis_contracts.config import Settings
+from aegis_contracts.forecasting import ForecastRequest, ThermalForecast
 from aegis_contracts.http import install_http_boundary
 from aegis_contracts.inference import InferenceStatus, MemoryBudget
 from aegis_contracts.integrations import IntegrationGate, IntegrationStatus, RepairBundle
@@ -37,6 +39,7 @@ from aegis_contracts.models import (
 )
 from aegis_contracts.optimization import RecoveryAssessment
 from aegis_contracts.security import RequireToken
+from aegis_contracts.sprint import SprintEvidence
 from aegis_inference.budget import calculate, metadata
 from aegis_inference.token_factory import TokenFactoryClient
 from aegis_ingestion.dual_store import DualKnowledgeStore
@@ -53,6 +56,7 @@ from aegis_api.approval_routes import install_approval_routes
 from aegis_api.authorization import AuthorizationService
 from aegis_api.commissioned_routes import install_commissioned_routes
 from aegis_api.gateway import SimulatorGateway
+from aegis_api.sprint_evidence import sprint_evidence
 from aegis_api.storage import EventConflict, StorageUnavailable, TelemetryStore
 
 logger = logging.getLogger("aegis.api")
@@ -217,6 +221,29 @@ def create_app(
     install_http_boundary(app)
     auth = Depends(RequireToken(config.viewer_token.get_secret_value()))
     limit = Depends(RateLimit())
+
+    @app.get(
+        "/api/v1/analysis/sprint-evidence",
+        response_model=SprintEvidence,
+        dependencies=[auth, limit],
+    )
+    async def recorded_sprint_evidence() -> SprintEvidence:
+        try:
+            return sprint_evidence()
+        except (OSError, ValueError, KeyError, TypeError):
+            raise HTTPException(503, "Recorded sprint experiments unavailable") from None
+
+    @app.post(
+        "/api/v1/analysis/forecast",
+        response_model=ThermalForecast,
+        dependencies=[auth, limit],
+    )
+    async def thermal_forecast(body: ForecastRequest) -> ThermalForecast:
+        try:
+            return forecast(body.history)
+        except ValueError:
+            raise HTTPException(422, "Forecast requires ordered observed telemetry") from None
+
     install_approval_routes(app, config, authorization_service, gateway_service, limit)
     install_commissioned_routes(
         app,
