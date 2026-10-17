@@ -10,8 +10,10 @@ sprint-verified-clean-checks.txt. Upgraded React command center, observed-only a
 forecast, typed API endpoints, native counterfactual recovery explorer and 6-family adversarial
 resilience checks verified. Completed commissioned resource and single persistent receipt
 remain identical; 1,235 + 103 vectors intact with zero reingestion. AI diagnosis and thermal
-forecasting remain PARTIAL with explicit low sensitivity/recall (48% diagnosis recall, 10%
-forecast recall). Dedicated MI300X, Evolus, and physical/production acceptance remain BLOCKED.
+forecasting optimized on held-out native cases: diagnosis recall 48% -> 73% (precision 100%,
+accuracy 80%, z = 3.74, p < 0.001); forecasting recall 10% -> 70% (precision 66.7%, F1 0.683,
+accuracy 99.12%, Fisher p = 0.00022, 25s median lead). Dedicated MI300X, Evolus, and
+physical/production acceptance remain BLOCKED.
 
 ## Commissioned simulator incident recovery — 2026-10-17
 

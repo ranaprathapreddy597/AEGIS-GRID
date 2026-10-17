@@ -1,0 +1,2083 @@
+{
+  "status": "measured_synthetic_seed_holdout",
+  "protocol": {
+    "version": "sprint-ai-seed-holdout-v2",
+    "seeds": [
+      1734001,
+      1741920,
+      1749839,
+      1757758,
+      1765677,
+      1773596,
+      1781515,
+      1789434,
+      1797353,
+      1805272
+    ],
+    "scenario_families": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "cutoff": "90 + (seed % 181) seconds, one prediction per case",
+    "targets": "seed % 6; no hidden truth supplied to diagnosis",
+    "expected_causes": {
+      "0": [],
+      "1": [
+        "sensor_bias"
+      ],
+      "2": [
+        "sensor_bias"
+      ],
+      "3": [
+        "restricted_flow"
+      ],
+      "4": [
+        "weak_pump"
+      ],
+      "5": [
+        "overload"
+      ],
+      "6": [],
+      "7": [],
+      "8": [
+        "overload"
+      ],
+      "9": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ]
+    },
+    "training": "none; v2 removes residual precondition after v1 development seed evaluation",
+    "split": "new seeds/target/cutoff; existing equation families are NOT held out"
+  },
+  "protocol_sha256": "a6ccb025f332dcc9ba52ba34bf8b8101456c7e44d7d4b2903257d6863a65ab76",
+  "native_binary_sha256": "29d2d7688955506284ee0dcfeeb6fe749c4f6afe40b42a255afa501c22915caa",
+  "quality_source_sha256": "c12c2ed6465647e628b9439d7bc7dd2a30cf70e1c3fd86cd24c24b68430e4354",
+  "elapsed_s": 6.565815522999856,
+  "legacy": {
+    "cases": 100,
+    "true_positive_causes": 70,
+    "false_positive_causes": 0,
+    "false_negative_causes": 30,
+    "precision": 1.0,
+    "recall": 0.7,
+    "accuracy": 0.75,
+    "top1_fault_recall": 0.6428571428571429,
+    "selective_top1_accuracy": 1.0,
+    "abstention_coverage": 0.55,
+    "prediction_coverage": 0.45,
+    "abstained_cases": 55
+  },
+  "grounded": {
+    "cases": 100,
+    "true_positive_causes": 73,
+    "false_positive_causes": 0,
+    "false_negative_causes": 27,
+    "precision": 1.0,
+    "recall": 0.73,
+    "accuracy": 0.8,
+    "top1_fault_recall": 0.7142857142857143,
+    "selective_top1_accuracy": 1.0,
+    "abstention_coverage": 0.5,
+    "prediction_coverage": 0.5,
+    "abstained_cases": 50
+  },
+  "per_family": {
+    "0": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "1": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 10,
+      "precision": null,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "top1_fault_recall": 0.0,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "2": {
+      "cases": 10,
+      "true_positive_causes": 10,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "top1_fault_recall": 1.0,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.0,
+      "prediction_coverage": 1.0,
+      "abstained_cases": 0
+    },
+    "3": {
+      "cases": 10,
+      "true_positive_causes": 10,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "top1_fault_recall": 1.0,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.0,
+      "prediction_coverage": 1.0,
+      "abstained_cases": 0
+    },
+    "4": {
+      "cases": 10,
+      "true_positive_causes": 10,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "top1_fault_recall": 1.0,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.0,
+      "prediction_coverage": 1.0,
+      "abstained_cases": 0
+    },
+    "5": {
+      "cases": 10,
+      "true_positive_causes": 5,
+      "false_positive_causes": 0,
+      "false_negative_causes": 5,
+      "precision": 1.0,
+      "recall": 0.5,
+      "accuracy": 0.5,
+      "top1_fault_recall": 0.5,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.5,
+      "prediction_coverage": 0.5,
+      "abstained_cases": 5
+    },
+    "6": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "7": {
+      "cases": 10,
+      "true_positive_causes": 0,
+      "false_positive_causes": 0,
+      "false_negative_causes": 0,
+      "precision": null,
+      "recall": null,
+      "accuracy": 1.0,
+      "top1_fault_recall": null,
+      "selective_top1_accuracy": null,
+      "abstention_coverage": 1.0,
+      "prediction_coverage": 0.0,
+      "abstained_cases": 10
+    },
+    "8": {
+      "cases": 10,
+      "true_positive_causes": 5,
+      "false_positive_causes": 0,
+      "false_negative_causes": 5,
+      "precision": 1.0,
+      "recall": 0.5,
+      "accuracy": 0.5,
+      "top1_fault_recall": 0.5,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.5,
+      "prediction_coverage": 0.5,
+      "abstained_cases": 5
+    },
+    "9": {
+      "cases": 10,
+      "true_positive_causes": 33,
+      "false_positive_causes": 0,
+      "false_negative_causes": 7,
+      "precision": 1.0,
+      "recall": 0.825,
+      "accuracy": 1.0,
+      "top1_fault_recall": 1.0,
+      "selective_top1_accuracy": 1.0,
+      "abstention_coverage": 0.0,
+      "prediction_coverage": 1.0,
+      "abstained_cases": 0
+    }
+  },
+  "definitions": {
+    "precision_recall": "micro cause-set precision/recall; thermal symptom unsupported",
+    "accuracy": "top cause in injected set; correct abstention for no modeled cause",
+    "abstention_coverage": "fraction with no hypothesis, NOT an accuracy",
+    "transport": "delay/drop families lack a representable cause; expected to abstain"
+  },
+  "limitations": [
+    "Same synthetic equations and fault families used during original development",
+    "Seed holdout does not establish unseen-fault or real-world generalization",
+    "Weak pump and load bursts are ambiguous without command/history inputs",
+    "High precision may be traded for lower recall/coverage; all false negatives retained",
+    "No AMD/Pinecone/MI300X call or hosted diagnostic performance evaluated"
+  ],
+  "rows": [
+    {
+      "family": 0,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e2b0a3c95b746e7105df35165da6f75cf1a66da0ac36d0c0827e82742b4f055e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "cf4187a27e71a0bc67ea83109a7a8681fa67cda69fcd929bd9be0fadc5513bbe",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2fea1c4eeedb98a0874fa672ef5fb8674aad4348c9f4e4a0a705dc1c81efa95d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "8621f2627bdf6919851b2323b8e64e0b43bbc16cd97c41c50cb95a415791d039",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9eb8e52d2db3c198230af8b16f6e5a36eade416c682d0481170ba63169141746",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f6f044b5974859292a0c3f741d705eb0e8741a66c9a4865aebf78d27779f748a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5d9133040ca417c69255d613814a4ec580db9ce4bf91b438f36a5b1daeb54c2e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2f46b75333e7eb11ea77d423a0e43e5c5553937bc7487a27e492b3cdde47e41f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "a7b6dccca380cb3d06b746c5f14ddaf9bc3ffb25c858c9a10faf9fc71d8f86f2",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 0,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "b596a2c41b1c9c14000d82bd38a1b5303191b6b2d5a5c98af641bccf76571ef1",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e2b0a3c95b746e7105df35165da6f75cf1a66da0ac36d0c0827e82742b4f055e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "cf4187a27e71a0bc67ea83109a7a8681fa67cda69fcd929bd9be0fadc5513bbe",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e1438de864c2508126383f346808516e3051ba21bd48ecb425c2c5365e501791",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "8621f2627bdf6919851b2323b8e64e0b43bbc16cd97c41c50cb95a415791d039",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9eb8e52d2db3c198230af8b16f6e5a36eade416c682d0481170ba63169141746",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1d6532a783b3aa406d07063362e6463aec6c781c00228bcbbe3565dd29f39d98",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5d9133040ca417c69255d613814a4ec580db9ce4bf91b438f36a5b1daeb54c2e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2f46b75333e7eb11ea77d423a0e43e5c5553937bc7487a27e492b3cdde47e41f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "a7b6dccca380cb3d06b746c5f14ddaf9bc3ffb25c858c9a10faf9fc71d8f86f2",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 1,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "59e5cc9cfcf597b633d2c11933db0fb54a5d872cb9e241e9d647574241e00dac",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "b21a15bc030bb6e3507a271d79e2a112ef6b420fd22ec85686a34a21898a1603",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "6feb5cfcda6f6877c7000c79e342f2ce1f977041e488bdb2e43f01e3564c9e93",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "e72b91a96a5f14b2cf52471610e6aab9d1c250775118d5bf85b8b47e9e6dc37d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "337fd08bbdd005f3a41b1e4d1420a59313f7a88756aaa9f36d8b3de27cada1ee",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "d9fd7301e70dec0642e537d1057f243a1f27597c960f66ec68055071c73e91b2",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "d89a7a0ddadd29042a692d1cf95a02f4a5a463785a929f49dd112dfac9ec2ac6",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "a920427e20d6aebb26d1b53bbcf20b3cc7280015682d1ec309d111047614e65b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "02e2e3afd398f209e70b445ce71928c24ba1f0d9fe3c84b9b44868202584ea9d",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "0039d99c207df91e01d4d5c71a78aac66474dbe993a507233358e41cc4428e66",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 2,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "sensor_bias"
+      ],
+      "legacy_causes": [
+        "sensor_bias"
+      ],
+      "grounded_causes": [
+        "sensor_bias"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing"
+      ],
+      "observed_trajectory_sha256": "4cae7e0600228da6c07bf9bd070ecea2d29e844d200201a3e48c5b1cd553370a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "8c6eac2da01fa4269a4370c3f743a23e5b5ea8dbcd8146e83efcd532170c2a2f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "f7f8e608054f063713c7ab2cdbd3070d645f4586489209b5b8b82b0e36ab98ff",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "33aab22d62de54ed6ad8393354f05a3e9c353f60c3c8aba491a991f60670064a",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "dff10fa0270746708b326e5d0e94adee5fb72cce898bce9c9b92a2a01092fa04",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "3bb126452d60d17bb782fbaa1e01777c0324ec67ff8146a308a89e67ddc985e2",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "cc0695d37ddb9b06cd7dfba967750e1721ae845a299e731baad3b73e0eaa17e3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "a09efc10468cb975de3fd4918efbef4cf6e24d2c9f2aaa9c9097d4ec57b51b45",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "aaa6dd5e0d01e2eb15854f7c8a14349b0d5a0662e262426bfe040b81d4bf7f20",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "9adc496139c88c08bdc8525df2840ad45463601402693319e2efe5abdf10b620",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 3,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "restricted_flow"
+      ],
+      "legacy_causes": [
+        "restricted_flow"
+      ],
+      "grounded_causes": [
+        "restricted_flow"
+      ],
+      "grounded_explanations": [
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation"
+      ],
+      "observed_trajectory_sha256": "18714ac743e7f9b62193358d4ca0566b4a49102e27200338e7935fc25e081f23",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "b29c2d81458857ae9fb58723a0d7f53ce7e5278853b81ee73dc8961c8a404544",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "6dd027476ba17782a84fa73e3f7c6260b420097a285737d75ab0e0c160cdc8e7",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "0cd091de7ae272b6df6da05f073eefd1371684aa7399027f1376cd7831ff01fc",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "d1f2b93ab9503f5afc9ff72628556fb69b2d38d5043676c9dd29d82c5288c53f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "2d6870af8600370ed3597a9081423b8b94753a6de7724912ca9824828537b3f4",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "6eadf63c9c8b6d736f494ea154b97c225c6830da081afa20c8eef6a3dcae178c",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "0fb468fe54352238359718d17312395868813581f25cc9bb89b7b1bee1f404e1",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "e3433cd6a54010395686d1d1ba6e8d435055fdf7f9e34138d5b39030607b1dc0",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "dfe8c33ff776471a424e71c7fae20dec72ddb96c92b830aed7b64c9c039a0234",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 4,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "weak_pump"
+      ],
+      "legacy_causes": [
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "56fadc46d537795499841ae56fa0f0a92feed37b5190278a1e4a5149de99f126",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "7f755233f48575094b88262c8f47acdaa8effb7f778ca6aa824ef37ebe963863",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "2a52ca28c0d8e2928501bf1e48bd2824b43385a036c547406f1402927d20eec9",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e5644b97394eb701318cc2ab7da38acc77640885000c1c81122400c7e412fbce",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "60cdf1dcc9515c76ab5bd5967e1809dc704966a074583df2aacdebc65228be25",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "5b3629e0968f56b025e66f60a4dbe00144befa8f3522bdf3a00254f67430dd32",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "f9c586a04b591d6cb894e2102a26e67288af23b2952ee8509a468f76016429d0",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "bd07b4a8fb5d796c0dd7739a3f1c591d8d7ba46ef350c10d6a7195b6937193a9",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "275acb5055a43ee1c63dfd404757b8f964f5dc21ec7a1845987b3b0c465a0f7c",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [
+        "overload"
+      ],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "f5ea3526bb5b58a04d447beb8e02fae6e0135b2e8775adf90a531db57ead8809",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 5,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "7a8126632a8e0802299fd1fe9cccc1779dd771998a43241c2859f6b21aea861b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9ea42f96c811db7796f087bcf04a99fa8b1ecb98d4b491a369280b298c8b95eb",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "ef10d8f1adfb4d62d06105d1ebcfa21b620079181be783fba99f55b02c4f9138",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "eab23ee64a91340eba7fc235a5ee0b723efda65b94791a0f50691ad14022743e",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "fdbd881e5969451fe5d95dccd6f1cec4a8a5f23ef319568a5cf11914d12b693b",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "89e4d73af4f05410a63a66cf92b34a5369ccd9a573e48af073eb047e2ac65cbb",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "91c6121ab2013af23451de31d223f11a000fe8144a21eeb82646ea33fa574507",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "5da98ddc467c2cf7888c964534d1e186711b728d3a1d6c5a35791cc7882e1f18",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "8e634d7cbf0f9a67ec5c634ece053dc24234b9aaa8faaf6dd3996c7bc2e984cd",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "e8b879fae40fbd47ecd2c6db9f532d485c82160d2c95ef94669bcdfddbd313b7",
+      "measurement_age_s": 3.9999999999997726,
+      "packet_available": true
+    },
+    {
+      "family": 6,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "16c6be5ad88323d055ac376c8dcadcf0672101bb881fbff3810402421ddb889d",
+      "measurement_age_s": 4.0000000000009095,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "d1b12ec80aea0bedb8b8f52d285e65cf9d0590c218677eb1417084efaecbe460",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 7,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "189432b9d49d5d578349472ca58eae41331b78f03987a9c0a3fe51488cc8b99b",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "46b98df1c6326d3537efa1ee504ef091510bf09a6aa838f6b8329a05f6bf0fbd",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "dd28b9a6eb0c7165c79dad9d037b62efbf53c8ad135926c426eb918d9cdace22",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "fdd7f0056ffae635e6456839049161d490e2e5f12a4f4e97bf13cd2446896613",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "1ad0e2e2c3cbc0925ac383d74335270e2e4f1c80ebff383e8370868ec0a5e4ae",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "3f2b9b4c206c3adb6deb875f8bb71c6fde6ab26abd214b5fd625789fb6c6a537",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "4039f2045049e621a4f150d5a508ad1cb04e099aba2a112a4507b231de00fb5c",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "0efe6fbeaf22c73b69098a2e6c6bfe2964f63d47426b4e408db7e1be2249ad24",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 7,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "c958d6291ad9514963346b2a8a56622f619a3614a4972a9a5a40d10f5406de66",
+      "measurement_age_s": 0.0,
+      "packet_available": false
+    },
+    {
+      "family": 8,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "00c6da8e47e88d309098d05ba69b5fdd14df5b87f7fe625a0ea056b5ab23008f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "46445a15d56afb49a7563877c7a4148ed51d70129e90449073cebb5f32720f9e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "9feddfb3d79f48b0b83ff5ab6a495f5e65b62feec20ee8e0232981aeb5f81264",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "0cfebca4bb75811f398657a1a115b68e15d0f1a7b9ca3d34d5496499ea78d377",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "433e842a6ea4c2ea4bde37ac42a1e7998aae22f8aa3575e1b99088bd373d4ec0",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "c0c5b2ba372158f063322292417bbee446c249c06d5f79362a4a5d812f5585f3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "390c9a0b680a1fa11040c1c6d6f1abb61640fd39124001ca536fac93c007aec2",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "91f8810ebc350b5ed439f3403751399667378f4c6aea2edef7932d08fd9578a7",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [],
+      "grounded_explanations": [],
+      "observed_trajectory_sha256": "147ebdc28ed27b0f122878a9115f06fc41ba21d34101564ffe06f2f2875f1063",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 8,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "overload"
+      ],
+      "legacy_causes": [],
+      "grounded_causes": [
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "6b5c0bdd792f4924d338c45f9a95758470dd2fd4f69d9b5fee67a5f277b40185",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1734001,
+      "target": 1,
+      "cutoff_s": 111,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "c8cea021b143ff3218f6a40a8c22d3517bf57bff719d0115ffbaabdb5fff4cb0",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1741920,
+      "target": 0,
+      "cutoff_s": 247,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "313b4e3ee3b56a6930ba3bc984f597b8dbb33ba5dad093a462d98bb74ca2bb3e",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1749839,
+      "target": 5,
+      "cutoff_s": 202,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "13c0c66fb189234844d48aa64cd3fb001095511a3ae3e88da59e94626b94c74f",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1757758,
+      "target": 4,
+      "cutoff_s": 157,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "d4bcc390dc14c0383a1e99fa77a29262a047c7cc8ac9d541c383543e77ab4fcf",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1765677,
+      "target": 3,
+      "cutoff_s": 112,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "38a77122f051ff09a356bc6877a4d2a9b8f9d3b16c03f3cc2815e26dabd8a2a3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1773596,
+      "target": 2,
+      "cutoff_s": 248,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "54ba7a82c8c086fd7023939d55b681a41ff18d95c95a9f4d459fe0671311cfde",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1781515,
+      "target": 1,
+      "cutoff_s": 203,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation"
+      ],
+      "observed_trajectory_sha256": "cbd06ecea4bc4121a037b61dd523b0e4ee12a2acbbd87a35335848b994b1874c",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1789434,
+      "target": 0,
+      "cutoff_s": 158,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "19c9190fef311b9ce9f8acc0848809ad7e0e8ec5af86a421b4cfe22160cb3baa",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1797353,
+      "target": 5,
+      "cutoff_s": 113,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "fef38bff699dc02edcbd90bf5239eae5023814d12bbd3fbf5e8ca9e6d246baba",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    },
+    {
+      "family": 9,
+      "seed": 1805272,
+      "target": 4,
+      "cutoff_s": 249,
+      "expected_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "legacy_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump"
+      ],
+      "grounded_causes": [
+        "sensor_bias",
+        "restricted_flow",
+        "weak_pump",
+        "overload"
+      ],
+      "grounded_explanations": [
+        "Fresh sensor disagrees with independent energy observer; bias/freeze candidate, not proof of malicious spoofing",
+        "Loaded branch flow below half the peer median; restriction or closed valve requires command-state confirmation",
+        "Loop pressure collapsed and branch flows degraded across all loaded cells; indicates pump impeller/drive degradation",
+        "Observed heat input or branch load fraction exceeds nominal operating envelope"
+      ],
+      "observed_trajectory_sha256": "7fdb78f7426a35b79eb682c206a6040b45d020bb838c4160b280a68031ed88f3",
+      "measurement_age_s": 0.0,
+      "packet_available": true
+    }
+  ]
+}

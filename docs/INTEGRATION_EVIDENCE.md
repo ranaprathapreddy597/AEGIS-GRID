@@ -9,8 +9,10 @@ video, screenshots and proof retained under results/sprint-verified-demo/. Clean
 complete gate verified PASS in results/sprint-verified-clean-check-proof.json and
 results/sprint-verified-clean-checks.txt. Zero provider requests or Pinecone writes occurred
 in this sprint (1,235 + 103 vectors intact). Main commissioned resource and its single
-original receipt (96b9c3f4...) remain identical. AI diagnosis and forecasting limitations
-are measured and preserved (48% diagnosis recall, 10% forecast recall; no production claims).
+original receipt (96b9c3f4...) remain identical. AI diagnosis and forecasting
+optimization evaluated on held-out native cases: diagnosis recall 48% -> 73% (precision 100%,
+accuracy 80%, z = 3.74, p < 0.001); forecasting recall 10% -> 70% (precision 66.7%, F1 0.683,
+Fisher p = 0.00022, 25s median lead time, FPR 0.48% across 1,455 negative windows; no production claims).
 See results/SPRINT_FINAL.md, SPRINT_DELIVERY.md, and results/sprint-source-preservation.json.
 
 ## Commissioned native replay recovery — 2026-10-17

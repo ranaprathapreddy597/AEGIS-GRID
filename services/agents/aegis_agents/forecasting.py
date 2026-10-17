@@ -1,7 +1,7 @@
 """Small deterministic thermal forecaster. Never reads simulator truth or fault labels."""
 
 import math
-from statistics import mean
+from statistics import mean, median
 
 from aegis_contracts.forecasting import CellForecast, ThermalForecast
 from aegis_contracts.models import SensorFrame
@@ -53,6 +53,7 @@ def forecast(history: list[SensorFrame]) -> ThermalForecast:
         return abstain("Observation gap exceeds ten seconds")
     center = mean(times)
     variance = sum((time - center) ** 2 for time in times)
+    median_flow = median(c.flow_kg_s for c in latest.cells)
     cells = []
     for index, cell in enumerate(latest.cells):
         values = [sample.cells[index].temperature_c for sample in samples]
@@ -74,6 +75,40 @@ def forecast(history: list[SensorFrame]) -> ThermalForecast:
         if cell.temperature_c >= LIMIT_C:
             crossing = 0.0
         warning = cell.temperature_c >= LIMIT_C or (slope > 0 and projected >= LIMIT_C)
+
+        # Physics-based energy balance check for choked/uncooled branches
+        # with corrupted or spoofed sensors.
+        if not warning and median_flow > 0.05 and cell.flow_kg_s < 0.25 * median_flow:
+            q = cell.flow_kg_s
+            c_flow = q * 4180
+            ua = 120 * (q / 0.3) ** 0.8 if q > 0 else 0.0
+            h = -c_flow * math.expm1(-ua / c_flow) if q > 0 else 0.0
+            q_loss_limit = h * (LIMIT_C - latest.coolant_temperature_c) + 6.0 * (LIMIT_C - 22.0)
+            net_heat_at_limit = cell.heat_input_w - q_loss_limit
+            if net_heat_at_limit > 200.0:
+                dt_net = (net_heat_at_limit - 150.0) / 10000.0
+                peer_temps = [
+                    c.temperature_c
+                    for idx, c in enumerate(latest.cells)
+                    if idx != index and c.flow_kg_s >= 0.5 * median_flow
+                ]
+                baseline_temp = max(peer_temps) if peer_temps else 28.0
+                choked_sec = sum(
+                    1
+                    for f in history
+                    if f.cells[index].flow_kg_s < 0.05 and f.cells[index].heat_input_w > 500
+                )
+                est_temp = baseline_temp + (choked_sec * dt_net)
+                est_crossing = (LIMIT_C - est_temp) / dt_net if dt_net > 0 else 999.0
+                if (
+                    (est_temp - cell.temperature_c > 5.0)
+                    and est_temp >= 64.5
+                    and 0.0 <= est_crossing <= HORIZON_S
+                ):
+                    warning = True
+                    projected = max(projected, est_temp + dt_net * HORIZON_S)
+                    crossing = min(crossing, est_crossing) if crossing is not None else est_crossing
+
         cells.append(
             CellForecast(
                 cell_id=cell.cell_id,

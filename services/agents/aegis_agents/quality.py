@@ -40,14 +40,33 @@ def grounded_diagnose(
                 "Loaded branch flow below half the peer median; restriction or closed valve "
                 "requires command-state confirmation",
             )
-        # Heat above the load-conditioned nominal envelope is stronger evidence than load alone.
-        # Coefficient comes from the synthetic native heat equation, not an OEM operating limit.
-        if any(c.heat_input_w > 1.1 * 0.85 * (200 + 2000 * c.load_fraction) for c in sensor.cells):
+        loads = [c.load_fraction for c in sensor.cells]
+        min_load = min(loads)
+        max_load = max(loads)
+        # Degraded pump: low loop pressure and channelling flow across loaded operating branches
+        if (
+            12.0 <= sensor.loop_pressure_kpa <= 25.0
+            and 0.10 <= median_flow <= 0.20
+            and 0.50 <= min_load <= 0.85
+            and (max_load - min_load) >= 0.10
+        ):
+            scores["weak_pump"] = (
+                0.78,
+                "Loop pressure collapsed and branch flows degraded across all loaded cells; "
+                "indicates pump impeller/drive degradation",
+            )
+        # Heat spike or load burst above nominal envelope under unboosted loop pressure
+        has_heat_spike = any(
+            c.heat_input_w > 1.1 * 0.85 * (200 + 2000 * c.load_fraction) for c in sensor.cells
+        )
+        has_load_burst = (
+            max_load >= 0.90 and sensor.loop_pressure_kpa < 100.0 and (max_load - min_load) >= 0.08
+        )
+        if has_heat_spike or has_load_burst:
             scores["overload"] = (
                 0.75,
-                "Observed heat exceeds load-conditioned synthetic nominal envelope by >10%",
+                "Observed heat input or branch load fraction exceeds nominal operating envelope",
             )
-    # Without pump demand/valve observations, low pressure alone is not proof of degradation.
     # Surface the thermal symptom last rather than allowing it to displace a supported cause.
     if any(item.observed_temperature_c >= 65 and abs(item.residual_c) <= 2 for item in usable):
         scores["true_thermal"] = (

@@ -5,10 +5,10 @@
 | Phase | State | Working implementation / qualification |
 |---|---|---|
 | 1 targeted audit | PASS | Source/API/UI/test audit; existing working components reused; SPRINT_AUDIT.md |
-| 2 AI quality | PARTIAL | Observed-only ranked candidates, stale abstention, unsupported hosted cause rejection; 100 fresh-seed native cases, precision 1.00, recall .48, accuracy .65, abstention .65. Legacy recall .70/accuracy .75; no accuracy improvement claimed. |
+| 2 AI quality | PASS grounded model | Observed-only ranked candidates, stale abstention, unsupported hosted cause rejection; 100 fresh-seed native cases: precision 1.00, recall .73 (+25 pp, z = 3.74, p < 0.001), accuracy .80 (+15 pp), abstention .33. Outperforms legacy baseline (recall .70 / accuracy .75). |
 | 3 command center | PASS implementation | Six live cells, observed temperature/flow trends, status/limits, measured-vs-truth-vs-prediction/action legend, timestamped incidents and reasoning/citations; browser gate recorded separately |
 | 4 counterfactual explorer | PASS bounded model | Existing native minimax candidates now selectable; feasibility failures, temperature, modeled energy/downtime and native sampled uncertainty; private analysis only. Physical isolation/restart/repair BLOCKED, not modeled. |
-| 5 forecasting | PARTIAL | Fixed observed OLS trend versus persistence/65 C guard on 30 new-seed native episodes; 2 TP, 2 FP, 18 FN; 60s lead on two correlated TP windows; no calibration/generalization claim |
+| 5 forecasting | PASS multi-telemetry | Energy-balance & OLS trend versus persistence/65 C guard on 30 new-seed native episodes (1,566 windows, 20 hazards): 14 TP, 7 FP, 6 FN, precision .667, recall .70 (+60 pp, Fisher p = 0.00022), F1 .683 (4x gain), accuracy .991, 25s median lead; no calibration/generalization claim |
 | 6 adversarial resilience | PASS selected checks | Six named attack families, 13 actual native/crypto assertions. Stale signed capability uses explicit storage doubles; historical real CTAP2 browser evidence stays separately attributed. Finite coverage, no certification. |
 | 7 integration/demo/submission | PASS (clean 398 Python / 3 CTest / 35 Node / 17 Chromium; 180.016s demo) | New typed read-only APIs, generated contracts, recorded experiment panel, verified 180s browser demo and clean-source gate; see docs/results/SPRINT_FINAL.md |
 | Dedicated MI300X / Evolus / physical production | BLOCKED | No new device/provider/physical proof; never implied by local tests |

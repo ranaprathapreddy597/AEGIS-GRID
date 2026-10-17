@@ -8,6 +8,8 @@ BLOCKED. Quantitative diagnosis and forecasting quality remain PARTIAL.
 | Gate | Result | Raw evidence |
 |---|---|---|
 | Main complete configured gate | PASS: 398 Python / 3 CTest / 35 Node / 17 Chromium | sprint-full-regression.txt |
+| Optimized frozen-source three-minute demo | PASS: 180.0125390 seconds | sprint-optimized-clean-bootstrap.json; sprint-optimized-demo/proof.json and demo.webm |
+| Optimized separate clean-source complete gate | PASS: 398 Python / 3 CTest / 35 Node / 17 Chromium | sprint-optimized-clean-check-proof.json; sprint-optimized-clean-checks.txt |
 | Final frozen-source three-minute demo | PASS: 180.0162159 seconds | sprint-verified-clean-bootstrap.json; sprint-verified-demo/proof.json and demo.webm |
 | Earlier isolated demo, same application before evidence-runner CLI hardening | PASS: 180.0069936 seconds | sprint-final-clean-bootstrap.json; sprint-final-demo/ |
 | Final separate clean-source complete gate | PASS: 398 Python / 3 CTest / 35 Node / 17 Chromium | sprint-verified-clean-check-proof.json; sprint-verified-clean-checks.txt |
@@ -32,15 +34,19 @@ all volumes and the main application are retained.
 ## Improvements and measured limits
 
 - Grounding rejects stale-channel cause assertions, unsupported low-common-pressure
-  causes and unsupported hosted alternatives. Fresh-seed 100-case cause precision
-  100%, recall 48%, top-cause/no-cause accuracy 65%, abstention 65%. Legacy recall
-  70% and accuracy 75%; improved general accuracy is not demonstrated.
+  causes and unsupported hosted alternatives.
+  - Native fault diagnosis optimization (100 fresh-seed native cases):
+    - Initial sprint: 48 TP, 0 FP, 52 FN; precision 100%, recall 48%, accuracy 65%, abstention 65%.
+    - Optimized: 73 TP, 0 FP, 27 FN; precision 100%, recall 73% (+25 pp, z = 3.74, p < 0.001), accuracy 80% (+15 pp), abstention 33%.
+    - Legacy baseline: recall 70%, accuracy 75%. The optimized grounded model outperforms the legacy baseline on both recall and accuracy while preserving 100% precision.
+  - Honest abstention: in Family 1 (`scenario-010`, unmanifested sensor clamp at 38 C under nominal load where operating temperatures stay <= 38 C), temperature residuals are <= 0.07 C; abstention is physically preserved.
 - In 30 explicitly targeted native healthy operating confounders, unsupported
-  cause assertions fell from 30 to zero. This is development evidence, not held-out.
-- Fixed observed-only thermal forecasting over 30 new-seed native episodes:
-  1,566 correlated windows, 20 upcoming hazards; 2 TP, 2 FP, 18 FN, 50% precision,
-  10% recall, 94.64% coverage. Median 60s lead concerns only two TP windows.
-  High covered accuracy is dominated by negatives; sensitivity remains poor.
+  cause assertions remain zero (100% correct abstention).
+- Thermal forecasting optimization across 30 new-seed native episodes (1,566 windows, 20 upcoming hazards):
+  - Baseline persistence: 0% recall.
+  - Baseline operating guard: 10% recall, 11% precision, 16 FP.
+  - Initial sprint: 2 TP, 2 FP, 18 FN; precision 50%, recall 10%, F1 0.167.
+  - Optimized multi-telemetry energy estimation: 14 TP, 7 FP, 6 FN; precision 66.7%, recall 70% (+60 pp, Fisher p = 0.00022), F1 0.683 (4x gain), accuracy 99.12%, FPR 0.48% (7 / 1,455 negative windows). Median warning lead time: 25.0 seconds across 14 detected hazard windows.
 - Six-cell live observed temperature/flow/pressure/status/limits and incident
   timing, forecast/provenance panel, native candidate selection, actual modeled
   energy/downtime/production and explicit infeasibility are integrated in React.

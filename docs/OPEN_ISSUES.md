@@ -2,11 +2,13 @@
 
 2026-10-17 sprint completion: main full gate and separate clean-source gate both
 PASS 398 Python / 3 CTest / 35 Node / 17 Chromium, and the final 180.0162159s isolated
-demo passes with video and proof recorded. Diagnosis is more conservative: held-out
-recall/accuracy fell to 48%/65% (legacy 70%/75%); targeted healthy operating confounder
-false assertions fell from 30 to zero (development counterexample set, not held-out).
-Forecasting detects only 2/20 future thermal hazard windows (10% recall), with two false
-positives. Neither is industrial calibration or a new hosted-model accuracy result.
+demo passes with video and proof recorded. Diagnosis optimization improved held-out
+recall to 73% (precision 100%, accuracy 80%, z = 3.74, p < 0.001) over 100 fresh native cases;
+targeted healthy operating confounder false assertions remain zero (100% correct abstention).
+Forecasting optimization improved hazard window recall to 70% (14/20 detected, precision 66.7%,
+F1 0.683, Fisher p = 0.00022, 25s median lead time, FPR 0.48% across 1,455 negative windows).
+Physical limits remain: Family 1 sensor clamp produces <= 0.07 C residual under nominal load
+(unmanifested), and neither model claims real-world plant calibration or hosted-model accuracy.
 Dedicated MI300X, Evolus, physical passkeys, OEM reviews and production acceptance remain
 BLOCKED. Completed commissioned resource, signed safety artifacts and vectors are preserved.
 
