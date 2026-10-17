@@ -29,7 +29,8 @@ The forecast accepts no scenario/ground-truth fields. Run an isolated fault and
 investigate it, then compare actual native candidates and rejection reasons.
 No analysis UI result can enable a protected write.
 
-Run `python tools/sprint_adversary.py` after building the QA image to execute
+Run `python tools/sprint_adversary.py --output docs/results/sprint-attacks-new.json`
+after building the QA image to execute
 named attacks with network disabled. New reports must use fresh evidence paths
 when preserving an already-delivered measurement. Native evaluators are
 `tools/evaluate_sprint_ai.py`, `tools/evaluate_sprint_ai_confounders.py` and

@@ -49,6 +49,8 @@ def metrics(rows: list[dict], method: str) -> dict:
 
 
 def evaluate(library: Path, output: Path) -> dict:
+    if output.exists():
+        raise FileExistsError("Use a new output; never overwrite measured evidence")
     rows, trajectories = [], []
     for family in PROTOCOL["families"]:
         for seed in PROTOCOL["seeds"]:
@@ -126,7 +128,8 @@ def evaluate(library: Path, output: Path) -> dict:
         "rows": rows,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2) + "\n")
+    with output.open("x", encoding="utf-8") as target:
+        target.write(json.dumps(result, indent=2) + "\n")
     return result
 
 

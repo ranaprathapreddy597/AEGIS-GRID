@@ -1,10 +1,12 @@
 """Reproduce named attacks using existing real native/crypto tests, without providers."""
 
+import argparse
 import hashlib
 import json
 import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = {
@@ -41,7 +43,12 @@ CASES = {
 
 
 def main() -> None:
-    directory = ROOT / ".run/sprint-adversary"
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, required=True)
+    output = parser.parse_args().output
+    if output.exists():
+        raise FileExistsError("Use a new output; never overwrite measured evidence")
+    directory = ROOT / ".run" / ("sprint-adversary-" + uuid4().hex[:8])
     directory.mkdir(parents=True, exist_ok=True)
     checks = []
     image = "aegis-grid-qa:phase12"
@@ -105,9 +112,9 @@ def main() -> None:
             "historical browser proof remains separate.",
         ],
     }
-    (ROOT / "docs/results/SPRINT_ADVERSARY.json").write_text(
-        json.dumps(report, indent=2) + "\n", encoding="utf-8"
-    )
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("x", encoding="utf-8") as target:
+        target.write(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
     if report["state"] != "PASS":
         raise SystemExit(1)

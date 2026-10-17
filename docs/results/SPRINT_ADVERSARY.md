@@ -1,5 +1,10 @@
 # Sprint adversarial demonstration — PASS selected checks
 
+Final evidence-runner hardening requires an explicit fresh `--output` path,
+creates separate raw logs per run and refuses existing reports. The forecast
+evaluator also refuses report replacement. Existing-path rejection was executed
+before delivery; previously measured JSON remains unchanged.
+
 `python tools/sprint_adversary.py` ran six named attack families through the
 existing native/crypto implementation in the QA image with `--network none`.
 All 13 selected assertions passed: native sensor spoofing/local latch (1), whole
