@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
 from aegis_api.app import create_app
 from aegis_contracts.authorization import (
@@ -26,6 +27,21 @@ from aegis_contracts.optimization import RecoveryAssessment, SimRollout
 from pydantic import SecretStr
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _normalize_schema(val: Any) -> Any:
+    if isinstance(val, dict):
+        return {
+            k: (
+                v.replace("\\", "/")
+                if k == "default" and isinstance(v, str) and val.get("format") == "path"
+                else _normalize_schema(v)
+            )
+            for k, v in val.items()
+        }
+    if isinstance(val, list):
+        return [_normalize_schema(item) for item in val]
+    return val
 
 
 def main() -> None:
@@ -72,7 +88,7 @@ def main() -> None:
     }
     for name, schema in outputs.items():
         target = ROOT / "packages/contracts/generated" / name
-        text = json.dumps(schema, indent=2, sort_keys=True) + "\n"
+        text = json.dumps(_normalize_schema(schema), indent=2, sort_keys=True) + "\n"
         if args.check:
             if not target.exists() or target.read_text(encoding="utf-8") != text:
                 raise SystemExit(f"Contract drift: regenerate {target.name}")

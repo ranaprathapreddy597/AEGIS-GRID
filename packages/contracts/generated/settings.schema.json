@@ -169,7 +169,7 @@
       "type": "string"
     },
     "knowledge_directory": {
-      "default": "\\knowledge",
+      "default": "/knowledge",
       "format": "path",
       "title": "Knowledge Directory",
       "type": "string"
@@ -252,7 +252,7 @@
       "type": "string"
     },
     "scenario_dir": {
-      "default": "data\\scenarios",
+      "default": "data/scenarios",
       "format": "path",
       "title": "Scenario Dir",
       "type": "string"
@@ -303,13 +303,13 @@
       "type": "number"
     },
     "twin_binary": {
-      "default": "\\usr\\local\\bin\\aegis-twin",
+      "default": "/usr/local/bin/aegis-twin",
       "format": "path",
       "title": "Twin Binary",
       "type": "string"
     },
     "twin_library": {
-      "default": "\\usr\\local\\lib\\libaegis_twin.so",
+      "default": "/usr/local/lib/libaegis_twin.so",
       "format": "path",
       "title": "Twin Library",
       "type": "string"
