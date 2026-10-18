@@ -4,8 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = ROOT / "submission/AEGIS_GRID_FINAL"
+OUTPUT_DIR = Path(__file__).resolve().parent.parent
 SVG_PATH = OUTPUT_DIR / "ARCHITECTURE_DIAGRAM.svg"
 PNG_PATH = OUTPUT_DIR / "ARCHITECTURE_DIAGRAM.png"
 

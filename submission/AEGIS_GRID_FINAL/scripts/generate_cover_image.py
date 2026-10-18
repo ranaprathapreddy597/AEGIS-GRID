@@ -4,8 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "submission/AEGIS_GRID_FINAL/COVER_IMAGE.png"
+OUTPUT = Path(__file__).resolve().parent.parent / "COVER_IMAGE.png"
 
 WIDTH = 1920
 HEIGHT = 1080

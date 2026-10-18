@@ -36,7 +36,7 @@ The following items cannot be performed autonomously by an AI agent and are expl
 
 | External Action | Required User Step | Guidance & Pre-Configured Assets | Status |
 |---|---|---|---|
-| **Public GitHub Repository** | Push local git repository to user's public GitHub account | `git remote add origin https://github.com/<your-username>/aegis-grid-2.0.git`<br>`git push -u origin main` | **REQUIRES USER ACTION** |
+| **Public GitHub Repository** | Push local git repository to user's public GitHub account | `git remote add origin https://github.com/ranaprathapreddy597/AEGIS-GRID.git`<br>`git push -u origin main` | **READY TO PUSH** |
 | **Lablab.ai Team Profile** | Log in to lablab.ai and ensure you are registered on an AMD ACT III team | Solo developers or teams must register via personal OAuth / email login on lablab.ai | **REQUIRES USER ACTION** |
 | **Video Hosting Link** | If submission form requires an external video URL (YouTube/Vimeo/Loom) | Upload `submission/AEGIS_GRID_FINAL/DEMO_VIDEO.mp4` as an unlisted video on YouTube/Vimeo and paste the URL | **REQUIRES USER ACTION** |
 | **Online Application URL** | If an external public web URL is required beyond local evaluation | Launch via AWS/Render/DigitalOcean using `infra/local/compose.yaml` or provide repository link with local Docker instructions | **REQUIRES USER ACTION** |

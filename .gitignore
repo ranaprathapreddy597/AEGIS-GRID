@@ -17,3 +17,18 @@ playwright-report/
 *.log
 coverage/
 .coverage
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local scratch and temporary files
+*.tmp
+*.bak

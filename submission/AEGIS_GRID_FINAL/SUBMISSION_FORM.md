@@ -91,7 +91,7 @@ All metrics evaluated on untouched held-out datasets with zero seed or temporal 
 
 | Submission Requirement | Resource / Location | Status |
 |---|---|---|
-| **Public GitHub Repository** | `https://github.com/aegis-grid/aegis-grid-2.0` | READY FOR USER PUSH |
+| **Public GitHub Repository** | `https://github.com/ranaprathapreddy597/AEGIS-GRID` | VERIFIED REPO |
 | **Interactive Application URL** | `http://localhost:8180` (Local) / Docker Compose | READY FOR LOCAL EVAL |
 | **Three-Minute Video** | `submission/AEGIS_GRID_FINAL/DEMO_VIDEO.mp4` | DELIVERED (4.5 MB, 180s) |
 | **Slide Pitch Deck (PDF)** | `submission/AEGIS_GRID_FINAL/PITCH_DECK.pdf` | DELIVERED (12 Slides) |

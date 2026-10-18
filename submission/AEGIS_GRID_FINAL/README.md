@@ -110,8 +110,8 @@ Evaluated against strict held-out synthetic and physical datasets with zero data
 ### Installation & Startup
 ```powershell
 # 1. Clone the repository
-git clone https://github.com/aegis-grid/aegis-grid-2.0.git
-cd aegis-grid-2.0
+git clone https://github.com/ranaprathapreddy597/AEGIS-GRID.git
+cd AEGIS-GRID
 
 # 2. Synchronize frozen dependencies
 uv sync --locked

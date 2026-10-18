@@ -5,8 +5,7 @@ from pathlib import Path
 from reportlab.lib.colors import HexColor
 from reportlab.pdfgen import canvas
 
-ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = ROOT / "submission/AEGIS_GRID_FINAL"
+OUTPUT_DIR = Path(__file__).resolve().parent.parent
 PDF_PATH = OUTPUT_DIR / "PITCH_DECK.pdf"
 
 # 16:9 Slide Dimensions (Points: 960 x 540)
@@ -934,7 +933,7 @@ def render_pitch_deck():
     c.drawString(
         55,
         70,
-        "Repository: https://github.com/aegis-grid/aegis-grid-2.0  •  Thank You, AMD & Lablab.ai Judges!",
+        "Repository: https://github.com/ranaprathapreddy597/AEGIS-GRID  •  Thank You, AMD & Lablab.ai Judges!",
     )
     c.showPage()
 
